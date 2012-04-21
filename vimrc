@@ -10,4 +10,3 @@ set shiftwidth=4
 set expandtab
 set tabstop=4
 au BufEnter /tmp/bash-fc* set ft=sh "highlighting for fc
-
