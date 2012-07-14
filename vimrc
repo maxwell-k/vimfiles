@@ -3,6 +3,7 @@ set guioptions-=m  " only works if a single option per line
 set guioptions-=T
 call pathogen#infect()
 let g:is_posix = 1
+let g:sh_fold_enabled= 3 
 colorscheme solarized
 set t_Co=16
 set background=dark
