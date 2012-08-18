@@ -13,4 +13,7 @@ au FileType sh set noexpandtab
 set shiftwidth=4
 set tabstop=4
 set linebreak
-au BufEnter /tmp/bash-fc* set ft=sh "highlighting for fc
+" use `K` for `:help`
+set kp=
+"highlighting for fc
+au BufEnter /tmp/bash-fc* set ft=sh 
