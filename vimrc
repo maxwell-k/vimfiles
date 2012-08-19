@@ -51,8 +51,9 @@ endif
 endf
 au FileType rst noremap <F1> :call Headings()<CR>
 " shell scripts {{{1
-au BufEnter /tmp/bash-fc* set ft=sh      "highlighting for fc
-au FileType sh set noexpandtab
-au FileType sh let g:is_posix = 1
-au FileType sh let g:sh_fold_enabled= 3
+let g:sh_fold_enabled= 3 " doesn't work in an autocommand
+autocmd FileType sh setlocal foldmethod=syntax
+autocmd BufEnter /tmp/bash-fc* set ft=sh " highlighting for fc
+autocmd FileType sh set noexpandtab
+autocmd FileType sh let g:is_posix = 1 " don't highlight $() as error
 " vim: set foldmethod=marker :{{{1
