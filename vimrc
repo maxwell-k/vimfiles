@@ -1,4 +1,4 @@
-set guioptions+=c  " keyboard workaround for file changed dialog
+set guioptions+=c  " keyboard workaround for file changed dialog 
 set guioptions-=m  " only works if a single option per line
 set guioptions-=T
 call pathogen#infect()
@@ -13,7 +13,7 @@ set kp= " use `K` for `:help`
 " launch google-chrome on the URL under the cursor with control enter
 noremap <C-CR> :silent !google-chrome "<cfile>" &<CR>
 " reStructuredText {{{1
-au FileType rst set textwidth=80
+autocmd FileType rst set textwidth=80
 " provide a table of contents in the location list {{{2
 function! Headings()
 if &ft == 'rst'
@@ -49,11 +49,10 @@ EOF
     syn match	qfError		"error" contained
 endif
 endf
-au FileType rst noremap <F1> :call Headings()<CR>
+autocmd FileType rst noremap <F1> :call Headings()<CR>
 " shell scripts {{{1
-let g:sh_fold_enabled= 3 " doesn't work in an autocommand
-autocmd FileType sh setlocal foldmethod=syntax
-autocmd BufEnter /tmp/bash-fc* set ft=sh " highlighting for fc
+autocmd BufEnter /tmp/bash-fc* set ft=sh      "highlighting for fc
 autocmd FileType sh set noexpandtab
-autocmd FileType sh let g:is_posix = 1 " don't highlight $() as error
+autocmd FileType sh let g:is_posix = 1
+autocmd FileType sh let g:sh_fold_enabled= 3 
 " vim: set foldmethod=marker :{{{1
