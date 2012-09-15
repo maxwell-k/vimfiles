@@ -10,6 +10,7 @@ set shiftwidth=4
 set tabstop=4
 set linebreak
 set kp= " use `K` for `:help`
+noremap <C-L> :noh<CR><C-L>
 " launch google-chrome on the URL under the cursor with control enter
 noremap <C-CR> :silent !google-chrome "<cfile>" &<CR>
 " reStructuredText {{{1
