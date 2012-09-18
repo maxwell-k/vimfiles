@@ -1,23 +1,220 @@
-set guioptions+=c  " keyboard workaround for file changed dialog 
-set guioptions-=m  " only works if a single option per line
-set guioptions-=T
+" ---------------------------------------
+" vimrc, Keith Maxwell, 19 September 2012
+" ---------------------------------------
+"
+" {{{ To install on Windows, add the following line to  `C:\Program
+" Files\Vim\_vimrc` and `C:\Program Files\Git\share\vim\vimrc`::
+"
+"     source C:\Documents\ and\ Settings\...
+"
+" If this file is sourced by $VIM\_gvimrc plugins will not load.
+" `gvim -u NORC -N` starts vim with no rc file and in nocompatible mode. }}}
+
+set nocompatible
+if v:version < 703
+    finish
+endif
+
 call pathogen#infect()
+
+" Windows paths {{{1
+" -------------
+"
+if has('gui_win32',)
+    " match the home directory to that used by git
+    let $HOME='C:/Documents and Settings/887561/My Documents'
+    set viminfo='20,<50,h,n$HOME/Personal/housekeeping/cache/viminfo
+endif
+
+" Display {{{1
+" -------
+"
 colorscheme solarized
+if has('gui_win32')
+    set background=light
+else
+    set background=dark
+endif
+" Only works if a single option per line
+set guioptions+=c  " keyboard workaround for file changed dialog
+set guioptions-=m  "no menu
+set guioptions-=T  "no toolbar
+set guioptions-=r  "no scrollbar
+set guioptions-=L  "no scrollbar
+set ruler          "show position
+set hlsearch
 set t_Co=16
-set background=dark
+if has('gui_win32')
+    set guifont=Lucida_Console:h14:cANSI    "font
+endif
+if ! has('gui_running')
+    set highlight+=vr " workaround for windows console
+endif
+
+"Editing {{{1
+"-------
+"
+set encoding=utf-8
+set backspace=indent,eol,start  "backspace deletes special characters
+set linebreak                   "do not wrap in the middle of a word
+set formatoptions+=n            "format lists
+set formatlistpat=^\\s*[0-9-]\\+[.\ ]\\s*\\\|^\\s*[a-z]\\.\\s
+set nrformats-=octal            " increment 07 to 08 and not 010
+
+"Tabs {{{2
+"----
+"
 set expandtab
 set shiftwidth=4
+set softtabstop=4               "backspace removes an expanded tab
 set tabstop=4
-set linebreak
-set kp= " use `K` for `:help`
-noremap <C-L> :noh<CR><C-L>
+set autoindent
+
+"General {{{1
+"-------
+"
+filetype plugin on              "load plugins
+syntax enable                   "syntax highlighting
+let g:netrw_banner=0
+let g:is_posix=1                "$() isn't an error in sh
+let g:sh_fold_enabled= 3
+set modeline                    "use modelines
+set exrc                        "look for local _vimrc"
+set secure                      "to match above
+set wildmenu                    "normal mode tab completion menu
+set confirm                     "prompt before discarding changes
+set ignorecase                  "case insensitive searches
+set smartcase                   "override above if upper case characters
+set kp=                         " use `K` for `:help`
+
+"auto commands {{{1
+"-------------
+"
+
+" clear autocommands
+autocmd!
+
+"let gx work on both <./vimlogo.gif> and ./vmlogo.gif
+autocmd VimEnter * nno <silent>
+    \<Plug>NetrwBrowseX :call netrw#NetrwBrowseX(expand("<cfile>"),0)<cr>
+
+"Filetypes {{{2
+"--------
+"
+autocmd FileType ledger let g:ledger_bin="ledger.exe"
+autocmd FileType ledger let g:ledger_fillstring = '·'
+autocmd FileType ledger noremap <silent><buffer> <F1>
+   \ :call LedgerToggleTransactionState(line('.'), ' *')<CR>
+autocmd FileType ledger set spell
+autocmd FileType ledger set noautoindent
+autocmd FileType ledger noremap <silent><buffer> <F2> :set foldlevel=0<CR>
+autocmd FileType sh set noexpandtab
+autocmd FileType rst set textwidth=79
+autocmd FileType rst set spell
+autocmd FileType rst noremap <F1> :call <SID>:headings()<CR>
+
+"Paths {{{2
+"-----
+"
+autocmd BufAdd */Projects/safe/*.bf
+    \execute "source " . expand("<afile>:h") . "\\safe.vim"
+autocmd BufEnter cipher.bf set ft=rst
+autocmd BufEnter *.txt set suffixesadd=.txt
 autocmd BufEnter */.gvfs/* set noswapfile
-" launch google-chrome on the URL under the cursor with control enter
-noremap <C-CR> :silent !google-chrome "<cfile>" &<CR>
-" reStructuredText {{{1
-autocmd FileType rst set textwidth=80
-" provide a table of contents in the location list {{{2
-function! Headings()
+autocmd BufEnter */planning/*.txt syn match error display excludenl "\s\+$"
+autocmd BufEnter */planning/*.txt set ft=rst
+autocmd BufEnter *.json set ft=javascript
+autocmd BufEnter *.txt syn match error display excludenl "\s\+$"
+autocmd BufEnter */Desktop/* set number
+autocmd BufEnter */Desktop/* set columns=83
+autocmd BufEnter history.py setlocal autoread
+autocmd BufEnter history.py setlocal nomodifiable
+autocmd BufEnter /tmp/bash-fc* set ft=sh      "highlighting for fc
+
+"Restructured Text {{{1
+"-----------------
+"
+" FIXME: make this work
+"
+"function! Iexplore()
+"    if exists("b:compiled") && empty(getqflist())
+"        silent execute "! start iexplore " . b:compiled
+"    endif
+"endfunction
+"au QuickfixCmdPost make call Iexplore()
+"
+"function! <SID>:rst2_html_setup()
+"    let b:compiled = tempname() . ".html"
+"    let l:command = "setlocal makeprg='"
+"    let l:command .= "C:\\Progra~1\\Python32\\python.exe\'\\ "
+"    let l:command .= "-c\\ 'import\\ docutils.core;\\ "
+"    let l:command .= "docutils.core.publish_cmdline(writer_name=\\\'html\\\')"
+"    let l:command .= "'\\ %\\ " . b:compiled
+"    execute l:command
+"    let @a=l:command
+"    "au QuickfixCmdPost <buffer> make call <SID>:view_html()
+"endf
+"au BufRead *.txt call <SID>:rst2_html_setup()
+
+"Functions {{{1
+"---------
+"
+function! <SID>:open() "{{{2
+    if has('gui_win32',)
+        " open the file linked from the current line
+        let l:command = '!C:\WINDOWS\system32\rundll32.exe '
+        let l:command .= "url.dll,FileProtocolHandler "
+        if getline(".") =~ "^-\\s*`"
+            "rst link inside a bullet
+            let l:path = getline(".")
+            let l:path = substitute(l:path, '^-\s\+`[^<]\+<file:', '', '')
+            let l:path = substitute(l:path, '>`_$', '', '')
+            let l:path = substitute(l:path, '/', '\\', 'g')
+        else
+            let l:path = ''
+            if &filetype == 'netrw'
+                let l:path .= b:netrw_curdir . '\'
+            end
+            let l:path .= substitute(getline("."), '^\s\+', '', '')
+        endif
+        let l:command .= shellescape(l:path)
+        silent execute l:command
+        "echo l:command
+    else
+        " launch google-chrome on the URL under the cursor
+        silent !google-chrome "<cfile>" &
+    endif
+endf
+
+function! <SID>:execute_line() "{{{2
+    "read the result of a line
+    let l:command=getline(".")
+    let l:python='C:\\software\\Python2.6\\python.exe'
+    let l:command=substitute(l:command, '\<python\>', l:python, '')
+    execute ":r !" . l:command
+    "echo l:home
+endf
+
+function! <SID>:toggle_ve() "{{{2
+    "toggle ve
+    if &ve == ''
+        set ve=all
+    else
+        set ve=
+    endif
+endf
+
+function! <SID>:toggle_lines() "{{{2
+    "to toggle size
+    if &lines == 25
+        set lines=10
+    else
+        set lines=25
+    endif
+endf
+
+function! <SID>:headings() "{{{2
+" provide a table of contents in the location list 
 if &ft == 'rst'
     lgete ''
     set errorformat=%f:%l:%m
@@ -51,10 +248,28 @@ EOF
     syn match	qfError		"error" contained
 endif
 endf
-autocmd FileType rst noremap <F1> :call Headings()<CR>
-" shell scripts {{{1
-autocmd BufEnter /tmp/bash-fc* set ft=sh      "highlighting for fc
-autocmd FileType sh set noexpandtab
-autocmd FileType sh let g:is_posix = 1
-autocmd FileType sh let g:sh_fold_enabled= 3 
+"   Mappings {{{1
+"   --------
+"
+noremap <C-L> :noh<CR><C-L>
+noremap <C-CR> :call <SID>:open()<CR>
+noremap <F2> :call <SID>:execute_line()<CR>
+noremap <F3> :call <SID>:toggle_ve()<CR>
+noremap <F4> :call <SID>:toggle_lines()<CR>
+noremap <F5> :silent !explorer %:p:h &<CR>
+noremap <F6> :s/^/"/<CR>:s/$/"/<CR>:noh<CR>
+noremap <F11> :%d<CR>:pu! +<CR>
+noremap <F12> :%y +<CR>
+
+"Digraphs {{{1
+"--------
+"
+"   http://www.unicode.org/charts/charindex.html
+"   http://www.cs.tut.fi/~jkorpela/dashes.html
+"   Use echo 0x2026 to convert to decimal
+"   3 em dashes have no space in times or arial but do in calibri
+digraph .. 8230
+digraph n- 8211 "em dash
+digraph m- 8212 "em dash
+
 " vim: set foldmethod=marker :{{{1
