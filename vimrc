@@ -23,6 +23,8 @@ call pathogen#infect()
 if has('gui_win32',)
     " match the home directory to that used by git
     let $HOME='C:/Documents and Settings/887561/My Documents'
+endif
+if isdirectory(expand('$HOME/Personal/housekeeping/cache'))
     set viminfo='20,<50,h,n$HOME/Personal/housekeeping/cache/viminfo
 endif
 
