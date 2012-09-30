@@ -16,16 +16,22 @@ if v:version < 703
 endif
 
 call pathogen#infect()
+call pathogen#helptags()
 
-" Windows paths {{{1
-" -------------
+" Windows {{{1
+" -------
 "
-if has('gui_win32',)
+if has('win32',)
     " match the home directory to that used by git
     let $HOME='C:/Documents and Settings/887561/My Documents'
-endif
-if isdirectory(expand('$HOME/Personal/housekeeping/cache'))
     set viminfo='20,<50,h,n$HOME/Personal/housekeeping/cache/viminfo
+    " TODO: get syntastic working with rst and python on Windows
+    " For syntastic to work e.g. `:!flake8` should work, if it doesn't add the
+    " binaries to vim's path
+    " https://github.com/scrooloose/syntastic/issues/230issuecomment-5156441
+    let g:syntastic_mode_map = { 'mode': 'passive',
+                               \ 'active_filetypes': ['sh', ],
+                               \ 'passive_filetypes': [] }
 endif
 
 "autocommands {{{1
