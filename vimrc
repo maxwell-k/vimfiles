@@ -112,6 +112,7 @@ autocmd FileType sh set noexpandtab
 autocmd FileType rst set textwidth=79
 autocmd FileType rst set spell
 autocmd FileType rst noremap <F1> :call <SID>:headings()<CR>
+autocmd FileType rst noremap <F10> :call <SID>:view_rst_as_html()<CR>
 
 "Paths {{{2
 "-----
@@ -131,34 +132,10 @@ autocmd BufEnter history.py setlocal autoread
 autocmd BufEnter history.py setlocal nomodifiable
 autocmd BufEnter /tmp/bash-fc* set ft=sh      "highlighting for fc
 
-"Restructured Text {{{1
-"-----------------
-"
-" FIXME: make this work
-"
-"function! Iexplore()
-"    if exists("b:compiled") && empty(getqflist())
-"        silent execute "! start iexplore " . b:compiled
-"    endif
-"endfunction
-"au QuickfixCmdPost make call Iexplore()
-"
-"function! <SID>:rst2_html_setup()
-"    let b:compiled = tempname() . ".html"
-"    let l:command = "setlocal makeprg='"
-"    let l:command .= "C:\\Progra~1\\Python32\\python.exe\'\\ "
-"    let l:command .= "-c\\ 'import\\ docutils.core;\\ "
-"    let l:command .= "docutils.core.publish_cmdline(writer_name=\\\'html\\\')"
-"    let l:command .= "'\\ %\\ " . b:compiled
-"    execute l:command
-"    let @a=l:command
-"    "au QuickfixCmdPost <buffer> make call <SID>:view_html()
-"endf
-"au BufRead *.txt call <SID>:rst2_html_setup()
-
 "Functions {{{1
 "---------
 "
+
 function! <SID>:open() "{{{2
     if has('gui_win32',)
         " open the file linked from the current line
@@ -248,6 +225,26 @@ EOF
     syn match	qfError		"error" contained
 endif
 endf
+
+function! <SID>:view_rst_as_html() "{{{2
+" TODO: test on Linux
+python <<EOF
+import tempfile
+import webbrowser
+
+import vim
+import docutils.core
+
+output = tempfile.NamedTemporaryFile(suffix=".html", delete=False)
+try:
+    output.write(docutils.core.publish_string(
+        "\n".join(vim.current.buffer), writer_name="html"))
+finally:
+    output.close()
+webbrowser.open(output.name)
+EOF
+endf
+
 "   Mappings {{{1
 "   --------
 "
