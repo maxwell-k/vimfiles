@@ -3,7 +3,7 @@
 " ---------------------------------------
 "
 " {{{ To install on Windows, add the following line to  `C:\Program
-" Files\Vim\_vimrc` and `C:\Program Files\Git\share\vim\vimrc`::
+" Files\Vim\_vimrc`::
 "
 "     source C:\Documents\ and\ Settings\...
 "
