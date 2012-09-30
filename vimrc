@@ -26,6 +26,52 @@ if has('gui_win32',)
     set viminfo='20,<50,h,n$HOME/Personal/housekeeping/cache/viminfo
 endif
 
+"autocommands {{{1
+"-------------
+"
+
+" clear autocommands
+" prevents syntax highlighting if this appears after `:syntax enable`
+autocmd!
+
+"let gx work on both <./vimlogo.gif> and ./vmlogo.gif
+autocmd VimEnter * nno <silent>
+    \<Plug>NetrwBrowseX :call netrw#NetrwBrowseX(expand("<cfile>"),0)<cr>
+
+"Filetypes {{{2
+"--------
+"
+autocmd FileType ledger let g:ledger_bin="ledger.exe"
+autocmd FileType ledger let g:ledger_fillstring = '·'
+autocmd FileType ledger noremap <silent><buffer> <F1>
+    \ :call LedgerToggleTransactionState(line('.'), ' *')<CR>
+autocmd FileType ledger set spell
+autocmd FileType ledger set noautoindent
+autocmd FileType ledger noremap <silent><buffer> <F2> :set foldlevel=0<CR>
+autocmd FileType sh set noexpandtab
+autocmd FileType rst set textwidth=79
+autocmd FileType rst set spell
+autocmd FileType rst noremap <F1> :call <SID>:headings()<CR>
+autocmd FileType rst noremap <F10> :call <SID>:view_rst_as_html()<CR>
+
+"Paths {{{2
+"-----
+"
+autocmd BufAdd */Projects/safe/*.bf
+    \execute "source " . expand("<afile>:h") . "\\safe.vim"
+autocmd BufEnter cipher.bf set ft=rst
+autocmd BufEnter *.txt set suffixesadd=.txt
+autocmd BufEnter */.gvfs/* set noswapfile
+autocmd BufEnter */planning/*.txt syn match error display excludenl "\s\+$"
+autocmd BufEnter */planning/*.txt set ft=rst
+autocmd BufEnter *.json set ft=javascript
+autocmd BufEnter *.txt syn match error display excludenl "\s\+$"
+autocmd BufEnter */Desktop/* set number
+autocmd BufEnter */Desktop/* set columns=83
+autocmd BufEnter history.py setlocal autoread
+autocmd BufEnter history.py setlocal nomodifiable
+autocmd BufEnter /tmp/bash-fc* set ft=sh      "highlighting for fc
+
 " Display {{{1
 " -------
 "
@@ -86,51 +132,6 @@ set confirm                     "prompt before discarding changes
 set ignorecase                  "case insensitive searches
 set smartcase                   "override above if upper case characters
 set kp=                         " use `K` for `:help`
-
-"auto commands {{{1
-"-------------
-"
-
-" clear autocommands
-autocmd!
-
-"let gx work on both <./vimlogo.gif> and ./vmlogo.gif
-autocmd VimEnter * nno <silent>
-    \<Plug>NetrwBrowseX :call netrw#NetrwBrowseX(expand("<cfile>"),0)<cr>
-
-"Filetypes {{{2
-"--------
-"
-autocmd FileType ledger let g:ledger_bin="ledger.exe"
-autocmd FileType ledger let g:ledger_fillstring = '·'
-autocmd FileType ledger noremap <silent><buffer> <F1>
-   \ :call LedgerToggleTransactionState(line('.'), ' *')<CR>
-autocmd FileType ledger set spell
-autocmd FileType ledger set noautoindent
-autocmd FileType ledger noremap <silent><buffer> <F2> :set foldlevel=0<CR>
-autocmd FileType sh set noexpandtab
-autocmd FileType rst set textwidth=79
-autocmd FileType rst set spell
-autocmd FileType rst noremap <F1> :call <SID>:headings()<CR>
-autocmd FileType rst noremap <F10> :call <SID>:view_rst_as_html()<CR>
-
-"Paths {{{2
-"-----
-"
-autocmd BufAdd */Projects/safe/*.bf
-    \execute "source " . expand("<afile>:h") . "\\safe.vim"
-autocmd BufEnter cipher.bf set ft=rst
-autocmd BufEnter *.txt set suffixesadd=.txt
-autocmd BufEnter */.gvfs/* set noswapfile
-autocmd BufEnter */planning/*.txt syn match error display excludenl "\s\+$"
-autocmd BufEnter */planning/*.txt set ft=rst
-autocmd BufEnter *.json set ft=javascript
-autocmd BufEnter *.txt syn match error display excludenl "\s\+$"
-autocmd BufEnter */Desktop/* set number
-autocmd BufEnter */Desktop/* set columns=83
-autocmd BufEnter history.py setlocal autoread
-autocmd BufEnter history.py setlocal nomodifiable
-autocmd BufEnter /tmp/bash-fc* set ft=sh      "highlighting for fc
 
 "Functions {{{1
 "---------
