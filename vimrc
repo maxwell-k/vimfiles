@@ -29,8 +29,10 @@ if has('win32',)
     " For syntastic to work e.g. `:!flake8` should work, if it doesn't add the
     " binaries to vim's path
     " https://github.com/scrooloose/syntastic/issues/230issuecomment-5156441
+    " The 'python' filetype uses a one line flake8.bat (on the Windows path)::
+    "     python2 -c "import flake8.run; flake8.run.main()" %*
     let g:syntastic_mode_map = { 'mode': 'passive',
-                               \ 'active_filetypes': ['sh', ],
+                               \ 'active_filetypes': ['sh', 'python',],
                                \ 'passive_filetypes': [] }
 endif
 
