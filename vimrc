@@ -25,12 +25,12 @@ if has('win32',)
     " match the home directory to that used by git
     let $HOME='C:/Documents and Settings/887561/My Documents'
     set viminfo='20,<50,h,n$HOME/Personal/housekeeping/cache/viminfo
-    " TODO: get syntastic working with rst and python on Windows
+    " TODO: get syntastic working with rst on Windows
     " For syntastic to work e.g. `:!flake8` should work, if it doesn't add the
     " binaries to vim's path
     " https://github.com/scrooloose/syntastic/issues/230issuecomment-5156441
     " The 'python' filetype uses a one line flake8.bat (on the Windows path)::
-    "     python2 -c "import flake8.run; flake8.run.main()" %*
+    "     python -c "import flake8.run; flake8.run.main()" %*
     let g:syntastic_mode_map = { 'mode': 'passive',
                                \ 'active_filetypes': ['sh', 'python',],
                                \ 'passive_filetypes': [] }
@@ -116,6 +116,7 @@ set linebreak                   "do not wrap in the middle of a word
 set formatoptions+=n            "format lists
 set formatlistpat=^\\s*[0-9-]\\+[.\ ]\\s*\\\|^\\s*[a-z]\\.\\s
 set nrformats-=octal            " increment 07 to 08 and not 010
+match ErrorMsg /[ \t]\+$/
 
 "Tabs {{{2
 "----
@@ -176,11 +177,7 @@ endf
 
 function! <SID>:execute_line() "{{{2
     "read the result of a line
-    let l:command=getline(".")
-    let l:python='C:\\software\\Python2.6\\python.exe'
-    let l:command=substitute(l:command, '\<python\>', l:python, '')
-    execute ":r !" . l:command
-    "echo l:home
+    execute ":r !" . getline(".")
 endf
 
 function! <SID>:toggle_ve() "{{{2
