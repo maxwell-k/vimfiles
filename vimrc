@@ -91,8 +91,6 @@ autocmd BufEnter */planning/*.txt syn match error display excludenl "\s\+$"
 autocmd BufEnter */planning/*.txt set ft=rst
 autocmd BufEnter *.json set ft=javascript
 autocmd BufEnter *.txt syn match error display excludenl "\s\+$"
-autocmd BufEnter */Desktop/* set number
-autocmd BufEnter */Desktop/* set columns=83
 autocmd BufEnter history.py setlocal autoread
 autocmd BufEnter history.py setlocal nomodifiable
 autocmd BufEnter /tmp/bash-fc* set ft=sh      "highlighting for fc
