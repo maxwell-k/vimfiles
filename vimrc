@@ -127,7 +127,7 @@ set encoding=utf-8
 set backspace=indent,eol,start  "backspace deletes special characters
 set linebreak                   "do not wrap in the middle of a word
 set formatoptions+=n            "format lists
-set formatlistpat=^\\s*[0-9-]\\+[.\ ]\\s*\\\|^\\s*[a-z]\\.\\s
+set formatlistpat=^\\s*[0-9-#]\\+[.\ ]\\s*\\\|^\\s*[a-z]\\.\\s
 set nrformats-=octal            " increment 07 to 08 and not 010
 match ErrorMsg /[ \t]\+$/
 
