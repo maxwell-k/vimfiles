@@ -25,14 +25,29 @@ if has('win32',)
     " match the home directory to that used by git
     let $HOME='C:/Documents and Settings/887561/My Documents'
     set viminfo='20,<50,h,n$HOME/Personal/housekeeping/cache/viminfo
-    " TODO: get syntastic working with rst on Windows
-    " For syntastic to work e.g. `:!flake8` should work, if it doesn't add the
-    " binaries to vim's path
-    " https://github.com/scrooloose/syntastic/issues/230issuecomment-5156441
-    " The 'python' filetype uses a one line flake8.bat (on the Windows path)::
-    "     python -c "import flake8.run; flake8.run.main()" %*
+    "
+    " To understand how syntastic works see the separate files in::
+    "
+    " C:\Program Files\vim\vimfiles\bundle\syntastic\syntax_checkers\
+    "
+    " Some file types need a batch file to properly call the syntax checker on
+    " Windows. For each such file type below is the name, batch filename,
+    " example location and contents.
+    "
+    " 'python' flake8.bat e.g. ~/Personal/housekeeping/bin/flake8.bat ::
+    "
+    "   python -c "import flake8.run; flake8.run.main()" %*
+    "
+    " 'rst' rst2pseudoxml.py.bat e.g.
+    " ~/Personal/housekeeping/bin/rst2pseudoxml.py.bat ::
+    "
+    "	set "l1=import docutils.core;"
+    "	set "l2=docutils.core.publish_cmdline("
+    "	set "l3=settings_overrides={'exit_status_level': 1, 'report_level': 2})"
+    "	python -c "%l1%%l2%%l3%" %5 1> NUL
+    "
     let g:syntastic_mode_map = { 'mode': 'passive',
-                               \ 'active_filetypes': ['sh', 'python',],
+                               \ 'active_filetypes': ['sh', 'python', 'rst'],
                                \ 'passive_filetypes': [] }
 endif
 
