@@ -82,12 +82,11 @@ autocmd FileType rst noremap <F10> :call <SID>:view_rst_as_html()<CR>
 "Paths {{{2
 "-----
 "
+"TODO: move to safe repository
 autocmd BufAdd */Projects/safe/*.bf
     \execute "source " . expand("<afile>:h") . "\\safe.vim"
-autocmd BufEnter cipher.bf set ft=rst
 autocmd BufEnter *.txt set suffixesadd=.txt
 autocmd BufEnter */.gvfs/* set noswapfile
-autocmd BufEnter */planning/*.txt syn match error display excludenl "\s\+$"
 autocmd BufEnter */planning/*.txt set ft=rst
 autocmd BufEnter *.json set ft=javascript
 autocmd BufEnter *.txt syn match error display excludenl "\s\+$"
