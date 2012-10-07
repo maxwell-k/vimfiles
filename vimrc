@@ -93,6 +93,7 @@ autocmd BufEnter *.txt syn match error display excludenl "\s\+$"
 autocmd BufEnter history.py setlocal autoread
 autocmd BufEnter history.py setlocal nomodifiable
 autocmd BufEnter /tmp/bash-fc* set ft=sh      "highlighting for fc
+autocmd BufRead COMMIT_EDITMSG setlocal nomodeline
 
 " Display {{{1
 " -------
