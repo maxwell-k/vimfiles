@@ -78,6 +78,7 @@ autocmd FileType rst set textwidth=79
 autocmd FileType rst set spell
 autocmd FileType rst noremap <F1> :call <SID>:headings()<CR>
 autocmd FileType rst noremap <F10> :call <SID>:view_rst_as_html()<CR>
+autocmd FileType rst noremap <S-F10> :call <SID>:view_rst_as_odt()<CR>
 
 "Paths {{{2
 "-----
@@ -263,6 +264,26 @@ try:
 finally:
     output.close()
 webbrowser.open(output.name)
+EOF
+endf
+function! <SID>:view_rst_as_odt() "{{{2
+python <<EOF
+import tempfile
+import subprocess
+
+import vim
+import docutils.core
+
+output = tempfile.NamedTemporaryFile(suffix=".odt", delete=False)
+try:
+    output.write(docutils.core.publish_string(
+        "\n".join(vim.current.buffer), writer_name="odf_odt"))
+finally:
+    output.close()
+if vim.eval("executable('winword')"):
+    subprocess.Popen(['winword', output.name])
+else:
+    print(output.name)
 EOF
 endf
 
