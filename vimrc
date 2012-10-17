@@ -60,8 +60,9 @@ endif
 autocmd!
 
 "let gx work on both <./vimlogo.gif> and ./vmlogo.gif
-autocmd VimEnter * nno <silent>
-    \<Plug>NetrwBrowseX :call netrw#NetrwBrowseX(expand("<cfile>"),0)<cr>
+"See `:help expand(` for an explanation of expand(expand("<cfile>"))
+autocmd VimEnter * nno <silent><Plug>NetrwBrowseX
+    \ :call netrw#NetrwBrowseX(expand(expand("<cfile>")),0)<cr>
 
 "Filetypes {{{2
 "--------
