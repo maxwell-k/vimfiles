@@ -287,8 +287,12 @@ EOF
 endfunction
 
 function! <SID>:view_rst_as_html() "{{{2
-" TODO: test on Linux
 python <<EOF
+# workaronud because webbrowser.open() seems to be broken on Linux
+import os
+if os.path.isfile('/usr/bin/google-chrome'):
+    os.environ["BROWSER"] = "google-chrome"
+
 import tempfile
 import webbrowser
 
