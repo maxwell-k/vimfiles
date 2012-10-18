@@ -2,13 +2,22 @@
 " vimrc, Keith Maxwell, 19 September 2012
 " ---------------------------------------
 "
-" {{{ To install on Windows, add the following line to  `C:\Program
+" Using on Windows {{{
+" ----------------
+"
+" To install on Windows, add the following line to  `C:\Program
 " Files\Vim\_vimrc`::
 "
 "     source C:\Documents\ and\ Settings\...
 "
 " If this file is sourced by $VIM\_gvimrc plugins will not load.
-" `gvim -u NORC -N` starts vim with no rc file and in nocompatible mode. }}}
+" `gvim -u NORC -N` starts vim with no rc file and in nocompatible mode.
+if has('win32',)
+    " match the home directory to that used by git
+    let $HOME='C:/Documents and Settings/887561/My Documents'
+    set viminfo='20,<50,h,n$HOME/Personal/housekeeping/cache/viminfo
+endif
+" }}}
 
 set nocompatible
 if v:version < 703
@@ -16,16 +25,11 @@ if v:version < 703
 endif
 
 call pathogen#infect()
-" The call below needs write access to ~/.vim
-call pathogen#helptags()
+call pathogen#helptags()  " needs write access to ~/.vim
 
-" Windows {{{1
-" -------
-"
+" Syntastic {{{1
+" ---------
 if has('win32',)
-    " match the home directory to that used by git
-    let $HOME='C:/Documents and Settings/887561/My Documents'
-    set viminfo='20,<50,h,n$HOME/Personal/housekeeping/cache/viminfo
     "
     " To understand how syntastic works see the separate files in::
     "
@@ -50,6 +54,20 @@ if has('win32',)
     let g:syntastic_mode_map = { 'mode': 'passive',
                                \ 'active_filetypes': ['sh', 'python', 'rst'],
                                \ 'passive_filetypes': [] }
+else
+    function! SyntaxCheckers_ledger_GetLocList()
+        let makeprg = 'ledger -f '.shellescape(expand('%')).' --pedantic reg'
+        let errorformat = '%C'  "blank lines are a continuation
+        let errorformat .= ',%C %.%#'
+        let errorformat .= ',%C>%.%#'
+        let errorformat .= ',%CUnbalanced%.%#'
+        let errorformat .= ',%CAmount%.%#'
+        let errorformat .= ',%CWhile balancing transaction from%.%#'
+        let errorformat .= ',%CWhile parsing posting:'
+        let errorformat .= ',%AWhile parsing file "%f"\, line %l: '
+        let errorformat .= ',%Z%trror: %m'
+        return SyntasticMake({ 'makeprg': makeprg, 'errorformat': errorformat })
+    endfunction
 endif
 
 "autocommands {{{1
@@ -312,4 +330,5 @@ digraph .. 8230
 digraph n- 8211 "em dash
 digraph m- 8212 "em dash
 
+"}}} WIP
 " vim: set foldmethod=marker :{{{1
