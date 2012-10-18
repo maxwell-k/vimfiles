@@ -16,6 +16,7 @@ if v:version < 703
 endif
 
 call pathogen#infect()
+" The call below needs write access to ~/.vim
 call pathogen#helptags()
 
 " Windows {{{1
