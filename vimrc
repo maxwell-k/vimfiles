@@ -46,10 +46,10 @@ if has('win32',)
     " 'rst' rst2pseudoxml.py.bat e.g.
     " ~/Personal/housekeeping/bin/rst2pseudoxml.py.bat ::
     "
-    "	set "l1=import docutils.core;"
-    "	set "l2=docutils.core.publish_cmdline("
-    "	set "l3=settings_overrides={'exit_status_level': 1, 'report_level': 2})"
-    "	python -c "%l1%%l2%%l3%" %5 1> NUL
+    "   set "l1=import docutils.core;"
+    "   set "l2=docutils.core.publish_cmdline("
+    "   set "l3=settings_overrides={'exit_status_level': 1, 'report_level': 2})"
+    "   python -c "%l1%%l2%%l3%" %5 1> NUL
     "
     let g:syntastic_mode_map = { 'mode': 'passive',
                                \ 'active_filetypes': ['sh', 'python', 'rst'],
@@ -206,12 +206,12 @@ function! <SID>:open() "{{{2
         " launch google-chrome on the URL under the cursor
         silent !google-chrome "<cfile>" &
     endif
-endf
+endfunction
 
 function! <SID>:execute_line() "{{{2
     "read the result of a line
     execute ":r !" . getline(".")
-endf
+endfunction
 
 function! <SID>:toggle_ve() "{{{2
     "toggle ve
@@ -220,7 +220,7 @@ function! <SID>:toggle_ve() "{{{2
     else
         set ve=
     endif
-endf
+endfunction
 
 function! <SID>:toggle_lines() "{{{2
     "to toggle size
@@ -229,13 +229,13 @@ function! <SID>:toggle_lines() "{{{2
     else
         set lines=25
     endif
-endf
+endfunction
 
 function! <SID>:headings() "{{{2
-" provide a table of contents in the location list 
-if &ft == 'rst'
-    lgete ''
-    set errorformat=%f:%l:%m
+" provide a table of contents in the location list
+    if &ft == 'rst'
+        lgete ''
+        set errorformat=%f:%l:%m
 
 python << EOF
 from __future__ import print_function
@@ -255,17 +255,17 @@ for i in document:
     if type(i) == docutils.nodes.section:
         vim.command(command.format(source.name, i.line - 1, i[0][0]))
 EOF
-    lopen
-    setlocal modifiable
-    %s/|/\t/g
-    setlocal nomodifiable
-    setlocal nomodified
-    syn match	qfFileName	"^[^\t]*" nextgroup=qfSeparator
-    syn match	qfSeparator	"\t" nextgroup=qfLineNr contained
-    syn match	qfLineNr	"[^\t]*" contained contains=qfError
-    syn match	qfError		"error" contained
-endif
-endf
+        lopen
+        setlocal modifiable
+        %s/|/\t/g
+        setlocal nomodifiable
+        setlocal nomodified
+        syn match   qfFileName  "^[^\t]*" nextgroup=qfSeparator
+        syn match   qfSeparator "\t" nextgroup=qfLineNr contained
+        syn match   qfLineNr    "[^\t]*" contained contains=qfError
+        syn match   qfError     "error" contained
+    endif
+endfunction
 
 function! <SID>:view_rst_as_html() "{{{2
 " TODO: test on Linux
@@ -284,7 +284,7 @@ finally:
     output.close()
 webbrowser.open(output.name)
 EOF
-endf
+endfunction
 function! <SID>:view_rst_as_odt() "{{{2
 python <<EOF
 import tempfile
@@ -304,7 +304,7 @@ if vim.eval("executable('winword')"):
 else:
     print(output.name)
 EOF
-endf
+endfunction
 
 "   Mappings {{{1
 "   --------
