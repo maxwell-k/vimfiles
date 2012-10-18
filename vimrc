@@ -68,6 +68,25 @@ else
         let errorformat .= ',%Z%trror: %m'
         return SyntasticMake({ 'makeprg': makeprg, 'errorformat': errorformat })
     endfunction
+
+    "Test the checker above on the following:
+    "
+    "   account Expenses
+    "   account Assets
+    "
+    "   2012/01/01 Syntax error
+    "   Expenses  1
+    "    Assets  -1
+    "   2012/02/01 Transaction does not balance
+    "    Expenses  1
+    "    Assets  1
+    "   2012/02/01 Unknown account
+    "    Expenses:One  1
+    "    Assets  -1
+    "   2012/02/01 Balance assertion
+    "    Expenses  1
+    "    Assets  -1 = -2
+    "   ; vim: ft=ledger
 endif
 
 "autocommands {{{1
