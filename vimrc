@@ -104,8 +104,11 @@ autocmd VimEnter * nno <silent>
 "Filetypes {{{2
 "--------
 "
-autocmd FileType ledger let g:ledger_bin="ledger.exe"
-autocmd FileType ledger let g:ledger_fillstring = '·'
+if has('win32',)
+    autocmd FileType ledger let g:ledger_bin="ledger.exe"
+    " TODO: check if this is necessary on Windows
+    "autocmd FileType ledger let g:ledger_fillstring = '·'
+endif
 autocmd FileType ledger noremap <silent><buffer> <F1>
     \ :call LedgerToggleTransactionState(line('.'), ' *')<CR>
 autocmd FileType ledger set spell
