@@ -109,17 +109,11 @@ if has('win32',)
     " TODO: check if this is necessary on Windows
     "autocmd FileType ledger let g:ledger_fillstring = '·'
 endif
-autocmd FileType ledger noremap <silent><buffer> <F1>
-    \ :call LedgerToggleTransactionState(line('.'), ' *')<CR>
 autocmd FileType ledger set spell
 autocmd FileType ledger set noautoindent
-autocmd FileType ledger noremap <silent><buffer> <F2> :set foldlevel=0<CR>
 autocmd FileType sh set noexpandtab
 autocmd FileType rst set textwidth=79
 autocmd FileType rst set spell
-autocmd FileType rst noremap <F1> :call <SID>:headings()<CR>
-autocmd FileType rst noremap <F10> :call <SID>:view_rst_as_html()<CR>
-autocmd FileType rst noremap <S-F10> :call <SID>:view_rst_as_odt()<CR>
 
 "Paths {{{2
 "-----
@@ -263,6 +257,35 @@ EOF
         syn match   qfError     "error" contained
     endif
 endfunction
+function! <SID>:check_date_order() "{{{2
+python <<EOF
+from __future__ import print_function
+import time
+
+import vim
+
+DATE = "%Y/%m/%d"
+
+previous = None
+for row, line in enumerate(vim.current.buffer, start=1):
+    if not line:
+        continue
+    elif not line[0].isdigit():
+        continue
+    else:
+        date, ignore, ignore = line.partition(" ")
+        date = time.strptime(date, DATE)
+        if previous and date < previous:
+            window = vim.current.window
+            window.cursor = (row, 0)
+            print("{0} is before {1}".format(
+                time.strftime(DATE, date), time.strftime(DATE, previous)))
+            break
+        previous = date
+else:
+    print("Dates in correct order")
+EOF
+endfunction
 function! <SID>:view_rst_as_html() "{{{2
 python <<EOF
 import os
@@ -312,9 +335,16 @@ endfunction
 "
 noremap <C-L> :noh<CR><C-L>
 noremap <C-CR> :call <SID>:open()<CR>
-noremap <F2> :call <SID>:execute ":r !" . getline(".")<CR>
+noremap <F1> :set foldlevel=0<CR>
+autocmd FileType rst noremap <buffer> <F1> :call <SID>:headings()<CR>
+autocmd FileType ledger noremap <buffer> <F2>
+    \ :call LedgerToggleTransactionState(line('.'), ' *')<CR>
+noremap <F3> :execute ":r !" . getline(".")<CR>
+autocmd FileType ledger noremap <buffer> <F3> :call <SID>:check_date_order()<CR>
 noremap <F5> :silent !explorer %:p:h &<CR>
 noremap <F6> :s/^/"/<CR>:s/$/"/<CR>:noh<CR>
+autocmd FileType rst noremap <buffer> <F10> :call <SID>:view_rst_as_html()<CR>
+autocmd FileType rst noremap <buffer> <S-F10> :call <SID>:view_rst_as_odt()<CR>
 noremap <F11> :%d<CR>:pu! +<CR>
 noremap <F12> :%y +<CR>
 
