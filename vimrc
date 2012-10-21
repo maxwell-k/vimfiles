@@ -292,11 +292,7 @@ endfunction
 
 function! <SID>:view_rst_as_html() "{{{2
 python <<EOF
-# workaronud because webbrowser.open() seems to be broken on Linux
 import os
-if os.path.isfile('/usr/bin/google-chrome'):
-    os.environ["BROWSER"] = "google-chrome"
-
 import tempfile
 import webbrowser
 
@@ -309,7 +305,12 @@ try:
         "\n".join(vim.current.buffer), writer_name="html"))
 finally:
     output.close()
-webbrowser.open(output.name)
+if os.path.isfile('/usr/bin/google-chrome'):
+    # workaronud because webbrowser.open() seems to be broken on Generic Linux
+    browser = webbrowser.BackgroundBrowser("google-chrome")
+    browser.open(output.name)
+else:
+    webbrowser.open(output.name)
 EOF
 endfunction
 function! <SID>:view_rst_as_odt() "{{{2
