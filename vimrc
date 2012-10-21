@@ -114,6 +114,7 @@ autocmd FileType ledger set noautoindent
 autocmd FileType sh set noexpandtab
 autocmd FileType rst set textwidth=79
 autocmd FileType rst set spell
+autocmd FileType dosini set isfname-=\= "complete e.g. home=/home/liveuser
 
 "Paths {{{2
 "-----
@@ -191,7 +192,7 @@ set confirm                     "prompt before discarding changes
 set ignorecase                  "case insensitive searches
 set smartcase                   "override above if upper case characters
 set kp=                         "use `K` for `:help`
-set isfname-='='                "complete for example home=/home/liveuser
+set isfname+=?                  "for web addresses
 
 "Functions {{{1
 "---------
