@@ -1,5 +1,5 @@
 " ---------------------------------------
-" vimrc, Keith Maxwell, 19 September 2012
+" vimrc, Keith Maxwell, 21 October 2012
 " ---------------------------------------
 "
 " Using on Windows {{{
@@ -217,9 +217,6 @@ function! <SID>:open() "{{{2
         let l:command .= shellescape(l:path)
         silent execute l:command
         "echo l:command
-    else
-        " launch google-chrome on the URL under the cursor
-        silent !google-chrome "<cfile>" &
     endif
 endfunction
 function! <SID>:headings() "{{{2
@@ -334,17 +331,26 @@ endfunction
 "   --------
 "
 noremap <C-L> :noh<CR><C-L>
-noremap <C-CR> :call <SID>:open()<CR>
+" <C-CR> is hidden by gnome-terminal
+" <F1> is hidden by gnome-terminal
 noremap <F1> :set foldlevel=0<CR>
 autocmd FileType rst noremap <buffer> <F1> :call <SID>:headings()<CR>
 autocmd FileType ledger noremap <buffer> <F2>
     \ :call LedgerToggleTransactionState(line('.'), ' *')<CR>
 noremap <F3> :execute ":r !" . getline(".")<CR>
 autocmd FileType ledger noremap <buffer> <F3> :call <SID>:check_date_order()<CR>
-noremap <F5> :silent !explorer %:p:h &<CR>
+if has('win32')
+    noremap <F5> :silent !explorer %:p:h &<CR>
+    noremap <F4> :call <SID>:open()<CR>
+else
+    noremap <F5> :silent !nautilus %:p:h &<CR>
+    noremap <F4> :silent !xdg-open <cfile> &<CR><C-L>
+endif
 noremap <F6> :s/^/"/<CR>:s/$/"/<CR>:noh<CR>
+" <F10> is hidden by gnome-terminal
 autocmd FileType rst noremap <buffer> <F10> :call <SID>:view_rst_as_html()<CR>
 autocmd FileType rst noremap <buffer> <S-F10> :call <SID>:view_rst_as_odt()<CR>
+" <F11> is hidden by gnome-terminal
 noremap <F11> :%d<CR>:pu! +<CR>
 noremap <F12> :%y +<CR>
 
