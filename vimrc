@@ -127,7 +127,6 @@ autocmd FileType rst noremap <S-F10> :call <SID>:view_rst_as_odt()<CR>
 "TODO: move to safe repository
 autocmd BufAdd */Projects/safe/*.bf
     \execute "source " . expand("<afile>:h") . "\\safe.vim"
-autocmd BufEnter *.txt set suffixesadd=.txt
 autocmd BufEnter */.gvfs/* set noswapfile
 autocmd BufEnter */planning/*.txt set ft=rst
 autocmd BufEnter *.json set ft=javascript
@@ -203,9 +202,8 @@ set isfname-='='                "complete for example home=/home/liveuser
 "Functions {{{1
 "---------
 "
-
 function! <SID>:open() "{{{2
-    if has('gui_win32',)
+    if has('win32',)
         " open the file linked from the current line
         let l:command = '!C:\WINDOWS\system32\rundll32.exe '
         let l:command .= "url.dll,FileProtocolHandler "
@@ -230,30 +228,6 @@ function! <SID>:open() "{{{2
         silent !google-chrome "<cfile>" &
     endif
 endfunction
-
-function! <SID>:execute_line() "{{{2
-    "read the result of a line
-    execute ":r !" . getline(".")
-endfunction
-
-function! <SID>:toggle_ve() "{{{2
-    "toggle ve
-    if &ve == ''
-        set ve=all
-    else
-        set ve=
-    endif
-endfunction
-
-function! <SID>:toggle_lines() "{{{2
-    "to toggle size
-    if &lines == 25
-        set lines=10
-    else
-        set lines=25
-    endif
-endfunction
-
 function! <SID>:headings() "{{{2
 " provide a table of contents in the location list
     if &ft == 'rst'
@@ -289,7 +263,6 @@ EOF
         syn match   qfError     "error" contained
     endif
 endfunction
-
 function! <SID>:view_rst_as_html() "{{{2
 python <<EOF
 import os
@@ -339,9 +312,7 @@ endfunction
 "
 noremap <C-L> :noh<CR><C-L>
 noremap <C-CR> :call <SID>:open()<CR>
-noremap <F2> :call <SID>:execute_line()<CR>
-noremap <F3> :call <SID>:toggle_ve()<CR>
-noremap <F4> :call <SID>:toggle_lines()<CR>
+noremap <F2> :call <SID>:execute ":r !" . getline(".")<CR>
 noremap <F5> :silent !explorer %:p:h &<CR>
 noremap <F6> :s/^/"/<CR>:s/$/"/<CR>:noh<CR>
 noremap <F11> :%d<CR>:pu! +<CR>
