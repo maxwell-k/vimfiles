@@ -2,6 +2,7 @@
 " vimrc, Keith Maxwell, 19 September 2012
 " ---------------------------------------
 "
+set nocompatible  " affects viminfo
 " Using on Windows {{{
 " ----------------
 "
@@ -19,7 +20,6 @@ if has('win32',)
 endif
 " }}}
 
-set nocompatible
 if v:version < 703
     finish
 endif
