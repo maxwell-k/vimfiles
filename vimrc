@@ -16,7 +16,7 @@ set nocompatible  " affects viminfo
 if has('win32',)
     " match the home directory to that used by git
     let $HOME='C:/Documents and Settings/887561/My Documents'
-    set viminfo='20,<50,h,n$HOME/Personal/housekeeping/cache/viminfo
+    set viminfo='20,<50,h,n$HOME/housekeeping/cache/viminfo
 endif
 " }}}
 
@@ -39,12 +39,12 @@ if has('win32',)
     " Windows. For each such file type below is the name, batch filename,
     " example location and contents.
     "
-    " 'python' flake8.bat e.g. ~/Personal/housekeeping/bin/flake8.bat ::
+    " 'python' flake8.bat e.g. ~/housekeeping/bin/flake8.bat ::
     "
     "   python -c "import flake8.run; flake8.run.main()" %*
     "
     " 'rst' rst2pseudoxml.py.bat e.g.
-    " ~/Personal/housekeeping/bin/rst2pseudoxml.py.bat ::
+    " ~/housekeeping/bin/rst2pseudoxml.py.bat ::
     "
     "   set "l1=import docutils.core;"
     "   set "l2=docutils.core.publish_cmdline("
