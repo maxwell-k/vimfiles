@@ -96,6 +96,7 @@ autocmd BufEnter history.py setlocal autoread
 autocmd BufEnter history.py setlocal nomodifiable
 autocmd BufEnter /tmp/bash-fc* set ft=sh      "highlighting for fc
 autocmd BufRead COMMIT_EDITMSG setlocal nomodeline
+autocmd StdInReadPost * setlocal nowrap
 
 " Display {{{1
 " -------
