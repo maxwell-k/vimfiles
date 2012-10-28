@@ -2,13 +2,22 @@
 " vimrc, Keith Maxwell, 19 September 2012
 " ---------------------------------------
 "
-" {{{ To install on Windows, add the following line to  `C:\Program
+" Using on Windows {{{
+" ----------------
+"
+" To install on Windows, add the following line to  `C:\Program
 " Files\Vim\_vimrc`::
 "
 "     source C:\Documents\ and\ Settings\...
 "
 " If this file is sourced by $VIM\_gvimrc plugins will not load.
-" `gvim -u NORC -N` starts vim with no rc file and in nocompatible mode. }}}
+" `gvim -u NORC -N` starts vim with no rc file and in nocompatible mode.
+if has('win32',)
+    " match the home directory to that used by git
+    let $HOME='C:/Documents and Settings/887561/My Documents'
+    set viminfo='20,<50,h,n$HOME/Personal/housekeeping/cache/viminfo
+endif
+" }}}
 
 set nocompatible
 if v:version < 703
@@ -16,15 +25,11 @@ if v:version < 703
 endif
 
 call pathogen#infect()
-call pathogen#helptags()
+call pathogen#helptags()  " needs write access to ~/.vim
 
-" Windows {{{1
-" -------
-"
+" Syntastic {{{1
+" ---------
 if has('win32',)
-    " match the home directory to that used by git
-    let $HOME='C:/Documents and Settings/887561/My Documents'
-    set viminfo='20,<50,h,n$HOME/Personal/housekeeping/cache/viminfo
     "
     " To understand how syntastic works see the separate files in::
     "
@@ -41,14 +46,47 @@ if has('win32',)
     " 'rst' rst2pseudoxml.py.bat e.g.
     " ~/Personal/housekeeping/bin/rst2pseudoxml.py.bat ::
     "
-    "	set "l1=import docutils.core;"
-    "	set "l2=docutils.core.publish_cmdline("
-    "	set "l3=settings_overrides={'exit_status_level': 1, 'report_level': 2})"
-    "	python -c "%l1%%l2%%l3%" %5 1> NUL
+    "   set "l1=import docutils.core;"
+    "   set "l2=docutils.core.publish_cmdline("
+    "   set "l3=settings_overrides={'exit_status_level': 1, 'report_level': 2})"
+    "   python -c "%l1%%l2%%l3%" %5 1> NUL
     "
     let g:syntastic_mode_map = { 'mode': 'passive',
                                \ 'active_filetypes': ['sh', 'python', 'rst'],
                                \ 'passive_filetypes': [] }
+else
+    function! SyntaxCheckers_ledger_GetLocList()
+        let makeprg = 'ledger -f '.shellescape(expand('%')).' --pedantic reg'
+        let errorformat = '%C'  "blank lines are a continuation
+        let errorformat .= ',%C %.%#'
+        let errorformat .= ',%C>%.%#'
+        let errorformat .= ',%CUnbalanced%.%#'
+        let errorformat .= ',%CAmount%.%#'
+        let errorformat .= ',%CWhile balancing transaction from%.%#'
+        let errorformat .= ',%CWhile parsing posting:'
+        let errorformat .= ',%AWhile parsing file "%f"\, line %l: '
+        let errorformat .= ',%Z%trror: %m'
+        return SyntasticMake({ 'makeprg': makeprg, 'errorformat': errorformat })
+    endfunction
+
+    "Test the checker above on the following:
+    "
+    "   account Expenses
+    "   account Assets
+    "
+    "   2012/01/01 Syntax error
+    "   Expenses  1
+    "    Assets  -1
+    "   2012/02/01 Transaction does not balance
+    "    Expenses  1
+    "    Assets  1
+    "   2012/02/01 Unknown account
+    "    Expenses:One  1
+    "    Assets  -1
+    "   2012/02/01 Balance assertion
+    "    Expenses  1
+    "    Assets  -1 = -2
+    "   ; vim: ft=ledger
 endif
 
 "autocommands {{{1
@@ -158,7 +196,8 @@ set wildmenu                    "normal mode tab completion menu
 set confirm                     "prompt before discarding changes
 set ignorecase                  "case insensitive searches
 set smartcase                   "override above if upper case characters
-set kp=                         " use `K` for `:help`
+set kp=                         "use `K` for `:help`
+set isfname-='='                "complete for example home=/home/liveuser
 
 "Functions {{{1
 "---------
@@ -189,12 +228,12 @@ function! <SID>:open() "{{{2
         " launch google-chrome on the URL under the cursor
         silent !google-chrome "<cfile>" &
     endif
-endf
+endfunction
 
 function! <SID>:execute_line() "{{{2
     "read the result of a line
     execute ":r !" . getline(".")
-endf
+endfunction
 
 function! <SID>:toggle_ve() "{{{2
     "toggle ve
@@ -203,7 +242,7 @@ function! <SID>:toggle_ve() "{{{2
     else
         set ve=
     endif
-endf
+endfunction
 
 function! <SID>:toggle_lines() "{{{2
     "to toggle size
@@ -212,13 +251,13 @@ function! <SID>:toggle_lines() "{{{2
     else
         set lines=25
     endif
-endf
+endfunction
 
 function! <SID>:headings() "{{{2
-" provide a table of contents in the location list 
-if &ft == 'rst'
-    lgete ''
-    set errorformat=%f:%l:%m
+" provide a table of contents in the location list
+    if &ft == 'rst'
+        lgete ''
+        set errorformat=%f:%l:%m
 
 python << EOF
 from __future__ import print_function
@@ -238,17 +277,17 @@ for i in document:
     if type(i) == docutils.nodes.section:
         vim.command(command.format(source.name, i.line - 1, i[0][0]))
 EOF
-    lopen
-    setlocal modifiable
-    %s/|/\t/g
-    setlocal nomodifiable
-    setlocal nomodified
-    syn match	qfFileName	"^[^\t]*" nextgroup=qfSeparator
-    syn match	qfSeparator	"\t" nextgroup=qfLineNr contained
-    syn match	qfLineNr	"[^\t]*" contained contains=qfError
-    syn match	qfError		"error" contained
-endif
-endf
+        lopen
+        setlocal modifiable
+        %s/|/\t/g
+        setlocal nomodifiable
+        setlocal nomodified
+        syn match   qfFileName  "^[^\t]*" nextgroup=qfSeparator
+        syn match   qfSeparator "\t" nextgroup=qfLineNr contained
+        syn match   qfLineNr    "[^\t]*" contained contains=qfError
+        syn match   qfError     "error" contained
+    endif
+endfunction
 
 function! <SID>:view_rst_as_html() "{{{2
 " TODO: test on Linux
@@ -267,7 +306,7 @@ finally:
     output.close()
 webbrowser.open(output.name)
 EOF
-endf
+endfunction
 function! <SID>:view_rst_as_odt() "{{{2
 python <<EOF
 import tempfile
@@ -287,7 +326,7 @@ if vim.eval("executable('winword')"):
 else:
     print(output.name)
 EOF
-endf
+endfunction
 
 "   Mappings {{{1
 "   --------
@@ -313,4 +352,5 @@ digraph .. 8230
 digraph n- 8211 "em dash
 digraph m- 8212 "em dash
 
+"}}} WIP
 " vim: set foldmethod=marker :{{{1
