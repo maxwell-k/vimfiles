@@ -2,6 +2,7 @@
 " vimrc, Keith Maxwell, 21 October 2012
 " ---------------------------------------
 "
+set nocompatible  " affects viminfo
 " Using on Windows {{{
 " ----------------
 "
@@ -15,11 +16,10 @@
 if has('win32',)
     " match the home directory to that used by git
     let $HOME='C:/Documents and Settings/887561/My Documents'
-    set viminfo='20,<50,h,n$HOME/Personal/housekeeping/cache/viminfo
+    set viminfo='20,<50,h,n$HOME/housekeeping/cache/viminfo
 endif
 " }}}
 
-set nocompatible
 if v:version < 703
     finish
 endif
@@ -39,12 +39,12 @@ if has('win32',)
     " Windows. For each such file type below is the name, batch filename,
     " example location and contents.
     "
-    " 'python' flake8.bat e.g. ~/Personal/housekeeping/bin/flake8.bat ::
+    " 'python' flake8.bat e.g. ~/housekeeping/bin/flake8.bat ::
     "
     "   python -c "import flake8.run; flake8.run.main()" %*
     "
     " 'rst' rst2pseudoxml.py.bat e.g.
-    " ~/Personal/housekeeping/bin/rst2pseudoxml.py.bat ::
+    " ~/housekeeping/bin/rst2pseudoxml.py.bat ::
     "
     "   set "l1=import docutils.core;"
     "   set "l2=docutils.core.publish_cmdline("
@@ -98,8 +98,9 @@ endif
 autocmd!
 
 "let gx work on both <./vimlogo.gif> and ./vmlogo.gif
-autocmd VimEnter * nno <silent>
-    \<Plug>NetrwBrowseX :call netrw#NetrwBrowseX(expand("<cfile>"),0)<cr>
+"See `:help expand(` for an explanation of expand(expand("<cfile>"))
+autocmd VimEnter * nno <silent><Plug>NetrwBrowseX
+    \ :call netrw#NetrwBrowseX(expand(expand("<cfile>")),0)<cr>
 
 "Filetypes {{{2
 "--------
@@ -130,6 +131,7 @@ autocmd BufEnter history.py setlocal autoread
 autocmd BufEnter history.py setlocal nomodifiable
 autocmd BufEnter /tmp/bash-fc* set ft=sh      "highlighting for fc
 autocmd BufRead COMMIT_EDITMSG setlocal nomodeline
+autocmd StdInReadPost * setlocal nowrap
 
 " Display {{{1
 " -------
