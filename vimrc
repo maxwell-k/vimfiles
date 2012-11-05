@@ -56,7 +56,15 @@ if has('win32',)
                                \ 'passive_filetypes': [] }
 else
     function! SyntaxCheckers_ledger_GetLocList()
+        " Use sed to force ledger to check cleared accounts
         let makeprg = 'ledger -f '.shellescape(expand('%')).' --pedantic reg'
+        let makeprg = "sed -e 's/ \\* / /'  ".shellescape(expand('%'))
+        let makeprg .= " \\| ledger --file - --pedantic reg 2>&1"
+        let makeprg .= " \\| sed -e 's/While parsing file \"/\\0"
+        let makeprg .= shellescape(expand('%'))."/' "
+        " for debugging: let makeprg .= "\\| tee test.txt "
+        " Simplest version:
+        "let makeprg = 'ledger -f '.shellescape(expand('%')).' --pedantic reg'
         let errorformat = '%C'  "blank lines are a continuation
         let errorformat .= ',%C %.%#'
         let errorformat .= ',%C>%.%#'
