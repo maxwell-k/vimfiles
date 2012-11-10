@@ -203,6 +203,7 @@ set ignorecase                  "case insensitive searches
 set smartcase                   "override above if upper case characters
 set kp=                         "use `K` for `:help`
 set isfname+=?                  "for web addresses
+set nojoinspaces                "one space between sentences
 
 "Functions {{{1
 "---------
