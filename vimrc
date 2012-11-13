@@ -54,49 +54,6 @@ if has('win32',)
     let g:syntastic_mode_map = { 'mode': 'passive',
                                \ 'active_filetypes': ['sh', 'python', 'rst'],
                                \ 'passive_filetypes': [] }
-else
-    function! SyntaxCheckers_ledger_GetLocList()
-        " Doesn't work if there is a comma in the filename
-        " Use sed to force ledger to check cleared accounts
-        let makeprg = "sed -e 's/ \\* / /'  ".shellescape(expand('%'))
-        let makeprg .= " \\| ledger --args-only -f - --pedantic reg 2>&1"
-        let makeprg .= " \\| sed -e 's,While parsing file \",\\0"
-        let makeprg .= shellescape(expand('%')).",' "
-        " for debugging:
-        " let @d = makeprg
-        " let makeprg .= " \\| tee debug.txt "
-        " Simplest version:
-        "let makeprg = 'ledger -f '.shellescape(expand('%')).' --pedantic reg'
-        let errorformat = '%C'  "blank lines are a continuation
-        let errorformat .= ',%C %.%#'
-        let errorformat .= ',%C>%.%#'
-        let errorformat .= ',%CUnbalanced%.%#'
-        let errorformat .= ',%CAmount%.%#'
-        let errorformat .= ',%CWhile balancing transaction from%.%#'
-        let errorformat .= ',%CWhile parsing posting:'
-        let errorformat .= ',%AWhile parsing file "%f"\, line %l: '
-        let errorformat .= ',%Z%trror: %m'
-        return SyntasticMake({ 'makeprg': makeprg, 'errorformat': errorformat })
-    endfunction
-
-    "Test the checker above on the following:
-    "
-    "   account Expenses
-    "   account Assets
-    "
-    "   2012/01/01 Syntax error
-    "   Expenses  1
-    "    Assets  -1
-    "   2012/02/01 Transaction does not balance
-    "    Expenses  1
-    "    Assets  1
-    "   2012/02/01 Unknown account
-    "    Expenses:One  1
-    "    Assets  -1
-    "   2012/02/01 Balance assertion
-    "    Expenses  1
-    "    Assets  -1 = -2
-    "   ; vim: ft=ledger
 endif
 
 "autocommands {{{1
