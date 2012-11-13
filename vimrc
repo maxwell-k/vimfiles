@@ -144,6 +144,7 @@ autocmd StdInReadPost * setlocal nowrap
 " Display {{{1
 " -------
 "
+let vimpager_passthrough = 1
 colorscheme solarized
 if has('gui_win32')
     set background=light
@@ -176,6 +177,9 @@ set formatoptions+=n            "format lists
 set formatlistpat=^\\s*[0-9-#]\\+[.\ ]\\s*\\\|^\\s*[a-z]\\.\\s
 set nrformats-=octal            " increment 07 to 08 and not 010
 match ErrorMsg /[ \t]\+$/
+if exists("vimpager")
+    match none
+endif
 
 "Tabs {{{2
 "----
