@@ -272,7 +272,6 @@ endfunction
 noremap <C-L> :noh<CR><C-L>
 " <C-CR> is hidden by gnome-terminal
 " <F1> is hidden by gnome-terminal
-noremap <F1> :set foldlevel=0<CR>
 autocmd FileType rst noremap <buffer> <F1> :call <SID>:headings()<CR>
 noremap <F3> :execute ":r !" . getline(".")<CR>
 if has('win32')
