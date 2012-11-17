@@ -72,13 +72,6 @@ autocmd VimEnter * nno <silent><Plug>NetrwBrowseX
 "Filetypes {{{2
 "--------
 "
-if has('win32',)
-    autocmd FileType ledger let g:ledger_bin="ledger.exe"
-    " TODO: check if this is necessary on Windows
-    "autocmd FileType ledger let g:ledger_fillstring = '·'
-endif
-autocmd FileType ledger set spell
-autocmd FileType ledger set noautoindent
 autocmd FileType sh set noexpandtab
 autocmd FileType rst set textwidth=79
 autocmd FileType rst set spell
@@ -229,35 +222,6 @@ EOF
         syn match   qfError     "error" contained
     endif
 endfunction
-function! <SID>:check_date_order() "{{{2
-python <<EOF
-from __future__ import print_function
-import time
-
-import vim
-
-DATE = "%Y/%m/%d"
-
-previous = None
-for row, line in enumerate(vim.current.buffer, start=1):
-    if not line:
-        continue
-    elif not line[0].isdigit():
-        continue
-    else:
-        date, ignore, ignore = line.partition(" ")
-        date = time.strptime(date, DATE)
-        if previous and date < previous:
-            window = vim.current.window
-            window.cursor = (row, 0)
-            print("{0} is before {1}".format(
-                time.strftime(DATE, date), time.strftime(DATE, previous)))
-            break
-        previous = date
-else:
-    print("Dates in correct order")
-EOF
-endfunction
 function! <SID>:view_rst_as_html() "{{{2
 python <<EOF
 import os
@@ -310,10 +274,7 @@ noremap <C-L> :noh<CR><C-L>
 " <F1> is hidden by gnome-terminal
 noremap <F1> :set foldlevel=0<CR>
 autocmd FileType rst noremap <buffer> <F1> :call <SID>:headings()<CR>
-autocmd FileType ledger noremap <buffer> <F2>
-    \ :call LedgerToggleTransactionState(line('.'), ' *')<CR>
 noremap <F3> :execute ":r !" . getline(".")<CR>
-autocmd FileType ledger noremap <buffer> <F3> :call <SID>:check_date_order()<CR>
 if has('win32')
     noremap <F5> :silent !explorer %:p:h &<CR>
     noremap <F4> :call <SID>:open()<CR>
