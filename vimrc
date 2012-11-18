@@ -72,10 +72,11 @@ autocmd VimEnter * nno <silent><Plug>NetrwBrowseX
 "Filetypes {{{2
 "--------
 "
-autocmd FileType sh set noexpandtab
+autocmd FileType dosini set isfname-=\= "complete e.g. home=/home/liveuser
+autocmd FileType gitcommit match none
 autocmd FileType rst set textwidth=79
 autocmd FileType rst set spell
-autocmd FileType dosini set isfname-=\= "complete e.g. home=/home/liveuser
+autocmd FileType sh set noexpandtab
 
 "Paths {{{2
 "-----
