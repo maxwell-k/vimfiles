@@ -82,8 +82,6 @@ autocmd FileType sh set noexpandtab
 "-----
 "
 "TODO: move to safe repository
-autocmd BufAdd */Projects/safe/*.bf
-    \execute "source " . expand("<afile>:h") . "\\safe.vim"
 autocmd BufEnter */.gvfs/* set noswapfile
 autocmd BufEnter */planning/*.txt set ft=rst
 autocmd BufEnter *.json set ft=javascript
@@ -91,6 +89,8 @@ autocmd BufEnter *.txt syn match error display excludenl "\s\+$"
 autocmd BufEnter history.py setlocal autoread
 autocmd BufEnter history.py setlocal nomodifiable
 autocmd BufEnter /tmp/bash-fc* set ft=sh      "highlighting for fc
+autocmd BufEnter */ledger/* set runtimepath+=runtimepath
+autocmd BufEnter */ledger/all set ft=ledger
 autocmd BufRead COMMIT_EDITMSG setlocal nomodeline
 autocmd StdInReadPost * setlocal nowrap
 
