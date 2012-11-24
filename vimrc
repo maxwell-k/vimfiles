@@ -17,6 +17,7 @@ if has('win32',)
     " match the home directory to that used by git
     let $HOME='C:/Documents and Settings/887561/My Documents'
     set viminfo='20,<50,h,n$HOME/housekeeping/cache/viminfo
+    set runtimepath+=~/configuration/runtimepath
 endif
 " }}}
 
