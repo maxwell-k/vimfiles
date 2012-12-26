@@ -36,16 +36,15 @@ if has('win32',)
     "
     " C:\Program Files\vim\vimfiles\bundle\syntastic\syntax_checkers\
     "
-    " Some file types need a batch file to properly call the syntax checker on
-    " Windows. For each such file type below is the name, batch filename,
-    " example location and contents.
+    " Some file types need a batch file on PATH to properly call the syntax
+    " checker on Windows. For each such file type below is the file type name,
+    " batch filename and contents.
     "
-    " 'python' flake8.bat e.g. ~/housekeeping/bin/flake8.bat ::
+    " 'python' flake8.bat
     "
     "   python -c "import flake8.run; flake8.run.main()" %*
     "
-    " 'rst' rst2pseudoxml.py.bat e.g.
-    " ~/housekeeping/bin/rst2pseudoxml.py.bat ::
+    " 'rst' rst2pseudoxml.py.bat
     "
     "   set "l1=import docutils.core;"
     "   set "l2=docutils.core.publish_cmdline("
