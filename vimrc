@@ -1,5 +1,5 @@
 " ---------------------------------------
-" vimrc, Keith Maxwell, 21 October 2012
+" vimrc, Keith Maxwell, 25 December 2012
 " ---------------------------------------
 "
 set nocompatible  " affects viminfo
@@ -100,11 +100,8 @@ autocmd StdInReadPost * setlocal nowrap
 "
 let vimpager_passthrough = 1
 colorscheme solarized
-if has('gui_win32')
-    set background=light
-else
-    set background=dark
-endif
+set background=dark
+
 " Only works if a single option per line
 set guioptions+=c  " keyboard workaround for file changed dialog
 set guioptions-=m  "no menu
@@ -115,7 +112,7 @@ set ruler          "show position
 set hlsearch
 set t_Co=16
 if has('gui_win32')
-    set guifont=Lucida_Console:h14:cANSI    "font
+    set guifont=Source_Code_Pro:h14
 endif
 if ! has('gui_running')
     set highlight+=vr " workaround for windows console
