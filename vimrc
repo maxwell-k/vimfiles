@@ -56,6 +56,29 @@ if has('win32',)
                                \ 'passive_filetypes': [] }
 endif
 
+"Editing {{{1
+"-------
+"
+set encoding=utf-8
+set backspace=indent,eol,start  "backspace deletes special characters
+set linebreak                   "do not wrap in the middle of a word
+set formatoptions+=n            "format lists
+set formatlistpat=^\\s*[0-9-#]\\+[.\ ]\\s*\\\|^\\s*[a-z]\\.\\s
+set nrformats-=octal            " increment 07 to 08 and not 010
+match ErrorMsg /[ \t]\+$/
+if exists("vimpager")
+    match none
+endif
+
+"Tabs {{{2
+"----
+"
+set expandtab
+set shiftwidth=4
+set softtabstop=4               "backspace removes an expanded tab
+set tabstop=4
+set autoindent
+
 "autocommands {{{1
 "-------------
 "
@@ -76,6 +99,7 @@ autocmd FileType dosini set isfname-=\= "complete e.g. home=/home/liveuser
 autocmd FileType gitcommit match none
 autocmd FileType rst set textwidth=79
 autocmd FileType rst set spell
+autocmd FileType rst set formatoptions+=n "repeat from above, unset somewhere?
 autocmd FileType sh set noexpandtab
 
 "Paths {{{2
@@ -116,29 +140,6 @@ endif
 if ! has('gui_running')
     set highlight+=vr " workaround for windows console
 endif
-
-"Editing {{{1
-"-------
-"
-set encoding=utf-8
-set backspace=indent,eol,start  "backspace deletes special characters
-set linebreak                   "do not wrap in the middle of a word
-set formatoptions+=n            "format lists
-set formatlistpat=^\\s*[0-9-#]\\+[.\ ]\\s*\\\|^\\s*[a-z]\\.\\s
-set nrformats-=octal            " increment 07 to 08 and not 010
-match ErrorMsg /[ \t]\+$/
-if exists("vimpager")
-    match none
-endif
-
-"Tabs {{{2
-"----
-"
-set expandtab
-set shiftwidth=4
-set softtabstop=4               "backspace removes an expanded tab
-set tabstop=4
-set autoindent
 
 "General {{{1
 "-------
