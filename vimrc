@@ -282,6 +282,7 @@ else
 endif
 noremap <F6> :s/^/"/<CR>:s/$/"/<CR>:noh<CR>
 " <F10> is hidden by gnome-terminal
+vnoremap <F9> <Esc>:g!/\%V/d<CR>`<:noh<CR>
 autocmd FileType rst noremap <buffer> <F10> :call <SID>:view_rst_as_html()<CR>
 autocmd FileType rst noremap <buffer> <S-F10> :call <SID>:view_rst_as_odt()<CR>
 " <F11> is hidden by gnome-terminal
