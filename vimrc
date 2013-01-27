@@ -134,6 +134,7 @@ set guioptions-=L  "no scrollbar
 set ruler          "show position
 set hlsearch
 set t_Co=16
+set showcmd
 if has('gui_win32')
     set guifont=Source_Code_Pro:h14
 endif
