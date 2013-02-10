@@ -223,6 +223,11 @@ EOF
 endfunction
 function! <SID>:view_rst_as_html() "{{{2
 python <<EOF
+"""View the buffer contents as HTML
+
+Using `publish_string` doesn't read configuration files like ./docutils.conf,
+instead write the contents to a file and create the html in the same was as `rst2html.py`.
+"""
 import os
 import tempfile
 import webbrowser
@@ -230,18 +235,29 @@ import webbrowser
 import vim
 import docutils.core
 
-output = tempfile.NamedTemporaryFile(suffix=".html", delete=False)
+# write the buffer contents to a named temporary file
+input_ = tempfile.NamedTemporaryFile(suffix=".txt", delete=False)
 try:
-    output.write(docutils.core.publish_string(
-        "\n".join(vim.current.buffer), writer_name="html"))
+    input_.write("\n".join(vim.current.buffer))
 finally:
-    output.close()
+    input_.close()
+input_ = input_.name
+
+# obtain a suitable file name for the output
+output = tempfile.NamedTemporaryFile(suffix=".html", delete=False)
+output.close()
+output = output.name
+
+# create the output from the input, just like rst2html.py
+docutils.core.publish_cmdline(writer_name='html', argv=[input_, output])
+
+# open a browser
 if os.path.isfile('/usr/bin/google-chrome'):
     # workaronud because webbrowser.open() seems to be broken on Generic Linux
     browser = webbrowser.BackgroundBrowser("google-chrome")
-    browser.open(output.name)
+    browser.open(output)
 else:
-    webbrowser.open(output.name)
+    webbrowser.open(output)
 EOF
 endfunction
 function! <SID>:view_rst_as_odt() "{{{2
