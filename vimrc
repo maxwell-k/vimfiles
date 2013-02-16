@@ -297,9 +297,10 @@ noremap <F12> :%y +<CR>
 "   http://www.cs.tut.fi/~jkorpela/dashes.html
 "   Use echo 0x2026 to convert to decimal
 "   3 em dashes have no space in times or arial but do in calibri
-digraph .. 8230
-digraph n- 8211 "em dash
-digraph m- 8212 "em dash
+digraph .. 8230 " ellipsis …
+digraph n- 8211 "em dash —
+digraph m- 8212 "em dash –
+digraph bu 8226 "bullet •
 
 "}}} WIP
 " vim: set foldmethod=marker :{{{1
