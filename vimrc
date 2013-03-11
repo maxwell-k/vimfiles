@@ -19,6 +19,11 @@ if has('win32',)
     set viminfo='20,<50,h,n$HOME/configuration/cache/viminfo
     set runtimepath+=~/configuration/runtimepath
 endif
+
+" Avoid creating swap files on a server
+if fnamemodify('.',':p') == 'I:\'
+    cd $HOME
+endif
 " }}}
 
 if v:version < 703
