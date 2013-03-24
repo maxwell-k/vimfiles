@@ -138,6 +138,7 @@ set guioptions-=r  "no scrollbar
 set guioptions-=L  "no scrollbar
 set ruler          "show position
 set hlsearch
+set splitbelow
 set t_Co=16
 set showcmd
 if has('gui_win32')
@@ -294,6 +295,15 @@ autocmd FileType rst noremap <buffer> <S-F10> :call <SID>:view_rst_as_odt()<CR>
 " <F11> is hidden by gnome-terminal
 noremap <F11> :%d<CR>:pu! +<CR>
 noremap <F12> :%y +<CR>
+"IPython
+let g:ipy_perform_mappings=0
+autocmd FileType python
+    \ map <silent> <S-Return> :python dedent_run_this_line()<CR>
+autocmd FileType python
+    \ vmap <silent> <S-Return> :python dedent_run_these_lines()<CR>
+autocmd FileType python
+    \ map <silent> <F1> :py if update_subchannel_msgs(force=True):
+    \ echo("vim-ipython shell updated",'Operator')<CR>
 
 "Digraphs {{{1
 "--------
