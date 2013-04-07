@@ -311,6 +311,7 @@ autocmd FileType rst noremap <buffer> <S-F10> :call <SID>:view_rst_as_odt()<CR>
 " <F11> is hidden by gnome-terminal
 noremap <F11> :%d<CR>:pu! +<CR>
 noremap <F12> :%y +<CR>
+noremap <S-F12> "+yiW
 "IPython
 let g:ipy_perform_mappings=0
 autocmd FileType python
