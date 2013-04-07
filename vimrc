@@ -136,6 +136,7 @@ set guioptions-=m  "no menu
 set guioptions-=T  "no toolbar
 set guioptions-=r  "no scrollbar
 set guioptions-=L  "no scrollbar
+set guioptions+=a  "automatically update "*
 set ruler          "show position
 set hlsearch
 set splitbelow
@@ -286,6 +287,16 @@ if vim.eval("executable('winword')"):
 else:
     print(output.name)
 EOF
+endfunction
+function! Sum() range "{{{2
+python <<EOS
+import vim
+import decimal
+print('{:,}'.format(sum(
+    decimal.Decimal(i.replace(',','').rstrip('\xc2\xa3 '))
+    for i in vim.eval("@*").split("\n")
+    if i)))
+EOS
 endfunction
 
 "   Mappings {{{1
