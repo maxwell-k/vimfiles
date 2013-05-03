@@ -90,6 +90,8 @@ autocmd BufEnter history.py setlocal nomodifiable
 autocmd BufEnter /tmp/bash-fc* set ft=sh      "highlighting for fc
 autocmd BufEnter */ledger/* set runtimepath+=runtimepath
 autocmd BufEnter */ledger/all set ft=ledger
+autocmd BufEnter */timesheet/*.txt execute 'lcd' fnameescape(expand("%:h"))
+autocmd BufEnter */timesheet/*.txt source Timesheet.vim
 autocmd BufRead COMMIT_EDITMSG setlocal nomodeline
 autocmd StdInReadPost * setlocal nowrap
 
