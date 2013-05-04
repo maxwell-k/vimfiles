@@ -80,7 +80,6 @@ autocmd FileType sh set noexpandtab
 "Paths {{{2
 "-----
 "
-"TODO: move to safe repository
 autocmd BufEnter */.gvfs/* set noswapfile
 autocmd BufEnter *.json set ft=javascript
 autocmd BufEnter *.txt syn match error display excludenl "\s\+$"
@@ -89,6 +88,8 @@ autocmd BufEnter history.py setlocal nomodifiable
 autocmd BufEnter /tmp/bash-fc* set ft=sh      "highlighting for fc
 autocmd BufEnter */ledger/* set runtimepath+=runtimepath
 autocmd BufEnter */ledger/all set ft=ledger
+autocmd BufRead */safe/*.bf execute 'lcd' fnameescape(expand("%:h"))
+autocmd BufRead */safe/*.bf source safe.vim
 autocmd BufEnter */timesheet/*.txt execute 'lcd' fnameescape(expand("%:h"))
 autocmd BufEnter */timesheet/*.txt source Timesheet.vim
 " % isn't the same as <afile> with netrw
