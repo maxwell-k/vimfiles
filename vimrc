@@ -82,7 +82,6 @@ autocmd FileType sh set noexpandtab
 "
 "TODO: move to safe repository
 autocmd BufEnter */.gvfs/* set noswapfile
-autocmd BufEnter */planning/*.txt set ft=rst
 autocmd BufEnter *.json set ft=javascript
 autocmd BufEnter *.txt syn match error display excludenl "\s\+$"
 autocmd BufEnter history.py setlocal autoread
@@ -92,6 +91,14 @@ autocmd BufEnter */ledger/* set runtimepath+=runtimepath
 autocmd BufEnter */ledger/all set ft=ledger
 autocmd BufEnter */timesheet/*.txt execute 'lcd' fnameescape(expand("%:h"))
 autocmd BufEnter */timesheet/*.txt source Timesheet.vim
+" % isn't the same as <afile> with netrw
+autocmd BufAdd */planning execute 'lcd' fnameescape(expand("<afile>:p"))
+autocmd BufAdd */planning source Plan.vim
+autocmd BufEnter */planning/**.txt execute 'lcd'
+    \ fnameescape(expand("<afile>:h:p"))
+autocmd BufEnter */planning/*/**.txt execute 'lcd'
+    \ system('git rev-parse --show-cdup')
+autocmd BufEnter */planning/**.txt source Plan.vim
 autocmd BufRead COMMIT_EDITMSG setlocal nomodeline
 autocmd StdInReadPost * setlocal nowrap
 
