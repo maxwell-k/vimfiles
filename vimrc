@@ -282,6 +282,19 @@ print('{:,}'.format(sum(
 EOS
 endfunction
 
+function! Bookmarks() "{{{2
+    let l:bookmarks = []
+    call add(l:bookmarks, 'Timesheet.txt')
+    call add(l:bookmarks, 'cipher.bf')
+    call add(l:bookmarks, 'planning/')
+    call add(l:bookmarks, '00-Today.txt')
+    call add(l:bookmarks, 'Ideas.txt')
+    let l:choice = confirm('Shortcuts:', join(bookmarks, "\n"))
+    if choice > 0 && choice <= len(l:bookmarks)
+        execute "find" l:bookmarks[choice - 1]
+    endif
+endfunction
+
 "   Mappings {{{1
 "   --------
 "
@@ -289,13 +302,14 @@ noremap <C-L> :noh<CR><C-L>
 " <C-CR> is hidden by gnome-terminal
 " <F1> is hidden by gnome-terminal
 autocmd FileType rst noremap <buffer> <F1> :call <SID>:headings()<CR>
+noremap <F2> :call Bookmarks()<CR>
 noremap <F3> :execute ":r !" . getline(".")<CR>
 if has('win32')
-    noremap <F5> :silent !explorer %:p:h &<CR>
     noremap <F4> :call <SID>:open()<CR>
+    noremap <F5> :silent !explorer %:p:h &<CR>
 else
-    noremap <F5> :silent !nautilus %:p:h &<CR>
     noremap <F4> :silent !xdg-open <cfile> &<CR><C-L>
+    noremap <F5> :silent !nautilus %:p:h &<CR>
 endif
 noremap <F6> :s/^/"/<CR>:s/$/"/<CR>:noh<CR>
 " <F10> is hidden by gnome-terminal
