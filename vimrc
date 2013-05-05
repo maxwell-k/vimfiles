@@ -1,6 +1,6 @@
-" ---------------------------------------
-" vimrc, Keith Maxwell, 25 December 2012
-" ---------------------------------------
+" --------------------------------
+" vimrc, Keith Maxwell, 4 May 2013
+" --------------------------------
 "
 set nocompatible  " affects viminfo
 " Using on Windows {{{
@@ -39,9 +39,10 @@ set linebreak                   "do not wrap in the middle of a word
 set formatoptions+=n            "format lists
 set formatlistpat=^\\s*[0-9-#•]\\+[.\ ]\\s*\\\|^\\s*[a-z]\\.\\s
 set nrformats-=octal            " increment 07 to 08 and not 010
-match ErrorMsg /[ \t]\+$/
+syntax match eolWhiteSpace display excludenl "\s\+$"
+highlight link eolWhiteSpace ErrorMsg
 if exists("vimpager")
-    match none
+    highlight clear eolWhiteSpace
 endif
 
 "Tabs {{{2
@@ -70,24 +71,20 @@ autocmd VimEnter * redraw!
 "Filetypes {{{2
 "--------
 "
+"Move to a file in ftplugin if more that one line per file-type:
 autocmd FileType dosini set isfname-=\= "complete e.g. home=/home/liveuser
 autocmd FileType gitcommit match none
-autocmd FileType rst set textwidth=79
-autocmd FileType rst set spell
-autocmd FileType rst set formatoptions+=n "repeat from above, unset somewhere?
 autocmd FileType sh set noexpandtab
 
 "Paths {{{2
 "-----
 "
 autocmd BufEnter */.gvfs/* set noswapfile
-autocmd BufEnter *.json set ft=javascript
-autocmd BufEnter *.txt syn match error display excludenl "\s\+$"
 autocmd BufEnter history.py setlocal autoread
 autocmd BufEnter history.py setlocal nomodifiable
-autocmd BufEnter /tmp/bash-fc* set ft=sh      "highlighting for fc
+autocmd BufAdd */ledger/* execute 'lcd' fnameescape(expand("%:h"))
 autocmd BufEnter */ledger/* set runtimepath+=runtimepath
-autocmd BufEnter */ledger/all set ft=ledger
+autocmd BufEnter */ledger/all set filetype=ledger
 autocmd BufRead */safe/*.bf execute 'lcd' fnameescape(expand("%:h"))
 autocmd BufRead */safe/*.bf source safe.vim
 autocmd BufEnter */timesheet/*.txt execute 'lcd' fnameescape(expand("%:h"))
@@ -177,100 +174,6 @@ function! <SID>:open() "{{{2
         "echo l:command
     endif
 endfunction
-function! <SID>:headings() "{{{2
-" provide a table of contents in the location list
-    if &ft == 'rst'
-        lgete ''
-        set errorformat=%f:%l:%m
-
-python << EOF
-from __future__ import print_function
-import vim
-import docutils.parsers.rst
-import docutils.utils
-
-source = vim.current.buffer
-settings = docutils.frontend.OptionParser(
-                    components=(docutils.parsers.rst.Parser,)
-                    ).get_default_values()
-parser = docutils.parsers.rst.Parser()
-document = docutils.utils.new_document(source.name, settings)
-parser.parse('\n'.join(source), document)
-command = "lad '{0}:{1}:\t{2}'"
-for i in document:
-    if type(i) == docutils.nodes.section:
-        vim.command(command.format(source.name, i.line - 1, i[0][0]))
-EOF
-        lopen
-        setlocal modifiable
-        %s/|/\t/g
-        setlocal nomodifiable
-        setlocal nomodified
-        syn match   qfFileName  "^[^\t]*" nextgroup=qfSeparator
-        syn match   qfSeparator "\t" nextgroup=qfLineNr contained
-        syn match   qfLineNr    "[^\t]*" contained contains=qfError
-        syn match   qfError     "error" contained
-    endif
-endfunction
-function! <SID>:view_rst_as_html() "{{{2
-python <<EOF
-"""View the buffer contents as HTML
-
-Using `publish_string` doesn't read configuration files like ./docutils.conf,
-instead write the contents to a file and create the html in the same was as `rst2html.py`.
-"""
-import os
-import tempfile
-import webbrowser
-
-import vim
-import docutils.core
-
-# write the buffer contents to a named temporary file
-input_ = tempfile.NamedTemporaryFile(suffix=".txt", delete=False)
-try:
-    input_.write("\n".join(vim.current.buffer))
-finally:
-    input_.close()
-input_ = input_.name
-
-# obtain a suitable file name for the output
-output = tempfile.NamedTemporaryFile(suffix=".html", delete=False)
-output.close()
-output = output.name
-
-# create the output from the input, just like rst2html.py
-docutils.core.publish_cmdline(writer_name='html', argv=[input_, output])
-
-# open a browser
-if os.path.isfile('/usr/bin/google-chrome'):
-    # workaronud because webbrowser.open() seems to be broken on Generic Linux
-    browser = webbrowser.BackgroundBrowser("google-chrome")
-    browser.open(output)
-else:
-    webbrowser.open(output)
-EOF
-endfunction
-function! <SID>:view_rst_as_odt() "{{{2
-python <<EOF
-import tempfile
-import subprocess
-
-import vim
-import docutils.core
-
-output = tempfile.NamedTemporaryFile(suffix=".odt", delete=False)
-try:
-    output.write(docutils.core.publish_string(
-        "\n".join(vim.current.buffer), writer_name="odf_odt"))
-finally:
-    output.close()
-if vim.eval("executable('winword')"):
-    subprocess.Popen(['winword', output.name])
-else:
-    print(output.name)
-EOF
-endfunction
 function! Sum() range "{{{2
 python <<EOS
 import vim
@@ -289,6 +192,7 @@ function! Bookmarks() "{{{2
     call add(l:bookmarks, 'planning/')
     call add(l:bookmarks, '00-Today.txt')
     call add(l:bookmarks, 'Ideas.txt')
+    call add(l:bookmarks, 'all')
     let l:choice = confirm('Shortcuts:', join(bookmarks, "\n"))
     if choice > 0 && choice <= len(l:bookmarks)
         execute "find" l:bookmarks[choice - 1]
@@ -301,7 +205,6 @@ endfunction
 noremap <C-L> :noh<CR><C-L>
 " <C-CR> is hidden by gnome-terminal
 " <F1> is hidden by gnome-terminal
-autocmd FileType rst noremap <buffer> <F1> :call <SID>:headings()<CR>
 noremap <F2> :call Bookmarks()<CR>
 noremap <F3> :execute ":r !" . getline(".")<CR>
 if has('win32')
@@ -312,23 +215,12 @@ else
     noremap <F5> :silent !nautilus %:p:h &<CR>
 endif
 noremap <F6> :s/^/"/<CR>:s/$/"/<CR>:noh<CR>
-" <F10> is hidden by gnome-terminal
 vnoremap <F9> <Esc>:g!/\%V/d<CR>`<:noh<CR>
-autocmd FileType rst noremap <buffer> <F10> :call <SID>:view_rst_as_html()<CR>
-autocmd FileType rst noremap <buffer> <S-F10> :call <SID>:view_rst_as_odt()<CR>
+" <F10> is hidden by gnome-terminal
 " <F11> is hidden by gnome-terminal
 noremap <F11> :%d<CR>:pu! +<CR>
 noremap <F12> :%y +<CR>
 noremap <S-F12> "+yiW
-"IPython
-let g:ipy_perform_mappings=0
-autocmd FileType python
-    \ map <silent> <S-Return> :python dedent_run_this_line()<CR>
-autocmd FileType python
-    \ vmap <silent> <S-Return> :python dedent_run_these_lines()<CR>
-autocmd FileType python
-    \ map <silent> <F1> :py if update_subchannel_msgs(force=True):
-    \ echo("vim-ipython shell updated",'Operator')<CR>
 
 "Digraphs {{{1
 "--------
@@ -342,5 +234,4 @@ digraph n- 8211 "em dash —
 digraph m- 8212 "em dash –
 digraph bu 8226 "bullet •
 
-"}}} WIP
 " vim: set foldmethod=marker :{{{1
