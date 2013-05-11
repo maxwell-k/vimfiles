@@ -6,16 +6,12 @@ set nocompatible  " affects viminfo
 " Using on Windows {{{
 " ----------------
 "
-" To install on Windows, add the following line to  `C:\Program
-" Files\Vim\_vimrc`::
-"
-"     source C:\Documents\ and\ Settings\...
-"
-" If this file is sourced by $VIM\_gvimrc plugins will not load.
-" `gvim -u NORC -N` starts vim with no rc file and in nocompatible mode.
+" • To install on Windows, `source` this file from `_vimrc` in `$VIM`.
+" • If this file is sourced by $VIM\_gvimrc plugins will not load.
+" • `gvim -u NORC -N` starts vim with no rc file and in nocompatible mode.
 if has('win32',)
-    " match the home directory to that used by git
-    let $HOME='C:/Documents and Settings/887561/My Documents'
+    " Match the home directory to that used by git
+    let $HOME='C:/Users/887561/Documents'
     set viminfo='20,<50,h,n$HOME/configuration/cache/viminfo
     set runtimepath+=~/configuration/runtimepath
 endif
@@ -31,7 +27,7 @@ if v:version < 703
 endif
 
 call pathogen#infect()
-call pathogen#helptags()  " needs write access to ~/.vim
+call pathogen#helptags()  " Needs write access to ~/.vim
 
 " Syntastic {{{1
 " ---------
@@ -127,8 +123,13 @@ autocmd StdInReadPost * setlocal nowrap
 " -------
 "
 let vimpager_passthrough = 1
-colorscheme solarized
-set background=dark
+if has('gui_win32')
+    set guifont=Source_Code_Pro:h14
+    colorscheme summerfruit256
+else
+    colorscheme solarized
+    set background=dark
+endif
 
 " Only works if a single option per line
 set guioptions+=c  " keyboard workaround for file changed dialog
@@ -140,13 +141,10 @@ set guioptions+=a  "automatically update "*
 set ruler          "show position
 set hlsearch
 set splitbelow
-set t_Co=16
 set showcmd
-if has('gui_win32')
-    set guifont=Source_Code_Pro:h14
-endif
 if ! has('gui_running')
     set highlight+=vr " workaround for windows console
+    set t_Co=16
 endif
 
 "General {{{1
