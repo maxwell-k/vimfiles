@@ -26,6 +26,7 @@ if v:version < 703
     finish
 endif
 
+runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()  " Needs write access to ~/.vim
 
