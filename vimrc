@@ -93,6 +93,7 @@ autocmd!
 "See `:help expand(` for an explanation of expand(expand("<cfile>"))
 autocmd VimEnter * nno <silent><Plug>NetrwBrowseX
     \ :call netrw#NetrwBrowseX(expand(expand("<cfile>")),0)<cr>
+autocmd VimEnter * redraw!
 
 "Filetypes {{{2
 "--------
