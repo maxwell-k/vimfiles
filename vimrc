@@ -30,34 +30,6 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()  " Needs write access to ~/.vim
 
-" Syntastic {{{1
-" ---------
-if has('win32',)
-    "
-    " To understand how syntastic works see the separate files in::
-    "
-    " C:\Program Files\vim\vimfiles\bundle\syntastic\syntax_checkers\
-    "
-    " Some file types need a batch file on PATH to properly call the syntax
-    " checker on Windows. For each such file type below is the file type name,
-    " batch filename and contents.
-    "
-    " 'python' flake8.bat
-    "
-    "   python -c "import flake8.run; flake8.run.main()" %*
-    "
-    " 'rst' rst2pseudoxml.py.bat
-    "
-    "   set "l1=import docutils.core;"
-    "   set "l2=docutils.core.publish_cmdline("
-    "   set "l3=settings_overrides={'exit_status_level': 1, 'report_level': 2})"
-    "   python -c "%l1%%l2%%l3%" %5 1> NUL
-    "
-    let g:syntastic_mode_map = { 'mode': 'passive',
-                               \ 'active_filetypes': ['sh', 'python', 'rst'],
-                               \ 'passive_filetypes': [] }
-endif
-
 "Editing {{{1
 "-------
 "
