@@ -86,8 +86,8 @@ autocmd BufRead */safe/*.bf source safe.vim
 autocmd BufEnter */timesheet/*.txt execute 'lcd' fnameescape(expand("%:h"))
 autocmd BufEnter */timesheet/*.txt source Timesheet.vim
 " % isn't the same as <afile> with netrw
-autocmd BufAdd */planning execute 'lcd' fnameescape(expand("<afile>:p"))
-autocmd BufAdd */planning source Plan.vim
+autocmd BufAdd planning execute 'lcd' fnameescape(expand("<afile>:p"))
+autocmd BufAdd planning source Plan.vim "Won't match find planning/
 autocmd BufEnter */planning/**.txt execute 'lcd'
     \ fnameescape(expand("<afile>:h:p"))
 autocmd BufEnter */planning/*/**.txt execute 'lcd'
@@ -143,6 +143,8 @@ set kp=                         "use `K` for `:help`
 set isfname+=?                  "for web addresses
 set path+=$HOME/**              "recursively search below current directory
 set nojoinspaces                "one space between sentences
+set suffixesadd+=.txt
+set suffixesadd+=.bf
 
 "Functions {{{1
 "---------
@@ -181,19 +183,6 @@ print('{:,}'.format(sum(
 EOS
 endfunction
 
-function! Bookmarks() "{{{2
-    let l:bookmarks = []
-    call add(l:bookmarks, 'Timesheet.txt')
-    call add(l:bookmarks, 'cipher.bf')
-    call add(l:bookmarks, 'planning/')
-    call add(l:bookmarks, '00-Today.txt')
-    call add(l:bookmarks, 'Ideas.txt')
-    call add(l:bookmarks, 'all')
-    let l:choice = confirm('Shortcuts:', join(bookmarks, "\n"))
-    if choice > 0 && choice <= len(l:bookmarks)
-        execute "find" l:bookmarks[choice - 1]
-    endif
-endfunction
 
 "   Mappings {{{1
 "   --------
@@ -201,7 +190,6 @@ endfunction
 noremap <C-L> :noh<CR><C-L>
 " <C-CR> is hidden by gnome-terminal
 " <F1> is hidden by gnome-terminal
-noremap <F2> :call Bookmarks()<CR>
 noremap <F3> :execute ":r !" . getline(".")<CR>
 if has('win32')
     noremap <F4> :call <SID>:open()<CR>
