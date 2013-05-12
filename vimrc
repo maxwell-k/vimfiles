@@ -37,11 +37,6 @@ set linebreak                   "do not wrap in the middle of a word
 set formatoptions+=n            "format lists
 set formatlistpat=^\\s*[0-9-#•]\\+[.\ ]\\s*\\\|^\\s*[a-z]\\.\\s
 set nrformats-=octal            " increment 07 to 08 and not 010
-syntax match eolWhiteSpace display excludenl "\s\+$"
-highlight link eolWhiteSpace ErrorMsg
-if exists("vimpager")
-    highlight clear eolWhiteSpace
-endif
 
 "Tabs {{{2
 "----
@@ -130,7 +125,15 @@ endif
 "-------
 "
 filetype plugin on              "load plugins
+" The order of the next two lines is essential
 syntax enable                   "syntax highlighting
+autocmd Syntax * syntax match eolWhiteSpace display excludenl containedin=ALL
+    \ "\s\+$"
+doautocmd Syntax
+highlight link eolWhiteSpace ErrorMsg
+if exists("vimpager")
+    highlight clear eolWhiteSpace
+endif
 let g:netrw_banner=0
 let g:is_posix=1                "$() isn't an error in sh
 let g:sh_fold_enabled= 3
@@ -193,6 +196,7 @@ noremap <C-L> :noh<CR><C-L>
 " <C-CR> is hidden by gnome-terminal
 " <F1> is hidden by gnome-terminal
 noremap <F3> :execute ":r !" . getline(".")<CR>
+noremap <F2> :echo synIDattr(synID(line("."),col("."),1),"name")<CR>
 if has('win32')
     noremap <F4> :call <SID>:open()<CR>
     noremap <F5> :silent !explorer %:p:h &<CR>
