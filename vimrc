@@ -12,7 +12,9 @@ if has('win32',) " Using on Windows {{{
     let $HOME='C:/Users/887561/Documents'
     set viminfo='20,<50,h,n$HOME/configuration/cache/viminfo
     set runtimepath+=~/configuration/runtimepath
-    if fnamemodify('.',':p') ==? 'I:\' " Avoid creating swap files on a server
+    " Avoid creating swap files on a server and
+    " move into git HOME if in Windows HOME
+    if fnamemodify('.',':p') ==? 'I:\'
         \ || fnamemodify('.',':p') ==? 'C:\Users\887561\'
         cd $HOME
     endif
