@@ -2,25 +2,21 @@
 " vimrc, Keith Maxwell, 4 May 2013
 " --------------------------------
 "
-set nocompatible  " affects viminfo
-" Using on Windows {{{
-" ----------------
-"
-" • To install on Windows, `source` this file from `_vimrc` in `$VIM`.
-" • If this file is sourced by $VIM\_gvimrc plugins will not load.
-" • `gvim -u NORC -N` starts vim with no rc file and in nocompatible mode.
-if has('win32',)
+set nocompatible  " Affects viminfo
+if has('win32',) " Using on Windows {{{
+    " • To install on Windows, `source` this file from `_vimrc` in `$VIM`.
+    " • If this file is sourced by $VIM\_gvimrc plugins will not load.
+    " • `gvim -u NORC -N` starts vim with no rc file and in nocompatible mode.
+
     " Match the home directory to that used by git
     let $HOME='C:/Users/887561/Documents'
     set viminfo='20,<50,h,n$HOME/configuration/cache/viminfo
     set runtimepath+=~/configuration/runtimepath
-endif
-
-" Avoid creating swap files on a server
-if fnamemodify('.',':p') == 'I:\'
-    cd $HOME
-endif
-" }}}
+    if fnamemodify('.',':p') ==? 'I:\' " Avoid creating swap files on a server
+        \ || fnamemodify('.',':p') ==? 'C:\Users\887561\'
+        cd $HOME
+    endif
+endif " }}}
 
 if v:version < 703
     finish
