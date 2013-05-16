@@ -146,7 +146,10 @@ set ignorecase                  "case insensitive searches
 set smartcase                   "override above if upper case characters
 set kp=                         "use `K` for `:help`
 set isfname+=?                  "for web addresses
-set path+=$HOME/**              "recursively search below current directory
+set path+=$HOME/**              "find recursively search below home directory
+if has('gui_win32')             "find on Windows Desktop
+    set path+=$HOME/../Desktop/**
+endif
 set nojoinspaces                "one space between sentences
 set suffixesadd+=.txt
 set suffixesadd+=.bf
