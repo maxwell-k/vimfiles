@@ -66,7 +66,6 @@ autocmd VimEnter * redraw!
 "
 "Move to a file in ftplugin if more that one line per file-type:
 autocmd FileType dosini set isfname-=\= "complete e.g. home=/home/liveuser
-autocmd FileType gitcommit match none
 autocmd FileType sh set noexpandtab
 
 "Paths {{{2
@@ -132,7 +131,7 @@ autocmd Syntax * syntax match eolWhiteSpace display excludenl containedin=ALL
 doautocmd Syntax
 highlight link eolWhiteSpace ErrorMsg
 if exists("vimpager")
-    highlight clear eolWhiteSpace
+    highlight link eolWhiteSpace NONE
 endif
 let g:netrw_banner=0
 let g:is_posix=1                "$() isn't an error in sh
