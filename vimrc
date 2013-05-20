@@ -211,9 +211,9 @@ noremap <F6> :s/^/"/<CR>:s/$/"/<CR>:noh<CR>
 vnoremap <F9> <Esc>:g!/\%V/d<CR>`<:noh<CR>
 " <F10> is hidden by gnome-terminal
 " <F11> is hidden by gnome-terminal
-noremap <F11> :%d<CR>:pu! +<CR>
-noremap <F12> :%y +<CR>
-noremap <S-F12> "+yiW
+noremap <Insert> :%d<CR>:pu! +<CR>:$d<CR>
+noremap <S-Insert> :%y +<CR>
+noremap <C-Insert> "+yiW
 
 "Digraphs {{{1
 "--------
