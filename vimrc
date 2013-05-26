@@ -197,8 +197,8 @@ endfunction
 noremap <C-L> :noh<CR><C-L>
 " <C-CR> is hidden by gnome-terminal
 " <F1> is hidden by gnome-terminal
-noremap <F3> :execute ":r !" . getline(".")<CR>
 noremap <F2> :echo synIDattr(synID(line("."),col("."),1),"name")<CR>
+noremap <F3> :execute ":r !" . getline(".")<CR>
 if has('win32')
     noremap <F4> :call <SID>:open()<CR>
     noremap <F5> :silent !explorer %:p:h &<CR>
@@ -210,6 +210,8 @@ noremap <F6> :s/^/"/<CR>:s/$/"/<CR>:noh<CR>
 vnoremap <F9> <Esc>:g!/\%V/d<CR>`<:noh<CR>
 " <F10> is hidden by gnome-terminal
 " <F11> is hidden by gnome-terminal
+nnoremap <F12> :silent !start
+    \ "C:\Program Files\Internet Explorer\iexplore.exe" <cfile><cr><cr>
 noremap <Insert> :%d<CR>:pu! +<CR>:$d<CR>
 noremap <S-Insert> :%y +<CR>
 noremap <C-Insert> "+yiW
