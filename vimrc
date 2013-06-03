@@ -212,6 +212,9 @@ vnoremap <F9> <Esc>:g!/\%V/d<CR>`<:noh<CR>
 " <F11> is hidden by gnome-terminal
 nnoremap <F12> :silent !start
     \ "C:\Program Files\Internet Explorer\iexplore.exe" <cfile><cr><cr>
+vnoremap <F12> :<BS><BS><BS><BS><BS>silent execute "!start"
+    \ "\"C:\\Program Files\\Internet Explorer\\iexplore.exe\""
+    \ substitute(@*, '[[:space:]]', '', 'g')<CR><CR>
 noremap <Insert> :%d<CR>:pu! +<CR>:$d<CR>
 noremap <S-Insert> :%y +<CR>
 noremap <C-Insert> "+yiW
