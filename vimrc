@@ -19,15 +19,23 @@ if has('win32',) " Using on Windows {{{
         \ || fnamemodify('.',':p') ==? 'C:\Users\887561\'
         cd $HOME
     endif
+    let s:pathogen_path = expand('~/configuration/runtimepath/bundle/{}')
+else
+    let s:pathogen_path = expand('$VIM/bundle/{}')
 endif " }}}
 
 if v:version < 703
     finish
 endif
 
+" Plugins {{{1
+" -------
+"
 runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect()
+call pathogen#infect(s:pathogen_path)
 call pathogen#helptags()  " Needs write access to ~/.vim
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_check_on_open            = 1
 
 "Editing {{{1
 "-------
@@ -44,6 +52,7 @@ set nrformats-=octal            " increment 07 to 08 and not 010
 "
 set expandtab
 set shiftwidth=4
+set shiftround
 set softtabstop=4               "backspace removes an expanded tab
 set tabstop=4
 set autoindent
@@ -76,7 +85,7 @@ autocmd BufEnter */.gvfs/* set noswapfile
 autocmd BufEnter history.py setlocal autoread
 autocmd BufEnter history.py setlocal nomodifiable
 autocmd BufAdd */ledger/* execute 'lcd' fnameescape(expand("%:h"))
-autocmd BufEnter */ledger/* set runtimepath+=runtimepath
+autocmd BufEnter */ledger/* set runtimepath+=~/ledger/runtimepath
 autocmd BufEnter */ledger/all set filetype=ledger
 autocmd BufRead */safe/*.bf execute 'lcd' fnameescape(expand("%:h"))
 autocmd BufRead */safe/*.bf source safe.vim
@@ -111,7 +120,7 @@ set guioptions-=m  "no menu
 set guioptions-=T  "no toolbar
 set guioptions-=r  "no scrollbar
 set guioptions-=L  "no scrollbar
-set guioptions+=a  "automatically update "*
+set clipboard=unnamed
 set ruler          "show position
 set hlsearch
 set splitbelow
@@ -153,10 +162,22 @@ endif
 set nojoinspaces                "one space between sentences
 set suffixesadd+=.txt
 set suffixesadd+=.bf
+set nostartofline
 
 "Functions {{{1
 "---------
 "
+function! <SID>:get_visual_selection() "{{{2
+  " Return the visually selected text, from:
+  " http://stackoverflow.com/questions/1533565/
+  " how-to-get-visually-selected-text-in-vimscript
+  let [lnum1, col1] = getpos("'<")[1:2]
+  let [lnum2, col2] = getpos("'>")[1:2]
+  let lines = getline(lnum1, lnum2)
+  let lines[-1] = lines[-1][: col2 - (&selection == 'inclusive' ? 1 : 2)]
+  let lines[0] = lines[0][col1 - 1:]
+  return join(lines, "\n")
+endfunction
 function! <SID>:open() "{{{2
     if has('win32',)
         " open the file linked from the current line
@@ -181,13 +202,16 @@ function! <SID>:open() "{{{2
     endif
 endfunction
 function! Sum() range "{{{2
+"Assumes 'selection' is blockwise and inclusive
 python <<EOS
 import vim
 import decimal
-print('{:,}'.format(sum(
-    decimal.Decimal(i.replace(',','').rstrip('\xc2\xa3 '))
-    for i in vim.eval("@*").split("\n")
-    if i)))
+top, left       = vim.eval("getpos(\"'<\")[1:2]")
+bottom, right   = vim.eval("getpos(\"'>\")[1:2]")
+top, left, bottom, right = int(top), int(left), int(bottom), int(right)
+numbers = [i[left - 1:right] for i in vim.current.buffer[top - 1:bottom]]
+numbers = [i.replace(',','').rstrip('\xc2\xa3 ') for i in numbers]
+print('{:,}'.format(sum(decimal.Decimal(i) for i in numbers if i)))
 EOS
 endfunction
 
@@ -211,14 +235,13 @@ noremap <F6> :s/^/"/<CR>:s/$/"/<CR>:noh<CR>
 vnoremap <F9> <Esc>:g!/\%V/d<CR>`<:noh<CR>
 " <F10> is hidden by gnome-terminal
 " <F11> is hidden by gnome-terminal
+nnoremap <F11> :execute "e ~/planning/daily/" . strftime("%Y%m%d") . ".txt"<CR>
 nnoremap <F12> :silent !start
-    \ "C:\Program Files\Internet Explorer\iexplore.exe" <cfile><cr><cr>
+    \ "C:\Program Files\Internet Explorer\iexplore.exe" <cfile><CR><CR>
 vnoremap <F12> :<BS><BS><BS><BS><BS>silent execute "!start"
     \ "\"C:\\Program Files\\Internet Explorer\\iexplore.exe\""
-    \ substitute(@*, '[[:space:]]', '', 'g')<CR><CR>
-noremap <Insert> :%d<CR>:pu! +<CR>:$d<CR>
-noremap <S-Insert> :%y +<CR>
-noremap <C-Insert> "+yiW
+    \ substitute(<SID>:get_visual_selection(), '[[:space:]]', '', 'g')<CR><CR>
+noremap Y y$
 
 "Digraphs {{{1
 "--------
