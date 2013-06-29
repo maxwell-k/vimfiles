@@ -240,7 +240,8 @@ nnoremap <F12> :silent !start
     \ "C:\Program Files\Internet Explorer\iexplore.exe" <cfile><CR><CR>
 vnoremap <F12> :<BS><BS><BS><BS><BS>silent execute "!start"
     \ "\"C:\\Program Files\\Internet Explorer\\iexplore.exe\""
-    \ substitute(<SID>:get_visual_selection(), '[[:space:]]', '', 'g')<CR><CR>
+    \ substitute(substitute(<SID>:get_visual_selection(),
+    \ '[[:space:]]', '', 'g'), '%', '\\%', 'g')<CR><CR>
 noremap Y y$
 
 "Digraphs {{{1
