@@ -92,8 +92,10 @@ autocmd BufRead */safe/*.bf source safe.vim
 autocmd BufEnter */timesheet/*.txt execute 'lcd' fnameescape(expand("%:h"))
 autocmd BufEnter */timesheet/*.txt source Timesheet.vim
 " % isn't the same as <afile> with netrw
-autocmd BufAdd planning execute 'lcd' fnameescape(expand("<afile>:p"))
-autocmd BufAdd planning source Plan.vim "Won't match find planning/
+autocmd BufAdd,BufEnter planning,planning/
+    \ execute 'lcd' fnameescape(expand("<afile>:p"))
+autocmd BufAdd,BufEnter planning,planning/
+    \ source Plan.vim "?Won't match find planning/?
 autocmd BufEnter */planning/**.txt execute 'lcd'
     \ fnameescape(expand("<afile>:h:p"))
 autocmd BufEnter */planning/*/**.txt execute 'lcd'
@@ -219,6 +221,13 @@ endfunction
 "   Mappings {{{1
 "   --------
 "
+noremap <Leader>t :find Timesheet.txt<CR>
+noremap <Leader>l :find all<CR>
+noremap <Leader>s :find cipher.bf<CR>
+noremap <Leader>i :find Ideas.txt<CR>
+noremap <Leader>p :find planning/<CR>
+noremap <Leader>u :find URLs.txt<CR>
+noremap <Leader>w :find Work.txt<CR>
 noremap <C-L> :noh<CR><C-L>
 " <C-CR> is hidden by gnome-terminal
 " <F1> is hidden by gnome-terminal
