@@ -15,7 +15,7 @@ if has('win32',) " Using on Windows {{{
     " Avoid creating swap files on a server and
     " move into git HOME if in Windows HOME
     if fnamemodify('.',':p') ==? 'I:\'
-        \ || fnamemodify('.',':p') ==? 'C:\Program Files (x86)\Vim\vim73\'
+        \ || fnamemodify('.',':p') ==? 'C:\Program Files (x86)\Vim\vim74\'
         \ || fnamemodify('.',':p') ==? 'C:\Users\887561\'
         cd $HOME
     endif
