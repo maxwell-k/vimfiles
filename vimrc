@@ -230,6 +230,7 @@ noremap <Leader>i :find Ideas.txt<CR>
 noremap <Leader>p :find planning/<CR>
 noremap <Leader>u :find URLs.txt<CR>
 noremap <Leader>w :find Work.txt<CR>
+noremap <Leader>c :%d _ \| pu + \| 1d<CR>
 noremap <C-L> :noh<CR><C-L>
 " <C-CR> is hidden by gnome-terminal
 " <F1> is hidden by gnome-terminal
