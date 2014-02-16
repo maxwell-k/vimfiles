@@ -11,7 +11,6 @@ if has('win32',) " Using on Windows {{{
     " Match the home directory to that used by git
     let $HOME='C:/Users/887561/Documents'
     set viminfo='20,<50,h,n$HOME/configuration/cache/viminfo
-    set runtimepath+=~/configuration/runtimepath
     " Avoid creating swap files on a server and
     " move into git HOME if in Windows HOME
     if fnamemodify('.',':p') ==? 'I:\'
@@ -28,12 +27,14 @@ if v:version < 703
     finish
 endif
 
-" Plugins {{{1
-" -------
+" Plugins and runtimepath {{{1
+" -----------------------
 "
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect(s:pathogen_path)
+execute 'source '.s:pathogen_path[:-3].'vim-pathogen/autoload/pathogen.vim'
+call pathogen#infect(s:pathogen_path)  " the order of these two commands is
+set runtimepath^=~/configuration/runtimepath  " important
 call pathogen#helptags()  " Needs write access to ~/.vim
+set runtimepath+=~/configuration/runtimepath/after  " important
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open            = 1
 let g:syntastic_rst_rst2pseudoxml_exe = 'python -c
