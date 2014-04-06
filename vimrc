@@ -224,13 +224,10 @@ endfunction
 "   Mappings {{{1
 "   --------
 "
-noremap <Leader>t :find Timesheet.txt<CR>
-noremap <Leader>l :find all<CR>
-noremap <Leader>s :find cipher.bf<CR>
-noremap <Leader>i :find Ideas.txt<CR>
-noremap <Leader>p :find planning/<CR>
-noremap <Leader>u :find URLs.txt<CR>
-noremap <Leader>w :find Work.txt<CR>
+noremap <Leader>ft :find Timesheet.txt<CR>
+noremap <Leader>fl :find all<CR>
+noremap <Leader>fc :find cipher.bf<CR>
+noremap <Leader>fu :find URLs.txt<CR>
 noremap <Leader>c :%d _ \| pu + \| 1d<CR>
 noremap <C-L> :noh<CR><C-L>
 " <C-CR> is hidden by gnome-terminal
