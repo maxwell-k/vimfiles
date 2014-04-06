@@ -18,23 +18,39 @@ if has('win32',) " Using on Windows {{{
         \ || fnamemodify('.',':p') ==? 'C:\Users\887561\'
         cd $HOME
     endif
-    let s:pathogen_path = expand('~/configuration/runtimepath/bundle/{}')
-else
-    let s:pathogen_path = expand('$VIM/bundle/{}')
 endif " }}}
 
 if v:version < 703
     finish
 endif
 
+"Find the bundles {{{1
+"----------------
+let locations = []
+call add(locations, '/sd/configuration/runtimepath/bundle/')
+call add(locations, expand('~/configuration/runtimepath/bundle/'))
+call add(locations, '$VIM/bundle/{}')
+for s:pathogen_path in locations
+	if isdirectory(s:pathogen_path)
+		break
+	endif
+endfor
+for s:additional_rtp in ['/sd/configuration/', '~/configuration/']
+	if isdirectory(s:additional_rtp)
+		break
+	endif
+endfor
+unlet locations
+
+
 " Plugins and runtimepath {{{1
 " -----------------------
 "
-execute 'source '.s:pathogen_path[:-3].'vim-pathogen/autoload/pathogen.vim'
-call pathogen#infect(s:pathogen_path)  " the order of these two commands is
-set runtimepath^=~/configuration/runtimepath  " important
+execute 'source '.s:pathogen_path.'vim-pathogen/autoload/pathogen.vim'
+call pathogen#infect(s:pathogen_path.'{}')  " must come before set runtimepath
+execute 'set runtimepath^='.s:additional_rtp.'runtimepath'
 call pathogen#helptags()  " Needs write access to ~/.vim
-set runtimepath+=~/configuration/runtimepath/after  " important
+execute 'set runtimepath+='.s:additional_rtp.'runtimepath/after'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open            = 1
 let g:syntastic_rst_rst2pseudoxml_exe = 'python -c
