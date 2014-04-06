@@ -180,6 +180,9 @@ set path+=$HOME/**              "find recursively search below home directory
 if has('gui_win32')             "find on Windows Desktop
     set path+=$HOME/../Desktop/**
 endif
+if isdirectory('/sd/')          "find on sd card
+    set path+=/sd/**
+endif
 set nojoinspaces                "one space between sentences
 set suffixesadd+=.txt
 set suffixesadd+=.bf
@@ -249,7 +252,6 @@ noremap <C-L> :noh<CR><C-L>
 " <C-CR> is hidden by gnome-terminal
 " <F1> is hidden by gnome-terminal
 noremap <F2> :echo synIDattr(synID(line("."),col("."),1),"name")<CR>
-noremap <F3> :execute ":r !" . getline(".")<CR>
 if has('win32')
     noremap <F4> :call <SID>:open()<CR>
     noremap <F5> :silent !explorer %:p:h &<CR>
@@ -261,13 +263,14 @@ noremap <F6> :s/^/"/<CR>:s/$/"/<CR>:noh<CR>
 vnoremap <F9> <Esc>:g!/\%V/d<CR>`<:noh<CR>
 " <F10> is hidden by gnome-terminal
 " <F11> is hidden by gnome-terminal
-nnoremap <F11> :execute "e ~/planning/daily/" . strftime("%Y%m%d") . ".txt"<CR>
-nnoremap <F12> :silent !start
-    \ "C:\Program Files\Internet Explorer\iexplore.exe" <cfile><CR><CR>
-vnoremap <F12> :<BS><BS><BS><BS><BS>silent execute "!start"
-    \ "\"C:\\Program Files\\Internet Explorer\\iexplore.exe\""
-    \ substitute(substitute(<SID>:get_visual_selection(),
-    \ '[[:space:]]', '', 'g'), '%', '\\%', 'g')<CR><CR>
+if has('win32')
+    nnoremap <F12> :silent !start
+        \ "C:\Program Files\Internet Explorer\iexplore.exe" <cfile><CR><CR>
+    vnoremap <F12> :<BS><BS><BS><BS><BS>silent execute "!start"
+        \ "\"C:\\Program Files\\Internet Explorer\\iexplore.exe\""
+        \ substitute(substitute(<SID>:get_visual_selection(),
+        \ '[[:space:]]', '', 'g'), '%', '\\%', 'g')<CR><CR>
+endif
 noremap Y y$
 
 "Digraphs {{{1
