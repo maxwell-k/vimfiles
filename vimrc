@@ -247,6 +247,10 @@ noremap <Leader>ft :find Timesheet.txt<CR>
 noremap <Leader>fl :find all<CR>
 noremap <Leader>fc :find cipher.bf<CR>
 noremap <Leader>fu :find URLs.txt<CR>
+noremap <Leader>fv :find vimrc<CR>
+if has('win32')
+    noremap <Leader>eh :edit C:\Windows\System32\drivers\etc\hosts<CR>
+endif
 noremap <Leader>c :%d _ \| pu + \| 1d<CR>
 noremap <C-L> :noh<CR><C-L>
 " <C-CR> is hidden by gnome-terminal
