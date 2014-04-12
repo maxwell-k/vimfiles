@@ -101,8 +101,6 @@ autocmd FileType sh set noexpandtab
 "-----
 "
 autocmd BufEnter */.gvfs/* set noswapfile
-autocmd BufEnter history.py setlocal autoread
-autocmd BufEnter history.py setlocal nomodifiable
 autocmd BufAdd */ledger/* execute 'lcd' fnameescape(expand("%:h"))
 autocmd BufEnter */ledger/* set runtimepath+=~/ledger/runtimepath
 autocmd BufEnter */ledger/all set filetype=ledger
@@ -154,6 +152,9 @@ endif
 "General {{{1
 "-------
 "
+"http://vim.1045645.n5.nabble.com/Issues-with-ftdetect-td1193595.html
+filetype off
+filetype on
 filetype plugin on              "load plugins
 " The order of the next two lines is essential
 syntax enable                   "syntax highlighting
