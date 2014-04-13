@@ -104,8 +104,6 @@ autocmd BufEnter */.gvfs/* set noswapfile
 autocmd BufAdd */ledger/* execute 'lcd' fnameescape(expand("%:h"))
 autocmd BufEnter */ledger/* set runtimepath+=~/ledger/runtimepath
 autocmd BufEnter */ledger/all set filetype=ledger
-autocmd BufRead */safe/*.bf execute 'lcd' fnameescape(expand("%:h"))
-autocmd BufRead */safe/*.bf source safe.vim
 autocmd BufEnter */timesheet/*.txt execute 'lcd' fnameescape(expand("%:h"))
 autocmd BufEnter */timesheet/*.txt source Timesheet.vim
 " % isn't the same as <afile> with netrw
