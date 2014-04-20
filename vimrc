@@ -166,9 +166,6 @@ set path+=$HOME/**              "find recursively search below home directory
 if has('gui_win32')             "find on Windows Desktop
     set path+=$HOME/../Desktop/**
 endif
-if isdirectory('/sd/')          "find on sd card
-    set path+=/sd/**
-endif
 set nojoinspaces                "one space between sentences
 set suffixesadd+=.txt
 set suffixesadd+=.bf
