@@ -24,33 +24,22 @@ if v:version < 703
     finish
 endif
 
-"Find the bundles {{{1
-"----------------
-let locations = []
-call add(locations, '/sd/configuration/runtimepath/bundle/')
-call add(locations, expand('~/configuration/runtimepath/bundle/'))
-call add(locations, '$VIM/bundle/{}')
-for s:pathogen_path in locations
-	if isdirectory(s:pathogen_path)
-		break
-	endif
-endfor
-for s:additional_rtp in ['/sd/configuration/', '~/configuration/']
-	if isdirectory(s:additional_rtp)
-		break
-	endif
-endfor
-unlet locations
 
 
 " Plugins and runtimepath {{{1
 " -----------------------
 "
-execute 'source '.s:pathogen_path.'vim-pathogen/autoload/pathogen.vim'
-call pathogen#infect(s:pathogen_path.'{}')  " must come before set runtimepath
-execute 'set runtimepath^='.s:additional_rtp.'runtimepath'
+" s:path is the absolute path of this file with links resolved
+let s:path = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+execute 'source '.s:path.'/../safe/.vimrc'
+execute 'source '.s:path.'/../ledger/.vimrc'
+execute 'source '.s:path.
+    \'/runtimepath/bundle/vim-pathogen/autoload/pathogen.vim'
+call pathogen#infect(s:path.'/runtimepath/bundle/{}')
+" pathogen#infect must come before set runtimepath
+execute 'set runtimepath^='.s:path.'/runtimepath'
 call pathogen#helptags()  " Needs write access to ~/.vim
-execute 'set runtimepath+='.s:additional_rtp.'runtimepath/after'
+execute 'set runtimepath+='.s:path.'/runtimepath/after'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open            = 1
 let g:syntastic_rst_rst2pseudoxml_exe = 'python -c
@@ -100,10 +89,8 @@ autocmd FileType sh set noexpandtab
 "Paths {{{2
 "-----
 "
+" TODO: tidy up planning and timesheet
 autocmd BufEnter */.gvfs/* set noswapfile
-autocmd BufAdd */ledger/* execute 'lcd' fnameescape(expand("%:h"))
-autocmd BufEnter */ledger/* set runtimepath+=~/ledger/runtimepath
-autocmd BufEnter */ledger/all set filetype=ledger
 autocmd BufEnter */timesheet/*.txt execute 'lcd' fnameescape(expand("%:h"))
 autocmd BufEnter */timesheet/*.txt source Timesheet.vim
 " % isn't the same as <afile> with netrw
