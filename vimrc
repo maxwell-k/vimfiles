@@ -116,7 +116,7 @@ autocmd BufEnter */planning/**.txt execute 'lcd'
 autocmd BufEnter */planning/*/**.txt execute 'lcd'
     \ system('git rev-parse --show-cdup')
 autocmd BufEnter */planning/**.txt source Plan.vim
-autocmd BufRead COMMIT_EDITMSG setlocal nomodeline
+autocmd BufRead COMMIT_EDITMSG setlocal nomodeline | setlocal spell
 autocmd StdInReadPost * setlocal nowrap
 
 " Display {{{1
