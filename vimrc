@@ -31,8 +31,8 @@ endif
 "
 " s:path is the absolute path of this file with links resolved
 let s:path = fnamemodify(resolve(expand('<sfile>:p')), ':h')
-execute 'source '.s:path.'/../safe/.vimrc'
-execute 'source '.s:path.'/../ledger/.vimrc'
+execute 'runtime '.s:path.'/../safe/.vimrc'
+execute 'runtime '.s:path.'/../ledger/.vimrc'
 execute 'source '.s:path.
     \'/runtimepath/bundle/vim-pathogen/autoload/pathogen.vim'
 call pathogen#infect(s:path.'/runtimepath/bundle/{}')
