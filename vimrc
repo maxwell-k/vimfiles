@@ -128,6 +128,7 @@ set guioptions-=m  "no menu
 set guioptions-=T  "no toolbar
 set guioptions-=r  "no scrollbar
 set guioptions-=L  "no scrollbar
+set shortmess+=I   "no welcome message
 set clipboard=unnamed
 set ruler          "show position
 set hlsearch
