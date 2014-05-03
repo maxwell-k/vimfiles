@@ -259,6 +259,9 @@ vnoremap <F9> <Esc>:g!/\%V/d<CR>`<:noh<CR>
 if has('win32')
     nnoremap <F12> :silent !start
         \ "C:\Program Files\Internet Explorer\iexplore.exe" <cfile><CR><CR>
+    nnoremap <C-F12> :silent !start
+        \ "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+        \ <cfile><CR><CR>
     vnoremap <F12> :<BS><BS><BS><BS><BS>silent execute "!start"
         \ "\"C:\\Program Files\\Internet Explorer\\iexplore.exe\""
         \ substitute(substitute(<SID>:get_visual_selection(),
