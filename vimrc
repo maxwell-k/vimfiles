@@ -258,6 +258,9 @@ if has('win32')
         \ substitute(substitute(<SID>:get_visual_selection(),
         \ '[[:space:]]', '', 'g'), '%', '\\%', 'g')<CR><CR>
 endif
+if filereadable('/etc/gentoo-release')
+    inoremap Â£ £
+endif
 noremap Y y$
 
 "Digraphs {{{1
