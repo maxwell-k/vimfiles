@@ -35,8 +35,11 @@ if filereadable(resolve(s:path.'/../safe/vimrc'))
     execute 'source '.resolve(s:path.'/../safe/vimrc')
 endif
 if filereadable(resolve(s:path.'/../ledger/vimrc'))
-    execute 'runtime '.resolve(s:path.'/../ledger/vimrc')
+    execute 'source '.resolve(s:path.'/../ledger/vimrc')
 endif
+let g:dbext_default_profile = 'sqlite'
+execute "let g:dbext_default_profile_sqlite = 'type=SQLITE:dbname=" .
+    \s:path . "/../PRPi/kss.db'"
 execute 'source '.s:path.
     \'/runtimepath/bundle/vim-pathogen/autoload/pathogen.vim'
 call pathogen#infect(s:path.'/runtimepath/bundle/{}')
