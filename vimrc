@@ -170,6 +170,7 @@ set nojoinspaces                "one space between sentences
 set suffixesadd+=.txt
 set suffixesadd+=.bf
 set nostartofline
+set shortmess+=I
 
 "Functions {{{1
 "---------
