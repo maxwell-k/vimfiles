@@ -96,11 +96,11 @@ autocmd FileType sh set noexpandtab
 "Paths {{{2
 "-----
 "
-" TODO: tidy up planning and timesheet
 autocmd BufEnter */.gvfs/* set noswapfile
-autocmd BufEnter */timesheet/*.txt execute 'lcd' fnameescape(expand("%:h"))
-autocmd BufEnter */timesheet/*.txt source Timesheet.vim
+autocmd BufEnter */timesheet/*.txt execute
+    \ 'source '.expand('%:h').'/Timesheet.vim'
 " % isn't the same as <afile> with netrw
+" TODO: tidy up planning avoid cd
 autocmd BufAdd,BufEnter planning,planning/
     \ execute 'lcd' fnameescape(expand("<afile>:p"))
 autocmd BufAdd,BufEnter planning,planning/
