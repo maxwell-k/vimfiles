@@ -170,6 +170,7 @@ set ignorecase                  "case insensitive searches
 set smartcase                   "override above if upper case characters
 set kp=                         "use `K` for `:help`
 set isfname+=?                  "for web addresses
+set isfname+=&                  "for web addresses
 set path+=$HOME/**              "find recursively search below home directory
 if has('gui_win32')             "find on Windows Desktop
     set path+=$HOME/../Desktop/**
@@ -260,9 +261,10 @@ vnoremap <F9> <Esc>:g!/\%V/d<CR>`<:noh<CR>
 if has('win32')
     nnoremap <F12> :silent !start
         \ "C:\Program Files\Internet Explorer\iexplore.exe" <cfile><CR><CR>
-    nnoremap <C-F12> :silent !start
-        \ "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
-        \ <cfile><CR><CR>
+    " To avoid escaping the &s
+    nnoremap <C-F12> :execute ':silent !start '.
+        \ '"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" "'.
+        \ expand('<cfile>').'"'<CR><CR>
     vnoremap <C-F12> y:silent !start
         \ "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
         \ <C-R>"<CR><CR>
