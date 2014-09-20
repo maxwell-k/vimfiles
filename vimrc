@@ -186,7 +186,7 @@ set shortmess+=I
 "Functions {{{1
 "---------
 "
-function! <SID>:get_visual_selection() "{{{2
+function! s:get_visual_selection() "{{{2
   " Return the visually selected text, from:
   " http://stackoverflow.com/questions/1533565/
   " how-to-get-visually-selected-text-in-vimscript
@@ -197,7 +197,7 @@ function! <SID>:get_visual_selection() "{{{2
   let lines[0] = lines[0][col1 - 1:]
   return join(lines, "\n")
 endfunction
-function! <SID>:open() "{{{2
+function! s:open() "{{{2
     if has('win32',)
         " open the file linked from the current line
         let l:command = '!C:\WINDOWS\system32\rundll32.exe '
