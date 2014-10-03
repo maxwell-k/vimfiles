@@ -1,8 +1,9 @@
-" --------------------------------
-" vimrc, Keith Maxwell, 4 May 2013
-" --------------------------------
+" ------------------------------------
+" vimrc, Keith Maxwell, 3 October 2014
+" ------------------------------------
 "
 set nocompatible  " Affects viminfo
+set viminfo='20,<50,h,n$HOME/configuration/cache/viminfo
 if has('win32',) " Using on Windows {{{
     " • To install on Windows, `source` this file from `_vimrc` in `$VIM`.
     " • If this file is sourced by $VIM\_gvimrc plugins will not load.
@@ -10,7 +11,6 @@ if has('win32',) " Using on Windows {{{
 
     " Match the home directory to that used by git
     let $HOME='C:/Users/887561/Documents'
-    set viminfo='20,<50,h,n$HOME/configuration/cache/viminfo
     " Avoid creating swap files on a server and
     " move into git HOME if in Windows HOME
     if fnamemodify('.',':p') ==? 'I:\'
