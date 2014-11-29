@@ -54,6 +54,7 @@ let g:syntastic_rst_rst2pseudoxml_exe = 'python -c
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_cache_dir = $XDG_CONFIG_HOME.'/ctrlp'
 let g:dbext_default_history_file = $XDG_CONFIG_HOME.'/dbext_sql_history.txt'
+let g:ctrlp_cmd = 'CtrlPMixed'
 "Editing {{{1
 "-------
 "
