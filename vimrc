@@ -251,7 +251,7 @@ noremap <C-L> :noh<CR><C-L>
 " <F1> is hidden by gnome-terminal
 noremap <F2> :echo synIDattr(synID(line("."),col("."),1),"name")<CR>
 if has('win32')
-    noremap <F4> :call <SID>:open()<CR>
+    noremap <F4> :call <SID>open()<CR>
     noremap <F5> :silent !explorer %:p:h &<CR>
 else
     noremap <F4> :silent !xdg-open <cfile> &<CR><C-L>
@@ -270,11 +270,12 @@ if has('win32')
         \ expand('<cfile>').'"'<CR><CR>
     vnoremap <C-F12> y:silent !start
         \ "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
-        \ <C-R>"<CR><CR>
+        \ substitute(substitute(<SID>get_visual_selection(),
+        \ '[[:space:]]', '', 'g'), '%', '\\%', 'g')<cr><cr>
     vnoremap <F12> :<BS><BS><BS><BS><BS>silent execute "!start"
         \ "\"C:\\Program Files\\Internet Explorer\\iexplore.exe\""
-        \ substitute(substitute(<SID>:get_visual_selection(),
-        \ '[[:space:]]', '', 'g'), '%', '\\%', 'g')<CR><CR>
+        \ substitute(substitute(<SID>get_visual_selection(),
+        \ '[[:space:]]', '', 'g'), '%', '\\%', 'g')<cr><cr>
 endif
 if filereadable('/etc/gentoo-release')
     inoremap Â£ £
