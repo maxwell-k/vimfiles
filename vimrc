@@ -244,7 +244,6 @@ noremap <Leader>fl :find all<CR>
 noremap <Leader>fc :find cipher.bf<CR>
 noremap <Leader>fu :find URLs.txt<CR>
 noremap <Leader>fv :find configuration/vimrc<CR>
-noremap <Leader>fq :find QlikView.txt<CR>
 noremap <Leader>c :%d _ \| pu + \| 1d<CR>
 noremap <C-L> :noh<CR><C-L>
 " <C-CR> is hidden by gnome-terminal
