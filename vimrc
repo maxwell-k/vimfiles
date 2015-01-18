@@ -234,7 +234,21 @@ numbers = [i.replace(',','').rstrip('\xc2\xa3 ') for i in numbers]
 print('{:,}'.format(sum(decimal.Decimal(i) for i in numbers if i)))
 EOS
 endfunction
-
+function! s:gmail_get() "{{{2
+    if !exists('g:gmail')
+        let g:gmail = inputsecret("Password: ")
+    endif
+    execute "read !imap.py '".g:gmail"'"
+    if getline(1) == ''
+        1delete
+    endif
+endfunction
+function! s:gmail_put() "{{{2
+    if !exists('g:gmail')
+        let g:gmail = inputsecret("Password: ")
+    endif
+    execute "write !imap.py '".g:gmail"' --put"
+endfunction
 
 "   Mappings {{{1
 "   --------
@@ -245,6 +259,8 @@ noremap <Leader>fc :find cipher.bf<CR>
 noremap <Leader>fu :find URLs.txt<CR>
 noremap <Leader>fv :find configuration/vimrc<CR>
 noremap <Leader>c :%d _ \| pu + \| 1d<CR>
+noremap <Leader>G :call <SID>gmail_put()<CR>
+noremap <Leader>g :call <SID>gmail_get()<CR>
 noremap <C-L> :noh<CR><C-L>
 " <C-CR> is hidden by gnome-terminal
 " <F1> is hidden by gnome-terminal
