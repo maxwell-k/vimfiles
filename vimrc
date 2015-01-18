@@ -236,7 +236,7 @@ function! s:gmail_get() "{{{2
     if !exists('g:gmail')
         let g:gmail = inputsecret("Password: ")
     endif
-    execute "read !imap.py '".g:gmail"'"
+    execute "read !imap.py '".g:gmail."'"
     if getline(1) == ''
         1delete
     endif
@@ -245,7 +245,7 @@ function! s:gmail_put() "{{{2
     if !exists('g:gmail')
         let g:gmail = inputsecret("Password: ")
     endif
-    execute "write !imap.py '".g:gmail"' --put"
+    execute "write !imap.py '".g:gmail."' --put"
 endfunction
 
 "   Mappings {{{1
