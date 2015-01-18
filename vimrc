@@ -49,10 +49,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open            = 1
 let g:syntastic_rst_rst2pseudoxml_exe = 'python -c
     \ "from docutils.core import publish_cmdline; publish_cmdline()"'
-let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_cache_dir = $XDG_CONFIG_HOME.'/ctrlp'
 let g:dbext_default_history_file = $XDG_CONFIG_HOME.'/dbext_sql_history.txt'
-let g:ctrlp_cmd = 'CtrlPMixed'
 "Editing {{{1
 "-------
 "
