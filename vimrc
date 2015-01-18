@@ -24,8 +24,6 @@ if v:version < 703
     finish
 endif
 
-
-
 " Plugins and runtimepath {{{1
 " -----------------------
 "
@@ -261,6 +259,7 @@ noremap <Leader>fv :find configuration/vimrc<CR>
 noremap <Leader>c :%d _ \| pu + \| 1d<CR>
 noremap <Leader>G :call <SID>gmail_put()<CR>
 noremap <Leader>g :call <SID>gmail_get()<CR>
+noremap <Leader>d :s/\[\\|\]//g<CR>
 noremap <C-L> :noh<CR><C-L>
 " <C-CR> is hidden by gnome-terminal
 " <F1> is hidden by gnome-terminal
