@@ -170,6 +170,7 @@ set kp=                         "use `K` for `:help`
 set isfname+=?                  "for web addresses
 set isfname+=&                  "for web addresses
 set path+=$HOME/**              "find recursively search below home directory
+set history=200
 if has('gui_win32')             "find on Windows Desktop
     set path+=$HOME/../Desktop/**
 endif
