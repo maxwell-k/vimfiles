@@ -230,19 +230,14 @@ print('{:,}'.format(sum(decimal.Decimal(i) for i in numbers if i)))
 EOS
 endfunction
 function! s:gmail_get() "{{{2
-    if !exists('g:gmail')
-        let g:gmail = inputsecret("Password: ")
-    endif
-    execute "read !imap.py '".g:gmail."'"
+    execute "read !api.py"
     if getline(1) == ''
         1delete
     endif
 endfunction
 function! s:gmail_put() "{{{2
-    if !exists('g:gmail')
-        let g:gmail = inputsecret("Password: ")
-    endif
-    execute "write !imap.py '".g:gmail."' --put"
+    execute "write !api.py --put"
+    set nomodified
 endfunction
 
 "   Mappings {{{1
