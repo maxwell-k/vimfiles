@@ -123,6 +123,7 @@ else
     set background=dark
 endif
 
+
 " Only works if a single option per line
 set guioptions+=c  " keyboard workaround for file changed dialog
 set guioptions-=m  "no menu
@@ -135,6 +136,7 @@ set ruler          "show position
 set hlsearch
 set splitbelow
 set showcmd
+set colorcolumn=80
 if ! has('gui_running')
     set highlight+=vr " workaround for windows console
     set t_Co=16
