@@ -59,6 +59,7 @@ set linebreak                   "do not wrap in the middle of a word
 set formatoptions+=n            "format lists
 set formatlistpat=^\\s*[0-9-#•]\\+[.\ ]\\s*\\\|^\\s*[a-z]\\.\\s
 set nrformats-=octal            " increment 07 to 08 and not 010
+set nrformats+=alpha
 
 "Tabs {{{2
 "----
