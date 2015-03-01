@@ -247,30 +247,21 @@ endfunction
 "   Mappings {{{1
 "   --------
 "
-noremap <Leader>ft :find Timesheet.txt<CR>
-noremap <Leader>fl :find all<CR>
-noremap <Leader>fc :find cipher.bf<CR>
-noremap <Leader>fu :find URLs.txt<CR>
-noremap <Leader>fv :find configuration/vimrc<CR>
-noremap <Leader>c :%d _ \| pu + \| 1d<CR>
-noremap <Leader>G :call <SID>gmail_put()<CR>
-noremap <Leader>g :call <SID>gmail_get()<CR>
-noremap <Leader>d :s/\[\\|\]//g<CR>
-noremap <C-L> :noh<CR><C-L>
-" <C-CR> is hidden by gnome-terminal
-" <F1> is hidden by gnome-terminal
-noremap <F2> :echo synIDattr(synID(line("."),col("."),1),"name")<CR>
-if has('win32')
-    noremap <F4> :call <SID>open()<CR>
-    noremap <F5> :silent !explorer %:p:h &<CR>
-else
-    noremap <F4> :silent !xdg-open <cfile> &<CR><C-L>
-    noremap <F5> :silent !nautilus %:p:h &<CR>
+if filereadable('/etc/gentoo-release')
+    inoremap Â£ £
 endif
-noremap <F6> :s/^/"/<CR>:s/$/"/<CR>:noh<CR>
-vnoremap <F9> <Esc>:g!/\%V/d<CR>`<:noh<CR>
-" <F10> is hidden by gnome-terminal
-" <F11> is hidden by gnome-terminal
+noremap Y y$
+" alphabetical - `:sort i`
+noremap <C-L> :noh<CR><C-L>
+noremap <Leader>c :%d _ \| pu + \| 1d<CR>
+noremap <Leader>fc :find cipher.bf<CR>
+noremap <Leader>fl :find all<CR>
+noremap <Leader>ft :find Timesheet.txt<CR>
+noremap <Leader>fv :find configuration/vimrc<CR>
+noremap <Leader>g :call <SID>gmail_get()<CR>
+noremap <Leader>G :call <SID>gmail_put()<CR>
+noremap <Leader>s :echo synIDattr(synID(line("."),col("."),1),"name")<CR>
+" In Windows <F12> opens a URL in IE & CTRL+<F12> opens in Google Chrome
 if has('win32')
     nnoremap <F12> :silent !start
         \ "C:\Program Files\Internet Explorer\iexplore.exe" <cfile><CR><CR>
@@ -278,19 +269,15 @@ if has('win32')
     nnoremap <C-F12> :execute ':silent !start '.
         \ '"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" "'.
         \ expand('<cfile>').'"'<CR><CR>
-    vnoremap <C-F12> y:silent !start
-        \ "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
-        \ substitute(substitute(<SID>get_visual_selection(),
-        \ '[[:space:]]', '', 'g'), '%', '\\%', 'g')<cr><cr>
     vnoremap <F12> :<BS><BS><BS><BS><BS>silent execute "!start"
         \ "\"C:\\Program Files\\Internet Explorer\\iexplore.exe\""
         \ substitute(substitute(<SID>get_visual_selection(),
         \ '[[:space:]]', '', 'g'), '%', '\\%', 'g')<cr><cr>
+    vnoremap <C-F12> y:silent !start
+        \ "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+        \ substitute(substitute(<SID>get_visual_selection(),
+        \ '[[:space:]]', '', 'g'), '%', '\\%', 'g')<cr><cr>
 endif
-if filereadable('/etc/gentoo-release')
-    inoremap Â£ £
-endif
-noremap Y y$
 
 "Digraphs {{{1
 "--------
