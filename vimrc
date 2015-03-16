@@ -10,14 +10,7 @@ if has('win32',) " Using on Windows {{{
     " • `gvim -u NORC -N` starts vim with no rc file and in nocompatible mode.
 
     " Match the home directory to that used by git
-    let $HOME='C:/Users/887561/Documents'
-    " Avoid creating swap files on a server and
-    " move into git HOME if in Windows HOME
-    if fnamemodify('.',':p') ==? 'I:\'
-        \ || fnamemodify('.',':p') ==? 'C:\Program Files (x86)\Vim\vim74\'
-        \ || fnamemodify('.',':p') ==? 'C:\Users\887561\'
-        cd $HOME
-    endif
+    let $HOME=$USERPROFILE.'\Documents'
 endif " }}}
 
 if v:version < 703
@@ -117,7 +110,7 @@ autocmd StdInReadPost * setlocal nowrap
 "
 let vimpager_passthrough = 1
 if has('gui_win32')
-    set guifont=Source_Code_Pro:h14
+    set guifont=Source_Code_Pro:h14,Consolas:h14
     colorscheme summerfruit256
 else
     colorscheme solarized
