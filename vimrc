@@ -260,8 +260,18 @@ if has('win32')
         \ "C:\Program Files\Internet Explorer\iexplore.exe" <cfile><CR><CR>
     " To avoid escaping the &s
     nnoremap <C-F12> :execute ':silent !start '.
-        \ '"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" "'.
+        \ '"C:\Program Files (x86)'.
+        \ '\Google\Chrome\Application\chrome.exe" "'.
         \ expand('<cfile>').'"'<CR><CR>
+    if isdirectory($LOCALAPPDATA.'\Google\Chrome\User Data\Profile 1')
+        " http://peter.sh/experiments/chromium-command-line-switches/
+        nnoremap <C-S-F12> :execute ':silent !start '.
+            \ '"C:\Program Files (x86)'.
+            \ '\Google\Chrome\Application\chrome.exe" '.
+            \ '--profile-directory '.
+            \ '"'.$LOCALAPPDATA.'\Google\Chrome\User Data\Profile 1'.'"'.
+            \ ' "'. expand('<cfile>').'"'<CR><CR>
+    endif
     vnoremap <F12> :<BS><BS><BS><BS><BS>silent execute "!start"
         \ "\"C:\\Program Files\\Internet Explorer\\iexplore.exe\""
         \ substitute(substitute(<SID>get_visual_selection(),
