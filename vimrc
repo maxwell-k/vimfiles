@@ -233,7 +233,11 @@ function! s:gmail_get() "{{{2
     endif
 endfunction
 function! s:gmail_put() "{{{2
-    execute "write !api.py --put"
+    if executable('api-put.py')
+        execute "write !api-put.py"
+    else
+        execute "write !api.py --put"
+    endif
     set nomodified
 endfunction
 
