@@ -20,7 +20,8 @@ endif
 " Plugins and runtimepath {{{1
 " -----------------------
 "
-" s:path is the absolute path of this file with links resolved
+" s:path is the absolute path of the directory containing this file with links
+" resolved and no trailing slash
 let s:path = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 if filereadable(resolve(s:path.'/../safe/vimrc'))
     execute 'source '.resolve(s:path.'/../safe/vimrc')
@@ -28,6 +29,14 @@ endif
 if filereadable(resolve(s:path.'/../ledger/vimrc'))
     execute 'source '.resolve(s:path.'/../ledger/vimrc')
 endif
+" Clipboard on ChromeOS: First save
+" https://raw.githubusercontent.com/chromium/hterm/master/etc/osc52.vim to
+" gentoo/osc52.vim
+if filereadable(s:path . '/gentoo/osc52.vim')
+    execute 'source ' . s:path . '/gentoo/osc52.vim'
+    map <Leader>y :call SendViaOSC52(getreg('"'))<CR>
+endif
+
 let g:dbext_default_profile = 'sqlite'
 execute "let g:dbext_default_profile_sqlite = 'type=SQLITE:dbname=" .
     \s:path . "/../PRPi/kss.db'"
