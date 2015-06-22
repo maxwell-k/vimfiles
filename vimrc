@@ -122,6 +122,7 @@ autocmd StdInReadPost * setlocal nowrap
 let vimpager_passthrough = 1
 if has('gui_win32')
     set guifont=Source_Code_Pro:h14,Consolas:h14
+    set lines=35
     colorscheme summerfruit256
 else
     colorscheme solarized
