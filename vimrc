@@ -37,7 +37,6 @@ if filereadable(s:path . '/gentoo/osc52.vim')
     map <Leader>y :call SendViaOSC52(getreg('"'))<CR>
 endif
 
-let g:dbext_default_profile = 'sqlite'
 execute 'source '.s:path.
     \'/runtimepath/bundle/vim-pathogen/autoload/pathogen.vim'
 call pathogen#infect(s:path.'/runtimepath/bundle/{}')
@@ -45,11 +44,16 @@ call pathogen#infect(s:path.'/runtimepath/bundle/{}')
 execute 'set runtimepath^='.s:path.'/runtimepath'
 call pathogen#helptags()  " Needs write access to ~/.vim
 execute 'set runtimepath+='.s:path.'/runtimepath/after'
+" Syntastic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open            = 1
 let g:syntastic_rst_rst2pseudoxml_exe = 'python -c
     \ "from docutils.core import publish_cmdline; publish_cmdline()"'
+" dbext
+let g:dbext_default_profile = 'sqlite'
 let g:dbext_default_history_file = $XDG_CONFIG_HOME.'/dbext_sql_history.txt'
+" vim-gitgutter
+let g:gitgutter_enabled = 0
 "Editing {{{1
 "-------
 "
@@ -266,6 +270,19 @@ noremap <Leader>g :call <SID>gmail_get()<CR>
 noremap <Leader>G :call <SID>gmail_put()<CR>
 noremap <Leader>s :echo synIDattr(synID(line("."),col("."),1),"name")<CR>
 " In Windows <F12> opens a URL in IE & CTRL+<F12> opens in Google Chrome
+noremap <Leader>t :call <SID>ToggleGitGutter()<CR>
+function! s:ToggleGitGutter()
+    if exists('g:gitgutter_enabled') && g:gitgutter_enabled
+        GitGutterDisable
+        noremap <C-L> :noh<CR><C-L>
+    else
+        GitGutterEnable
+        noremap <C-L> :noh<CR>:GitGutter<CR><C-L>
+    endif
+endfunction
+" The two lines below prevent vim-gitgutter over-riding [c and ]c
+nmap ]h <Plug>GitGutterNextHunk
+nmap [h <Plug>GitGutterPrevHunk
 if has('win32')
     nnoremap <F12> :silent !start
         \ "C:\Program Files\Internet Explorer\iexplore.exe" <cfile><CR><CR>
