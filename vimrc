@@ -38,8 +38,6 @@ if filereadable(s:path . '/gentoo/osc52.vim')
 endif
 
 let g:dbext_default_profile = 'sqlite'
-execute "let g:dbext_default_profile_sqlite = 'type=SQLITE:dbname=" .
-    \s:path . "/../PRPi/kss.db'"
 execute 'source '.s:path.
     \'/runtimepath/bundle/vim-pathogen/autoload/pathogen.vim'
 call pathogen#infect(s:path.'/runtimepath/bundle/{}')
