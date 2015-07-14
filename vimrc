@@ -270,8 +270,7 @@ noremap <Leader>fv :find configuration/vimrc<CR>
 noremap <Leader>g :call <SID>gmail_get()<CR>
 noremap <Leader>G :call <SID>gmail_put()<CR>
 noremap <Leader>s :echo synIDattr(synID(line("."),col("."),1),"name")<CR>
-noremap <Leader>w :let @" = strftime("mn%Y%m%d-", localtime())<CR>
-    \ :w ~/notes/<C-R>"
+noremap <Leader>w :w ~/notes/<C-R>=strftime("mn%Y%m%d-", localtime())<CR>
 " In Windows <F12> opens a URL in IE & CTRL+<F12> opens in Google Chrome
 noremap <Leader>t :call <SID>ToggleGitGutter()<CR>
 function! s:ToggleGitGutter()
