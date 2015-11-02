@@ -50,7 +50,6 @@ let g:syntastic_check_on_open            = 1
 let g:syntastic_rst_rst2pseudoxml_exe = 'python -c
     \ "from docutils.core import publish_cmdline; publish_cmdline()"'
 " dbext
-let g:dbext_default_profile = 'sqlite'
 let g:dbext_default_history_file = $XDG_CONFIG_HOME.'/dbext_sql_history.txt'
 " vim-gitgutter
 let g:gitgutter_enabled = 0
