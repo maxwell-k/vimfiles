@@ -17,9 +17,12 @@ if v:version < 703
     finish
 endif
 
-" Plugins and runtimepath {{{1
-" -----------------------
+" File types, plugins and runtimepath {{{1
+" -----------------------------------
 "
+set modeline                    "use modelines
+set exrc                        "look for local _vimrc"
+set secure                      "to match above
 " s:path is the absolute path of the directory containing this file with links
 " resolved and no trailing slash
 let s:path = fnamemodify(resolve(expand('<sfile>:p')), ':h')
@@ -44,26 +47,63 @@ call pathogen#infect(s:path.'/runtimepath/bundle/{}')
 execute 'set runtimepath^='.s:path.'/runtimepath'
 call pathogen#helptags()  " Needs write access to ~/.vim
 execute 'set runtimepath+='.s:path.'/runtimepath/after'
-" Syntastic
+"http://vim.1045645.n5.nabble.com/Issues-with-ftdetect-td1193595.html
+filetype off
+filetype on
+filetype plugin on              "load plugins
+" vimpager options {{{2
+" ----------------
+"
+if exists("vimpager")
+    highlight link eolWhiteSpace NONE
+endif
+let g:vimpager_passthrough = 1
+" Plugin options in global variables {{{2
+" ----------------------------------
+"
+let g:dbext_default_history_file = $XDG_CONFIG_HOME.'/dbext_sql_history.txt'
+let g:gitgutter_enabled = 0
+let g:is_posix=1                "$() isn't an error in sh
+let g:netrw_banner=0
+let g:sh_fold_enabled= 3
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open            = 1
 let g:syntastic_rst_rst2pseudoxml_exe = 'python -c
     \ "from docutils.core import publish_cmdline; publish_cmdline()"'
-" dbext
-let g:dbext_default_history_file = $XDG_CONFIG_HOME.'/dbext_sql_history.txt'
-" vim-gitgutter
-let g:gitgutter_enabled = 0
-"Editing {{{1
-"-------
+"Editing and movement {{{1
+"--------------------
 "
-set encoding=utf-8
 set backspace=indent,eol,start  "backspace deletes special characters
-set linebreak                   "do not wrap in the middle of a word
-set formatoptions+=n            "format lists
+set encoding=utf-8
 set formatlistpat=^\\s*[0-9-#•]\\+[.\ ]\\s*\\\|^\\s*[a-z]\\.\\s
-set nrformats-=octal            " increment 07 to 08 and not 010
+set formatoptions+=n            "format lists
+set ignorecase                  "case insensitive searches
+set linebreak                   "do not wrap in the middle of a word
+set nojoinspaces                "one space between sentences
+set nostartofline
 set nrformats+=alpha
+set nrformats-=octal            " increment 07 to 08 and not 010
+set smartcase                   "override ignorecase if upper case characters
 
+"Interface options {{{2
+"-----------------
+set kp=                         "use `K` for `:help`
+set wildmenu                    "normal mode tab completion menu
+set confirm                     "prompt before discarding changes
+set history=200
+set shortmess+=I
+
+"File name options for :find etc. {{{2
+"--------------------------------
+"
+set path+=$HOME/**              "find recursively search below home directory
+if has('gui_win32')             "find on Windows Desktop
+    set path+=$HOME/../Desktop/**
+endif
+set suffixesadd+=.txt
+set suffixesadd+=.bf
+set isfname+=?                  "for web addresses
+set isfname+=&                  "for web addresses
 "Tabs {{{2
 "----
 "
@@ -118,7 +158,6 @@ autocmd StdInReadPost * setlocal nowrap
 " Display {{{1
 " -------
 "
-let vimpager_passthrough = 1
 if has('gui_win32')
     set guifont=Source_Code_Pro:h14,Consolas:h14
     set lines=35
@@ -147,46 +186,12 @@ if ! has('gui_running')
     set t_Co=16
 endif
 
-"General {{{1
-"-------
-"
-"http://vim.1045645.n5.nabble.com/Issues-with-ftdetect-td1193595.html
-filetype off
-filetype on
-filetype plugin on              "load plugins
 " The order of the next two lines is essential
 syntax enable                   "syntax highlighting
 autocmd Syntax * syntax match eolWhiteSpace display excludenl containedin=ALL
     \ "\s\+$"
 doautocmd Syntax
 highlight link eolWhiteSpace ErrorMsg
-if exists("vimpager")
-    highlight link eolWhiteSpace NONE
-endif
-let g:netrw_banner=0
-let g:is_posix=1                "$() isn't an error in sh
-let g:sh_fold_enabled= 3
-set modeline                    "use modelines
-set exrc                        "look for local _vimrc"
-set secure                      "to match above
-set wildmenu                    "normal mode tab completion menu
-set confirm                     "prompt before discarding changes
-set ignorecase                  "case insensitive searches
-set smartcase                   "override above if upper case characters
-set kp=                         "use `K` for `:help`
-set isfname+=?                  "for web addresses
-set isfname+=&                  "for web addresses
-set path+=$HOME/**              "find recursively search below home directory
-set history=200
-if has('gui_win32')             "find on Windows Desktop
-    set path+=$HOME/../Desktop/**
-endif
-set nojoinspaces                "one space between sentences
-set suffixesadd+=.txt
-set suffixesadd+=.bf
-set nostartofline
-set shortmess+=I
-
 "Functions {{{1
 "---------
 "
