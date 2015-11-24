@@ -96,8 +96,9 @@ set shortmess+=I
 "File name options for :find etc. {{{2
 "--------------------------------
 "
-set path+=$HOME/**              "find recursively search below home directory
-if has('gui_win32')             "find on Windows Desktop
+" Doesn't search dotfiles like /.vim/
+set path+=$HOME/**              "recursively search below home directory
+if has('gui_win32')             "Windows Desktop
     set path+=$HOME/../Desktop/**
 endif
 set suffixesadd+=.txt
