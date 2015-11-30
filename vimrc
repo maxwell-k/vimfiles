@@ -62,6 +62,9 @@ let g:vimpager_passthrough = 1
 " ----------------------------------
 "
 let g:dbext_default_history_file = $XDG_CONFIG_HOME.'/dbext_sql_history.txt'
+let g:ftplugin_sql_omni_key       = '<Leader>c' "See :help sql-complete
+let g:ftplugin_sql_omni_key_right = '<Tab>'
+let g:ftplugin_sql_omni_key_left  = '<S-Tab>'
 let g:gitgutter_enabled = 0
 let g:is_posix=1                "$() isn't an error in sh
 let g:netrw_banner=0
@@ -268,14 +271,14 @@ endif
 noremap Y y$
 " alphabetical - `:sort i`
 noremap <C-L> :noh<CR><C-L>
-noremap <Leader>c :%d _ \| pu + \| 1d<CR>
 noremap <Leader>fc :find cipher.bf<CR>
 noremap <Leader>fl :find all<CR>
 noremap <Leader>ft :find Timesheet.txt<CR>
 noremap <Leader>fv :find configuration/vimrc<CR>
 noremap <Leader>g :call <SID>gmail_get()<CR>
 noremap <Leader>G :call <SID>gmail_put()<CR>
-noremap <Leader>s :echo synIDattr(synID(line("."),col("."),1),"name")<CR>
+noremap <Leader>p :%d _ \| pu + \| 1d<CR>
+noremap <Leader>x :echo synIDattr(synID(line("."),col("."),1),"name")<CR>
 noremap <Leader>w :w ~/notes/<C-R>=strftime("mn%Y%m%d-", localtime())<CR>
 " In Windows <F12> opens a URL in IE & CTRL+<F12> opens in Google Chrome
 noremap <Leader>t :call <SID>ToggleGitGutter()<CR>
