@@ -66,6 +66,7 @@ let g:gitgutter_enabled = 0
 let g:is_posix=1                "$() isn't an error in sh
 let g:netrw_banner=0
 let g:sh_fold_enabled= 3
+let g:sql_type_default = 'sqlite'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open            = 1
 let g:syntastic_rst_rst2pseudoxml_exe = 'python -c
