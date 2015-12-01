@@ -61,6 +61,8 @@ let g:vimpager_passthrough = 1
 " Plugin options in global variables {{{2
 " ----------------------------------
 "
+let g:dbext_default_profile = 'db'
+let g:dbext_default_profile_db = 'type=SQLITE:dbname=db.sqlite'
 let g:dbext_default_history_file = $XDG_CONFIG_HOME.'/dbext_sql_history.txt'
 let g:ftplugin_sql_omni_key       = '<Leader>c' "See :help sql-complete
 let g:ftplugin_sql_omni_key_right = '<Tab>'
