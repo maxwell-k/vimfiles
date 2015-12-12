@@ -276,7 +276,11 @@ noremap <Leader>ft :find Timesheet.txt<CR>
 noremap <Leader>fv :find configuration/vimrc<CR>
 noremap <Leader>g :call <SID>gmail_get()<CR>
 noremap <Leader>G :call <SID>gmail_put()<CR>
-noremap <Leader>p :%d _ \| pu + \| 1d<CR>
+if has('clipboard')
+    noremap <Leader>p :%d _ \| pu + \| 1d<CR>
+else
+    noremap <Leader>p :%d _ \| pu " \| 1d<CR>
+endif
 noremap <Leader>x :echo synIDattr(synID(line("."),col("."),1),"name")<CR>
 noremap <Leader>w :w ~/notes/<C-R>=strftime("mn%Y%m%d-", localtime())<CR>
 " In Windows <F12> opens a URL in IE & CTRL+<F12> opens in Google Chrome
