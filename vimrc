@@ -26,9 +26,6 @@ set secure                      "to match above
 " s:path is the absolute path of the directory containing this file with links
 " resolved and no trailing slash
 let s:path = fnamemodify(resolve(expand('<sfile>:p')), ':h')
-if filereadable(resolve(s:path.'/../ledger/vimrc'))
-    execute 'source '.resolve(s:path.'/../ledger/vimrc')
-endif
 " Clipboard on ChromeOS: First save
 " https://raw.githubusercontent.com/chromium/hterm/master/etc/osc52.vim to
 " gentoo/osc52.vim
