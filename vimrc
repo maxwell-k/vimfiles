@@ -26,9 +26,6 @@ set secure                      "to match above
 " s:path is the absolute path of the directory containing this file with links
 " resolved and no trailing slash
 let s:path = fnamemodify(resolve(expand('<sfile>:p')), ':h')
-if filereadable(resolve(s:path.'/../safe/vimrc'))
-    execute 'source '.resolve(s:path.'/../safe/vimrc')
-endif
 if filereadable(resolve(s:path.'/../ledger/vimrc'))
     execute 'source '.resolve(s:path.'/../ledger/vimrc')
 endif
