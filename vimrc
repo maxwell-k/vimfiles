@@ -68,8 +68,6 @@ let g:sh_fold_enabled= 3
 let g:sql_type_default = 'sqlite'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open            = 1
-let g:syntastic_rst_rst2pseudoxml_exe = 'python -c
-    \ "from docutils.core import publish_cmdline; publish_cmdline()"'
 "Editing and movement {{{1
 "--------------------
 "
