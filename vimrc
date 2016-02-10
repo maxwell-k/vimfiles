@@ -207,6 +207,11 @@ function! s:get_visual_selection() "{{{2
   let lines[0] = lines[0][col1 - 1:]
   return join(lines, "\n")
 endfunction
+function s:cleaned_visual_selection()
+    let result = s:get_visual_selection()
+    let result = substitute(result, '%', '\\%', 'g')
+    return substitute(result, '[[:space:]]', '', 'g')
+endfunction
 function! s:open() "{{{2
     if has('win32',)
         " open the file linked from the current line
@@ -280,7 +285,6 @@ else
 endif
 noremap <Leader>x :echo synIDattr(synID(line("."),col("."),1),"name")<CR>
 noremap <Leader>w :w ~/notes/<C-R>=strftime("mn%Y%m%d-", localtime())<CR>
-" In Windows <F12> opens a URL in IE & CTRL+<F12> opens in Google Chrome
 noremap <Leader>t :call <SID>ToggleGitGutter()<CR>
 function! s:ToggleGitGutter()
     if exists('g:gitgutter_enabled') && g:gitgutter_enabled
@@ -294,22 +298,19 @@ endfunction
 " The two lines below prevent vim-gitgutter over-riding [c and ]c
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
+" In Windows <F12> opens a URL in IE & CTRL+<F12> opens in Google Chrome
 if has('win32')
-    nnoremap <F12> :silent !start
-        \ "C:\Program Files\Internet Explorer\iexplore.exe" <cfile><CR><CR>
-    " To avoid escaping the &s
-    nnoremap <C-F12> :execute ':silent !start '.
-        \ '"C:\Program Files (x86)'.
-        \ '\Google\Chrome\Application\chrome.exe" "'.
-        \ escape(expand('<cfile>'), '%').'"'<CR><CR>
-    vnoremap <F12> :<BS><BS><BS><BS><BS>silent execute "!start"
-        \ "\"C:\\Program Files\\Internet Explorer\\iexplore.exe\""
-        \ substitute(substitute(<SID>get_visual_selection(),
-        \ '[[:space:]]', '', 'g'), '%', '\\%', 'g')<cr><cr>
-    vnoremap <C-F12> y:silent !start
-        \ "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
-        \ substitute(substitute(<SID>get_visual_selection(),
-        \ '[[:space:]]', '', 'g'), '%', '\\%', 'g')<cr><cr>
+    let s:ie = '"C:\Program Files\Internet Explorer\iexplore.exe"'
+    execute 'nnoremap <F12> :silent !start '.s:ie.' <cfile><CR><CR>'
+    execute "vnoremap <F12> <Esc>:execute '!start ".
+        \ s:ie."'. <SID>cleaned_visual_selection()<CR><CR>"
+    unlet s:ie
+    let s:chrome =
+        \ '"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"'
+    execute 'nnoremap <C-F12> :silent !start '.s:chrome.' <cfile><CR><CR>'
+    execute "vnoremap <C-F12> <Esc>:execute '!start ".
+        \ s:chrome."'. <SID>cleaned_visual_selection()<CR><CR>"
+    unlet s:chrome
 endif
 
 "Digraphs {{{1
