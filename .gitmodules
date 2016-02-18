@@ -20,3 +20,6 @@
 [submodule "runtimepath/bundle/dbext.vim"]
 	path = runtimepath/bundle/dbext.vim
 	url = https://github.com/maxwell-k/dbext.vim
+[submodule "runtimepath/bundle/vim-ipython"]
+	path = runtimepath/bundle/vim-ipython
+	url = https://github.com/maxwell-k/vim-ipython
