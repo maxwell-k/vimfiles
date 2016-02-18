@@ -11,3 +11,9 @@
 	path = runtimepath/bundle/vim-colors-solarized
 	url = http://github.com/altercation/vim-colors-solarized.git
 	ignore = dirty
+[submodule "runtimepath/bundle/vim-gitgutter"]
+	path = runtimepath/bundle/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter
+[submodule "runtimepath/bundle/vim-unimpaired"]
+	path = runtimepath/bundle/vim-unimpaired
+	url = https://github.com/tpope/vim-unimpaired
