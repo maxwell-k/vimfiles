@@ -9,7 +9,7 @@
 	url = https://github.com/tpope/vim-fugitive
 [submodule "runtimepath/bundle/vim-colors-solarized"]
 	path = runtimepath/bundle/vim-colors-solarized
-	url = http://github.com/altercation/vim-colors-solarized.git
+	url = https://github.com/altercation/vim-colors-solarized.git
 	ignore = dirty
 [submodule "runtimepath/bundle/vim-gitgutter"]
 	path = runtimepath/bundle/vim-gitgutter
@@ -17,3 +17,6 @@
 [submodule "runtimepath/bundle/vim-unimpaired"]
 	path = runtimepath/bundle/vim-unimpaired
 	url = https://github.com/tpope/vim-unimpaired
+[submodule "runtimepath/bundle/dbext.vim"]
+	path = runtimepath/bundle/dbext.vim
+	url = https://github.com/maxwell-k/dbext.vim
