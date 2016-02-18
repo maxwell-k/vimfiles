@@ -7,3 +7,7 @@
 [submodule "runtimepath/bundle/vim-fugitive"]
 	path = runtimepath/bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive
+[submodule "runtimepath/bundle/vim-colors-solarized"]
+	path = runtimepath/bundle/vim-colors-solarized
+	url = http://github.com/altercation/vim-colors-solarized.git
+	ignore = dirty
