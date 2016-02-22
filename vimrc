@@ -23,24 +23,21 @@ endif
 set modeline                    "use modelines
 set exrc                        "look for local _vimrc"
 set secure                      "to match above
-" s:path is the absolute path of the directory containing this file with links
-" resolved and no trailing slash
-let s:path = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 " Clipboard on ChromeOS: First save
 " https://raw.githubusercontent.com/chromium/hterm/master/etc/osc52.vim to
 " gentoo/osc52.vim
-if filereadable(s:path . '/gentoo/osc52.vim')
-    execute 'source ' . s:path . '/gentoo/osc52.vim'
+
+if filereadable(expand('$XDG_CONFIG_HOME/../gentoo/osc52.vim'))
+    source $XDG_CONFIG_HOME/../gentoo/osc52.vim
     map <Leader>y :call SendViaOSC52(getreg('"'))<CR>
 endif
 
-execute 'source '.s:path.
-    \'/runtimepath/bundle/vim-pathogen/autoload/pathogen.vim'
-call pathogen#infect(s:path.'/runtimepath/bundle/{}')
+so $XDG_CONFIG_HOME/../runtimepath/bundle/vim-pathogen/autoload/pathogen.vim
+call pathogen#infect('$XDG_CONFIG_HOME/../runtimepath/bundle/{}')
 " pathogen#infect must come before set runtimepath
-execute 'set runtimepath^='.s:path.'/runtimepath'
+set runtimepath^=$XDG_CONFIG_HOME/../runtimepath
 call pathogen#helptags()  " Needs write access to ~/.vim
-execute 'set runtimepath+='.s:path.'/runtimepath/after'
+set runtimepath+=$XDG_CONFIG_HOME/../runtimepath/after
 "http://vim.1045645.n5.nabble.com/Issues-with-ftdetect-td1193595.html
 filetype off
 filetype on
@@ -73,8 +70,10 @@ let g:syntastic_sh_shellcheck_args = '-x'
 "Editing and movement {{{1
 "--------------------
 "
+if !has('nvim')
+    set encoding=utf-8
+endif
 set backspace=indent,eol,start  "backspace deletes special characters
-set encoding=utf-8
 set formatlistpat=^\\s*[0-9-#•]\\+[.\ ]\\s*\\\|^\\s*[a-z]\\.\\s
 set formatoptions+=n            "format lists
 set ignorecase                  "case insensitive searches
@@ -162,12 +161,13 @@ autocmd StdInReadPost * setlocal nowrap
 if has('gui_win32')
     set guifont=Source_Code_Pro:h14,Consolas:h14
     set lines=35
+endif
+if has('gui_win32') || has('nvim')
     colorscheme summerfruit256
 else
     colorscheme solarized
     set background=dark
 endif
-
 
 " Only works if a single option per line
 set guioptions+=c  " keyboard workaround for file changed dialog
