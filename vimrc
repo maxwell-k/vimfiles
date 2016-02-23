@@ -3,8 +3,10 @@
 " ------------------------------------
 "
 set nocompatible  " Affects viminfo
-set viminfo='20,<50,h,n$HOME/configuration/cache/viminfo
-if has('win32',) " Using on Windows {{{
+if !has('nvim')
+    set viminfo='20,<50,h,n$HOME/configuration/cache/viminfo
+endif
+if has('win32') " Using on Windows {{{
     " • To install on Windows, `source` this file from `_vimrc` in `$VIM`.
     " • If this file is sourced by $VIM\_gvimrc plugins will not load.
     " • `gvim -u NORC -N` starts vim with no rc file and in nocompatible mode.
