@@ -1,6 +1,6 @@
-" ------------------------------------
-" vimrc, Keith Maxwell, 3 October 2014
-" ------------------------------------
+" --------------------------------------
+" vimrc, Keith Maxwell, 23 February 2016
+" --------------------------------------
 "
 set nocompatible  " Affects viminfo
 if !has('nvim')
@@ -28,7 +28,6 @@ set secure                      "to match above
 " Clipboard on ChromeOS: First save
 " https://raw.githubusercontent.com/chromium/hterm/master/etc/osc52.vim to
 " gentoo/osc52.vim
-
 if filereadable(expand('$XDG_CONFIG_HOME/../gentoo/osc52.vim'))
     source $XDG_CONFIG_HOME/../gentoo/osc52.vim
     map <Leader>y :call SendViaOSC52(getreg('"'))<CR>
@@ -164,7 +163,7 @@ if has('gui_win32')
     set guifont=Source_Code_Pro:h14,Consolas:h14
     set lines=35
 endif
-if has('gui_win32') || has('nvim')
+if has('win32')
     colorscheme summerfruit256
 else
     colorscheme solarized
@@ -178,7 +177,9 @@ set guioptions-=T  "no toolbar
 set guioptions-=r  "no scrollbar
 set guioptions-=L  "no scrollbar
 set shortmess+=I   "no welcome message
-set clipboard=unnamed
+if !has('nvim')
+    set clipboard=unnamed
+endif
 set ruler          "show position
 set hlsearch
 set splitbelow
@@ -280,7 +281,7 @@ noremap <Leader>ft :find Timesheet.txt<CR>
 noremap <Leader>fv :find configuration/vimrc<CR>
 noremap <Leader>g :call <SID>gmail_get()<CR>
 noremap <Leader>G :call <SID>gmail_put()<CR>
-if has('clipboard')
+if has('win32') " has('clipboard') loads an nvim provider, showing a message
     noremap <Leader>p :%d _ \| pu + \| 1d<CR>
 else
     noremap <Leader>p :%d _ \| pu " \| 1d<CR>
