@@ -288,16 +288,6 @@ else
 endif
 noremap <Leader>x :echo synIDattr(synID(line("."),col("."),1),"name")<CR>
 noremap <Leader>w :w ~/notes/<C-R>=strftime("mn%Y%m%d-", localtime())<CR>
-noremap <Leader>t :call <SID>ToggleGitGutter()<CR>
-function! s:ToggleGitGutter()
-    if exists('g:gitgutter_enabled') && g:gitgutter_enabled
-        GitGutterDisable
-        noremap <C-L> :noh<CR><C-L>
-    else
-        GitGutterEnable
-        noremap <C-L> :noh<CR>:GitGutter<CR><C-L>
-    endif
-endfunction
 " The two lines below prevent vim-gitgutter over-riding [c and ]c
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
