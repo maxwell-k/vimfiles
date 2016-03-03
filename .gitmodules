@@ -22,8 +22,8 @@
 	url = https://github.com/maxwell-k/dbext.vim
 [submodule "runtimepath/bundle/vim-ipython"]
 	path = runtimepath/bundle/vim-ipython
-	url = https://github.com/jjhelmus/vim-ipython
-	branch = ip4
+	url = https://github.com/maxwell-k/vim-ipython
+	branch = minimum
 [submodule "runtimepath/bundle/summerfruit256.vim"]
 	path = runtimepath/bundle/summerfruit256.vim
 	url = https://github.com/vim-scripts/summerfruit256.vim
