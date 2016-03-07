@@ -210,7 +210,7 @@ function! s:get_visual_selection() "{{{2
   let lines[0] = lines[0][col1 - 1:]
   return join(lines, "\n")
 endfunction
-function s:cleaned_visual_selection()
+function! s:cleaned_visual_selection()
     let result = s:get_visual_selection()
     let result = substitute(result, '%', '\\%', 'g')
     return substitute(result, '[[:space:]]', '', 'g')
