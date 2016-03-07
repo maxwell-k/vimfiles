@@ -281,6 +281,8 @@ noremap <Leader>ft :find Timesheet.txt<CR>
 noremap <Leader>fv :find configuration/vimrc<CR>
 noremap <Leader>g :call <SID>gmail_get()<CR>
 noremap <Leader>G :call <SID>gmail_put()<CR>
+noremap <Leader>k <ESC>:if line("'<") > 1 \| 0,'<-1d \| en \|
+    \ if line("'>") < line('$') \| '>+1,$d \| en<CR>0gg
 if has('win32') " has('clipboard') loads an nvim provider, showing a message
     noremap <Leader>p :%d _ \| pu + \| 1d<CR>
 else
