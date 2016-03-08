@@ -123,12 +123,6 @@ set autoindent
 " prevents syntax highlighting if this appears after `:syntax enable`
 autocmd!
 
-"let gx work on both <./vimlogo.gif> and ./vmlogo.gif
-"See `:help expand(` for an explanation of expand(expand("<cfile>"))
-autocmd VimEnter * nno <silent><Plug>NetrwBrowseX
-    \ :call netrw#NetrwBrowseX(expand(expand("<cfile>")),0)<cr>
-autocmd VimEnter * redraw!
-
 "Filetypes {{{2
 "--------
 "
