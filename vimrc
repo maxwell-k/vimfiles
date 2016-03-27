@@ -37,7 +37,7 @@ so $XDG_CONFIG_HOME/../runtimepath/bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect('$XDG_CONFIG_HOME/../runtimepath/bundle/{}')
 " pathogen#infect must come before set runtimepath
 set runtimepath^=$XDG_CONFIG_HOME/../runtimepath
-call pathogen#helptags()  " Needs write access to ~/.vim
+call pathogen#helptags()
 set runtimepath+=$XDG_CONFIG_HOME/../runtimepath/after
 "http://vim.1045645.n5.nabble.com/Issues-with-ftdetect-td1193595.html
 filetype off
