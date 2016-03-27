@@ -34,11 +34,11 @@ if filereadable(expand('$XDG_CONFIG_HOME/../gentoo/osc52.vim'))
 endif
 
 so $XDG_CONFIG_HOME/../runtimepath/bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect('$XDG_CONFIG_HOME/../runtimepath/bundle/{}')
+call pathogen#infect(expand('<sfile>:p:h').'/runtimepath/bundle/{}')
 " pathogen#infect must come before set runtimepath
-set runtimepath^=$XDG_CONFIG_HOME/../runtimepath
+execute 'set runtimepath^='.expand('<sfile>:p:h').'/runtimepath/'
 call pathogen#helptags()
-set runtimepath+=$XDG_CONFIG_HOME/../runtimepath/after
+execute 'set runtimepath+='.expand('<sfile>:p:h').'/runtimepath/after'
 "http://vim.1045645.n5.nabble.com/Issues-with-ftdetect-td1193595.html
 filetype off
 filetype on
