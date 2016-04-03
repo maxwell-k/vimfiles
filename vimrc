@@ -40,6 +40,9 @@ execute 'source '.expand('<sfile>:p:h')
     \ .'/runtimepath/bundle/vim-pathogen/autoload/pathogen.vim'
 call pathogen#infect(expand('<sfile>:p:h').'/runtimepath/bundle/{}')
 " pathogen#infect must come before set runtimepath
+if isdirectory(expand('~/timesheet/bundle'))
+    set runtimepath+=~/timesheet/bundle
+endif
 execute 'set runtimepath^='.expand('<sfile>:p:h').'/runtimepath/'
 call pathogen#helptags()
 execute 'set runtimepath+='.expand('<sfile>:p:h').'/runtimepath/after'
@@ -137,8 +140,6 @@ augroup end
 "-----
 "
 autocmd BufEnter */.gvfs/* set noswapfile
-autocmd BufEnter */timesheet/*.txt execute
-    \ 'source '.expand('%:h').'/Timesheet.vim'
 " % isn't the same as <afile> with netrw
 " TODO: tidy up planning avoid cd
 autocmd BufAdd,BufEnter planning,planning/
