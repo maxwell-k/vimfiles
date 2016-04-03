@@ -2,25 +2,26 @@
 " vimrc, Keith Maxwell, 23 February 2016
 " --------------------------------------
 "
-if !has('nvim') " {{{ scriptencoding
-    set encoding=utf-8
-endif
-scriptencoding utf-8 " }}}
-if !has('nvim') " {{{ viminfo
-    set viminfo='20,<50,h,n$HOME/configuration/cache/viminfo
-endif " }}}
-if has('win32') " Using on Windows {{{
-    " • To install on Windows, `source` this file from `_vimrc` in `$VIM`.
-    " • If this file is sourced by $VIM\_gvimrc plugins will not load.
-    " • `gvim -u NORC -N` starts vim with no rc file and in nocompatible mode.
+" Installation {{{1
+"
+" Windows
+" Add the two lines below to %USERPROFILE\AppData\Local\Programs\vim\vimrc:
+" set nocompatible
+" source C:\Users\MaxwellK\Documents\configuration\vimrc
+"
+" Unix
+" Add the line below to /etc/vim/vimrc.local:
+" source /root/configuration/vimrc
+"
+" Testing
+" ``gvim -u NORC -N`` starts vim with no rc file and in nocompatible mode.
+" }}}
+if !has('nvim') | set encoding=utf-8 | endif
+scriptencoding utf-8
+if !has('nvim') | set viminfo='20,<50,h,n~/configuration/cache/viminfo | endif
+if has('win32') | let $HOME=$USERPROFILE.'\Documents' | endif
 
-    " Match the home directory to that used by git
-    let $HOME=$USERPROFILE.'\Documents'
-endif " }}}
-
-if v:version < 703
-    finish
-endif
+if v:version < 703 | finish | endif
 
 " File types, plugins and runtimepath {{{1
 " -----------------------------------
@@ -53,9 +54,7 @@ filetype plugin on              "load plugins
 " vimpager options {{{2
 " ----------------
 "
-if exists('vimpager')
-    highlight link eolWhiteSpace NONE
-endif
+if exists('vimpager') | highlight link eolWhiteSpace NONE | endif
 let g:vimpager_passthrough = 1
 " Plugin options in global variables {{{2
 " ----------------------------------
@@ -102,9 +101,7 @@ set shortmess+=I
 "
 " Doesn't search dotfiles like /.vim/
 set path+=$HOME/**              "recursively search below home directory
-if has('gui_win32')             "Windows Desktop
-    set path+=$HOME/../Desktop/**
-endif
+if has('win32') | set path+=$HOME/../Desktop/** | endif
 set suffixesadd+=.txt
 set suffixesadd+=.bf
 set isfname+=?                  "for web addresses
@@ -162,7 +159,7 @@ if has('gui_win32')
     set lines=35
 endif
 if has('win32')
-    colorscheme summerfruit256
+	colorscheme summerfruit256
 else
     colorscheme solarized
     set background=dark
@@ -175,18 +172,14 @@ set guioptions-=T  "no toolbar
 set guioptions-=r  "no scrollbar
 set guioptions-=L  "no scrollbar
 set shortmess+=I   "no welcome message
-if !has('nvim')
-    set clipboard=unnamed
-endif
+if !has('nvim') | set clipboard=unnamed | endif
 set ruler          "show position
 set hlsearch
 set splitbelow
 set showcmd
 set colorcolumn=80
-if ! has('gui_running')
-    set highlight+=vr " workaround for windows console
-    set t_Co=16
-endif
+" workaround for windows console
+if !has('gui_running') | set highlight+=vr | set t_Co=16 | endif
 
 " The order of the next two lines is essential
 syntax enable                   "syntax highlighting
@@ -251,9 +244,7 @@ EOS
 endfunction
 function! s:gmail_get() "{{{2
     execute 'read !api.py'
-    if getline(1) ==# ''
-        1delete
-    endif
+    if getline(1) ==# '' | 1delete | endif
 endfunction
 function! s:gmail_put() "{{{2
     if executable('api-put.py')
@@ -267,9 +258,7 @@ endfunction
 "   Mappings {{{1
 "   --------
 "
-if filereadable('/etc/gentoo-release')
-    inoremap Â£ £
-endif
+if filereadable('/etc/gentoo-release') | inoremap Â£ £ | endif
 noremap Y y$
 " alphabetical - `:sort i`
 noremap <C-L> :noh<CR><C-L>
