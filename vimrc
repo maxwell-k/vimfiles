@@ -31,12 +31,13 @@ set secure                      "to match above
 " Clipboard on ChromeOS: First save
 " https://raw.githubusercontent.com/chromium/hterm/master/etc/osc52.vim to
 " gentoo/osc52.vim
-if filereadable(expand('$XDG_CONFIG_HOME/../gentoo/osc52.vim'))
-    source $XDG_CONFIG_HOME/../gentoo/osc52.vim
+if filereadable(expand('<sfile>:p:h').'/gentoo/osc52.vim')
+    execute 'source '.expand('<sfile>:p:h').'/gentoo/osc52.vim'
     map <Leader>y :call SendViaOSC52(getreg('"'))<CR>
 endif
 
-so $XDG_CONFIG_HOME/../runtimepath/bundle/vim-pathogen/autoload/pathogen.vim
+execute 'source '.expand('<sfile>:p:h')
+    \ .'/runtimepath/bundle/vim-pathogen/autoload/pathogen.vim'
 call pathogen#infect(expand('<sfile>:p:h').'/runtimepath/bundle/{}')
 " pathogen#infect must come before set runtimepath
 execute 'set runtimepath^='.expand('<sfile>:p:h').'/runtimepath/'
