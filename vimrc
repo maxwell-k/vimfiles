@@ -288,6 +288,7 @@ if has('win32') " has('clipboard') loads an nvim provider, showing a message
 else
     noremap <Leader>p :%d _ \| pu " \| 1d<CR>
 endif
+noremap <Leader>t :GitGutterToggle<CR>
 noremap <Leader>x :echo synIDattr(synID(line("."),col("."),1),"name")<CR>
 noremap <Leader>w :w ~/notes/<C-R>=strftime("mn%Y%m%d-", localtime())<CR>
 " The two lines below prevent vim-gitgutter over-riding [c and ]c
