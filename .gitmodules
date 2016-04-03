@@ -27,3 +27,6 @@
 [submodule "runtimepath/bundle/summerfruit256.vim"]
 	path = runtimepath/bundle/summerfruit256.vim
 	url = https://github.com/vim-scripts/summerfruit256.vim
+[submodule "runtimepath/bundle/vim-maktaba"]
+	path = runtimepath/bundle/vim-maktaba
+	url = https://github.com/google/vim-maktaba/

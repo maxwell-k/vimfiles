@@ -2,10 +2,13 @@
 " vimrc, Keith Maxwell, 23 February 2016
 " --------------------------------------
 "
-set nocompatible  " Affects viminfo
-if !has('nvim')
-    set viminfo='20,<50,h,n$HOME/configuration/cache/viminfo
+if !has('nvim') " {{{ scriptencoding
+    set encoding=utf-8
 endif
+scriptencoding utf-8 " }}}
+if !has('nvim') " {{{ viminfo
+    set viminfo='20,<50,h,n$HOME/configuration/cache/viminfo
+endif " }}}
 if has('win32') " Using on Windows {{{
     " • To install on Windows, `source` this file from `_vimrc` in `$VIM`.
     " • If this file is sourced by $VIM\_gvimrc plugins will not load.
@@ -46,7 +49,7 @@ filetype plugin on              "load plugins
 " vimpager options {{{2
 " ----------------
 "
-if exists("vimpager")
+if exists('vimpager')
     highlight link eolWhiteSpace NONE
 endif
 let g:vimpager_passthrough = 1
@@ -71,9 +74,6 @@ let g:syntastic_sh_shellcheck_args = '-x'
 "Editing and movement {{{1
 "--------------------
 "
-if !has('nvim')
-    set encoding=utf-8
-endif
 set backspace=indent,eol,start  "backspace deletes special characters
 set formatlistpat=^\\s*[0-9-#•]\\+[.\ ]\\s*\\\|^\\s*[a-z]\\.\\s
 set formatoptions+=n            "format lists
@@ -127,8 +127,10 @@ autocmd!
 "--------
 "
 "Move to a file in ftplugin if more that one line per file-type:
+augroup vimrc
 autocmd FileType dosini set isfname-=\= "complete e.g. home=/home/liveuser
 autocmd FileType sh set noexpandtab
+augroup end
 
 "Paths {{{2
 "-----
@@ -200,7 +202,7 @@ function! s:get_visual_selection() "{{{2
   let [lnum1, col1] = getpos("'<")[1:2]
   let [lnum2, col2] = getpos("'>")[1:2]
   let lines = getline(lnum1, lnum2)
-  let lines[-1] = lines[-1][: col2 - (&selection == 'inclusive' ? 1 : 2)]
+  let lines[-1] = lines[-1][: col2 - (&selection ==# 'inclusive' ? 1 : 2)]
   let lines[0] = lines[0][col1 - 1:]
   return join(lines, "\n")
 endfunction
@@ -213,19 +215,19 @@ function! s:open() "{{{2
     if has('win32',)
         " open the file linked from the current line
         let l:command = '!C:\WINDOWS\system32\rundll32.exe '
-        let l:command .= "url.dll,FileProtocolHandler "
-        if getline(".") =~ "^-\\s*`"
+        let l:command .= 'url.dll,FileProtocolHandler '
+        if getline('.') =~# '^-\s*`'
             "rst link inside a bullet
-            let l:path = getline(".")
+            let l:path = getline('.')
             let l:path = substitute(l:path, '^-\s\+`[^<]\+<file:', '', '')
             let l:path = substitute(l:path, '>`_$', '', '')
             let l:path = substitute(l:path, '/', '\\', 'g')
         else
             let l:path = ''
-            if &filetype == 'netrw'
+            if &filetype ==# 'netrw'
                 let l:path .= b:netrw_curdir . '\'
             end
-            let l:path .= substitute(getline("."), '^\s\+', '', '')
+            let l:path .= substitute(getline('.'), '^\s\+', '', '')
         endif
         let l:command .= shellescape(l:path)
         silent execute l:command
@@ -246,16 +248,16 @@ print('{:,}'.format(sum(decimal.Decimal(i) for i in numbers if i)))
 EOS
 endfunction
 function! s:gmail_get() "{{{2
-    execute "read !api.py"
-    if getline(1) == ''
+    execute 'read !api.py'
+    if getline(1) ==# ''
         1delete
     endif
 endfunction
 function! s:gmail_put() "{{{2
     if executable('api-put.py')
-        execute "write !api-put.py"
+        execute 'write !api-put.py'
     else
-        execute "write !api.py --put"
+        execute 'write !api.py --put'
     endif
     set nomodified
 endfunction
