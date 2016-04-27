@@ -1,6 +1,6 @@
-" --------------------------------------
-" vimrc, Keith Maxwell, 23 February 2016
-" --------------------------------------
+" --------------------
+" vimrc, Keith Maxwell
+" --------------------
 "
 " Installation {{{1
 "
@@ -162,7 +162,7 @@ if has('win32')
 	colorscheme summerfruit256
 else
     colorscheme solarized
-    set background=dark
+    set background=light
 endif
 
 " Only works if a single option per line
@@ -263,9 +263,7 @@ noremap Y y$
 " alphabetical - `:sort i`
 noremap <C-L> :noh<CR><C-L>
 noremap <Leader>fc :find cipher.bf<CR>
-noremap <Leader>fl :find all<CR>
 noremap <Leader>ft :find Timesheet.txt<CR>
-noremap <Leader>fv :find configuration/vimrc<CR>
 noremap <Leader>g :call <SID>gmail_get()<CR>
 noremap <Leader>G :call <SID>gmail_put()<CR>
 noremap <Leader>k <ESC>:if line("'<") > 1 \| 0,'<-1d \| en \|
