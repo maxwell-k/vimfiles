@@ -290,15 +290,15 @@ if has('win32')
     unlet s:ie
     let s:chrome =
         \ 'C:\Users\maxwellk\AppData\Local\Programs\'.
-        \ 'IronPortable\App\Iron\chrome.exe'
-    if filereadable(s:chrome)
-        let s:chrome .= ' --proxy-server="direct://"'
-    else
-       let s:chrome =
-           \ '"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"'
-    endif
+        \ 'IronPortable\App\Iron\chrome.exe'.
+        \ ' --proxy-server="direct://"'
     execute 'nnoremap <C-F12> :silent !start '.s:chrome.' <cfile><CR><CR>'
     execute "vnoremap <C-F12> <Esc>:execute '!start ".
+        \ s:chrome."'. <SID>cleaned_visual_selection()<CR><CR>"
+    let s:chrome =
+           \ '"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"'
+    execute 'nnoremap <S-F12> :silent !start '.s:chrome.' <cfile><CR><CR>'
+    execute "vnoremap <S-F12> <Esc>:execute '!start ".
         \ s:chrome."'. <SID>cleaned_visual_selection()<CR><CR>"
     unlet s:chrome
 endif
