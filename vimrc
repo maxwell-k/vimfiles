@@ -35,6 +35,13 @@ set secure                      "to match above
 if filereadable(expand('<sfile>:p:h').'/gentoo/osc52.vim')
     execute 'source '.expand('<sfile>:p:h').'/gentoo/osc52.vim'
     map <Leader>y :call SendViaOSC52(getreg('"'))<CR>
+    function! OSC52Transform(str)
+        call SendViaOSC52(a:str)
+        return a:str
+    endfunction
+    augroup vimrc
+    autocmd VimEnter * call UnimpairedMapTransform('OSC52Transform', '<Leader>c')
+    augroup END
 endif
 
 execute 'source '.expand('<sfile>:p:h')
