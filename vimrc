@@ -40,7 +40,8 @@ if filereadable(expand('<sfile>:p:h').'/gentoo/osc52.vim')
         return a:str
     endfunction
     augroup vimrc
-    autocmd VimEnter * call UnimpairedMapTransform('OSC52Transform', '<Leader>c')
+    autocmd VimEnter * call UnimpairedMapTransform('OSC52Transform', 
+        \ '<Leader>c')
     augroup END
 endif
 
