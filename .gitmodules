@@ -14,9 +14,6 @@
 [submodule "runtimepath/bundle/vim-gitgutter"]
 	path = runtimepath/bundle/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter
-[submodule "runtimepath/bundle/vim-unimpaired"]
-	path = runtimepath/bundle/vim-unimpaired
-	url = https://github.com/tpope/vim-unimpaired
 [submodule "runtimepath/bundle/dbext.vim"]
 	path = runtimepath/bundle/dbext.vim
 	url = https://github.com/maxwell-k/dbext.vim

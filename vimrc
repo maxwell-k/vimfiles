@@ -35,14 +35,29 @@ set secure                      "to match above
 if filereadable(expand('<sfile>:p:h').'/gentoo/osc52.vim')
     execute 'source '.expand('<sfile>:p:h').'/gentoo/osc52.vim'
     map <Leader>y :call SendViaOSC52(getreg('"'))<CR>
-    function! OSC52Transform(str)
-        call SendViaOSC52(a:str)
-        return a:str
+    function! OSC52opfunc(type, ...)
+        let sel_save = &selection
+        let &selection = 'inclusive'
+        let reg_save = @@ " unnamed register
+
+        if a:0  " Invoked from Visual mode, use gv command.
+            silent exe 'normal! gvy'
+        elseif a:type ==# 'line'
+            silent exe "normal! '[V']y"
+        elseif  a:type ==# 'char' || a:type ==# 'char'
+            silent exe 'normal! `[v`]y'
+        elseif a:type =~# '^\d\+$'  " based on unimpaired.vim
+            silent exe 'norm! ^v'.a:type.'$hy'
+        endif
+
+        call SendViaOSC52(@@)
+
+        let &selection = sel_save
+        let @@ = reg_save
     endfunction
-    augroup vimrc
-    autocmd VimEnter * call UnimpairedMapTransform('OSC52Transform', 
-        \ '<Leader>c')
-    augroup END
+    nmap <silent> <Leader>c :set opfunc=OSC52opfunc<CR>g@
+    vmap <silent> <Leader>c :<C-U>call OSC52opfunc(visualmode(), 1)<CR>
+    nmap <silent> <Leader>cc :<C-U>call OSC52opfunc(v:count1)<CR>
 endif
 
 execute 'source '.expand('<sfile>:p:h')
