@@ -118,6 +118,7 @@ set wildmenu                    "normal mode tab completion menu
 set confirm                     "prompt before discarding changes
 set history=200
 set shortmess+=I
+if filereadable('/etc/gentoo-release') | set laststatus=2 | endif
 
 "File name options for :find etc. {{{2
 "--------------------------------
