@@ -58,6 +58,31 @@ if filereadable(expand('<sfile>:p:h').'/gentoo/osc52.vim')
     nmap <silent> <Leader>c :set opfunc=OSC52opfunc<CR>g@
     vmap <silent> <Leader>c :<C-U>call OSC52opfunc(visualmode(), 1)<CR>
     nmap <silent> <Leader>cc :<C-U>call OSC52opfunc(v:count1)<CR>
+else
+    function! Yopfunc(type, ...)
+        let sel_save = &selection
+        let &selection = 'inclusive'
+
+        if a:type ==# 'line'
+            silent exe "normal! '[V']y"
+        elseif  a:type ==# 'char' || a:type ==# 'block'
+            silent exe 'normal! `[v`]y'
+        elseif a:0  " Invoked from Visual mode, use gv command.
+            silent exe 'normal! gvy'
+        elseif a:type =~# '^\d\+$'  " based on unimpaired.vim
+            silent exe 'norm! ^v'.a:type.'$hy'
+        endif
+
+        let @@ = substitute(@@, '\n', ' ', 'g')
+        let @@ = substitute(@@, '^ ', '', '')
+        let @@ = substitute(@@, ' $', '', '')
+        let @+ = @@
+
+        let &selection = sel_save
+    endfunction
+    nmap <silent> <Leader>y :set opfunc=Yopfunc<CR>g@
+    vmap <silent> <Leader>y :<C-U>call Yopfunc(visualmode(), 1)<CR>
+    nmap <silent> <Leader>yy :<C-U>call Yopfunc(v:count1)<CR>
 endif
 
 execute 'source '.expand('<sfile>:p:h')
