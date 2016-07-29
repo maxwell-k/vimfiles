@@ -40,12 +40,12 @@ if filereadable(expand('<sfile>:p:h').'/gentoo/osc52.vim')
         let &selection = 'inclusive'
         let reg_save = @@ " unnamed register
 
-        if a:0  " Invoked from Visual mode, use gv command.
-            silent exe 'normal! gvy'
-        elseif a:type ==# 'line'
+        if a:type ==# 'line'
             silent exe "normal! '[V']y"
-        elseif  a:type ==# 'char' || a:type ==# 'char'
+        elseif  a:type ==# 'char' || a:type ==# 'block'
             silent exe 'normal! `[v`]y'
+        elseif a:0  " >=1 extra arguments so called from vmap - visual mode
+            silent exe 'normal! gvy'
         elseif a:type =~# '^\d\+$'  " based on unimpaired.vim
             silent exe 'norm! ^v'.a:type.'$hy'
         endif
