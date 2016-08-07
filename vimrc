@@ -186,17 +186,6 @@ augroup end
 "-----
 "
 autocmd BufEnter */.gvfs/* set noswapfile
-" % isn't the same as <afile> with netrw
-" TODO: tidy up planning avoid cd
-autocmd BufAdd,BufEnter planning,planning/
-    \ execute 'lcd' fnameescape(expand("<afile>:p"))
-autocmd BufAdd,BufEnter planning,planning/
-    \ source Plan.vim "?Won't match find planning/?
-autocmd BufEnter */planning/**.txt execute 'lcd'
-    \ fnameescape(expand("<afile>:h:p"))
-autocmd BufEnter */planning/*/**.txt execute 'lcd'
-    \ system('git rev-parse --show-cdup')
-autocmd BufEnter */planning/**.txt source Plan.vim
 autocmd BufRead COMMIT_EDITMSG setlocal nomodeline | setlocal spell
 autocmd StdInReadPost * setlocal nowrap
 
