@@ -20,6 +20,7 @@ if !has('nvim') | set encoding=utf-8 | endif
 scriptencoding utf-8
 if !has('nvim') | set viminfo='20,<50,h,n~/configuration/cache/viminfo | endif
 if has('win32') | let $HOME=$USERPROFILE.'\Documents' | endif
+if has('win32') && getcwd() ==? $USERPROFILE | cd $HOME | endif
 
 if v:version < 703 | finish | endif
 
