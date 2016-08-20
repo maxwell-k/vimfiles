@@ -291,7 +291,8 @@ endif
 " gentoo/osc52.vim
 if filereadable(expand('<sfile>:p:h').'/gentoo/osc52.vim')
     execute 'source '.expand('<sfile>:p:h').'/gentoo/osc52.vim'
-    map <Leader>y :call SendViaOSC52(getreg('"'))<CR>
+    " can also be used via ":call" for example:
+    " :call SendViaOSC52(@a)
     function! OSC52opfunc(type, ...)
         let sel_save = &selection
         let &selection = 'inclusive'
@@ -338,7 +339,7 @@ function! Yopfunc(type, ...)
     if has('clipboard')
         let @+ = @@
     else
-        if filereadable(expand('<sfile>:p:h').'/gentoo/osc52.vim')
+        if exists('*SendViaOSC52')
             call SendViaOSC52(@@)
         else
             echom 'Not supported'
