@@ -336,6 +336,7 @@ function! Yopfunc(type, ...)
     let @@ = substitute(@@, '\n', ' ', 'g')
     let @@ = substitute(@@, '^ ', '', '')
     let @@ = substitute(@@, ' $', '', '')
+    let @@ = substitute(@@, ' \+', ' ', 'g')
     if has('clipboard')
         let @+ = @@
     else
