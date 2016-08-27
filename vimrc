@@ -242,7 +242,7 @@ endfunction
 "   Mappings {{{1
 "   --------
 "
-if filereadable('/etc/gentoo-release') | inoremap Â£ £ | endif
+if filereadable('/etc/gentoo-release') | inoremap Â£ £| endif
 noremap Y y$
 " alphabetical - `:sort i`
 noremap <C-L> :noh<CR><C-L>
