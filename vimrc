@@ -293,66 +293,76 @@ if filereadable(expand('<sfile>:p:h').'/gentoo/osc52.vim')
     execute 'source '.expand('<sfile>:p:h').'/gentoo/osc52.vim'
     " can also be used via ":call" for example:
     " :call SendViaOSC52(@a)
-    function! OSC52opfunc(type, ...)
-        let sel_save = &selection
-        let &selection = 'inclusive'
-        let reg_save = @@ " unnamed register
-
-        if a:type ==# 'line'
-            silent exe "normal! '[V']y"
-        elseif  a:type ==# 'char' || a:type ==# 'block'
-            silent exe 'normal! `[v`]y'
-        elseif a:0  " >=1 extra arguments so called from vmap - visual mode
-            silent exe 'normal! gvy'
-        elseif a:type =~# '^\d\+$'  " based on unimpaired.vim
-            silent exe 'norm! ^v'.a:type.'$hy'
-        endif
-
-        call SendViaOSC52(@@)
-
-        let &selection = sel_save
-        let @@ = reg_save
-    endfunction
-    nmap <silent> <Leader>c :set opfunc=OSC52opfunc<CR>g@
-    vmap <silent> <Leader>c :<C-U>call OSC52opfunc(visualmode(), 1)<CR>
-    nmap <silent> <Leader>cc :<C-U>call OSC52opfunc(v:count1)<CR>
 endif
-
-" Yank as a single line separated by spaces
-function! Yopfunc(type, ...)
-    let sel_save = &selection
-    let &selection = 'inclusive'
-
+function s:opfuncInput(type, count) "{{{
     if a:type ==# 'line'
         silent exe "normal! '[V']y"
     elseif  a:type ==# 'char' || a:type ==# 'block'
         silent exe 'normal! `[v`]y'
-    elseif a:0  " Invoked from Visual mode, use gv command.
+    elseif a:count  " Invoked from Visual mode, use gv command.
         silent exe 'normal! gvy'
     elseif a:type =~# '^\d\+$'  " based on unimpaired.vim
         silent exe 'norm! ^v'.a:type.'$hy'
     endif
-
-    let @@ = substitute(@@, '\n', ' ', 'g')
-    let @@ = substitute(@@, '^ ', '', '')
-    let @@ = substitute(@@, ' $', '', '')
-    let @@ = substitute(@@, ' \+', ' ', 'g')
+endfunction "}}}
+function s:opfuncOutput(value) "{{{
     if has('clipboard')
-        let @+ = @@
+        let @+ = a:value
     else
         if exists('*SendViaOSC52')
-            call SendViaOSC52(@@)
+            call SendViaOSC52(a:value)
         else
             echom 'Not supported'
         end
     endif
+endfunction "}}}
+" Straight yank {{{
+function! Copfunc(type, ...)
+    let sel_save = &selection
+    let &selection = 'inclusive'
+    let reg_save = @@ " unnamed register
 
-    let &selection = sel_save
+    call s:opfuncInput(a:type, a:0)
+    call s:opfuncOutput(@@)
+
+    let &selection = sel_save | let @@ = reg_save
+endfunction
+nmap <silent> <Leader>c :set opfunc=Copfunc<CR>g@
+vmap <silent> <Leader>c :<C-U>call Copfunc(visualmode(), 1)<CR>
+nmap <silent> <Leader>cc :<C-U>call Copfunc(v:count1)<CR>
+" }}}
+" Yank as a single line separated by spaces {{{
+function! Yopfunc(type, ...)
+    let sel_save = &selection | let &selection = 'inclusive' |let reg_save = @@
+
+    call s:opfuncInput(a:type, a:0)
+    let @@ = substitute(@@, '\n', ' ', 'g')
+    let @@ = substitute(@@, '^ \+', '', '')
+    let @@ = substitute(@@, ' \+$', '', '')
+    let @@ = substitute(@@, ' \+', ' ', 'g')
+    call s:opfuncOutput(@@)
+
+    let &selection = sel_save | let @@ = reg_save
 endfunction
 nmap <silent> <Leader>y :set opfunc=Yopfunc<CR>g@
 vmap <silent> <Leader>y :<C-U>call Yopfunc(visualmode(), 1)<CR>
 nmap <silent> <Leader>yy :<C-U>call Yopfunc(v:count1)<CR>
+" }}}
+" Yank as with whitespace removed {{{
+function! Yopfunc2(type, ...)
+    let sel_save = &selection | let &selection = 'inclusive' |let reg_save = @@
 
+    call s:opfuncInput(a:type, a:0)
+    let @@ = substitute(@@, '\n', '', 'g')
+    let @@ = substitute(@@, ' \+', '', 'g')
+    call s:opfuncOutput(@@)
+
+    let &selection = sel_save | let @@ = reg_save
+endfunction
+nmap <silent> <Leader>Y :set opfunc=Yopfunc2<CR>g@
+vmap <silent> <Leader>Y :<C-U>call Yopfunc2(visualmode(), 1)<CR>
+nmap <silent> <Leader>YY :<C-U>call Yopfunc2(v:count1)<CR>
+"}}}
 "Digraphs {{{1
 "--------
 "
