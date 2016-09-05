@@ -339,6 +339,7 @@ function! Yopfunc(type, ...)
     let sel_save = &selection | let &selection = 'inclusive' |let reg_save = @@
 
     call s:opfuncInput(a:type, a:0)
+    let @@ = substitute(@@, '\\\n', '', 'g')
     let @@ = substitute(@@, '\n', ' ', 'g')
     let @@ = substitute(@@, '^ \+', '', '')
     let @@ = substitute(@@, ' \+$', '', '')
