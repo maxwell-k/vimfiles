@@ -262,8 +262,9 @@ else
     noremap <Leader>p :%d _ \| pu " \| 1d<CR>
 endif
 noremap <Leader>t :GitGutterToggle<CR>
-noremap <Leader>x :echo synIDattr(synID(line("."),col("."),1),"name")<CR>
+noremap <Leader>v :set paste! paste?<CR>
 noremap <Leader>w :w ~/notes/<C-R>=strftime("mn%Y%m%d-", localtime())<CR>
+noremap <Leader>x :echo synIDattr(synID(line("."),col("."),1),"name")<CR>
 " The two lines below prevent vim-gitgutter over-riding [c and ]c
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
