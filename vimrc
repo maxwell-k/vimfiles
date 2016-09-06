@@ -248,6 +248,7 @@ if filereadable('/etc/gentoo-release') | inoremap Â£ £| endif
 noremap Y y$
 " alphabetical - `:sort i`
 noremap <C-L> :noh<CR><C-L>
+"       <Leader>c  see above g:ftplugin_sql_omni_key
 noremap <Leader>fc :find cipher.bf<CR>
 noremap <Leader>ft :find Timesheet.txt<CR>
 noremap <Leader>g :call <SID>gmail_get()<CR>
@@ -261,6 +262,7 @@ if has('win32') " has('clipboard') loads an nvim provider, showing a message
 else
     noremap <Leader>p :%d _ \| pu " \| 1d<CR>
 endif
+noremap <Leader>r :SyntasticToggleMode<CR>
 noremap <Leader>t :GitGutterToggle<CR>
 noremap <Leader>v :set paste! paste?<CR>
 noremap <Leader>w :w ~/notes/<C-R>=strftime("mn%Y%m%d-", localtime())<CR>
