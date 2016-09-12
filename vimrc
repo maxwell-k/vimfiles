@@ -253,9 +253,9 @@ noremap <Leader>fc :find cipher.bf<CR>
 noremap <Leader>ft :find Timesheet.txt<CR>
 noremap <Leader>g :call <SID>gmail_get()<CR>
 noremap <Leader>G :call <SID>gmail_put()<CR>
+noremap <Leader>i :echo synIDattr(synID(line("."),col("."),1),"name")<CR>
 noremap <Leader>k <ESC>:if line("'<") > 1 \| 0,'<-1d \| en \|
     \ if line("'>") < line('$') \| '>+1,$d \| en<CR>0gg
-noremap <Leader>l <ESC>:lnext<CR>
 noremap <Leader>/ :s,\\,/,g<CR><C-L>
 if has('win32') " has('clipboard') loads an nvim provider, showing a message
     noremap <Leader>p :%d _ \| pu + \| 1d<CR>
@@ -266,7 +266,6 @@ noremap <Leader>r :SyntasticToggleMode<CR>
 noremap <Leader>t :GitGutterToggle<CR>
 noremap <Leader>v :set paste! paste?<CR>
 noremap <Leader>w :w ~/notes/<C-R>=strftime("mn%Y%m%d-", localtime())<CR>
-noremap <Leader>x :echo synIDattr(synID(line("."),col("."),1),"name")<CR>
 " The two lines below prevent vim-gitgutter over-riding [c and ]c
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
@@ -369,6 +368,22 @@ nmap <silent> <Leader>Y :set opfunc=Yopfunc2<CR>g@
 vmap <silent> <Leader>Y :<C-U>call Yopfunc2(visualmode(), 1)<CR>
 nmap <silent> <Leader>YY :<C-U>call Yopfunc2(v:count1)<CR>
 "}}}
+" Filter through a Jupyter kernel {{{
+function! Xopfunc(type, ...)
+    let sel_save = &selection
+    let &selection = 'inclusive'
+    let reg_save = @@ " unnamed register
+
+    call s:opfuncInput(a:type, a:0)
+    '],'[!dedent.py send.py
+    redraw!
+
+    let &selection = sel_save | let @@ = reg_save
+endfunction
+nmap <silent> <Leader>x :set opfunc=Xopfunc<CR>g@
+vmap <silent> <Leader>x :<C-U>call Xopfunc(visualmode(), 1)<CR>
+nmap <silent> <Leader>xx :<C-U>call Xopfunc(v:count1)<CR>
+" }}}
 "Digraphs {{{1
 "--------
 "
