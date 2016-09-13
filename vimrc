@@ -375,7 +375,7 @@ function! Xopfunc(type, ...)
     let reg_save = @@ " unnamed register
 
     call s:opfuncInput(a:type, a:0)
-    '],'[!dedent.py send.py
+    '[,']!dedent.py send.py
     redraw!
 
     let &selection = sel_save | let @@ = reg_save
