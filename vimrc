@@ -187,11 +187,6 @@ function! s:get_visual_selection() "{{{2
   let lines[0] = lines[0][col1 - 1:]
   return join(lines, "\n")
 endfunction
-function! s:cleaned_visual_selection()
-    let result = s:get_visual_selection()
-    let result = substitute(result, '%', '\\%', 'g')
-    return substitute(result, '[[:space:]]', '', 'g')
-endfunction
 function! s:open() "{{{2
     if has('win32',)
         " open the file linked from the current line
@@ -228,33 +223,85 @@ numbers = [i.replace(',','').rstrip('\xc2\xa3 ') for i in numbers]
 print('{:,}'.format(sum(decimal.Decimal(i) for i in numbers if i)))
 EOS
 endfunction
-function! s:gmail_get() "{{{2
-    execute 'read !api.py'
-    if getline(1) ==# '' | 1delete | endif
-endfunction
-function! s:gmail_put() "{{{2
+
+"   Mappings and commands {{{1
+"   ---------------------
+"
+" Functions for mappings {{{
+" Clipboard on ChromeOS: First save
+" https://raw.githubusercontent.com/chromium/hterm/master/etc/osc52.vim to
+" gentoo/osc52.vim
+if filereadable(expand('<sfile>:p:h').'/gentoo/osc52.vim')
+    execute 'source '.expand('<sfile>:p:h').'/gentoo/osc52.vim'
+    " can also be used via ":call" for example:
+    " :call SendViaOSC52(@a)
+endif
+function! s:gmail_put() "{{{
     if executable('api-put.py')
         execute 'write !api-put.py'
     else
         execute 'write !api.py --put'
     endif
     set nomodified
-endfunction
+endfunction }}}
+function! s:gmail_get() "{{{
+    execute 'read !api.py'
+    if getline(1) ==# '' | 1delete | endif
+endfunction "}}}
+function! Copfunc(type, ...) " Straight yank {{{
+    let sel_save = &selection
+    let &selection = 'inclusive'
+    let reg_save = @@ " unnamed register
 
-"   Mappings {{{1
-"   --------
-"
+    call jupyter#opfuncInput(a:type, a:0)
+    call jupyter#opfuncOutput(@@)
+
+    let &selection = sel_save | let @@ = reg_save
+endfunction
+" }}}
+function! Yopfunc(type, ...) " Yank as a single line separated by spaces {{{
+    let sel_save = &selection | let &selection = 'inclusive' |let reg_save = @@
+
+    call jupyter#opfuncInput(a:type, a:0)
+    let @@ = substitute(@@, '\\\n', '', 'g')
+    let @@ = substitute(@@, '\n', ' ', 'g')
+    let @@ = substitute(@@, '^ \+', '', '')
+    let @@ = substitute(@@, ' \+$', '', '')
+    let @@ = substitute(@@, ' \+', ' ', 'g')
+    call jupyter#opfuncOutput(@@)
+
+    let &selection = sel_save | let @@ = reg_save
+endfunction
+" }}}
+function! Yopfunc2(type, ...) " Yank as with whitespace removed {{{
+    let sel_save = &selection | let &selection = 'inclusive' |let reg_save = @@
+
+    call jupyter#opfuncInput(a:type, a:0)
+    let @@ = substitute(@@, '\n', '', 'g')
+    let @@ = substitute(@@, ' \+', '', 'g')
+    call jupyter#opfuncOutput(@@)
+
+    let &selection = sel_save | let @@ = reg_save
+endfunction
+"}}}
+" }}}
 if filereadable('/etc/gentoo-release') | inoremap Â£ £| endif
 noremap Y y$
 " alphabetical - `:sort i`
 noremap <C-L> :noh<CR><C-L>
 "       <Leader>c  see above g:ftplugin_sql_omni_key
+nmap <silent> <Leader>c :set opfunc=Copfunc<CR>g@
+vmap <silent> <Leader>c :<C-U>call Copfunc(visualmode(), 1)<CR>
+nmap <silent> <Leader>cc :<C-U>call Copfunc(v:count1)<CR>
 noremap <Leader>fc :find cipher.bf<CR>
 noremap <Leader>ft :find Timesheet.txt<CR>
 noremap <Leader>g :call <SID>gmail_get()<CR>
 noremap <Leader>G :call <SID>gmail_put()<CR>
 noremap <Leader>i :echo synIDattr(synID(line("."),col("."),1),"name")<CR>
-noremap <Leader>k <ESC>:if line("'<") > 1 \| 0,'<-1d \| en \|
+nmap <Leader>j :set opfunc=jupyter#opfunc<CR>g@
+vmap <Leader>j :<C-U>call jupyter#opfunc(visualmode(), 1)<CR>
+nmap <Leader>jj :<C-U>call jupyter#opfunc(v:count1)<CR>
+vnoremap <Leader>k <ESC>:if line("'<") > 1 \| 0,'<-1d \| en \|
     \ if line("'>") < line('$') \| '>+1,$d \| en<CR>0gg
 noremap <Leader>/ :s,\\,/,g<CR><C-L>
 if has('win32') " has('clipboard') loads an nvim provider, showing a message
@@ -266,124 +313,16 @@ noremap <Leader>r :SyntasticToggleMode<CR>
 noremap <Leader>t :GitGutterToggle<CR>
 noremap <Leader>v :set paste! paste?<CR>
 noremap <Leader>w :w ~/notes/<C-R>=strftime("mn%Y%m%d-", localtime())<CR>
-" The two lines below prevent vim-gitgutter over-riding [c and ]c
-nmap ]h <Plug>GitGutterNextHunk
-nmap [h <Plug>GitGutterPrevHunk
-" In Windows <F12> opens a URL in IE & CTRL+<F12> opens in Google Chrome
-if has('win32')
-    let s:ie = '"C:\Program Files\Internet Explorer\iexplore.exe"'
-    execute 'nnoremap <F12> :silent !start '.s:ie.' <cfile><CR><CR>'
-    execute "vnoremap <F12> <Esc>:execute '!start ".
-        \ s:ie."'. <SID>cleaned_visual_selection()<CR><CR>"
-    unlet s:ie
-    let s:chrome =
-        \ 'C:\Users\maxwellk\AppData\Local\Programs\'.
-        \ 'IronPortable\App\Iron\chrome.exe'.
-        \ ' --proxy-server="direct://"'
-    execute 'nnoremap <C-F12> :silent !start '.s:chrome.' <cfile><CR><CR>'
-    execute "vnoremap <C-F12> <Esc>:execute '!start ".
-        \ s:chrome."'. <SID>cleaned_visual_selection()<CR><CR>"
-    let s:chrome =
-           \ '"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"'
-    execute 'nnoremap <S-F12> :silent !start '.s:chrome.' <cfile><CR><CR>'
-    execute "vnoremap <S-F12> <Esc>:execute '!start ".
-        \ s:chrome."'. <SID>cleaned_visual_selection()<CR><CR>"
-    unlet s:chrome
-endif
-" Clipboard on ChromeOS: First save
-" https://raw.githubusercontent.com/chromium/hterm/master/etc/osc52.vim to
-" gentoo/osc52.vim
-if filereadable(expand('<sfile>:p:h').'/gentoo/osc52.vim')
-    execute 'source '.expand('<sfile>:p:h').'/gentoo/osc52.vim'
-    " can also be used via ":call" for example:
-    " :call SendViaOSC52(@a)
-endif
-function s:opfuncInput(type, count) "{{{
-    if a:type ==# 'line'
-        silent exe "normal! '[V']y"
-    elseif  a:type ==# 'char' || a:type ==# 'block'
-        silent exe 'normal! `[v`]y'
-    elseif a:count  " Invoked from Visual mode, use gv command.
-        silent exe 'normal! gvy'
-    elseif a:type =~# '^\d\+$'  " based on unimpaired.vim
-        silent exe 'norm! ^v'.a:type.'$hy'
-    endif
-endfunction "}}}
-function s:opfuncOutput(value) "{{{
-    if has('clipboard')
-        let @+ = a:value
-    else
-        if exists('*SendViaOSC52')
-            call SendViaOSC52(a:value)
-        else
-            echom 'Not supported'
-        end
-    endif
-endfunction "}}}
-" Straight yank {{{
-function! Copfunc(type, ...)
-    let sel_save = &selection
-    let &selection = 'inclusive'
-    let reg_save = @@ " unnamed register
-
-    call s:opfuncInput(a:type, a:0)
-    call s:opfuncOutput(@@)
-
-    let &selection = sel_save | let @@ = reg_save
-endfunction
-nmap <silent> <Leader>c :set opfunc=Copfunc<CR>g@
-vmap <silent> <Leader>c :<C-U>call Copfunc(visualmode(), 1)<CR>
-nmap <silent> <Leader>cc :<C-U>call Copfunc(v:count1)<CR>
-" }}}
-" Yank as a single line separated by spaces {{{
-function! Yopfunc(type, ...)
-    let sel_save = &selection | let &selection = 'inclusive' |let reg_save = @@
-
-    call s:opfuncInput(a:type, a:0)
-    let @@ = substitute(@@, '\\\n', '', 'g')
-    let @@ = substitute(@@, '\n', ' ', 'g')
-    let @@ = substitute(@@, '^ \+', '', '')
-    let @@ = substitute(@@, ' \+$', '', '')
-    let @@ = substitute(@@, ' \+', ' ', 'g')
-    call s:opfuncOutput(@@)
-
-    let &selection = sel_save | let @@ = reg_save
-endfunction
 nmap <silent> <Leader>y :set opfunc=Yopfunc<CR>g@
 vmap <silent> <Leader>y :<C-U>call Yopfunc(visualmode(), 1)<CR>
 nmap <silent> <Leader>yy :<C-U>call Yopfunc(v:count1)<CR>
-" }}}
-" Yank as with whitespace removed {{{
-function! Yopfunc2(type, ...)
-    let sel_save = &selection | let &selection = 'inclusive' |let reg_save = @@
-
-    call s:opfuncInput(a:type, a:0)
-    let @@ = substitute(@@, '\n', '', 'g')
-    let @@ = substitute(@@, ' \+', '', 'g')
-    call s:opfuncOutput(@@)
-
-    let &selection = sel_save | let @@ = reg_save
-endfunction
 nmap <silent> <Leader>Y :set opfunc=Yopfunc2<CR>g@
 vmap <silent> <Leader>Y :<C-U>call Yopfunc2(visualmode(), 1)<CR>
 nmap <silent> <Leader>YY :<C-U>call Yopfunc2(v:count1)<CR>
-"}}}
-" Filter through a Jupyter kernel {{{
-function! Xopfunc(type, ...)
-    let sel_save = &selection
-    let &selection = 'inclusive'
-    let reg_save = @@ " unnamed register
-
-    call s:opfuncInput(a:type, a:0)
-    '[,']!dedent.py send.py
-    redraw!
-
-    let &selection = sel_save | let @@ = reg_save
-endfunction
-nmap <silent> <Leader>x :set opfunc=Xopfunc<CR>g@
-vmap <silent> <Leader>x :<C-U>call Xopfunc(visualmode(), 1)<CR>
-nmap <silent> <Leader>xx :<C-U>call Xopfunc(v:count1)<CR>
-" }}}
+" The two lines below prevent vim-gitgutter over-riding [c and ]c
+nmap ]h <Plug>GitGutterNextHunk
+nmap [h <Plug>GitGutterPrevHunk
+command! -nargs=+ Jupyter :python3 print(jupyter_send(veval('<q-args>')))
 "Digraphs {{{1
 "--------
 "
@@ -395,5 +334,4 @@ digraph .. 8230 " ellipsis …
 digraph n- 8211 "em dash —
 digraph m- 8212 "em dash –
 digraph bu 8226 "bullet •
-
 " vim: set foldmethod=marker :{{{1
