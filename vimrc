@@ -323,7 +323,7 @@ nmap <silent> <Leader>YY :<C-U>call Yopfunc2(v:count1)<CR>
 " The two lines below prevent vim-gitgutter over-riding [c and ]c
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
-command! -nargs=+ Jupyter :python3 print(jupyter_send(veval('<q-args>')))
+command! -nargs=+ Jupyter :call jupyter#command(<q-args>)
 "Digraphs {{{1
 "--------
 "
