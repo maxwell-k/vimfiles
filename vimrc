@@ -301,6 +301,7 @@ noremap <Leader>i :echo synIDattr(synID(line("."),col("."),1),"name")<CR>
 nmap <Leader>j :set opfunc=jupyter#opfunc<CR>g@
 vmap <Leader>j :<C-U>call jupyter#opfunc(visualmode(), 1)<CR>
 nmap <Leader>jj :<C-U>call jupyter#opfunc(v:count1)<CR>
+nmap <Leader>J :call jupyter#toggle()<CR>
 vnoremap <Leader>k <ESC>:if line("'<") > 1 \| 0,'<-1d \| en \|
     \ if line("'>") < line('$') \| '>+1,$d \| en<CR>0gg
 noremap <Leader>/ :s,\\,/,g<CR><C-L>
