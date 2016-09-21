@@ -62,6 +62,7 @@ let g:ftplugin_sql_omni_key_left  = '<S-Tab>'
 let g:gitgutter_enabled = 0
 let g:is_posix=1                "$() isn't an error in sh
 let g:netrw_banner=0
+let g:rst_syntax_code_list = ['vim', 'java', 'sql', 'python', 'sh']
 let g:sh_fold_enabled= 3
 let g:sql_type_default = 'sqlite'
 let g:syntastic_always_populate_loc_list = 1
