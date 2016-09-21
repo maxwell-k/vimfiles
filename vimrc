@@ -212,7 +212,7 @@ function! s:open() "{{{2
 endfunction
 function! Sum() range "{{{2
 "Assumes 'selection' is blockwise and inclusive
-python <<EOS
+python3 <<EOS
 import vim
 import decimal
 top, left       = vim.eval("getpos(\"'<\")[1:2]")
@@ -290,6 +290,7 @@ noremap Y y$
 " alphabetical - `:sort i`
 noremap <C-L> :noh<CR><C-L>
 "       <Leader>c  see above g:ftplugin_sql_omni_key
+vmap <Leader>= :<C-U>call Sum()<CR>
 nmap <silent> <Leader>c :set opfunc=Copfunc<CR>g@
 vmap <silent> <Leader>c :<C-U>call Copfunc(visualmode(), 1)<CR>
 nmap <silent> <Leader>cc :<C-U>call Copfunc(v:count1)<CR>
