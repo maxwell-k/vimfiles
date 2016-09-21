@@ -310,6 +310,7 @@ if has('win32') " has('clipboard') loads an nvim provider, showing a message
 else
     noremap <Leader>p :%d _ \| pu " \| 1d<CR>
 endif
+noremap <Leader>R :SyntasticReset<CR>
 noremap <Leader>r :SyntasticToggleMode<CR>
 noremap <Leader>t :GitGutterToggle<CR>
 noremap <Leader>v :set paste! paste?<CR>
