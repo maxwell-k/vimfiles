@@ -222,9 +222,11 @@ bottom, right   = vim.eval("getpos(\"'>\")[1:2]")
 top, left, bottom, right = int(top), int(left), int(bottom), int(right)
 numbers = [i[left - 1:right] for i in vim.current.buffer[top - 1:bottom]]
 numbers = [i.replace(',','').rstrip('\xc2\xa3 ') for i in numbers]
-print('{:,}'.format(sum(decimal.Decimal(i) for i in numbers if i)))
+result = '{:,}'.format(sum(decimal.Decimal(i) for i in numbers if i))
+print(result)
 EOS
-endfunction
+let @= = "'".py3eval('result')."'"
+endfunction "}}}2
 
 "   Mappings and commands {{{1
 "   ---------------------
@@ -292,7 +294,7 @@ noremap Y y$
 " alphabetical - `:sort i`
 noremap <C-L> :noh<CR><C-L>
 "       <Leader>c  see above g:ftplugin_sql_omni_key
-vmap <Leader>= :<C-U>call Sum()<CR>
+vnoremap <Leader>= :<C-U>call Sum()<CR>
 nmap <silent> <Leader>c :set opfunc=Copfunc<CR>g@
 vmap <silent> <Leader>c :<C-U>call Copfunc(visualmode(), 1)<CR>
 nmap <silent> <Leader>cc :<C-U>call Copfunc(v:count1)<CR>
