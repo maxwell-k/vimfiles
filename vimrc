@@ -68,6 +68,7 @@ let g:sql_type_default = 'sqlite'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open            = 1
+let g:syntastic_ignore_files = ['.*dbext_sql_history.txt']
 let g:syntastic_sh_shellcheck_args = '-x'
 "Editing and movement {{{1
 "--------------------
