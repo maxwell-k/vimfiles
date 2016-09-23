@@ -56,6 +56,8 @@ let g:vimpager_passthrough = 1
 let g:dbext_default_profile = 'db'
 let g:dbext_default_profile_db = 'type=SQLITE:dbname=db.sqlite'
 let g:dbext_default_history_file = $XDG_CONFIG_HOME.'/dbext_sql_history.txt'
+let g:dbext_default_SQLITE_cmd_header =
+    \ ".mode column\n.headers ON\nPRAGMA foreign_keys = ON;\n"
 let g:ftplugin_sql_omni_key       = '<Leader>c' "See :help omni-sql-completion
 let g:ftplugin_sql_omni_key_right = '<Tab>'
 let g:ftplugin_sql_omni_key_left  = '<S-Tab>'
@@ -239,6 +241,16 @@ function! Copfunc(type, ...) " Straight yank {{{
     let &selection = sel_save | let @@ = reg_save
 endfunction
 " }}}
+function! Lopfunc(type, ...) " run in dbext {{{
+    let sel_save = &selection
+    let &selection = 'inclusive'
+    let reg_save = @@ " unnamed register
+
+    call jupyter#opfuncInput(a:type, a:0)
+    call dbext#DB_execSql(@@)
+
+    let &selection = sel_save | let @@ = reg_save
+endfunction " }}}
 function! Yopfunc(type, ...) " Yank as a single line separated by spaces {{{
     let sel_save = &selection | let &selection = 'inclusive' |let reg_save = @@
 
@@ -285,6 +297,9 @@ nmap <Leader>jj :<C-U>call jupyter#opfunc(v:count1)<CR>
 nmap <Leader>J :call jupyter#toggle()<CR>
 vnoremap <Leader>k <ESC>:if line("'<") > 1 \| 0,'<-1d \| en \|
     \ if line("'>") < line('$') \| '>+1,$d \| en<CR>0gg
+nmap <silent> <Leader>l :set opfunc=Lopfunc<CR>g@
+vmap <silent> <Leader>l :<C-U>call Lopfunc(visualmode(), 1)<CR>
+nmap <silent> <Leader>ll :<C-U>call Lopfunc(v:count1)<CR>
 noremap <Leader>/ :s,\\,/,g<CR><C-L>
 if has('win32') " has('clipboard') loads an nvim provider, showing a message
     noremap <Leader>p :%d _ \| pu + \| 1d<CR>
