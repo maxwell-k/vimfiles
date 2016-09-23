@@ -177,30 +177,6 @@ doautocmd Syntax
 highlight link eolWhiteSpace ErrorMsg
 "Functions {{{1
 "---------
-"
-function! s:open() "{{{2
-    if has('win32',)
-        " open the file linked from the current line
-        let l:command = '!C:\WINDOWS\system32\rundll32.exe '
-        let l:command .= 'url.dll,FileProtocolHandler '
-        if getline('.') =~# '^-\s*`'
-            "rst link inside a bullet
-            let l:path = getline('.')
-            let l:path = substitute(l:path, '^-\s\+`[^<]\+<file:', '', '')
-            let l:path = substitute(l:path, '>`_$', '', '')
-            let l:path = substitute(l:path, '/', '\\', 'g')
-        else
-            let l:path = ''
-            if &filetype ==# 'netrw'
-                let l:path .= b:netrw_curdir . '\'
-            end
-            let l:path .= substitute(getline('.'), '^\s\+', '', '')
-        endif
-        let l:command .= shellescape(l:path)
-        silent execute l:command
-        "echo l:command
-    endif
-endfunction
 function! Sum() range "{{{2
 "Assumes 'selection' is blockwise and inclusive
 python3 <<EOS
