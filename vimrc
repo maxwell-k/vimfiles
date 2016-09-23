@@ -207,18 +207,6 @@ if filereadable(expand('<sfile>:p:h').'/gentoo/osc52.vim')
     " can also be used via ":call" for example:
     " :call SendViaOSC52(@a)
 endif
-function! s:gmail_put() "{{{
-    if executable('api-put.py')
-        execute 'write !api-put.py'
-    else
-        execute 'write !api.py --put'
-    endif
-    set nomodified
-endfunction }}}
-function! s:gmail_get() "{{{
-    execute 'read !api.py'
-    if getline(1) ==# '' | 1delete | endif
-endfunction "}}}
 function! s:clipboard(value) abort "{{{
     if has('clipboard')
         let @+ = a:value
@@ -288,8 +276,8 @@ vmap <silent> <Leader>c :<C-U>call Copfunc(visualmode(), 1)<CR>
 nmap <silent> <Leader>cc :<C-U>call Copfunc(v:count1)<CR>
 noremap <Leader>fc :find cipher.bf<CR>
 noremap <Leader>ft :find Timesheet.txt<CR>
-noremap <Leader>g :call <SID>gmail_get()<CR>
-noremap <Leader>G :call <SID>gmail_put()<CR>
+noremap <Leader>g :call gmail#get()<CR>
+noremap <Leader>G :call gmail#put()<CR>
 noremap <Leader>i :echo synIDattr(synID(line("."),col("."),1),"name")<CR>
 nmap <Leader>j :set opfunc=jupyter#opfunc<CR>g@
 vmap <Leader>j :<C-U>call jupyter#opfunc(visualmode(), 1)<CR>
