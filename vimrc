@@ -207,87 +207,25 @@ if filereadable(expand('<sfile>:p:h').'/gentoo/osc52.vim')
     " can also be used via ":call" for example:
     " :call SendViaOSC52(@a)
 endif
-function! s:clipboard(value) abort "{{{
-    if has('clipboard')
-        let @+ = a:value
-    else
-        if exists('*SendViaOSC52')
-            call SendViaOSC52(a:value)
-        else
-            echom 'Not supported'
-        end
-    endif
-endfunction "}}}
-function! Copfunc(type, ...) " Straight yank {{{
-    let sel_save = &selection
-    let &selection = 'inclusive'
-    let reg_save = @@ " unnamed register
-
-    call jupyter#opfuncInput(a:type, a:0)
-    call s:clipboard(@@)
-
-    let &selection = sel_save | let @@ = reg_save
-endfunction
 " }}}
-function! Lopfunc(type, ...) " run in dbext {{{
-    let sel_save = &selection
-    let &selection = 'inclusive'
-    let reg_save = @@ " unnamed register
 
-    call jupyter#opfuncInput(a:type, a:0)
-    call dbext#DB_execSql(@@)
-
-    let &selection = sel_save | let @@ = reg_save
-endfunction " }}}
-function! Yopfunc(type, ...) " Yank as a single line separated by spaces {{{
-    let sel_save = &selection | let &selection = 'inclusive' |let reg_save = @@
-
-    call jupyter#opfuncInput(a:type, a:0)
-    let @@ = substitute(@@, '\\\n', '', 'g')
-    let @@ = substitute(@@, '\n', ' ', 'g')
-    let @@ = substitute(@@, '^ \+', '', '')
-    let @@ = substitute(@@, ' \+$', '', '')
-    let @@ = substitute(@@, ' \+', ' ', 'g')
-    call s:clipboard(@@)
-
-    let &selection = sel_save | let @@ = reg_save
-endfunction
-" }}}
-function! Yopfunc2(type, ...) " Yank as with whitespace removed {{{
-    let sel_save = &selection | let &selection = 'inclusive' |let reg_save = @@
-
-    call jupyter#opfuncInput(a:type, a:0)
-    let @@ = substitute(@@, '\n', '', 'g')
-    let @@ = substitute(@@, ' \+', '', 'g')
-    call s:clipboard(@@)
-
-    let &selection = sel_save | let @@ = reg_save
-endfunction
-"}}}
-" }}}
 if filereadable('/etc/gentoo-release') | inoremap Â£ £| endif
 noremap Y y$
 " alphabetical - `:sort i`
 noremap <C-L> :noh<CR><C-L>
 "       <Leader>c  see above g:ftplugin_sql_omni_key
 vnoremap <Leader>= :<C-U>call Sum()<CR>
-nmap <silent> <Leader>c :set opfunc=Copfunc<CR>g@
-vmap <silent> <Leader>c :<C-U>call Copfunc(visualmode(), 1)<CR>
-nmap <silent> <Leader>cc :<C-U>call Copfunc(v:count1)<CR>
+call opfunc#opfuncmap('c')
 noremap <Leader>fc :find cipher.bf<CR>
 noremap <Leader>ft :find Timesheet.txt<CR>
 noremap <Leader>g :call gmail#get()<CR>
 noremap <Leader>G :call gmail#put()<CR>
 noremap <Leader>i :echo synIDattr(synID(line("."),col("."),1),"name")<CR>
-nmap <Leader>j :set opfunc=jupyter#opfunc<CR>g@
-vmap <Leader>j :<C-U>call jupyter#opfunc(visualmode(), 1)<CR>
-nmap <Leader>jj :<C-U>call jupyter#opfunc(v:count1)<CR>
+call opfunc#opfuncmap('j', 'jupyter')
 nmap <Leader>J :call jupyter#toggle()<CR>
 vnoremap <Leader>k <ESC>:if line("'<") > 1 \| 0,'<-1d \| en \|
     \ if line("'>") < line('$') \| '>+1,$d \| en<CR>0gg
-nmap <silent> <Leader>l :set opfunc=Lopfunc<CR>g@
-vmap <silent> <Leader>l :<C-U>call Lopfunc(visualmode(), 1)<CR>
-nmap <silent> <Leader>ll :<C-U>call Lopfunc(v:count1)<CR>
+call opfunc#opfuncmap('l')
 noremap <Leader>/ :s,\\,/,g<CR><C-L>
 if has('win32') " has('clipboard') loads an nvim provider, showing a message
     noremap <Leader>p :%d _ \| pu + \| 1d<CR>
@@ -299,12 +237,8 @@ noremap <Leader>r :SyntasticToggleMode<CR>
 noremap <Leader>t :GitGutterToggle<CR>
 noremap <Leader>v :set paste! paste?<CR>
 noremap <Leader>w :w ~/notes/<C-R>=strftime("mn%Y%m%d-", localtime())<CR>
-nmap <silent> <Leader>y :set opfunc=Yopfunc<CR>g@
-vmap <silent> <Leader>y :<C-U>call Yopfunc(visualmode(), 1)<CR>
-nmap <silent> <Leader>yy :<C-U>call Yopfunc(v:count1)<CR>
-nmap <silent> <Leader>Y :set opfunc=Yopfunc2<CR>g@
-vmap <silent> <Leader>Y :<C-U>call Yopfunc2(visualmode(), 1)<CR>
-nmap <silent> <Leader>YY :<C-U>call Yopfunc2(v:count1)<CR>
+call opfunc#opfuncmap('y')
+call opfunc#opfuncmap('Y')
 " The two lines below prevent vim-gitgutter over-riding [c and ]c
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
