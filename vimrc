@@ -178,17 +178,6 @@ highlight link eolWhiteSpace ErrorMsg
 "Functions {{{1
 "---------
 "
-function! s:get_visual_selection() "{{{2
-  " Return the visually selected text, from:
-  " http://stackoverflow.com/questions/1533565/
-  " how-to-get-visually-selected-text-in-vimscript
-  let [lnum1, col1] = getpos("'<")[1:2]
-  let [lnum2, col2] = getpos("'>")[1:2]
-  let lines = getline(lnum1, lnum2)
-  let lines[-1] = lines[-1][: col2 - (&selection ==# 'inclusive' ? 1 : 2)]
-  let lines[0] = lines[0][col1 - 1:]
-  return join(lines, "\n")
-endfunction
 function! s:open() "{{{2
     if has('win32',)
         " open the file linked from the current line
