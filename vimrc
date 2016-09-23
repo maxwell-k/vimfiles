@@ -217,13 +217,24 @@ function! s:gmail_get() "{{{
     execute 'read !api.py'
     if getline(1) ==# '' | 1delete | endif
 endfunction "}}}
+function! s:clipboard(value) abort "{{{
+    if has('clipboard')
+        let @+ = a:value
+    else
+        if exists('*SendViaOSC52')
+            call SendViaOSC52(a:value)
+        else
+            echom 'Not supported'
+        end
+    endif
+endfunction "}}}
 function! Copfunc(type, ...) " Straight yank {{{
     let sel_save = &selection
     let &selection = 'inclusive'
     let reg_save = @@ " unnamed register
 
     call jupyter#opfuncInput(a:type, a:0)
-    call jupyter#opfuncOutput(@@)
+    call s:clipboard(@@)
 
     let &selection = sel_save | let @@ = reg_save
 endfunction
@@ -237,7 +248,7 @@ function! Yopfunc(type, ...) " Yank as a single line separated by spaces {{{
     let @@ = substitute(@@, '^ \+', '', '')
     let @@ = substitute(@@, ' \+$', '', '')
     let @@ = substitute(@@, ' \+', ' ', 'g')
-    call jupyter#opfuncOutput(@@)
+    call s:clipboard(@@)
 
     let &selection = sel_save | let @@ = reg_save
 endfunction
@@ -248,7 +259,7 @@ function! Yopfunc2(type, ...) " Yank as with whitespace removed {{{
     call jupyter#opfuncInput(a:type, a:0)
     let @@ = substitute(@@, '\n', '', 'g')
     let @@ = substitute(@@, ' \+', '', 'g')
-    call jupyter#opfuncOutput(@@)
+    call s:clipboard(@@)
 
     let &selection = sel_save | let @@ = reg_save
 endfunction
