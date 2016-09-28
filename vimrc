@@ -53,6 +53,7 @@ let g:vimpager_passthrough = 1
 " Plugin options in global variables {{{2
 " ----------------------------------
 "
+let g:dbext_default_always_prompt_for_variables=1
 let g:dbext_default_profile = 'db'
 let g:dbext_default_profile_db = 'type=SQLITE:dbname=db.sqlite'
 let g:dbext_default_history_file = $XDG_CONFIG_HOME.'/dbext_sql_history.txt'
