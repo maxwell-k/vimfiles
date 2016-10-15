@@ -226,7 +226,8 @@ call opfunc#opfuncmap('j', 'jupyter')
 nmap <Leader>J :call jupyter#toggle()<CR>
 vnoremap <Leader>k <ESC>:if line("'<") > 1 \| 0,'<-1d \| en \|
     \ if line("'>") < line('$') \| '>+1,$d \| en<CR>0gg
-call opfunc#opfuncmap('l')
+call opfunc#opfuncmap('l')  "run in dbext
+call opfunc#opfuncmap('L')  "run in dbext with .mode list
 noremap <Leader>/ :s,\\,/,g<CR><C-L>
 if has('win32') " has('clipboard') loads an nvim provider, showing a message
     noremap <Leader>p :%d _ \| pu + \| 1d<CR>
