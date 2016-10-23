@@ -224,6 +224,7 @@ noremap <Leader>fc :find cipher.bf<CR>
 noremap <Leader>ft :find Timesheet.txt<CR>
 noremap <Leader>g :call gmail#get()<CR>
 noremap <Leader>G :call gmail#put()<CR>
+noremap <Leader>h :call rst#headings()<CR>
 noremap <Leader>i :echo synIDattr(synID(line("."),col("."),1),"name")<CR>
 call opfunc#opfuncmap('j', 'jupyter')
 nmap <Leader>J :call jupyter#toggle()<CR>
