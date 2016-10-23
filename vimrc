@@ -219,6 +219,7 @@ noremap Y y$
 noremap <C-L> :noh<CR><C-L>
 "       <Leader>c  see above g:ftplugin_sql_omni_key
 vnoremap <Leader>= :<C-U>call Sum()<CR>
+nmap <Leader>b :call vimrc#toggle()<CR>
 call opfunc#opfuncmap('c')
 noremap <Leader>fc :find cipher.bf<CR>
 noremap <Leader>ft :find Timesheet.txt<CR>
