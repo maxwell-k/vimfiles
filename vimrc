@@ -241,7 +241,6 @@ else
 endif
 noremap <Leader>R :SyntasticReset<CR>
 noremap <Leader>r :SyntasticToggleMode<CR>
-noremap <Leader>t :GitGutterToggle<CR>
 noremap <Leader>v :set paste! paste?<CR>
 noremap <Leader>w :w ~/notes/<C-R>=strftime("mn%Y%m%d-", localtime())<CR>
 call opfunc#opfuncmap('y')
