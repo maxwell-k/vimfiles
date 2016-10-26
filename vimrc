@@ -4,17 +4,9 @@
 "
 " Installation {{{1
 "
-" Windows
-" Add the two lines below to %USERPROFILE\AppData\Local\Programs\vim\vimrc:
-" set nocompatible
-" source C:\Users\MaxwellK\Documents\configuration\vimrc
+" Windows: follow instructions in ./README
+" Unix: Add ``source /root/configuration/vimrc`` to /etc/vim/vimrc.local
 "
-" Unix
-" Add the line below to /etc/vim/vimrc.local:
-" source /root/configuration/vimrc
-"
-" Testing
-" ``gvim -u NORC -N`` starts vim with no rc file and in nocompatible mode.
 " }}}
 if !has('nvim') | set encoding=utf-8 | endif
 scriptencoding utf-8
