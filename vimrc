@@ -155,8 +155,7 @@ endif
 if has('win32')
 	colorscheme summerfruit256
 else
-    colorscheme solarized
-    set background=light
+    colorscheme solarized | set background=dark
 endif
 
 " Only works if a single option per line
