@@ -226,9 +226,9 @@ call opfunc#opfuncmap('l')  "run in dbext
 call opfunc#opfuncmap('L')  "run in dbext with .mode list
 noremap <Leader>/ :s,\\,/,g<CR><C-L>
 if has('win32') " has('clipboard') loads an nvim provider, showing a message
-    noremap <Leader>p :%d _ \| pu + \| 1d<CR>
+    noremap <Leader>p :%d _ \| pu + \| 1d \| normal G<CR>
 else
-    noremap <Leader>p :%d _ \| pu " \| 1d<CR>
+    noremap <Leader>p :%d _ \| pu " \| 1d \| normal G<CR>
 endif
 noremap <Leader>R :SyntasticReset<CR>
 noremap <Leader>r :SyntasticToggleMode<CR>
