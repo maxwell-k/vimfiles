@@ -248,6 +248,11 @@ call opfunc#opfuncmap('Y')
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
 command! -nargs=+ Jupyter :call jupyter#command(<q-args>)
+if has('win32')
+    inoremap <C-v> <C-r>+
+    map <C-v> :pu +<CR>
+endif
+
 "Digraphs {{{1
 "--------
 "
