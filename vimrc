@@ -23,15 +23,19 @@ set modeline                    "use modelines
 set exrc                        "look for local _vimrc"
 set secure                      "to match above
 
-execute 'source '.expand('<sfile>:p:h')
-    \ .'/runtimepath/bundle/vim-pathogen/autoload/pathogen.vim'
-call pathogen#infect(expand('<sfile>:p:h').'/runtimepath/bundle/{}')
+let s:path = expand('<sfile>:p:h')
+let s:path .= '/runtimepath/bundle/vim-pathogen/autoload/pathogen.vim'
+if filereadable(s:path) | execute 'source '.s:path | endif
+unlet s:path
+if exists("g:loaded_pathogen")
+    call pathogen#infect(expand('<sfile>:p:h').'/runtimepath/bundle/{}')
+endif
 " pathogen#infect must come before set runtimepath
 if isdirectory(expand('~/timesheet/bundle'))
     set runtimepath+=~/timesheet/bundle
 endif
 execute 'set runtimepath^='.expand('<sfile>:p:h').'/runtimepath/'
-call pathogen#helptags()
+if exists("g:loaded_pathogen") | call pathogen#helptags() | endif
 execute 'set runtimepath+='.expand('<sfile>:p:h').'/runtimepath/after'
 "http://vim.1045645.n5.nabble.com/Issues-with-ftdetect-td1193595.html
 filetype off
@@ -145,9 +149,12 @@ if has('gui_win32')
     set lines=35
 endif
 if has('win32')
-	colorscheme summerfruit256
+    try | colorscheme summerfruit256 | catch /E185/ | endtry
 else
-    colorscheme solarized | set background=dark
+    try
+        colorscheme solarized | set background=dark
+    catch /E185/
+    endtry
 endif
 
 " Only works if a single option per line
