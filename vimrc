@@ -221,6 +221,7 @@ vnoremap <Leader>= :<C-U>call Sum()<CR>
 nmap <Leader>b :call vimrc#toggle()<CR>
 call opfunc#opfuncmap('c')
 noremap <Leader>fc :find cipher.bf<CR>
+noremap <Leader>fu :find URLs.txt<CR>
 noremap <Leader>ft :find Timesheet.txt<CR>
 noremap <Leader>g :call gmail#get()<CR>
 noremap <Leader>G :call gmail#put()<CR>
@@ -248,10 +249,6 @@ call opfunc#opfuncmap('Y')
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
 command! -nargs=+ Jupyter :call jupyter#command(<q-args>)
-if has('win32')
-    inoremap <C-v> <C-r>+
-    map <C-v> :pu +<CR>
-endif
 
 "Digraphs {{{1
 "--------
