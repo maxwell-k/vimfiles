@@ -212,7 +212,7 @@ endif
 " }}}
 
 if filereadable('/etc/gentoo-release') | inoremap Â£ £| endif
-inoremap <S-Tab> <C-R>=sql#completetables()<CR>
+inoremap <Leader>t <C-R>=sql#complete_tables()<CR>
 noremap Y y$
 " alphabetical - `:sort i`
 noremap <C-L> :noh<CR><C-L>
