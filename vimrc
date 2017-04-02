@@ -10,7 +10,8 @@
 " }}}
 if !has('nvim') | set encoding=utf-8 | endif
 scriptencoding utf-8
-if !has('nvim') | set viminfo='20,<50,h,n$TMP/viminfo | endif
+if !has('nvim') | if has('win32')| set viminfo='20,<50,h,n$TMP/viminfo |
+    \ else | set viminfo='20,<50,h,n/tmp/cache/viminfo | endif | endif
 if has('win32') | let $HOME=$USERPROFILE.'\Documents' | endif
 if has('win32') && getcwd() ==? $USERPROFILE | cd $HOME | endif
 
