@@ -23,3 +23,6 @@
 [submodule "runtimepath/bundle/vim-maktaba"]
 	path = runtimepath/bundle/vim-maktaba
 	url = https://github.com/google/vim-maktaba/
+[submodule "tests/pack/testing/opt/vader"]
+	path = tests/pack/tests/opt/vader
+	url = https://github.com/junegunn/vader.vim
