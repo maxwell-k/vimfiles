@@ -146,16 +146,12 @@ autocmd StdInReadPost * setlocal nowrap
 " -------
 "
 if has('gui_win32')
-    set guifont=Source_Code_Pro:h14,Consolas:h14
-    set lines=35
+    set guifont=Source_Code_Pro:h14,Consolas:h14 | set lines=35
 endif
 if has('win32')
     try | colorscheme summerfruit256 | catch /E185/ | endtry
 else
-    try
-        colorscheme solarized | set background=dark
-    catch /E185/
-    endtry
+    try | colorscheme solarized | set background=dark | catch /E185/ | endtry
 endif
 
 " Only works if a single option per line
