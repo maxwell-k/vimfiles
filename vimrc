@@ -51,11 +51,6 @@ let g:vimpager_passthrough = 1
 " ----------------------------------
 "
 let g:gitgutter_enabled = 0
-let g:is_posix=1                "$() isn't an error in sh
-let g:netrw_banner=0
-let g:rst_syntax_code_list = ['vim', 'java', 'sql', 'python', 'sh']
-let g:sh_fold_enabled= 3
-let g:sql_type_default = 'sqlite'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open            = 1
@@ -197,11 +192,9 @@ endif
 " }}}
 
 if filereadable('/etc/gentoo-release') | inoremap Â£ £| endif
-inoremap <Leader>t <C-R>=sql#complete_tables()<CR>
 noremap Y y$
 " alphabetical - `:sort i`
 noremap <C-L> :noh<CR><C-L>
-"       <Leader>c  see above g:ftplugin_sql_omni_key
 vnoremap <Leader>= :<C-U>call Sum()<CR>
 nmap <Leader>b :call vimrc#toggle()<CR>
 call opfunc#opfuncmap('c')
