@@ -222,6 +222,8 @@ noremap <Leader>R :SyntasticReset<CR>
 noremap <Leader>r :SyntasticToggleMode<CR>
 noremap <Leader>v :set paste! paste?<CR>
 noremap <Leader>w :call rst#wrap()<CR>
+noremap <Leader>\ :s,\\,/,g<CR>
+noremap <Leader>/ :s,/,\\,g<CR>
 call opfunc#opfuncmap('y') " :join then :yank
 call opfunc#opfuncmap('Y') " yank without line continuation
 " The two lines below prevent vim-gitgutter over-riding [c and ]c
