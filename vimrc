@@ -12,8 +12,8 @@ if !has('nvim') | set encoding=utf-8 viminfo='20,<50,h | if has('win32')
     set viminfo+=n$TMP/viminfo | elseif filereadable('/etc/gentoo-release')
     set viminfo+=n/tmp/cache/viminfo | endif | endif
 scriptencoding utf-8
-if has('win32') | let $HOME=$USERPROFILE.'\Documents' | endif
-if has('win32') && getcwd() ==? $USERPROFILE | cd $HOME | endif
+if !has('nvim') | if has('win32')| set viminfo='20,<50,h,n$TMP/viminfo |
+    \ else | set viminfo='20,<50,h,n/tmp/cache/viminfo | endif | endif
 
 if v:version < 703 | finish | endif
 
@@ -32,9 +32,6 @@ if exists('g:loaded_pathogen')
     call pathogen#infect(expand('<sfile>:p:h').'/runtimepath/bundle/{}')
 endif
 " pathogen#infect must come before set runtimepath
-if isdirectory(expand('~/timesheet/bundle'))
-    set runtimepath+=~/timesheet/bundle
-endif
 execute 'set runtimepath^='.expand('<sfile>:p:h').'/runtimepath/'
 if exists('g:loaded_pathogen') | call pathogen#helptags() | endif
 execute 'set runtimepath+='.expand('<sfile>:p:h').'/runtimepath/after'
@@ -83,8 +80,7 @@ if filereadable('/etc/gentoo-release') | set laststatus=2 | endif
 "--------------------------------
 "
 " Doesn't search dotfiles like /.vim/
-set path+=$HOME/**              "recursively search below home directory
-if has('win32') | set path+=$HOME/../Desktop/** | endif
+set path+=**                    "recursively search below files directory
 set suffixesadd+=.txt
 set suffixesadd+=.bf
 set isfname+=?                  "for web addresses
@@ -200,9 +196,6 @@ nmap <Leader>b :call vimrc#toggle()<CR>
 call opfunc#opfuncmap('c') " straight yank
 noremap <Leader>fc :find cipher.bf<CR>
 noremap <Leader>fu :find URLs.txt<CR>
-noremap <Leader>ft :find Timesheet.txt<CR>
-noremap <Leader>g :call gmail#get()<CR>
-noremap <Leader>G :call gmail#put()<CR>
 noremap <Leader>h :call rst#headings()<CR>
 noremap <Leader>i :echo synIDattr(synID(line("."),col("."),1),"name")<CR>
 call opfunc#opfuncmap('j', 'jupyter') " run in jupyter
