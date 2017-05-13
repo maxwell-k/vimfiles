@@ -222,6 +222,7 @@ noremap <Leader>R :SyntasticReset<CR>
 noremap <Leader>r :SyntasticToggleMode<CR>
 noremap <Leader>v :set paste! paste?<CR>
 noremap <Leader>w :call rst#wrap()<CR>
+noremap <Leader>W :call opfunc#clipboard(rst#link())<CR>
 noremap <Leader>\ :s,\\,/,g<CR>
 noremap <Leader>/ :s,/,\\,g<CR>
 call opfunc#opfuncmap('y') " :join then :yank
