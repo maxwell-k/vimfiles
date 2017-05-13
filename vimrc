@@ -146,6 +146,10 @@ set hlsearch
 set splitbelow
 set showcmd
 set colorcolumn=80
+let s:list_settings = 'set list showbreak=→ '
+let s:list_settings .= 'listchars=trail:←,tab:→—,extends:▓,precedes:▓'
+execute s:list_settings
+
 " workaround for windows console
 if !has('gui_running') | set highlight+=vr | set t_Co=16 | endif
 
@@ -171,6 +175,16 @@ result = '{:,}'.format(sum(decimal.Decimal(i) for i in numbers if i))
 print(result)
 EOS
 let @= = "'".py3eval('result')."'"
+endfunction "}}}2
+function! ToggleListMode() "{{{2
+" Toggle through three states, ``:help digraph-table`` lists symbols
+    if !&list
+        set list listchars&vim showbreak&vim
+    elseif &listchars==#'eol:$'
+        execute s:list_settings
+    else
+        set nolist listchars&vim showbreak&vim
+    end
 endfunction "}}}2
 
 "   Mappings and commands {{{1
@@ -213,6 +227,7 @@ else
 endif
 noremap <Leader>R :SyntasticReset<CR>
 noremap <Leader>r :SyntasticToggleMode<CR>
+noremap <Leader>t :call ToggleListMode()<CR>
 noremap <Leader>v :set paste! paste?<CR>
 noremap <Leader>w :call rst#wrap()<CR>
 noremap <Leader>W :call opfunc#clipboard(rst#link())<CR>
