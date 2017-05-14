@@ -202,6 +202,7 @@ endif
 " }}}
 
 if filereadable('/etc/gentoo-release') | inoremap Â£ £| endif
+if has('gui') | imap <C-S-v> <C-r>+ | endif
 noremap Y y$
 " alphabetical - `:sort i`
 noremap <C-L> :noh<CR><C-L>
