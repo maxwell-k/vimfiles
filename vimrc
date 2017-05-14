@@ -202,7 +202,9 @@ endif
 " }}}
 
 if filereadable('/etc/gentoo-release') | inoremap Â£ £| endif
-if has('gui') | imap <C-S-v> <C-r>+ | endif
+if has('gui') "vim sees no difference <C-v> or <C-S-v>; use <C-q> for literal
+    imap <C-S-v> <C-r>+
+endif
 noremap Y y$
 " alphabetical - `:sort i`
 noremap <C-L> :noh<CR><C-L>
