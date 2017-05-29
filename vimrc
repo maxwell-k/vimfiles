@@ -222,6 +222,8 @@ vnoremap <Leader>k <ESC>:if line("'<") > 1 \| 0,'<-1d \| en \|
 call opfunc#opfuncmap('l') " run in dbext
 call opfunc#opfuncmap('L') " run in dbext with .mode list
 noremap <Leader>m :call vimrc#toggle_jobs()<CR>
+noremap <Leader>n :silent!
+    \ 5new +setlocal\ buftype=nofile\ bufhidden=hide\ noswapfile<CR><CR>
 noremap <Leader>/ :s,\\,/,g<CR><C-L>
 if has('win32') " has('clipboard') loads an nvim provider, showing a message
     noremap <Leader>p :%d _ \| pu + \| 1d \| normal G<CR>
