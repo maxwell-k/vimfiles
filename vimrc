@@ -194,11 +194,18 @@ endfunction "}}}2
 " Clipboard on ChromeOS: First save
 " https://raw.githubusercontent.com/chromium/hterm/master/etc/osc52.vim to
 " gentoo/osc52.vim
-if filereadable(expand('<sfile>:p:h').'/gentoo/osc52.vim')
+if filereadable(expand('<sfile>:p:h').'/gentoo/osc52.vim') "{{{2
     execute 'source '.expand('<sfile>:p:h').'/gentoo/osc52.vim'
     " can also be used via ":call" for example:
     " :call SendViaOSC52(@a)
 endif
+function! Cipher() "{{{2
+    if filereadable(expand('~/Documents/safe/cipher.bf'))
+        e ~/Documents/safe/cipher.bf
+    else
+        find safe/cipher.bf
+    endif
+endfunction
 " }}}
 
 if filereadable('/etc/gentoo-release') | inoremap Â£ £| endif
@@ -211,7 +218,8 @@ noremap <C-L> :noh<CR><C-L>
 vnoremap <Leader>= :<C-U>call Sum()<CR>
 nmap <Leader>b :call vimrc#toggle()<CR>
 call opfunc#opfuncmap('c') " straight yank
-noremap <Leader>fc :find cipher.bf<CR>
+if filereadable('/etc/gentoo-release') | set laststatus=2 | endif
+noremap <Leader>fc :call Cipher()<CR>
 noremap <Leader>fu :find URLs.txt<CR>
 noremap <Leader>h :call rst#headings()<CR>
 noremap <Leader>i :echo synIDattr(synID(line("."),col("."),1),"name")<CR>
@@ -224,6 +232,9 @@ call opfunc#opfuncmap('L') " run in dbext with .mode list
 noremap <Leader>m :call vimrc#toggle_jobs()<CR>
 noremap <Leader>n :silent!
     \ 5new +setlocal\ buftype=nofile\ bufhidden=hide\ noswapfile<CR><CR>
+if has('win32')
+    noremap <Leader>N :%y<CR>:silent !powershell notes.ps1<CR>
+endif
 noremap <Leader>/ :s,\\,/,g<CR><C-L>
 if has('win32') " has('clipboard') loads an nvim provider, showing a message
     noremap <Leader>p :%d _ \| pu + \| 1d \| normal G<CR>
