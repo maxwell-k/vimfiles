@@ -197,7 +197,7 @@ noremap Y y$
 noremap <C-L> :noh<CR><C-L>
 vnoremap <Leader>= :<C-U>call Sum()<CR>
 nmap <Leader>b :call vimrc#toggle()<CR>
-call opfunc#opfuncmap('c')
+call opfunc#opfuncmap('c') " straight yank
 noremap <Leader>fc :find cipher.bf<CR>
 noremap <Leader>fu :find URLs.txt<CR>
 noremap <Leader>ft :find Timesheet.txt<CR>
@@ -205,12 +205,12 @@ noremap <Leader>g :call gmail#get()<CR>
 noremap <Leader>G :call gmail#put()<CR>
 noremap <Leader>h :call rst#headings()<CR>
 noremap <Leader>i :echo synIDattr(synID(line("."),col("."),1),"name")<CR>
-call opfunc#opfuncmap('j', 'jupyter')
+call opfunc#opfuncmap('j', 'jupyter') " run in jupyter
 nmap <Leader>J :call jupyter#toggle()<CR>
 vnoremap <Leader>k <ESC>:if line("'<") > 1 \| 0,'<-1d \| en \|
     \ if line("'>") < line('$') \| '>+1,$d \| en<CR>0gg
-call opfunc#opfuncmap('l')  "run in dbext
-call opfunc#opfuncmap('L')  "run in dbext with .mode list
+call opfunc#opfuncmap('l') " run in dbext
+call opfunc#opfuncmap('L') " run in dbext with .mode list
 noremap <Leader>m :call vimrc#toggle_jobs()<CR>
 noremap <Leader>/ :s,\\,/,g<CR><C-L>
 if has('win32') " has('clipboard') loads an nvim provider, showing a message
@@ -222,8 +222,8 @@ noremap <Leader>R :SyntasticReset<CR>
 noremap <Leader>r :SyntasticToggleMode<CR>
 noremap <Leader>v :set paste! paste?<CR>
 noremap <Leader>w :call rst#wrap()<CR>
-call opfunc#opfuncmap('y')
-call opfunc#opfuncmap('Y')
+call opfunc#opfuncmap('y') " :join then :yank
+call opfunc#opfuncmap('Y') " yank without line continuation
 " The two lines below prevent vim-gitgutter over-riding [c and ]c
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
