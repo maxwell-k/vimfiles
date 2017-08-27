@@ -8,10 +8,10 @@
 " Unix: Add ``source /root/configuration/vimrc`` to /etc/vim/vimrc.local
 "
 " }}}
-if !has('nvim') | set encoding=utf-8 | endif
+if !has('nvim') | set encoding=utf-8 viminfo='20,<50,h | if has('win32')
+    set viminfo+=n$TMP/viminfo | elseif filereadable('/etc/gentoo-release')
+    set viminfo=n/tmp/cache/viminfo | endif | endif
 scriptencoding utf-8
-if !has('nvim') | if has('win32')| set viminfo='20,<50,h,n$TMP/viminfo |
-    \ else | set viminfo='20,<50,h,n/tmp/cache/viminfo | endif | endif
 if has('win32') | let $HOME=$USERPROFILE.'\Documents' | endif
 if has('win32') && getcwd() ==? $USERPROFILE | cd $HOME | endif
 
