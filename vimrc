@@ -10,7 +10,7 @@
 " }}}
 if !has('nvim') | set encoding=utf-8 viminfo='20,<50,h | if has('win32')
     set viminfo+=n$TMP/viminfo | elseif filereadable('/etc/gentoo-release')
-    set viminfo=n/tmp/cache/viminfo | endif | endif
+    set viminfo+=n/tmp/cache/viminfo | endif | endif
 scriptencoding utf-8
 if has('win32') | let $HOME=$USERPROFILE.'\Documents' | endif
 if has('win32') && getcwd() ==? $USERPROFILE | cd $HOME | endif
