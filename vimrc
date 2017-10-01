@@ -17,6 +17,8 @@ if !has('nvim') | if has('win32')| set viminfo='20,<50,h,n$TMP/viminfo |
 
 if v:version < 703 | finish | endif
 
+let g:markdown_folding=1
+
 " File types, plugins and runtimepath {{{1
 " -----------------------------------
 "
