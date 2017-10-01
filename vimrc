@@ -263,8 +263,9 @@ command! -nargs=+ Jupyter :call jupyter#command(<q-args>)
 "   http://www.cs.tut.fi/~jkorpela/dashes.html
 "   Use echo 0x2026 to convert to decimal
 "   3 em dashes have no space in times or arial but do in calibri
-digraph .. 8230 " ellipsis …
-digraph n- 8211 "em dash —
-digraph m- 8212 "em dash –
-digraph bu 8226 "bullet •
+digraphs .. 8230 " ellipsis …
+digraphs n- 8211 "em dash —
+digraphs m- 8212 "em dash –
+digraphs bu 8226 "bullet •
+digraphs bb 9744 bx 9745 " ballot box ☐ and ballot box with check ☑
 " vim: set foldmethod=marker :{{{1
