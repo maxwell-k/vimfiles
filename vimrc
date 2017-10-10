@@ -16,8 +16,6 @@ scriptencoding utf-8
 
 if v:version < 703 | finish | endif
 
-let g:markdown_folding=1
-
 " File types, plugins and runtimepath {{{1
 " -----------------------------------
 "
@@ -54,6 +52,8 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open            = 1
 let g:syntastic_ignore_files = ['.*dbext_sql_history.txt']
 let g:syntastic_sh_shellcheck_args = '-x'
+let g:markdown_folding=1
+
 "Editing and movement {{{1
 "--------------------
 "
