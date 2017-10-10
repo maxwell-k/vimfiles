@@ -1,6 +1,3 @@
-[submodule "runtimepath/bundle/syntastic"]
-	path = runtimepath/bundle/syntastic
-	url = https://github.com/vim-syntastic/syntastic/
 [submodule "runtimepath/bundle/vim-pathogen"]
 	path = runtimepath/bundle/vim-pathogen
 	url = https://github.com/tpope/vim-pathogen.git
@@ -17,9 +14,6 @@
 [submodule "runtimepath/bundle/dbext.vim"]
 	path = runtimepath/bundle/dbext.vim
 	url = https://github.com/maxwell-k/dbext.vim
-[submodule "runtimepath/bundle/summerfruit256.vim"]
-	path = runtimepath/bundle/summerfruit256.vim
-	url = https://github.com/vim-scripts/summerfruit256.vim
 [submodule "runtimepath/bundle/vim-maktaba"]
 	path = runtimepath/bundle/vim-maktaba
 	url = https://github.com/google/vim-maktaba/
