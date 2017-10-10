@@ -70,7 +70,7 @@ set smartcase                   "override ignorecase if upper case characters
 
 "Interface options {{{2
 "-----------------
-set kp=                         "use `K` for `:help`
+set keywordprg=                 "use `K` for `:help`
 set wildmenu                    "normal mode tab completion menu
 set confirm                     "prompt before discarding changes
 set history=200
