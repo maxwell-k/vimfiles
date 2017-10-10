@@ -30,7 +30,7 @@ let s:path .= '/runtimepath/bundle/vim-pathogen/autoload/pathogen.vim'
 if filereadable(s:path) | execute 'source '.s:path | endif
 unlet s:path
 if exists('g:loaded_pathogen')
-    call pathogen#infect(expand('<sfile>:p:h').'/runtimepath/bundle/{}')
+  call pathogen#infect(expand('<sfile>:p:h').'/runtimepath/bundle/{}')
 endif
 " pathogen#infect must come before set runtimepath
 execute 'set runtimepath^='.expand('<sfile>:p:h').'/runtimepath/'
@@ -126,12 +126,12 @@ autocmd StdInReadPost * setlocal nowrap
 " -------
 "
 if has('gui_win32')
-    set guifont=Source_Code_Pro:h14,Consolas:h14 | set lines=35
+  set guifont=Source_Code_Pro:h14,Consolas:h14 | set lines=35
 endif
 if has('win32')
-    try | colorscheme summerfruit256 | catch /E185/ | endtry
+  try | colorscheme summerfruit256 | catch /E185/ | endtry
 else
-    try | colorscheme solarized | set background=dark | catch /E185/ | endtry
+  try | colorscheme solarized | set background=dark | catch /E185/ | endtry
 endif
 
 " Only works if a single option per line
@@ -157,7 +157,7 @@ if !has('gui_running') | set highlight+=vr | set t_Co=16 | endif
 " The order of the next two lines is essential
 syntax enable                   "syntax highlighting
 autocmd Syntax * syntax match eolWhiteSpace display excludenl containedin=ALL
-    \ "\s\+$"
+  \ "\s\+$"
 doautocmd Syntax
 highlight link eolWhiteSpace ErrorMsg
 "Functions {{{1
@@ -179,13 +179,13 @@ let @= = "'".py3eval('result')."'"
 endfunction "}}}2
 function! ToggleListMode() "{{{2
 " Toggle through three states, ``:help digraph-table`` lists symbols
-    if !&list
-        set list listchars&vim showbreak&vim
-    elseif &listchars==#'eol:$'
-        execute s:list_settings
-    else
-        set nolist listchars&vim showbreak&vim
-    end
+  if !&list
+    set list listchars&vim showbreak&vim
+  elseif &listchars==#'eol:$'
+    execute s:list_settings
+  else
+    set nolist listchars&vim showbreak&vim
+  end
 endfunction "}}}2
 
 "   Mappings and commands {{{1
@@ -196,22 +196,22 @@ endfunction "}}}2
 " https://raw.githubusercontent.com/chromium/hterm/master/etc/osc52.vim to
 " gentoo/osc52.vim
 if filereadable(expand('<sfile>:p:h').'/gentoo/osc52.vim') "{{{2
-    execute 'source '.expand('<sfile>:p:h').'/gentoo/osc52.vim'
-    " can also be used via ":call" for example:
-    " :call SendViaOSC52(@a)
+  execute 'source '.expand('<sfile>:p:h').'/gentoo/osc52.vim'
+  " can also be used via ":call" for example:
+  " :call SendViaOSC52(@a)
 endif
 function! Cipher() "{{{2
-    if filereadable(expand('~/Documents/safe/cipher.bf'))
-        e ~/Documents/safe/cipher.bf
-    else
-        find safe/cipher.bf
-    endif
+  if filereadable(expand('~/Documents/safe/cipher.bf'))
+    edit ~/Documents/safe/cipher.bf
+  else
+    find safe/cipher.bf
+  endif
 endfunction
 " }}}
 
 if filereadable('/etc/gentoo-release') | inoremap Â£ £| endif
 if has('gui') "vim sees no difference <C-v> or <C-S-v>; use <C-q> for literal
-    imap <C-S-v> <C-r>+
+  imap <C-S-v> <C-r>+
 endif
 noremap Y y$
 " alphabetical - `:sort i`
@@ -227,20 +227,20 @@ noremap <Leader>i :echo synIDattr(synID(line("."),col("."),1),"name")<CR>
 call opfunc#opfuncmap('j', 'jupyter') " run in jupyter
 nmap <Leader>J :call jupyter#toggle()<CR>
 vnoremap <Leader>k <ESC>:if line("'<") > 1 \| 0,'<-1d \| en \|
-    \ if line("'>") < line('$') \| '>+1,$d \| en<CR>0gg
+  \ if line("'>") < line('$') \| '>+1,$d \| en<CR>0gg
 call opfunc#opfuncmap('l') " run in dbext
 call opfunc#opfuncmap('L') " run in dbext with .mode list
 noremap <Leader>m :call vimrc#toggle_jobs()<CR>
 noremap <Leader>n :silent!
-    \ 5new +setlocal\ buftype=nofile\ bufhidden=hide\ noswapfile<CR><CR>
+  \ 5new +setlocal\ buftype=nofile\ bufhidden=hide\ noswapfile<CR><CR>
 if has('win32')
-    noremap <Leader>N :%y<CR>:silent !powershell notes.ps1<CR>
+  noremap <Leader>N :%y<CR>:silent !powershell notes.ps1<CR>
 endif
 noremap <Leader>/ :s,\\,/,g<CR><C-L>
 if has('win32') " has('clipboard') loads an nvim provider, showing a message
-    noremap <Leader>p :%d _ \| pu + \| 1d \| normal G<CR>
+  noremap <Leader>p :%d _ \| pu + \| 1d \| normal G<CR>
 else
-    noremap <Leader>p :%d _ \| pu " \| 1d \| normal G<CR>
+  noremap <Leader>p :%d _ \| pu " \| 1d \| normal G<CR>
 endif
 noremap <Leader>R :SyntasticReset<CR>
 noremap <Leader>r :SyntasticToggleMode<CR>
