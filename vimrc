@@ -35,9 +35,8 @@ execute 'set runtimepath^='.expand('<sfile>:p:h').'/runtimepath/'
 if exists('g:loaded_pathogen') | call pathogen#helptags() | endif
 execute 'set runtimepath+='.expand('<sfile>:p:h').'/runtimepath/after'
 "http://vim.1045645.n5.nabble.com/Issues-with-ftdetect-td1193595.html
-filetype off
-filetype on
-filetype plugin on              "load plugins
+filetype off | filetype on
+filetype plugin off | filetype plugin on "load plugins
 " vimpager options {{{2
 " ----------------
 "
