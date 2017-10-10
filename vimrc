@@ -192,14 +192,6 @@ endfunction "}}}2
 "   ---------------------
 "
 " Functions for mappings {{{
-" Clipboard on ChromeOS: First save
-" https://raw.githubusercontent.com/chromium/hterm/master/etc/osc52.vim to
-" gentoo/osc52.vim
-if filereadable(expand('<sfile>:p:h').'/gentoo/osc52.vim') "{{{2
-  execute 'source '.expand('<sfile>:p:h').'/gentoo/osc52.vim'
-  " can also be used via ":call" for example:
-  " :call SendViaOSC52(@a)
-endif
 function! Cipher() "{{{2
   if filereadable(expand('~/Documents/safe/cipher.bf'))
     edit ~/Documents/safe/cipher.bf
