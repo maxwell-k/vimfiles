@@ -93,7 +93,6 @@ set expandtab
 set shiftwidth=4
 set shiftround
 set softtabstop=4               "backspace removes an expanded tab
-set tabstop=4
 set autoindent
 
 "autocommands {{{1
