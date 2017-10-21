@@ -65,6 +65,7 @@ set nojoinspaces                "one space between sentences
 set nostartofline
 set nrformats+=alpha
 set nrformats-=octal            " increment 07 to 08 and not 010
+set scrolloff=0                 " override settings from defaults.vim
 set smartcase                   "override ignorecase if upper case characters
 
 "Interface options {{{2
