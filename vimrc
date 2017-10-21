@@ -56,17 +56,17 @@ let g:markdown_folding=1
 "Editing and movement {{{1
 "--------------------
 "
-set backspace=indent,eol,start  "backspace deletes special characters
+set backspace=indent,eol,start  " backspace deletes special characters
 set formatlistpat=^\\s*[0-9-#•]\\+[.\ ]\\s*\\\|^\\s*[a-z]\\.\\s
-set formatoptions+=n            "format lists
-set ignorecase                  "case insensitive searches
-set linebreak                   "do not wrap in the middle of a word
-set nojoinspaces                "one space between sentences
-set nostartofline
-set nrformats+=alpha
+set formatoptions+=n            " format lists
+set ignorecase                  " case insensitive searches
+set linebreak                   " do not wrap in the middle of a word
+set nojoinspaces                " one space between sentences
+set nostartofline               " don't move to start of line with H, M, L…
+set nrformats+=alpha            " increment a to b
 set nrformats-=octal            " increment 07 to 08 and not 010
 set scrolloff=0                 " override settings from defaults.vim
-set smartcase                   "override ignorecase if upper case characters
+set smartcase                   " override ignorecase if upper case characters
 
 "Interface options {{{2
 "-----------------
