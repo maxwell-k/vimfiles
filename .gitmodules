@@ -1,9 +1,0 @@
-[submodule "runtimepath/bundle/vim-pathogen"]
-	path = runtimepath/bundle/vim-pathogen
-	url = https://github.com/tpope/vim-pathogen.git
-[submodule "runtimepath/bundle/dbext.vim"]
-	path = runtimepath/bundle/dbext.vim
-	url = https://github.com/maxwell-k/dbext.vim
-[submodule "tests/pack/tests/opt/vader"]
-	path = tests/pack/tests/opt/vader
-	url = https://github.com/junegunn/vader.vim
