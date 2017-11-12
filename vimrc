@@ -28,11 +28,6 @@ execute 'set runtimepath+='.expand('<sfile>:p:h').'/runtimepath/after'
 "http://vim.1045645.n5.nabble.com/Issues-with-ftdetect-td1193595.html
 filetype off | filetype on
 filetype plugin off | filetype plugin on "load plugins
-" vimpager options {{{2
-" ----------------
-"
-if exists('vimpager') | highlight link eolWhiteSpace NONE | endif
-let g:vimpager_passthrough = 1
 " Plugin options in global variables {{{2
 " ----------------------------------
 "
@@ -146,10 +141,6 @@ if !has('gui_running') | set highlight+=vr | set t_Co=16 | endif
 
 " The order of the next two lines is essential
 syntax enable                   "syntax highlighting
-autocmd Syntax * syntax match eolWhiteSpace display excludenl containedin=ALL
-  \ "\s\+$"
-doautocmd Syntax
-highlight link eolWhiteSpace ErrorMsg
 "Functions {{{1
 "---------
 function! Sum() range "{{{2
