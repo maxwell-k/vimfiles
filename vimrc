@@ -190,7 +190,7 @@ noremap Y y$
 " alphabetical - `:sort i`
 noremap <C-L> :noh<CR><C-L>
 vnoremap <Leader>= :<C-U>call Sum()<CR>
-nmap <Leader>b :call vimrc#toggle()<CR>
+nmap <Leader>b :call toggle#toggle_colors()<CR>
 call opfunc#opfuncmap('c') " straight yank
 if filereadable('/etc/gentoo-release') | set laststatus=2 | endif
 noremap <Leader>fc :call Cipher()<CR>
@@ -203,7 +203,7 @@ vnoremap <Leader>k <ESC>:if line("'<") > 1 \| 0,'<-1d \| en \|
   \ if line("'>") < line('$') \| '>+1,$d \| en<CR>0gg
 call opfunc#opfuncmap('l') " run in dbext
 call opfunc#opfuncmap('L') " run in dbext with .mode list
-noremap <Leader>m :call vimrc#toggle_jobs()<CR>
+noremap <Leader>m :call toggle#toggle_jobs()<CR>
 noremap <Leader>n :silent!
   \ 5new +setlocal\ buftype=nofile\ bufhidden=hide\ noswapfile<CR><CR>
 if has('win32')
