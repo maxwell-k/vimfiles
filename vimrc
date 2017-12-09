@@ -28,10 +28,10 @@ execute 'set runtimepath+='.expand('<sfile>:p:h').'/runtimepath/after'
 "http://vim.1045645.n5.nabble.com/Issues-with-ftdetect-td1193595.html
 filetype off | filetype on
 filetype plugin off | filetype plugin on "load plugins
+
 " Plugin options in global variables {{{2
 " ----------------------------------
 "
-let g:gitgutter_enabled = 0
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open            = 1
@@ -229,6 +229,7 @@ call opfunc#opfuncmap('Y') " yank without line continuation
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
 command! -nargs=+ Jupyter :call jupyter#command(<q-args>)
+command! GGutter :packadd gitgutter | :GitGutterEnable
 
 "Digraphs {{{1
 "--------
