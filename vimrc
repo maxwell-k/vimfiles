@@ -223,8 +223,7 @@ noremap <Leader>w :call rst#wrap()<CR>
 noremap <Leader>W :call opfunc#clipboard(rst#link())<CR>
 noremap <Leader>\ :s,\\,/,g<CR>
 noremap <Leader>/ :s,/,\\,g<CR>
-call opfunc#opfuncmap('y') " :join then :yank
-call opfunc#opfuncmap('Y') " yank without line continuation
+call opfunc#opfuncmap('y')
 " The two lines below prevent vim-gitgutter over-riding [c and ]c
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
