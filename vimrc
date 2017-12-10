@@ -139,7 +139,6 @@ execute s:list_settings
 " workaround for windows console
 if !has('gui_running') | set highlight+=vr | set t_Co=16 | endif
 
-" The order of the next two lines is essential
 syntax enable                   "syntax highlighting
 "Functions {{{1
 "---------
