@@ -116,7 +116,18 @@ endif
 if has('win32')
   try | colorscheme summerfruit256 | catch /E185/ | endtry
 else
-  try | colorscheme solarized | set background=dark | catch /E185/ | endtry
+  try "{{{
+    let g:solarized_termtrans=1 | set background=dark t_Co=16
+    colorscheme solarized
+    augroup solarized
+    autocmd ColorScheme solarized highlight SpellBad cterm=standout ctermfg=9
+    autocmd ColorScheme solarized highlight SpellCap cterm=standout ctermfg=4
+    autocmd ColorScheme solarized highlight SpellLocal cterm=standout ctermfg=6
+    autocmd ColorScheme solarized highlight SpellRare cterm=standout ctermfg=5
+    autocmd ColorScheme solarized highlight Folded
+      \ ctermfg=9 ctermbg=NONE cterm=NONE
+    augroup END
+  catch /E185/ | endtry " }}}
 endif
 
 " Only works if a single option per line
@@ -137,7 +148,7 @@ let s:list_settings .= 'listchars=trail:←,tab:→—,extends:▓,precedes:▓'
 execute s:list_settings
 
 " workaround for windows console
-if !has('gui_running') | set highlight+=vr | set t_Co=16 | endif
+if has('win32') && !has('gui_running') | set highlight+=vr t_Co=16 | endif
 
 syntax enable                   "syntax highlighting
 "Functions {{{1
