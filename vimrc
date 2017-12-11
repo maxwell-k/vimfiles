@@ -184,10 +184,10 @@ endfunction "}}}2
 "
 " Functions for mappings {{{
 function! Cipher() "{{{2
-  if filereadable(expand('~/Documents/safe/cipher.bf'))
-    edit ~/Documents/safe/cipher.bf
-  else
-    find safe/cipher.bf
+  let s:repository = fnamemodify(resolve(expand('<sfile>')),':h')
+  let s:file = s:repository.'/../safe/cipher.bf'
+  if filereadable(s:file) | execute 'edit '.s:file
+  else | find safe/cipher.bf
   endif
 endfunction
 " }}}
