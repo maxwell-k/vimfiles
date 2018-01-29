@@ -203,7 +203,7 @@ nmap <Leader>b :call toggle#toggle_colors()<CR>
 call opfunc#opfuncmap('c') " straight yank
 if filereadable('/etc/gentoo-release') | set laststatus=2 | endif
 noremap <Leader>fc :call Cipher()<CR>
-noremap <Leader>fu :find URLs.txt<CR>
+noremap <Leader>fo :edit ~/other.txt<CR>:$-1<CR>zozz
 noremap <Leader>h :call rst#headings()<CR>
 noremap <Leader>i :echo synIDattr(synID(line("."),col("."),1),"name")<CR>
 call opfunc#opfuncmap('j', 'jupyter') " run in jupyter
