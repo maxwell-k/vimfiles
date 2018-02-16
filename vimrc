@@ -53,6 +53,7 @@ set nrformats+=alpha            " increment a to b
 set nrformats-=octal            " increment 07 to 08 and not 010
 set scrolloff=0                 " override settings from defaults.vim
 set smartcase                   " override ignorecase if upper case characters
+set mouse=                      " disable the mouse
 
 "Interface options {{{2
 "-----------------
@@ -181,7 +182,6 @@ endfunction "}}}2
 "   Mappings and commands {{{1
 "   ---------------------
 "
-" Functions for mappings {{{
 let s:repository = fnamemodify(resolve(expand('<sfile>')),':h')
 function! Cipher() "{{{2
   let s:file = s:repository.'/../safe/cipher.bf'
