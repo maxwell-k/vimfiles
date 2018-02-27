@@ -201,6 +201,7 @@ noremap <C-L> :noh<CR><C-L>
 vnoremap <Leader>= :<C-U>call Sum()<CR>
 nmap <Leader>b :call toggle#toggle_colors()<CR>
 call opfunc#opfuncmap('c') " straight yank
+noremap <Leader>C :call SendViaOSC52(join(getline(1,'$'),"\n"))<CR>
 if filereadable('/etc/gentoo-release') | set laststatus=2 | endif
 noremap <Leader>fc :call Cipher()<CR>
 noremap <Leader>fo :edit ~/other.txt<CR>:$-1<CR>zozz
