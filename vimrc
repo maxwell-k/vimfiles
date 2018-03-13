@@ -78,7 +78,7 @@ set isfname+=&                  "for web addresses
 "
 set expandtab
 set shiftwidth=4
-set shiftround
+set noshiftround
 set softtabstop=4               "backspace removes an expanded tab
 set autoindent
 
