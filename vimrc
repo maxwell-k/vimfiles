@@ -205,6 +205,8 @@ noremap <Leader>C :call SendViaOSC52(join(getline(1,'$'),"\n"))<CR>
 if filereadable('/etc/gentoo-release') | set laststatus=2 | endif
 noremap <Leader>fc :call Cipher()<CR>
 noremap <Leader>fo :edit ~/other.txt<CR>:$-1<CR>zozz
+noremap <Leader>fe
+  \ :edit ~/.sd/planning/Housekeeping/Emails.txt<CR>:$<CR>zozz0Wy$kk
 noremap <Leader>h :call rst#headings()<CR>
 noremap <Leader>i :echo synIDattr(synID(line("."),col("."),1),"name")<CR>
 call opfunc#opfuncmap('j', 'jupyter') " run in jupyter
