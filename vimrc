@@ -32,11 +32,7 @@ filetype plugin off | filetype plugin on "load plugins
 " Plugin options in global variables {{{2
 " ----------------------------------
 "
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open            = 1
-let g:syntastic_ignore_files = ['.*dbext_sql_history.txt']
-let g:syntastic_sh_shellcheck_args = '-x'
+let g:ale_sh_shellcheck_options = '-x'
 let g:markdown_folding=1
 
 "Editing and movement {{{1
