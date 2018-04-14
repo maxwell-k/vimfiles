@@ -32,6 +32,7 @@ filetype plugin off | filetype plugin on "load plugins
 " Plugin options in global variables {{{2
 " ----------------------------------
 "
+let g:ale_fix_on_save = 1
 let g:ale_sh_shellcheck_options = '-x'
 let g:markdown_folding=1
 
