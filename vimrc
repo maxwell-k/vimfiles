@@ -23,7 +23,7 @@ set modeline                    "use modelines
 set exrc                        "look for local _vimrc"
 set secure                      "to match above
 
-execute 'set runtimepath^='.expand('<sfile>:p:h').'/runtimepath/'
+execute 'set runtimepath^='.expand('<sfile>:p:h').'/runtimepath'
 execute 'set runtimepath+='.expand('<sfile>:p:h').'/runtimepath/after'
 "http://vim.1045645.n5.nabble.com/Issues-with-ftdetect-td1193595.html
 filetype off | filetype on
