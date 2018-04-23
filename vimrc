@@ -66,8 +66,6 @@ if filereadable('/etc/gentoo-release') | set laststatus=2 | endif
 "
 " Doesn't search dotfiles like /.vim/
 set path+=**                    "recursively search below files directory
-set suffixesadd+=.txt
-set suffixesadd+=.bf
 set isfname+=?                  "for web addresses
 set isfname+=&                  "for web addresses
 "Tabs {{{2
