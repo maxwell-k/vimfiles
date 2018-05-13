@@ -128,16 +128,16 @@ nmap [h <Plug>GitGutterPrevHunk
 command! -nargs=+ Jupyter :call jupyter#command(<q-args>)
 command! GGutter :packadd gitgutter | :GitGutterEnable
 
-"Digraphs {{{1
-"--------
+" Digraphs {{{1
+" --------
 "
-"   http://www.unicode.org/charts/charindex.html
-"   http://www.cs.tut.fi/~jkorpela/dashes.html
-"   Use echo 0x2026 to convert to decimal
-"   3 em dashes have no space in times or arial but do in calibri
+" Alphanbetical, see http://www.unicode.org/charts/charindex.html for more and
+" use ``:echo 0x2026`` to convert to decimal
 digraphs .. 8230 " ellipsis …
-digraphs n- 8211 "em dash —
-digraphs m- 8212 "em dash –
-digraphs bu 8226 "bullet •
-digraphs bb 9744 bx 9745 " ballot box ☐ and ballot box with check ☑
+digraphs bb 9744 " ballot box ☐
+digraphs bu 8226 " bullet •
+digraphs bx 9745 " ballot box with check ☑
+digraphs m- 8212 " em dash –
+digraphs n- 8211 " em dash —
+
 " vim: set foldmethod=marker :{{{1
