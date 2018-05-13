@@ -158,7 +158,6 @@ noremap Y y$
 " alphabetical - `:sort i`
 noremap <C-L> :noh<CR><C-L>
 vnoremap <Leader>= :<C-U>call vim#sum()<CR>
-nmap <Leader>b :call toggle#toggle_colors()<CR>
 call opfunc#opfuncmap('c') " straight yank
 noremap <Leader>C :call SendViaOSC52(join(getline(1,'$'),"\n"))<CR>
 if filereadable('/etc/gentoo-release') | set laststatus=2 | endif
