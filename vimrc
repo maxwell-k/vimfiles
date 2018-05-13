@@ -81,16 +81,6 @@ set autoindent
 " prevents syntax highlighting if this appears after `:syntax enable`
 autocmd!
 
-"Filetypes {{{2
-"--------
-"
-"Move to a file in ftplugin if more that one line per file-type:
-augroup vimrc
-autocmd FileType dosini set isfname-=\= "complete e.g. home=/home/liveuser
-"Gentoo binary packages; concatentated .tar.bz2 and xpak; so will show an error
-autocmd BufReadCmd *.tbz2 call tar#Browse(expand("<amatch>"))
-augroup end
-
 "Paths {{{2
 "-----
 "
