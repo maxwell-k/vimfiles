@@ -146,45 +146,9 @@ execute s:list_settings
 if has('win32') && !has('gui_running') | set highlight+=vr t_Co=16 | endif
 
 syntax enable                   "syntax highlighting
-"Functions {{{1
-"---------
-function! Sum() range "{{{2
-"Assumes 'selection' is blockwise and inclusive
-python3 <<EOS
-import vim
-import decimal
-top, left       = vim.eval("getpos(\"'<\")[1:2]")
-bottom, right   = vim.eval("getpos(\"'>\")[1:2]")
-top, left, bottom, right = int(top), int(left), int(bottom), int(right)
-numbers = [i[left - 1:right] for i in vim.current.buffer[top - 1:bottom]]
-numbers = [i.replace(',','').rstrip('\xc2\xa3 ') for i in numbers]
-result = '{:,}'.format(sum(decimal.Decimal(i) for i in numbers if i))
-print(result)
-EOS
-let @= = "'".py3eval('result')."'"
-endfunction "}}}2
-function! ToggleListMode() "{{{2
-" Toggle through three states, ``:help digraph-table`` lists symbols
-  if !&list
-    set list listchars&vim showbreak&vim
-  elseif &listchars==#'eol:$'
-    execute s:list_settings
-  else
-    set nolist listchars&vim showbreak&vim
-  end
-endfunction "}}}2
-
 "   Mappings and commands {{{1
 "   ---------------------
 "
-let s:repository = fnamemodify(resolve(expand('<sfile>')),':h')
-function! Cipher() "{{{2
-  let s:file = s:repository.'/../safe/cipher.bf'
-  if filereadable(s:file) | execute 'edit '.s:file
-  else | find safe/cipher.bf
-  endif
-endfunction
-" }}}
 
 if filereadable('/etc/gentoo-release') | inoremap Â£ £| endif
 if has('gui') "vim sees no difference <C-v> or <C-S-v>; use <C-q> for literal
@@ -193,12 +157,12 @@ endif
 noremap Y y$
 " alphabetical - `:sort i`
 noremap <C-L> :noh<CR><C-L>
-vnoremap <Leader>= :<C-U>call Sum()<CR>
+vnoremap <Leader>= :<C-U>call vim#sum()<CR>
 nmap <Leader>b :call toggle#toggle_colors()<CR>
 call opfunc#opfuncmap('c') " straight yank
 noremap <Leader>C :call SendViaOSC52(join(getline(1,'$'),"\n"))<CR>
 if filereadable('/etc/gentoo-release') | set laststatus=2 | endif
-noremap <Leader>fc :call Cipher()<CR>
+noremap <Leader>fc :call vim#cipher()<CR>
 noremap <Leader>fo :edit ~/other.txt<CR>:$-1<CR>zozz
 noremap <Leader>fe
   \ :edit ~/.sd/planning/Housekeeping/Emails.txt<CR>:$<CR>zozz0Wy$kk
@@ -222,7 +186,7 @@ if has('win32') " has('clipboard') loads an nvim provider, showing a message
 else
   noremap <Leader>p :%d _ \| pu " \| 1d \| normal G<CR>
 endif
-noremap <Leader>t :call ToggleListMode()<CR>
+execute "noremap <Leader>t :call vim#toggleListMode('".s:list_settings."')<CR>"
 noremap <Leader>v :set paste! paste?<CR>
 noremap <Leader>w :call rst#wrap()<CR>
 noremap <Leader>W :call opfunc#clipboard(rst#link())<CR>
