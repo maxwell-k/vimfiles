@@ -4,6 +4,7 @@
 "
 set encoding=utf-8 viminfo='20,<50,h
 scriptencoding utf-8
+autocmd!
 
 " File types, plugins and runtimepath {{{1
 " -----------------------------------
@@ -55,18 +56,6 @@ set shiftwidth=4
 set noshiftround
 set softtabstop=4               "backspace removes an expanded tab
 set autoindent
-
-" autocommands {{{1
-" ------------
-"
-autocmd!
-" Move  below to a file in ftplugin if more that one line per file-type:
-augroup vimrc
-autocmd FileType dosini set isfname-=\= "complete e.g. home=/home/liveuser
-autocmd BufReadCmd *.tbz2 call tar#Browse(expand("<amatch>")) "Gentoo binaries
-autocmd BufRead COMMIT_EDITMSG setlocal nomodeline | setlocal spell
-autocmd StdInReadPost * setlocal nowrap
-augroup END
 
 " Display {{{1
 " -------
@@ -139,5 +128,16 @@ digraphs bu 8226 " bullet •
 digraphs bx 9745 " ballot box with check ☑
 digraphs m- 8212 " em dash –
 digraphs n- 8211 " em dash —
+
+" autocommands {{{1
+" ------------
+"
+" Move below to a file in ftplugin if more that one line per file-type
+augroup vimrc
+autocmd FileType dosini set isfname-=\= "complete e.g. home=/home/liveuser
+autocmd BufReadCmd *.tbz2 call tar#Browse(expand("<amatch>")) "Gentoo binaries
+autocmd BufRead COMMIT_EDITMSG setlocal nomodeline | setlocal spell
+autocmd StdInReadPost * setlocal nowrap
+augroup END
 
 " vim: set foldmethod=marker :{{{1
