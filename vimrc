@@ -10,7 +10,6 @@
 " }}}
 if !has('nvim') | set encoding=utf-8 viminfo='20,<50,h
   if has('win32') | set viminfo+=n$TMP/viminfo
-  elseif filereadable('/etc/gentoo-release') | set viminfo+=n/tmp/cache/viminfo
 endif | endif
 scriptencoding utf-8
 
@@ -57,7 +56,6 @@ set shortmess+=I
 set smartcase                   " override ignorecase if upper case characters
 set wildmenu                    "normal mode tab completion menu
 if !has('nvim') | set clipboard=unnamed | endif
-if filereadable('/etc/gentoo-release') | set laststatus=2 | endif
 
 "File name options for :find etc. {{{2
 "--------------------------------
@@ -130,7 +128,6 @@ syntax enable                   "syntax highlighting
 "   ---------------------
 "
 
-if filereadable('/etc/gentoo-release') | inoremap Â£ £| endif
 if has('gui') "vim sees no difference <C-v> or <C-S-v>; use <C-q> for literal
   imap <C-S-v> <C-r>+
 endif
@@ -140,7 +137,6 @@ noremap <C-L> :noh<CR><C-L>
 vnoremap <Leader>= :<C-U>call vim#sum()<CR>
 call opfunc#opfuncmap('c') " straight yank
 noremap <Leader>C :call SendViaOSC52(join(getline(1,'$'),"\n"))<CR>
-if filereadable('/etc/gentoo-release') | set laststatus=2 | endif
 noremap <Leader>fc :call vim#cipher()<CR>
 noremap <Leader>fo :edit ~/other.txt<CR>:$-1<CR>zozz
 noremap <Leader>fe
