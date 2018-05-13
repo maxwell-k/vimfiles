@@ -2,8 +2,7 @@
 " vimrc, Keith Maxwell
 " --------------------
 "
-if !has('nvim') | set encoding=utf-8 viminfo='20,<50,h
-endif
+set encoding=utf-8 viminfo='20,<50,h
 scriptencoding utf-8
 
 " File types, plugins and runtimepath {{{1
@@ -46,7 +45,6 @@ set scrolloff=0                 " override settings from defaults.vim
 set shortmess+=I
 set smartcase                   " override ignorecase if upper case characters
 set wildmenu                    "normal mode tab completion menu
-if !has('nvim') | set clipboard=unnamed | endif
 
 "File name options for :find etc. {{{2
 "--------------------------------
@@ -100,9 +98,6 @@ syntax enable                   "syntax highlighting
 "   ---------------------
 "
 
-if has('gui') "vim sees no difference <C-v> or <C-S-v>; use <C-q> for literal
-  imap <C-S-v> <C-r>+
-endif
 noremap Y y$
 " alphabetical - `:sort i`
 noremap <C-L> :noh<CR><C-L>
