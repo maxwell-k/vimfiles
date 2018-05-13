@@ -7,11 +7,6 @@ scriptencoding utf-8
 
 " File types, plugins and runtimepath {{{1
 " -----------------------------------
-"
-set modeline                    "use modelines
-set exrc                        "look for local _vimrc"
-set secure                      "to match above
-
 execute 'set runtimepath^='.expand('<sfile>:p:h').'/runtimepath'
 execute 'set runtimepath+='.expand('<sfile>:p:h').'/runtimepath/after'
 "http://vim.1045645.n5.nabble.com/Issues-with-ftdetect-td1193595.html
@@ -41,7 +36,6 @@ set nojoinspaces                " one space between sentences
 set nostartofline               " don't move to start of line with H, M, L…
 set nrformats+=alpha            " increment a to b
 set nrformats-=octal            " increment 07 to 08 and not 010
-set scrolloff=0                 " override settings from defaults.vim
 set shortmess+=I
 set smartcase                   " override ignorecase if upper case characters
 set wildmenu                    "normal mode tab completion menu
@@ -84,7 +78,6 @@ set guioptions-=m  " no menu
 set guioptions-=r  " no scrollbar
 set hlsearch
 set ruler          "show position
-set shortmess+=I   "no welcome message
 set showcmd
 set splitbelow
 set termguicolors
