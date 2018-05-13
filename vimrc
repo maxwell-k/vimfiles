@@ -108,22 +108,8 @@ autocmd StdInReadPost * setlocal nowrap
 if has('gui_win32')
   set guifont=Source_Code_Pro:h14,Consolas:h14 | set lines=35
 endif
-if has('win32')
-  try | colorscheme summerfruit256 | catch /E185/ | endtry
-else
-  try "{{{
-    let g:solarized_termtrans=1 | set background=dark t_Co=16
-    colorscheme solarized
-    augroup solarized
-    autocmd ColorScheme solarized highlight SpellBad cterm=standout ctermfg=9
-    autocmd ColorScheme solarized highlight SpellCap cterm=standout ctermfg=4
-    autocmd ColorScheme solarized highlight SpellLocal cterm=standout ctermfg=6
-    autocmd ColorScheme solarized highlight SpellRare cterm=standout ctermfg=5
-    autocmd ColorScheme solarized highlight Folded
-      \ ctermfg=9 ctermbg=NONE cterm=NONE
-    augroup END
-  catch /E185/ | endtry " }}}
-endif
+set termguicolors
+colorscheme ayu
 
 " Only works if a single option per line
 set guioptions+=c  " keyboard workaround for file changed dialog
