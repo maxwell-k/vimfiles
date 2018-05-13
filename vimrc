@@ -2,18 +2,9 @@
 " vimrc, Keith Maxwell
 " --------------------
 "
-" Installation {{{1
-"
-" Windows: follow instructions in ./README
-" Unix: Add ``source /root/configuration/vimrc`` to /etc/vim/vimrc.local
-"
-" }}}
 if !has('nvim') | set encoding=utf-8 viminfo='20,<50,h
-  if has('win32') | set viminfo+=n$TMP/viminfo
-endif | endif
+endif
 scriptencoding utf-8
-
-if v:version < 703 | finish | endif
 
 " File types, plugins and runtimepath {{{1
 " -----------------------------------
@@ -73,20 +64,17 @@ set noshiftround
 set softtabstop=4               "backspace removes an expanded tab
 set autoindent
 
-"autocommands {{{1
-"-------------
+" autocommands {{{1
+" ------------
 "
-
-" clear autocommands
-" prevents syntax highlighting if this appears after `:syntax enable`
 autocmd!
-
-"Paths {{{2
-"-----
-"
-autocmd BufEnter */.gvfs/* set noswapfile
+" Move  below to a file in ftplugin if more that one line per file-type:
+augroup vimrc
+autocmd FileType dosini set isfname-=\= "complete e.g. home=/home/liveuser
+autocmd BufReadCmd *.tbz2 call tar#Browse(expand("<amatch>")) "Gentoo binaries
 autocmd BufRead COMMIT_EDITMSG setlocal nomodeline | setlocal spell
 autocmd StdInReadPost * setlocal nowrap
+augroup END
 
 " Display {{{1
 " -------
@@ -105,13 +93,7 @@ set termguicolors
 let s:list_settings = 'set list showbreak=→ '
 let s:list_settings .= 'listchars=trail:←,tab:→—,extends:▓,precedes:▓'
 execute s:list_settings
-if has('gui_win32')
-  set guifont=Source_Code_Pro:h14,Consolas:h14 | set lines=35
-endif
 colorscheme ayu
-
-" workaround for windows console
-if has('win32') && !has('gui_running') | set highlight+=vr t_Co=16 | endif
 
 syntax enable                   "syntax highlighting
 "   Mappings and commands {{{1
@@ -142,15 +124,7 @@ call opfunc#opfuncmap('L') " run in dbext with .mode list
 noremap <Leader>m :call toggle#toggle_jobs()<CR>
 noremap <Leader>n :silent!
   \ 5new +setlocal\ buftype=nofile\ bufhidden=hide\ noswapfile<CR><CR>
-if has('win32')
-  noremap <Leader>N :%y<CR>:silent !powershell notes.ps1<CR>
-endif
 noremap <Leader>/ :s,\\,/,g<CR><C-L>
-if has('win32') " has('clipboard') loads an nvim provider, showing a message
-  noremap <Leader>p :%d _ \| pu + \| 1d \| normal G<CR>
-else
-  noremap <Leader>p :%d _ \| pu " \| 1d \| normal G<CR>
-endif
 noremap <Leader>s :call vim#scriptnames()<CR>
 execute "noremap <Leader>t :silent! call vim#toggleListMode('"
   \.s:list_settings."')<CR>"
