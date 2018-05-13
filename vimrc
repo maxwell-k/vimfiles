@@ -40,25 +40,23 @@ let g:markdown_folding=1
 "--------------------
 "
 set backspace=indent,eol,start  " backspace deletes special characters
+set confirm                     "prompt before discarding changes
 set formatlistpat=^\\s*[0-9-#•]\\+[.\ ]\\s*\\\|^\\s*[a-z]\\.\\s
 set formatoptions+=n            " format lists
+set history=200
 set ignorecase                  " case insensitive searches
+set keywordprg=                 "use `K` for `:help`
 set linebreak                   " do not wrap in the middle of a word
+set mouse=                      " disable the mouse
 set nojoinspaces                " one space between sentences
 set nostartofline               " don't move to start of line with H, M, L…
 set nrformats+=alpha            " increment a to b
 set nrformats-=octal            " increment 07 to 08 and not 010
 set scrolloff=0                 " override settings from defaults.vim
-set smartcase                   " override ignorecase if upper case characters
-set mouse=                      " disable the mouse
-
-"Interface options {{{2
-"-----------------
-set keywordprg=                 "use `K` for `:help`
-set wildmenu                    "normal mode tab completion menu
-set confirm                     "prompt before discarding changes
-set history=200
 set shortmess+=I
+set smartcase                   " override ignorecase if upper case characters
+set wildmenu                    "normal mode tab completion menu
+if !has('nvim') | set clipboard=unnamed | endif
 if filereadable('/etc/gentoo-release') | set laststatus=2 | endif
 
 "File name options for :find etc. {{{2
@@ -104,29 +102,25 @@ autocmd StdInReadPost * setlocal nowrap
 
 " Display {{{1
 " -------
-"
-if has('gui_win32')
-  set guifont=Source_Code_Pro:h14,Consolas:h14 | set lines=35
-endif
-set termguicolors
-colorscheme ayu
-
-" Only works if a single option per line
-set guioptions+=c  " keyboard workaround for file changed dialog
-set guioptions-=m  "no menu
-set guioptions-=T  "no toolbar
-set guioptions-=r  "no scrollbar
-set guioptions-=L  "no scrollbar
-set shortmess+=I   "no welcome message
-if !has('nvim') | set clipboard=unnamed | endif
-set ruler          "show position
-set hlsearch
-set splitbelow
-set showcmd
 set colorcolumn=80
+set guioptions+=c  " keyboard workaround for file changed dialog
+set guioptions-=L  " no scrollbar
+set guioptions-=T  " no toolbar
+set guioptions-=m  " no menu
+set guioptions-=r  " no scrollbar
+set hlsearch
+set ruler          "show position
+set shortmess+=I   "no welcome message
+set showcmd
+set splitbelow
+set termguicolors
 let s:list_settings = 'set list showbreak=→ '
 let s:list_settings .= 'listchars=trail:←,tab:→—,extends:▓,precedes:▓'
 execute s:list_settings
+if has('gui_win32')
+  set guifont=Source_Code_Pro:h14,Consolas:h14 | set lines=35
+endif
+colorscheme ayu
 
 " workaround for windows console
 if has('win32') && !has('gui_running') | set highlight+=vr t_Co=16 | endif
