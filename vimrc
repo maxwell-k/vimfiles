@@ -186,6 +186,7 @@ if has('win32') " has('clipboard') loads an nvim provider, showing a message
 else
   noremap <Leader>p :%d _ \| pu " \| 1d \| normal G<CR>
 endif
+noremap <Leader>s :call vim#scriptnames()<CR>
 execute "noremap <Leader>t :call vim#toggleListMode('".s:list_settings."')<CR>"
 noremap <Leader>v :set paste! paste?<CR>
 noremap <Leader>w :call rst#wrap()<CR>
