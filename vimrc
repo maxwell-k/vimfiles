@@ -8,6 +8,7 @@
 set encoding=utf-8 viminfo='20,<50,h
 scriptencoding utf-8
 let s:rtp=expand('<sfile>:p:h').'/runtimepath'
+packloadall
 execute 'set runtimepath^='.s:rtp 
 execute 'set runtimepath+='.s:rtp.'/after'
 autocmd!
@@ -128,7 +129,7 @@ augroup END
 " Plugin configuration {{{1
 " --------------
 "
-colorscheme ayu
+colorscheme mine
 let g:ale_fix_on_save = 1
 let g:ale_sh_shellcheck_options = '-x'
 let g:markdown_folding=1
