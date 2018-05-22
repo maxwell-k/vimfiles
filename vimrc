@@ -132,7 +132,6 @@ augroup END
 colorscheme mine
 let g:ale_fix_on_save = 1
 let g:ale_sh_shellcheck_options = '-x'
-let g:markdown_folding=1
 " The two lines below prevent vim-gitgutter over-riding [c and ]c
 nmap [h <Plug>GitGutterPrevHunk
 nmap ]h <Plug>GitGutterNextHunk
