@@ -67,6 +67,7 @@ execute s:list_settings
 " Alphabetical
 " <Leader>` see runtimepath/ftplugin/rst.vim
 vnoremap <Leader>= :<C-U>call vim#sum()<CR>
+noremap <Leader>b :call toggle#toggle_colors()<CR>
 call opfunc#opfuncmap('c') " straight yank
 noremap <Leader>C :call SendViaOSC52(join(getline(1,'$'),'\n'))<CR>
 noremap <Leader>fc :call vim#cipher()<CR>
