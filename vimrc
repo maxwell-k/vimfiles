@@ -72,6 +72,7 @@ call opfunc#opfuncmap('c') " straight yank
 noremap <Leader>C :call SendViaOSC52(join(getline(1,'$'),'\n'))<CR>
 noremap <Leader>fc :call vim#cipher()<CR>
 noremap <Leader>fo :edit ~/other.txt<CR>:$-1<CR>zozz
+noremap <Leader>ft :edit ~/time.yaml<CR>
 noremap <Leader>fe
   \ :edit ~/.sd/planning/Housekeeping/Emails.txt<CR>:$<CR>zozz0Wy$kk
 " <Leader>h see runtimepath/ftplugin/rst.vim
