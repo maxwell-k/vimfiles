@@ -19,7 +19,7 @@ filetype plugin off | filetype plugin on
 syntax enable
 
 " Options {{{1
-" --------------------
+" -------
 "
 " Alphabetical, "scripted" settings last
 set autoindent
