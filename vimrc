@@ -75,6 +75,7 @@ noremap <Leader>fc :call vim#cipher()<CR>
 noremap <Leader>fo :edit ~/other.txt<CR>:$-1<CR>zozz
 noremap <Leader>ft :edit ~/time.yaml<CR>:$<CR>
 noremap <Leader>fr :edit ~/.sd/planning/I_have_not_read.txt<CR>
+noremap <Leader>fw :edit ~/.sd/planning/I_have_not_watched.txt<CR>
 noremap <Leader>fe
   \ :edit ~/.sd/planning/Housekeeping/Emails.txt<CR>:$<CR>zozz0Wy$kk
 " <Leader>h see runtimepath/ftplugin/rst.vim
