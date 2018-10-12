@@ -119,6 +119,7 @@ digraphs bu 8226 " bullet •
 digraphs bx 9745 " ballot box with check ☑
 digraphs m- 8212 " em dash –
 digraphs n- 8211 " em dash —
+digraphs %< 9986 " black scissors ✂
 
 " autocommands {{{1
 " ------------
