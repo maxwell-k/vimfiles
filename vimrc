@@ -73,8 +73,8 @@ call opfunc#opfuncmap('c') " straight yank
 noremap <Leader>C :call SendViaOSC52(join(getline(1,'$'),'\n'))<CR>
 noremap <Leader>fc :call vim#cipher()<CR>
 noremap <Leader>fo :edit ~/other.txt<CR>:$-1<CR>zozz
-noremap <Leader>ft :edit ~/time.yaml<CR>:$<CR>
 noremap <Leader>fr :edit ~/.sd/planning/I_have_not_read.txt<CR>
+noremap <Leader>fw :edit ~/.sd/planning/I_have_not_watched.txt<CR>
 noremap <Leader>fe
   \ :edit ~/.sd/planning/Housekeeping/Emails.txt<CR>:$<CR>zozz0Wy$kk
 " <Leader>h see runtimepath/ftplugin/rst.vim
@@ -118,6 +118,7 @@ digraphs bu 8226 " bullet •
 digraphs bx 9745 " ballot box with check ☑
 digraphs m- 8212 " em dash –
 digraphs n- 8211 " em dash —
+digraphs %< 9986 " black scissors ✂
 
 " autocommands {{{1
 " ------------
