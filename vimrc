@@ -53,6 +53,7 @@ set shiftwidth=4
 set shortmess+=I
 set showcmd
 set smartcase
+set spellfile=~/.vim/runtimepath/spell/en.utf-8.add,./.en.utf-8.add
 set softtabstop=4 " backspace removes an expanded tab
 set splitbelow
 set termguicolors
