@@ -127,7 +127,7 @@ digraphs %< 9986 " black scissors ✂
 augroup vimrc
 autocmd FileType dosini set isfname-=\= "complete e.g. home=/home/liveuser
 autocmd BufReadCmd *.tbz2 call tar#Browse(expand("<amatch>")) "Gentoo binaries
-autocmd BufRead COMMIT_EDITMSG setlocal nomodeline | setlocal spell
+autocmd BufRead COMMIT_EDITMSG setlocal nomodeline spell
 autocmd StdInReadPost * setlocal nowrap
 augroup END
 
