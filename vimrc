@@ -53,6 +53,7 @@ set shiftwidth=4
 set shortmess+=I
 set showcmd
 set smartcase
+set spellfile=~/.vim/runtimepath/spell/en.utf-8.add,./.en.utf-8.add
 set softtabstop=4 " backspace removes an expanded tab
 set splitbelow
 set termguicolors
@@ -127,7 +128,7 @@ digraphs %< 9986 " black scissors ✂
 augroup vimrc
 autocmd FileType dosini set isfname-=\= "complete e.g. home=/home/liveuser
 autocmd BufReadCmd *.tbz2 call tar#Browse(expand("<amatch>")) "Gentoo binaries
-autocmd BufRead COMMIT_EDITMSG setlocal nomodeline | setlocal spell
+autocmd BufRead COMMIT_EDITMSG setlocal nomodeline spell
 autocmd StdInReadPost * setlocal nowrap
 augroup END
 
