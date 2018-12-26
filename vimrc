@@ -132,14 +132,14 @@ autocmd BufRead COMMIT_EDITMSG setlocal nomodeline spell
 autocmd StdInReadPost * setlocal nowrap
 augroup END
 
-" Plugin configuration {{{1
-" --------------
+" Plugin, syntax and highlighting configuration {{{1
+" ---------------------------------------------
 "
 colorscheme mine
 let g:ale_fix_on_save = 1
 let g:ale_lint_delay = 50
 let g:ale_sh_shellcheck_options = '-x'
+let g:is_posix = 1  " $() isn't an error in sh
 " The two lines below prevent vim-gitgutter over-riding [c and ]c
 nmap [h <Plug>GitGutterPrevHunk
 nmap ]h <Plug>GitGutterNextHunk
-
