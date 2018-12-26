@@ -143,4 +143,3 @@ let g:ale_sh_shellcheck_options = '-x'
 nmap [h <Plug>GitGutterPrevHunk
 nmap ]h <Plug>GitGutterNextHunk
 
-" vim: set foldmethod=marker :{{{1
