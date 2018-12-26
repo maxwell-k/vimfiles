@@ -49,12 +49,12 @@ set nrformats+=alpha " increment a to b
 set nrformats-=octal " increment 07 to 08 and not 010
 set path+=** " recursively search, misses hidden files e.g. /.vim/
 set ruler " show position
-set shiftwidth=4
+set shiftwidth=2
 set shortmess+=I
 set showcmd
 set smartcase
 set spellfile=~/.vim/runtimepath/spell/en.utf-8.add,./.en.utf-8.add
-set softtabstop=4 " backspace removes an expanded tab
+set softtabstop=2
 set splitbelow
 set termguicolors
 set wildmenu
