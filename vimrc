@@ -73,7 +73,7 @@ noremap <Leader>b :call toggle#toggle_colors()<CR>
 call opfunc#opfuncmap('c') " straight yank
 noremap <Leader>C :call SendViaOSC52(join(getline(1,'$'),'\n'))<CR>
 noremap <Leader>fc :call vim#cipher()<CR>
-noremap <Leader>fo :edit ~/other.txt<CR>:$-1<CR>zozz
+noremap <Leader>fo :edit ~/other.txt<CR>:$-1<CR>
 noremap <Leader>fr :edit ~/.sd/planning/I_have_not_read.txt<CR>
 noremap <Leader>fw :edit ~/.sd/planning/I_have_not_watched.txt<CR>
 noremap <Leader>fe
