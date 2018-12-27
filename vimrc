@@ -68,7 +68,6 @@ execute s:list_settings
 "
 " Alphabetical
 " <Leader>` see runtimepath/ftplugin/rst.vim
-vnoremap <Leader>= :<C-U>call vim#sum()<CR>
 noremap <Leader>a :call ale#quit#Mapping()<CR>
 noremap <Leader>b :call toggle#toggle_colors()<CR>
 call opfunc#opfuncmap('c') " straight yank
@@ -97,10 +96,12 @@ execute "noremap <Leader>t :silent! call vim#toggleListMode('"
 noremap <Leader>v :set paste! paste?<CR>
 noremap <Leader>w :call rst#wrap()<CR>
 noremap <Leader>W :call opfunc#clipboard(rst#link())<CR>
-noremap <Leader>\ :s,\\,/,g<CR>
-noremap <Leader>/ :s,/,\\,g<CR>
 call opfunc#opfuncmap('y')
 noremap Y y$
+vnoremap <Leader>= :<C-U>call vim#sum()<CR>
+nmap <Leader>` <Plug>(interpreted_text)
+noremap <Leader>\ :s,\\,/,g<CR>
+noremap <Leader>/ :s,/,\\,g<CR>
 
 " Commands {{{1
 " --------
