@@ -85,13 +85,12 @@ call opfunc#opfuncmap('j', 'jupyter') " run in jupyter
 nmap <Leader>J :call jupyter#toggle()<CR>
 vnoremap <Leader>k <ESC>:if line("'<") > 1 \| 0,'<-1d \| en \|
   \ if line("'>") < line('$') \| '>+1,$d \| en<CR>0gg
-call opfunc#opfuncmap('l') " run in dbext
-call opfunc#opfuncmap('L') " run in dbext with .mode list
+" <leader>l see plugin/dbext.vim
+" <leader>L see plugin/dbext.vim
 noremap <C-L> :noh<CR><C-L>
-noremap <Leader>m :call toggle#toggle_jobs()<CR>
+" <leader>m see plugin/dbext.vim
 noremap <Leader>n :silent!
   \ 5new +setlocal\ buftype=nofile\ bufhidden=hide\ noswapfile<CR><CR>
-noremap <Leader>/ :s,\\,/,g<CR><C-L>
 noremap <Leader>s :call vim#scriptnames()<CR>
 execute "noremap <Leader>t :silent! call vim#toggleListMode('"
   \.s:list_settings."')<CR>"
