@@ -39,6 +39,7 @@ set hlsearch
 set ignorecase " case insensitive searches
 set isfname+=& " for web addresses
 set isfname+=? " for web addresses
+set isfname-=\= "complete e.g. home=/home/liveuser
 set keywordprg= " use `K` for `:help`
 set linebreak " do not wrap in the middle of a word
 set mouse= " disable the mouse
@@ -125,9 +126,8 @@ digraphs %< 9986 " black scissors ✂
 " autocommands {{{1
 " ------------
 "
-" Move below to a file in ftplugin if more that one line per file-type
+" Use a file in ftplugin if file-type related
 augroup vimrc
-autocmd FileType dosini set isfname-=\= "complete e.g. home=/home/liveuser
 autocmd BufReadCmd *.tbz2 call tar#Browse(expand("<amatch>")) "Gentoo binaries
 autocmd BufRead COMMIT_EDITMSG setlocal nomodeline spell
 autocmd StdInReadPost * setlocal nowrap
