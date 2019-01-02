@@ -1,15 +1,15 @@
+" based upon https://github.com/plasticboy/vim-markdown/pull/367/
+syntax region mkdStrike
+  \ matchgroup=mkdDelimiter start=/\%(\~\~\)/ end=/\%(\~\~\)/ concealends
+syntax cluster mkdNonListItem add=mkdStrike
+highlight link mkdStrike htmlStrike
+
 " don't spell check modelines
 syntax region htmlComment start=+<!+ end=+>+
   \ contains=htmlCommentPart,htmlCommentError,@Spell,htmlCommentModeline
 syntax region htmlCommentModeline contained start=+-- vim:+ end=+--\s*+
   \ contains=@NoSpell
 highlight link htmlCommentModeline Comment
-
-" based upon https://github.com/plasticboy/vim-markdown/pull/367/
-syntax region mkdStrike
-  \ matchgroup=mkdDelimiter start=/\%(\~\~\)/ end=/\%(\~\~\)/ concealends
-syntax cluster mkdNonListItem add=mkdStrike
-highlight link mkdStrike htmlStrike
 
 " Allow more groups in headings
 syntax cluster mkdHeadingContains contains=mkdLink,mkdInlineURL,mkdCode
