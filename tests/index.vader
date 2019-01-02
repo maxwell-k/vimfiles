@@ -1,0 +1,13 @@
+"Python
+Include: Python.vader
+
+After:
+  DBResultsClose
+
+"SQL
+Include: dbext-defaults.vader
+Include: dbext-mappings.vader
+Include: dbext-select-other-syntax.vader
+Include: dbext-select-sync.vader
+Include: dbext-hang.vader
+Include: dbext-completion.vader

@@ -1,0 +1,21 @@
+Given sql (Placeholder):
+  [placeholder]
+
+Execute (Function to hide irrelevant details):
+  source ./dbext-mask.vim " defines DBextPostResult
+
+Execute (Asyncronous "SELECT 1;" by default):
+  DBExecSQL SELECT 1 ;
+  sleep 1 | buffer Result
+
+Then (Check jobs enabled):
+  AssertEqual 1, g:dbext_default_use_jobs
+
+Expect (1 in one column with a header):
+  Connection: T(SQLITE)  D(XXXXX)   at XX:XX
+  1
+  ----------
+  1
+
+Execute (Clear function):
+    delfunction DBextPostResult

@@ -7,10 +7,7 @@
 "
 set encoding=utf-8 viminfo='20,<50,h
 scriptencoding utf-8
-let s:rtp=expand('<sfile>:p:h').'/runtimepath'
 packloadall
-execute 'set runtimepath^='.s:rtp 
-execute 'set runtimepath+='.s:rtp.'/after'
 autocmd!
 " The two lines below ensure ftdetect files are loaded despite system settings
 " http://vim.1045645.n5.nabble.com/Issues-with-ftdetect-td1193595.html
@@ -55,7 +52,7 @@ set shiftwidth=2
 set shortmess+=I
 set showcmd
 set smartcase
-set spellfile=~/.vim/runtimepath/spell/en.utf-8.add,./.en.utf-8.add
+set spellfile=~/.vim/spell/en.utf-8.add,./.en.utf-8.add
 set softtabstop=2
 set splitbelow
 set termguicolors
@@ -68,7 +65,7 @@ execute s:list_settings
 " --------
 "
 " Alphabetical
-" <Leader>` see runtimepath/ftplugin/rst.vim
+" <Leader>` see vim/ftplugin/rst.vim
 noremap <Leader>a :call ale#quit#Mapping()<CR>
 noremap <Leader>b :call toggle#toggle_colors()<CR>
 call opfunc#opfuncmap('c') " straight yank
@@ -79,7 +76,7 @@ noremap <Leader>fr :edit ~/.sd/planning/I_have_not_read.txt<CR>
 noremap <Leader>fw :edit ~/.sd/planning/I_have_not_watched.txt<CR>
 noremap <Leader>fe
   \ :edit ~/.sd/planning/Housekeeping/Emails.txt<CR>:$<CR>zozz0Wy$kk
-" <Leader>h see runtimepath/ftplugin/rst.vim
+" <Leader>h see vim/ftplugin/rst.vim
 noremap <Leader>i :echo synIDattr(synID(line('.'),col('.'),1),'name')<CR>
 call opfunc#opfuncmap('j', 'jupyter') " run in jupyter
 nmap <Leader>J :call jupyter#toggle()<CR>
