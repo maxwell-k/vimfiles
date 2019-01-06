@@ -52,8 +52,8 @@ set shiftwidth=2
 set shortmess+=I
 set showcmd
 set smartcase
-set spellfile=~/.vim/spell/en.utf-8.add,./.en.utf-8.add
 set softtabstop=2
+set spellfile=~/.vim/spell/en.utf-8.add " second file in autocommand below
 set splitbelow
 set termguicolors
 set wildmenu
@@ -127,6 +127,8 @@ digraphs %< 9986 " black scissors ✂
 augroup vimrc
 autocmd BufReadCmd *.tbz2 call tar#Browse(expand("<amatch>")) "Gentoo binaries
 autocmd BufReadPost COMMIT_EDITMSG setlocal nomodeline spell
+autocmd BufReadPost * execute 'setlocal spellfile+='
+  \ . fnamemodify(resolve(bufname('%')), ':h').'/.en.utf-8.add'
 autocmd StdInReadPost * setlocal nowrap
 augroup END
 
