@@ -126,7 +126,7 @@ digraphs %< 9986 " black scissors ✂
 " Use a file in ftplugin if file-type related
 augroup vimrc
 autocmd BufReadCmd *.tbz2 call tar#Browse(expand("<amatch>")) "Gentoo binaries
-autocmd BufRead COMMIT_EDITMSG setlocal nomodeline spell
+autocmd BufReadPost COMMIT_EDITMSG setlocal nomodeline spell
 autocmd StdInReadPost * setlocal nowrap
 augroup END
 
