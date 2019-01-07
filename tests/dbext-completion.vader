@@ -1,0 +1,95 @@
+"Setup {{{1
+Execute (Setup DB and create tables):
+  set filetype=sql
+  DBSetOption dbname='vader.sqlite'
+  DBSetOption use_jobs=0
+  DBExecSQL CREATE TABLE table_one(one, two, three);
+  DBExecSQL CREATE TABLE table_two(four, five, six);
+  DBExecSQL CREATE TABLE table_three("a b", "c d", e);
+
+Then (Check synchronous):
+   AssertEqual 0, g:dbext_default_use_jobs
+
+"Table name completion {{{1
+Given sql (Incomplete table names):
+  SELECT * FROM table_o
+  SELECT * FROM table_tw
+
+Do (Complete):
+  1ggA\<c-x>\<c-o>\<Esc>
+  2ggA\<c-x>\<c-o>\<Esc>
+
+Expect (Table names completed):
+  SELECT * FROM table_one
+  SELECT * FROM table_two
+
+Given sql (Incomplete table names):
+  SELECT * FROM table_o
+  SELECT * FROM table_tw
+
+Do (Complete again):
+  1ggA\<s-Tab>t\<Esc>
+  2ggA\<s-Tab>t\<Esc>
+
+Expect (Table names completed again):
+  SELECT * FROM table_one
+  SELECT * FROM table_two
+
+Execute (Restore):
+  Restore
+
+"Column drill down {{{1
+Given sql (Incomplete column names):
+  SELECT
+
+"Difficult to get the syntax right
+"You must complete using the a table first before you can complete a column
+"
+Do (Complete):
+  otable_one.\<s-Tab>c\<c-\>\<c-n>Bdf.
+  o,\<s-Tab>c\<c-n>\<c-\>\<c-n>o,\<s-Tab>c\<c-n>\<c-n>\<c-\>\<c-n>
+
+Expect (Column names completed):
+  SELECT
+  one
+  ,two
+  ,three
+
+" Drill down {{{1
+Given sql (Complete tables with drill down):
+  FROM
+
+Execute (Tab, shift tab and ctrl n):
+  exe "normal Go\<s-Tab>t"
+  exe "normal Go,\<s-Tab>t\<C-N>\<C-N>"
+  exe "normal Go,\<s-Tab>t\<C-N>"
+
+Expect (Tables in order):
+  FROM
+  table_one
+  ,table_two
+  ,table_three
+
+Given sql (Complete columns with drill down):
+  SELECT
+
+" ``:normal`` can only be used to select the first column, for some reason <C-N>
+" doesn't work after a tab
+Execute (Shift-tab, ctrl-n and tab):
+  exe "normal Go\<s-Tab>t\t"
+  exe "normal Go,\<s-Tab>t\<C-N>\<C-N>\t"
+  exe "normal Go,\<s-Tab>t\<C-N>\t"
+
+Expect (First column from each table):
+  SELECT
+  one
+  ,four
+  ,"a b"
+
+" The built in completion uses ``s:save_prev_table`` which is only set when
+" doing column completion: autoload/sqlcomplete.vim:421 in vim 8.0
+
+" Tear down {{{1
+Execute (Clear db file):
+  silent !rm -f vader.sqlite
+

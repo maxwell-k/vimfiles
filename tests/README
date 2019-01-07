@@ -1,0 +1,31 @@
+Introduction
+============
+
+This folder contains tests for vim written using both `runVimTests` and
+`vader`. To run both sets of tests use:
+
+.. code:: sh
+
+    sh run.sh
+
+Vader usage
+===========
+
+Run inside vim: ``:packadd vader | Vader %``
+Run from command line: ``vim '+packadd vader | Vader! index.vader'``
+Run all tests: ``sh run.sh``
+
+Examples are in ``/usr/share/vim/vimfiles/pack/ac/opt/vader/test/vader.vader``
+
+Authoring notes
+===============
+
+-   Yank vim script and execute with ``:@"``.
+-   Before and After run after the test case; so for example after both the
+    "Do/Execute" and the "Then/Expect" (see ``:help vader-3``)
+-   Move windows from a Do block with ``\<c-w>j`` see
+    `pack/tests/opt/vader/autoload/vader/window.vim:115`
+-   Be very careful with Before blocks in test scripts called from
+    `index.vader`
+
+.. vim: filetype=rst

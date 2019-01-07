@@ -1,0 +1,18 @@
+" Based on
+" https://github.com/junegunn/vader.vim/blob/master/test/feature/lang-if.vader
+
+Given (Some string):
+  Hello
+
+Execute python3 (Python code):
+  import os
+  import vim
+  from vim import current, vars
+  vim.command('normal! yy2p')
+  current.buffer.append('Python.vader')
+
+Expect (3 copies of some string with Python.vader appended):
+  Hello
+  Hello
+  Hello
+  Python.vader

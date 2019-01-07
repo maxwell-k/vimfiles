@@ -7,10 +7,7 @@
 "
 set encoding=utf-8 viminfo='20,<50,h
 scriptencoding utf-8
-let s:rtp=expand('<sfile>:p:h').'/runtimepath'
 packloadall
-execute 'set runtimepath^='.s:rtp 
-execute 'set runtimepath+='.s:rtp.'/after'
 autocmd!
 " The two lines below ensure ftdetect files are loaded despite system settings
 " http://vim.1045645.n5.nabble.com/Issues-with-ftdetect-td1193595.html
@@ -39,9 +36,11 @@ set hlsearch
 set ignorecase " case insensitive searches
 set isfname+=& " for web addresses
 set isfname+=? " for web addresses
+set isfname-=\= "complete e.g. home=/home/liveuser
 set keywordprg= " use `K` for `:help`
 set linebreak " do not wrap in the middle of a word
 set mouse= " disable the mouse
+set modeline " unset in /etc/vim/vimrc by Alpine Linux
 set nojoinspaces " one space between sentences
 set noshiftround
 set nostartofline " don't move to start of line with H, M, L…
@@ -49,12 +48,12 @@ set nrformats+=alpha " increment a to b
 set nrformats-=octal " increment 07 to 08 and not 010
 set path+=** " recursively search, misses hidden files e.g. /.vim/
 set ruler " show position
-set shiftwidth=4
+set shiftwidth=2
 set shortmess+=I
 set showcmd
 set smartcase
-set spellfile=~/.vim/runtimepath/spell/en.utf-8.add,./.en.utf-8.add
-set softtabstop=4 " backspace removes an expanded tab
+set spellfile=~/.vim/spell/en.utf-8.add,./.en.utf-8.add
+set softtabstop=2
 set splitbelow
 set termguicolors
 set wildmenu
@@ -66,41 +65,41 @@ execute s:list_settings
 " --------
 "
 " Alphabetical
-" <Leader>` see runtimepath/ftplugin/rst.vim
-vnoremap <Leader>= :<C-U>call vim#sum()<CR>
+" <Leader>` see vim/ftplugin/rst.vim
 noremap <Leader>a :call ale#quit#Mapping()<CR>
 noremap <Leader>b :call toggle#toggle_colors()<CR>
 call opfunc#opfuncmap('c') " straight yank
 noremap <Leader>C :call SendViaOSC52(join(getline(1,'$'),'\n'))<CR>
 noremap <Leader>fc :call vim#cipher()<CR>
-noremap <Leader>fo :edit ~/other.txt<CR>:$-1<CR>zozz
+noremap <Leader>fo :edit ~/other.txt<CR>:$-1<CR>
 noremap <Leader>fr :edit ~/.sd/planning/I_have_not_read.txt<CR>
 noremap <Leader>fw :edit ~/.sd/planning/I_have_not_watched.txt<CR>
 noremap <Leader>fe
   \ :edit ~/.sd/planning/Housekeeping/Emails.txt<CR>:$<CR>zozz0Wy$kk
-" <Leader>h see runtimepath/ftplugin/rst.vim
+" <Leader>h see vim/ftplugin/rst.vim
 noremap <Leader>i :echo synIDattr(synID(line('.'),col('.'),1),'name')<CR>
 call opfunc#opfuncmap('j', 'jupyter') " run in jupyter
 nmap <Leader>J :call jupyter#toggle()<CR>
 vnoremap <Leader>k <ESC>:if line("'<") > 1 \| 0,'<-1d \| en \|
   \ if line("'>") < line('$') \| '>+1,$d \| en<CR>0gg
-call opfunc#opfuncmap('l') " run in dbext
-call opfunc#opfuncmap('L') " run in dbext with .mode list
+" <leader>l see plugin/dbext.vim
+" <leader>L see plugin/dbext.vim
 noremap <C-L> :noh<CR><C-L>
-noremap <Leader>m :call toggle#toggle_jobs()<CR>
+" <leader>m see plugin/dbext.vim
 noremap <Leader>n :silent!
   \ 5new +setlocal\ buftype=nofile\ bufhidden=hide\ noswapfile<CR><CR>
-noremap <Leader>/ :s,\\,/,g<CR><C-L>
 noremap <Leader>s :call vim#scriptnames()<CR>
 execute "noremap <Leader>t :silent! call vim#toggleListMode('"
   \.s:list_settings."')<CR>"
 noremap <Leader>v :set paste! paste?<CR>
 noremap <Leader>w :call rst#wrap()<CR>
 noremap <Leader>W :call opfunc#clipboard(rst#link())<CR>
-noremap <Leader>\ :s,\\,/,g<CR>
-noremap <Leader>/ :s,/,\\,g<CR>
 call opfunc#opfuncmap('y')
 noremap Y y$
+vnoremap <Leader>= :<C-U>call vim#sum()<CR>
+nmap <Leader>` <Plug>(interpreted_text)
+noremap <Leader>\ :s,\\,/,g<CR>
+noremap <Leader>/ :s,/,\\,g<CR>
 
 " Commands {{{1
 " --------
@@ -124,23 +123,21 @@ digraphs %< 9986 " black scissors ✂
 " autocommands {{{1
 " ------------
 "
-" Move below to a file in ftplugin if more that one line per file-type
+" Use a file in ftplugin if file-type related
 augroup vimrc
-autocmd FileType dosini set isfname-=\= "complete e.g. home=/home/liveuser
 autocmd BufReadCmd *.tbz2 call tar#Browse(expand("<amatch>")) "Gentoo binaries
 autocmd BufRead COMMIT_EDITMSG setlocal nomodeline spell
 autocmd StdInReadPost * setlocal nowrap
 augroup END
 
-" Plugin configuration {{{1
-" --------------
+" Plugin, syntax and highlighting configuration {{{1
+" ---------------------------------------------
 "
 colorscheme mine
 let g:ale_fix_on_save = 1
 let g:ale_lint_delay = 50
 let g:ale_sh_shellcheck_options = '-x'
+let g:is_posix = 1  " $() isn't an error in sh
 " The two lines below prevent vim-gitgutter over-riding [c and ]c
 nmap [h <Plug>GitGutterPrevHunk
 nmap ]h <Plug>GitGutterNextHunk
-
-" vim: set foldmethod=marker :{{{1

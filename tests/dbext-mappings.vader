@@ -1,0 +1,120 @@
+" Setup {{{1
+After:
+  DBResultsClose
+
+Given sql (Placeholder):
+  [placeholder]
+
+Execute (Function to hide irrelevant details):
+  source ./dbext-mask.vim " defines DBextPostResult
+
+Execute (Save dbext variables):
+  Save g:dbext_default_use_jobs,g:dbext_default_SQLITE_cmd_header
+  let g:dbext_default_use_jobs=0
+  let g:dbext_default_SQLITE_cmd_header = ''
+  DBSetOption SQLITE_cmd_header=''
+
+Then (Check cmd_header and jobs disabled):
+  AssertEqual '',g:dbext_default_SQLITE_cmd_header
+  AssertEqual 0,g:dbext_default_use_jobs
+
+" Test a basic select works {{{1
+Execute (Test "SELECT 1"):
+  DBExecSQL SELECT 1 ;
+  buffer Result
+
+Expect (1 with no header):
+  Connection: T(SQLITE)  D(XXXXX)   at XX:XX
+  1
+
+" Test a default mapping {{{1
+Given sql (Select 2):
+  SELECT 2;
+
+Do (Run with \sel):
+  \sel\<c-w>j
+
+Expect (2 with no header):
+  Connection: T(SQLITE)  D(XXXXX)   at XX:XX
+  2
+
+" Test a default mapping in reStructuredText{{{1
+Given rst (Select 2.1):
+  Example sql::
+    SELECT 2.1;
+
+Do (Run with \sel):
+  G
+  \sel\<c-w>j
+
+Expect (2 with no header):
+  Connection: T(SQLITE)  D(XXXXX)   at XX:XX
+  2.1
+
+" Test an opfunc mapping - <Leader>l {{{1
+Given sql (Select 2, 1):
+  SELECT 2,1;
+
+Do (Run with \ll opfunc):
+  \ll\<c-w>j
+
+Expect (2|1 with no header):
+  Connection: T(SQLITE)  D(XXXXX)   at XX:XX
+  2|1
+
+" Move back to default settings {{{1
+Execute (Restore):
+  Restore
+  execute 'DBSetOption SQLITE_cmd_header='.g:dbext_default_SQLITE_cmd_header
+
+Execute (Function to hide irrelevant details):
+  source ./dbext-mask.vim " defines DBextPostResult
+
+Given sql (Select 3):
+  SELECT 3;
+
+Do (Run with \sel):
+  \sel\<c-o>:sleep 1\<Enter>\<c-w>j
+
+Expect (3 with a header):
+  Connection: T(SQLITE)  D(XXXXX)   at XX:XX
+  3
+  ----------
+  3
+
+Given sql (A simple one column select statement):
+  SELECT 1;
+
+Execute (Check jobs enabled):
+   AssertEqual 1, g:dbext_default_use_jobs
+
+"Tested after every do / execute
+Expect (Check select statement unchanged):
+  SELECT 1;
+
+Do (Mapping to toggle jobs):
+  \m
+
+Execute (Check jobs disabled):
+   AssertEqual 0, g:dbext_default_use_jobs
+
+Do (Mapping to toggle jobs again):
+  \m
+
+Execute (Check jobs enabled again):
+   AssertEqual 1, g:dbext_default_use_jobs
+
+" Test an opfunc mapping - <Leader>L {{{1
+Given sql (Select 4, 0):
+  SELECT 4, 0;
+
+Do (Run with \ll opfunc):
+  \LL\<c-o>:sleep 1\<Enter>\<c-w>j
+
+Expect (4|0 with no header):
+  Connection: T(SQLITE)  D(XXXXX)   at XX:XX
+  4|0
+
+" Tear down {{{1
+Execute (Clear function):
+    delfunction DBextPostResult
