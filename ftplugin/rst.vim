@@ -9,9 +9,10 @@ noremap <Leader>h :call rst#headings()<CR>
 let b:ale_linters = ['rstcheckwarn', 'sed', 'rst2pseudoxml']
 let b:ale_fixers = ['remove_trailing_lines', 'trim_whitespace']
 
-setlocal makeprg=python3\ -c\ \"__import__('docutils.core').core.
-setlocal makeprg+=publish_cmdline(writer_name='html')\"
-setlocal makeprg+=\ --input-encoding=utf-8\ \"%\"\ \"~/.Downloads/%:t.html\"
+let &l:makeprg = "python3 -c '__import__(\"docutils.core\").core."
+  \ . "publish_cmdline(writer_name=\"html\")'"
+  \ . ' --input-encoding=utf-8 '
+  \ . expand('"%" "$HOME/.Downloads/%:t.html"')
 augroup ftplugin_rst
   au!
   autocmd QuickFixCmdPre make noautocmd write
