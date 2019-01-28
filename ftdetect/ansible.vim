@@ -1,8 +1,10 @@
-" based upon ftdetect/ansible.vim from
-" https://github.com/pearofducks/ansible-vim
-" vint: -ProhibitAutocmdWithNoGroup
-au BufNewFile,BufRead * if expand("%:p") =~
-  \ '\v/(playbooks|write)/.*\.yaml$'
-  \ | set filetype=yaml.ansible | end
-au BufNewFile,BufRead hosts setfiletype yaml.ansible
-au BufNewFile,BufRead **/configuration/*.yaml set filetype=yaml.ansible
+augroup ansible_vim_ftyaml_ansible
+  "add two directories no need to clear
+  au BufNewFile,BufRead * if expand("%:p") =~
+    \ '\v/(playbooks|write)/.*\.yaml$'
+    \ | set filetype=yaml.ansible | end
+augroup END
+augroup ansible_vim_fthosts
+  autocmd!
+  autocmd BufNewFile,BufRead hosts setfiletype yaml.ansible
+augroup END
