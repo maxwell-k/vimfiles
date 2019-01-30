@@ -7,5 +7,5 @@ augroup ansible_vim_ftyaml_ansible
 augroup END
 augroup ansible_vim_fthosts
   autocmd!
-  autocmd BufNewFile,BufRead hosts set filetype yaml.ansible
+  autocmd BufNewFile,BufRead hosts set filetype=yaml.ansible
 augroup END
