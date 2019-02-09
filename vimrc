@@ -24,6 +24,7 @@ set backspace=indent,eol,start " backspace deletes special characters
 set colorcolumn=80
 set confirm " prompt before discarding changes
 set expandtab
+set foldlevelstart=99
 set formatlistpat=^\\s*[0-9-#•]\\+[.\ ]\\s*\\\|^\\s*[a-z]\\.\\s
 set formatoptions+=n " format lists
 set guioptions+=c " keyboard workaround for file changed dialog
