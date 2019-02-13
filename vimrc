@@ -100,7 +100,6 @@ noremap <Leader>W :call opfunc#clipboard(rst#link())<CR>
 call opfunc#opfuncmap('y')
 noremap Y y$
 vnoremap <Leader>= :<C-U>call vim#sum()<CR>
-nmap <Leader>` <Plug>(interpreted_text)
 noremap <Leader>\ :s,\\,/,g<CR>
 noremap <Leader>/ :s,/,\\,g<CR>
 
