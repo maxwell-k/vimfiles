@@ -1,7 +1,8 @@
 let s:repository = fnamemodify(resolve(expand('<sfile>')),':p:h')
 function! vim#cipher() abort "{{{1
-  let s:file = s:repository.'/../../../safe/cipher.bf'
-  if filereadable(s:file) | execute 'edit '.resolve(s:file)
+  let s:file = resolve(s:repository.'/../../../safe/cipher.bf')
+  if bufexists(s:file) | execute 'buffer '.s:file
+  elseif filereadable(s:file) | execute 'edit '.s:file
   else | find safe/cipher.bf
   endif
 endfunction
