@@ -1,6 +1,5 @@
 " based upon https://github.com/plasticboy/vim-markdown/pull/367/
-
-" highlight strike through
+" highlight strike through, built in support isn't functioning
 syntax region mkdStrike
   \ matchgroup=mkdDelimiter start=/\%(\~\~\)/ end=/\%(\~\~\)/ concealends
 syntax cluster mkdNonListItem add=mkdStrike
