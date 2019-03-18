@@ -5,14 +5,13 @@ syntax region mkdStrike
 syntax cluster mkdNonListItem add=mkdStrike
 highlight link mkdStrike htmlStrike
 
-" don't spell check modelines or blockquotes
-syntax region htmlComment start=+<!+ end=+>+
-  \ contains=htmlCommentPart,htmlCommentError,@Spell,htmlCommentModeline
-syntax region htmlCommentModeline contained start=+-- vim:+ end=+--\s*+
-  \ contains=@NoSpell
-highlight link htmlCommentModeline Comment
+" don't spell check block quotes
 syn region mkdBlockquote start=/^\s*>/ end=/$/
   \ contains=mkdLink,mkdInlineURL,mkdLineBreak,@NoSpell
+
+" don't spell check modelines
+" see ./html.vim - if html is loaded last its priority - :help syn-priority
+syntax cluster mkdNonListItem add=htmlModeline
 
 " allow more groups in headings
 syntax cluster mkdHeadingContains contains=mkdLink,mkdInlineURL,mkdCode

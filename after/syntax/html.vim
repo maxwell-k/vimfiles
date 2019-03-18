@@ -8,3 +8,7 @@ if has('gui_win32')
 else
     highlight htmlDel cterm=reverse
 endif
+
+" don't spell check modelines
+syn match htmlModeline '^<!-- vim[:] set [^:]* : -->$' contains=@NoSpell
+highlight link htmlModeline Comment
