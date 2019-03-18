@@ -1,4 +1,4 @@
-scriptencoding utf8
+scriptencoding utf-8
 call ale#linter#Define(fnamemodify(expand('<sfile>:p:h'), ':t'), {
 \   'name': 'mkdHtml',
 \   'executable': 'sed',
