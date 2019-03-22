@@ -72,6 +72,8 @@ noremap <Leader>b :call toggle#toggle_colors()<CR>
 call opfunc#opfuncmap('c') " straight yank
 noremap <Leader>C :call SendViaOSC52(join(getline(1,'$'),'\n'))<CR>
 noremap <Leader>fc :call vim#cipher()<CR>
+noremap <Leader>ff
+  \ :packadd fzf \| call fzf#run({'source': 'find -type f', 'sink': 'e'})<CR>
 noremap <Leader>fg
   \ :packadd fzf \| call fzf#run({'source': 'git ls-files', 'sink': 'e'})<CR>
 noremap <Leader>fo :edit ~/other.txt<CR>:$-1<CR>
