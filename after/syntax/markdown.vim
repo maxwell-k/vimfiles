@@ -29,6 +29,7 @@ syn region htmlH6 matchgroup=mkdHeading start="^\s*######" end="$"
   \ contains=@mkdHeadingContains,@Spell
 
 " don't spell check words in double quotes
-syntax match mkdWordInDoubleQuotes '\v"[^"]*"' transparent contains=@NoSpell
-syntax cluster mkdNonListItem add=mkdWordInDoubleQuotes
-syntax cluster mkdHeadingContains add=mkdWordInDoubleQuotes
+syntax match mkdWordInQuotes '\v"[^"]*"' transparent contains=@NoSpell
+syntax match mkdWordInQuotes "\v'[^']*'" transparent contains=@NoSpell
+syntax cluster mkdNonListItem add=mkdWordInQuotes
+syntax cluster mkdHeadingContains add=mkdWordInQuotes
