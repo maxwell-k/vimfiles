@@ -11,7 +11,7 @@ packloadall
 autocmd!
 " The two lines below ensure ftdetect files are loaded despite system settings
 " http://vim.1045645.n5.nabble.com/Issues-with-ftdetect-td1193595.html
-filetype off | filetype on 
+filetype off | filetype on
 filetype plugin off | filetype plugin on
 syntax enable
 
@@ -81,6 +81,9 @@ noremap <Leader>fr :edit ~/.sd/planning/I_have_not_read.txt<CR>
 noremap <Leader>fw :edit ~/.sd/planning/I_have_not_watched.txt<CR>
 noremap <Leader>fe
   \ :edit ~/.sd/planning/Housekeeping/Emails.txt<CR>:$<CR>zozz0Wy$kk
+noremap <silent> <Leader>gg
+  \ :packadd gitgutter \| :GitGutterDisable \| :GitGutterEnable
+  \ \| silent exec 'noremap <Leader>gg :GitGutterBufferToggle<lt>CR>'<CR>
 " <Leader>h see vim/ftplugin/rst.vim
 noremap <Leader>i :echo synIDattr(synID(line('.'),col('.'),1),'name')<CR>
 call opfunc#opfuncmap('j', 'jupyter') " run in jupyter
@@ -109,7 +112,6 @@ noremap <Leader>/ :s,/,\\,g<CR>
 " --------
 "
 command! -nargs=+ Jupyter :call jupyter#command(<q-args>)
-command! GGutter :packadd gitgutter | :GitGutterEnable
 
 " Digraphs {{{1
 " --------
