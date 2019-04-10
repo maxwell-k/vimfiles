@@ -1,6 +1,5 @@
 - name: Example play
   hosts: localhost
-  connection: local
   gather_facts: no
   tasks:
     - name: View
