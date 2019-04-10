@@ -67,7 +67,8 @@ execute s:list_settings
 "
 " Alphabetical
 " <Leader>` see vim/ftplugin/rst.vim
-noremap <Leader>a :call ale#quit#Mapping()<CR>
+noremap <Leader>aq :call ale#quit#Mapping()<CR>
+noremap <Leader>ad :ALEDisableBuffer<CR>
 noremap <Leader>b :call toggle#toggle_colors()<CR>
 call opfunc#opfuncmap('c') " straight yank
 noremap <Leader>C :call SendViaOSC52(join(getline(1,'$'),'\n'))<CR>
