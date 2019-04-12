@@ -76,8 +76,8 @@ noremap <Leader>fc :call vim#cipher()<CR>
 noremap <Leader>ff :call fzf#run({'source': 'find -type f', 'sink': 'e'})<CR>
 noremap <Leader>fg :call fzf#run({'source': 'git ls-files', 'sink': 'e'})<CR>
 noremap <Leader>fi :edit ~/.sd/planning/ideas.txt<CR>:$-1<CR>
-noremap <Leader>fo :edit ~/.sd/planning/reference.txt<CR>:$-1<CR>
-noremap <Leader>fr :edit ~/.sd/planning/I_have_not_read.txt<CR>
+noremap <Leader>fr :edit ~/.sd/planning/reference.txt<CR>:$-1<CR>
+noremap <Leader>fR :edit ~/.sd/planning/I_have_not_read.txt<CR>
 noremap <Leader>fw :edit ~/.sd/planning/I_have_not_watched.txt<CR>
 noremap <Leader>fe
   \ :edit ~/.sd/planning/Housekeeping/Emails.txt<CR>:$<CR>zozz0Wy$kk
