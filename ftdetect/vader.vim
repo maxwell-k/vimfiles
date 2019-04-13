@@ -1,2 +1,2 @@
 " vint: -ProhibitAutocmdWithNoGroup
-au BufRead,BufNewFile *.vader set filetype=vader
+autocmd BufRead,BufNewFile *.vader set filetype=vader

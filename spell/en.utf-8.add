@@ -157,6 +157,7 @@ HMRC
 HSBC
 Halliwell
 Hardiman
+Hashicorp
 Hashicorp's
 Haslett
 Hetherton
@@ -197,6 +198,7 @@ Kearney
 Keeler
 Kelman
 Kelso
+Kesh
 Kiely
 Kircubbin
 Klose
@@ -221,6 +223,7 @@ Lough
 Luca
 Lynne
 MEng
+MLAs
 MSc
 Mackerell
 Mackle
@@ -268,6 +271,7 @@ NIE
 NPower
 Navionics
 Neill
+Nesbitt
 Neueda
 Newell
 Newtownards
@@ -282,6 +286,7 @@ O2
 OReilly
 Orla
 Ortleib
+Outhaul
 P11D
 P45
 P60
@@ -377,6 +382,7 @@ Una
 Uncommenting
 Uta
 VBA
+Vimeo
 Vinnik
 Vodafone
 WFDF
@@ -389,8 +395,11 @@ Zanussi
 analytics
 anodisation
 backend
+backends
 chandlery
 clinometer
+daggerboard
+downhaul
 financial
 frontend
 hoc
@@ -403,6 +412,7 @@ magnetrons
 massager
 milli
 oauth2client
+outhaul
 plc
 pre
 reStructuredText

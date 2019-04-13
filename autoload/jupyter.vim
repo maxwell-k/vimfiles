@@ -36,7 +36,7 @@
 " ``:call jupyter#load()`` for testing and to make vim autoload the
 " ``:python3`` functions
 "
-scriptencoding utf8
+scriptencoding utf-8
 if !has('python3') | finish | endif
 " Main body of python code {{{
 python3 << """

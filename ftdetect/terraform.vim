@@ -1,2 +1,2 @@
 " vint: -ProhibitAutocmdWithNoGroup
-au BufRead,BufNewFile *.tf setlocal filetype=terraform
+autocmd BufRead,BufNewFile *.tf setlocal filetype=terraform

@@ -1,2 +1,2 @@
 " vint: -ProhibitAutocmdWithNoGroup
-au BufRead,BufNewFile APKBUILD setfiletype sh.apkbuild
+autocmd BufRead,BufNewFile APKBUILD setfiletype sh.apkbuild

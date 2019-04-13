@@ -1,2 +1,2 @@
 " vint: -ProhibitAutocmdWithNoGroup
-au BufRead,BufNewFile /tmp/man.* setfiletype man
+autocmd BufRead,BufNewFile /tmp/man.* setfiletype man

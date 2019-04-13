@@ -14,7 +14,7 @@ let &l:makeprg = "python3 -c '__import__(\"docutils.core\").core."
   \ . ' --input-encoding=utf-8 '
   \ . expand('"%" "$HOME/.Downloads/%:t.html"')
 augroup ftplugin_rst
-  au!
+  autocmd!
   autocmd QuickFixCmdPre make noautocmd write
   autocmd QuickFixCmdPost make silent !ab ~/.Downloads/%:t.html
 augroup END
