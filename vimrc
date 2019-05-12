@@ -80,7 +80,7 @@ noremap <Leader>fr :edit ~/.sd/planning/reference.txt<CR>:$-1<CR>
 noremap <Leader>fR :edit ~/.sd/planning/I_have_not_read.txt<CR>
 noremap <Leader>fw :edit ~/.sd/planning/I_have_not_watched.txt<CR>
 noremap <Leader>fe
-  \ :edit ~/.sd/planning/Housekeeping/Emails.txt<CR>:$<CR>zozz0Wy$kk
+  \ :edit ~/.sd/planning/Housekeeping/Emails.txt<CR>:$<CR>0Wy$kk
 noremap <silent> <Leader>gg
   \ :packadd gitgutter \| :GitGutterDisable \| :GitGutterEnable
   \ \| silent exec 'noremap <Leader>gg :GitGutterBufferToggle<lt>CR>'<CR>
