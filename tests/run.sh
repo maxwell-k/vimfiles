@@ -10,9 +10,9 @@ case "$0" in
 	-*)
 		;;
 	*)
-		runVimTests.sh test-transform.vim ||
+		runVimTests test-transform.vim ||
 		{ printf 'runVimTest pure tests failed\n'; exit 1 ; }
-		runVimTests.sh --user test-dbext.vim ||
+		runVimTests --user test-dbext.vim ||
 		{ printf 'runVimTest user tests failed\n'; exit 1 ; }
 		vader index.vader ||
 		{ printf 'vader tests failed\n'; exit 1 ; }

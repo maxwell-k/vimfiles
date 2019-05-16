@@ -2,10 +2,13 @@ Introduction
 ============
 
 This folder contains tests for vim written using both `runVimTests` and
-`vader`. To run both sets of tests use:
+`vader`. ``playbooks/vim.yaml`` installs `vader` and the first command
+below installs `runVimTests`. To run both sets of tests use the second command
+below:
 
 .. code:: sh
 
+    sudo apk -X https://aports.keithmaxwell.uk/user add runVimTests
     sh run.sh
 
 Vader usage
