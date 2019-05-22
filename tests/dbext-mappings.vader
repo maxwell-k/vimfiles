@@ -89,10 +89,6 @@ Execute (Default settings, no header):
 Then (Check jobs enabled):
    AssertEqual 1, g:dbext_default_use_jobs
 
-" Initialise{{{1
-After:
-  DBResultsClose
-
 " Test a default mapping - <Leader>sel{{{1
 Given sql (Select 3):
   SELECT 3;
@@ -112,6 +108,9 @@ Expect (3 with a header):
   ----------
   3
 
+Execute (Tidy):
+  DBResultsClose
+
 " Test an opfunc mapping - <Leader>L{{{1
 Given sql (Select 4, 0):
   SELECT 4, 0;
@@ -128,6 +127,13 @@ Expect (4|0 with no header):
   Connection: T(SQLITE)  D(XXXXX)   at XX:XX
   job started:XX:XX:XX updates every 2000 ms
   4|0
+
+Execute (Tidy):
+  DBResultsClose
+
+" Initialise{{{1
+After:
+  DBResultsClose
 
 Include: includes/reset-jobs.vader
 
