@@ -5,9 +5,6 @@ After:
 Execute (Function to hide irrelevant details):
   source ./dbext-mask.vim " defines DBextPostResult
 
-Given (Placeholder):
-  [placeholder]
-
 Execute (Syncronous first select):
   Save g:dbext_default_job_enable
   let g:dbext_default_job_enable=0
