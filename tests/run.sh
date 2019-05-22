@@ -4,6 +4,7 @@ vader() {
 	vim "+packadd vader | Vader! $1"
 }
 vader_no_bang() {
+	# For debugging with . ./run.sh ; vader_no_bang index.vader
 	vim "+packadd vader | Vader $1"
 }
 case "$0" in
