@@ -1,10 +1,15 @@
 After:
   DBResultsClose
 
-Execute (Syncronous first select):
+Execute (Disable jobs):
   Save g:dbext_default_job_enable
   let g:dbext_default_job_enable=0
+  execute 'DBSetOption job_enable=' g:dbext_default_job_enable
+
+Execute (First select):
   Select 1;
+
+Then (View result):
   buffer Result
   call vim#dbext_mask()
 
@@ -16,6 +21,8 @@ Expect (1 in one column with a header):
 
 Execute (Second select):
   Select 2;
+
+Then (View result):
   buffer Result
   call vim#dbext_mask()
 
