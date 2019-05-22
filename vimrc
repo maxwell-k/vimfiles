@@ -89,10 +89,10 @@ call opfunc#opfuncmap('j', 'jupyter') " run in jupyter
 nmap <Leader>J :call jupyter#toggle()<CR>
 vnoremap <Leader>k <ESC>:if line("'<") > 1 \| 0,'<-1d \| en \|
   \ if line("'>") < line('$') \| '>+1,$d \| en<CR>0gg
-" <leader>l see plugin/dbext.vim
-" <leader>L see plugin/dbext.vim
+" <leader>l see vim/plugin/dbext.vim
+" <leader>L see vim/plugin/dbext.vim
 noremap <C-L> :noh<CR><C-L>
-" <leader>m see plugin/dbext.vim
+" <leader>m see vim/plugin/dbext.vim
 noremap <Leader>n :silent!
   \ 5new +setlocal\ buftype=nofile\ bufhidden=hide\ noswapfile<CR><CR>
 noremap <Leader>s :call vim#scriptnames()<CR>
