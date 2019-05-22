@@ -6,6 +6,7 @@ Then (Check jobs enabled and view results with times masked):
   buffer Result
   call vim#dbext_mask()
   AssertEqual '1', DB_listOption('job_enable')
+  DBResultsClose
 
 Expect (1 in one column with a header):
   Connection: T(SQLITE)  D(XXXXX)   at XX:XX
@@ -13,6 +14,3 @@ Expect (1 in one column with a header):
   1
   ----------
   1
-
-Execute (Tidy):
-  DBResultsClose
