@@ -1,6 +1,6 @@
 packadd dbext
 
-let g:dbext_default_always_prompt_for_variables=1
+let g:dbext_default_always_prompt_for_variables = 1
 
 " Default to an in memory SQLite database
 let g:dbext_default_type = 'SQLITE'
