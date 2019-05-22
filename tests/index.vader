@@ -4,10 +4,13 @@ Include: Python.vader
 After:
   DBResultsClose
 
-"SQL
+"SQLite using :memory:
 Include: dbext-defaults.vader
 Include: dbext-mappings.vader
 Include: dbext-select-other-syntax.vader
 Include: dbext-select-sync.vader
 Include: dbext-hang.vader
+
+"SQLite using vader.sqlite
+"  Must be run last as :DBSetOption dbname=:memory: fails, without a workaround
 Include: dbext-completion.vader

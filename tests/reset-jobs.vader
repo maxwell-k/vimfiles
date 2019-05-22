@@ -1,0 +1,7 @@
+Execute (Reset jobs):
+  Restore g:dbext_default_job_enable
+  if !exists('g:dbext_default_job_enable')
+    " match from :help dbext-configure-variables
+    let g:dbext_default_job_enable = 1
+  endif
+  execute 'DBSetOption job_enable=' g:dbext_default_job_enable

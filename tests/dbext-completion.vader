@@ -2,7 +2,7 @@
 Execute (Setup DB and create tables):
   set filetype=sql
 
-  Save g:dbext_default_dbname, g:dbext_default_job_enable
+  Save g:dbext_default_job_enable
   " if the tests in this file are run before any connection is made
   let g:dbext_default_dbname = 'vader.sqlite'
   let g:dbext_default_job_enable = 0
@@ -98,12 +98,7 @@ Expect (First column from each table):
 " doing column completion: autoload/sqlcomplete.vim:421 in vim 8.0
 
 " Tear down {{{1
-Execute (Clear db file and reset connection):
+Execute (Clear db file):
   silent !rm -f vader.sqlite
-  Restore g:dbext_default_dbname, g:dbext_default_job_enable
-  " match from :help dbext-configure-variables
-  if !exists('g:dbext_default_job_enable')
-    let g:dbext_default_job_enable = 1
-  endif
-  execute 'DBSetOption dbname=' g:dbext_default_dbname
-  execute 'DBSetOption job_enable=' g:dbext_default_job_enable
+
+Include: reset-jobs.vader
