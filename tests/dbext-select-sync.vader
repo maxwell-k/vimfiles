@@ -1,6 +1,6 @@
 Execute (Disable jobs):
   Save g:dbext_default_job_enable
-  let  g:dbext_default_job_enable = 0
+  let g:dbext_default_job_enable = 0
   execute 'DBSetOption job_enable=' g:dbext_default_job_enable
 
 Execute (SELECT 5):
