@@ -103,4 +103,4 @@ Expect (First column from each table):
 Execute (Clear db file):
   silent !rm -f vader.sqlite
 
-Include: reset-jobs.vader
+Include: includes/reset-jobs.vader
