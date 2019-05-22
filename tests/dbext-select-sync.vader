@@ -1,13 +1,15 @@
-Given (Placeholder):
-  [placeholder]
+Execute (Disable jobs):
+  Save g:dbext_default_job_enable
+  let  g:dbext_default_job_enable = 0
+  execute 'DBSetOption job_enable=' g:dbext_default_job_enable
 
-Execute (Function to hide irrelevant details):
-  source ./dbext-mask.vim " defines DBextPostResult
-
-Execute (Syncronous "SELECT 2;"):
-  DBSetOption job_enable=0
+Execute (SELECT 5):
   DBExecSQL SELECT 5 ;
+
+Then (View results):
+  DBResultsClose
   buffer Result
+  call vim#dbext_mask()
 
 Expect (5 in one column with a header):
   Connection: T(SQLITE)  D(XXXXX)   at XX:XX
@@ -15,5 +17,4 @@ Expect (5 in one column with a header):
   ----------
   5
 
-Execute (Clear function):
-  delfunction DBextPostResult
+Include: reset-jobs.vader

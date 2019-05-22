@@ -8,13 +8,13 @@ After:
 Include: dbext-defaults.vader
 Include: dbext-mappings.vader
 Include: dbext-select-other-syntax.vader
-Include: dbext-select-sync.vader
 
 "SQLite using :memory: and handling DBResultsClose explicitly
 "  An unplanned second call to DBResultsClose may cause unexpected behaviour
 After:
   :
 
+Include: dbext-select-sync.vader
 Include: dbext-hang.vader
 
 "SQLite using vader.sqlite
