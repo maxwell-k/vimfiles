@@ -15,8 +15,8 @@ Execute (Test "SELECT 1"):
   DBExecSQL SELECT 1 ;
 
 Then (View results):
-  DBResultsClose
   sleep 250m
+  DBResultsClose
   buffer Result
   call vim#dbext_mask()
 
@@ -32,8 +32,8 @@ Do (Run with \sel):
   \sel
 
 Then (View results):
-  DBResultsClose
   sleep 250m
+  DBResultsClose
   buffer Result
   call vim#dbext_mask()
 
@@ -51,8 +51,8 @@ Do (Run with \sel):
   \sel
 
 Then (View results):
-  DBResultsClose
   sleep 250m
+  DBResultsClose
   buffer Result
   call vim#dbext_mask()
 
@@ -68,8 +68,8 @@ Do (Run with \ll opfunc):
   \ll
 
 Then (View results):
-  DBResultsClose
   sleep 250m
+  DBResultsClose
   buffer Result
   call vim#dbext_mask()
 
