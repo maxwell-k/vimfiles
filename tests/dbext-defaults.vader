@@ -1,16 +1,12 @@
-After:
-  DBResultsClose
-
-Execute (Function to hide irrelevant details):
-  source ./dbext-mask.vim " defines DBextPostResult
-
-Then (Check jobs enabled):
-  AssertEqual '1', DB_listOption('job_enable')
-
 Execute (Asyncronous "SELECT 1;" by default):
   DBExecSQL SELECT 1 ;
-  sleep 5
+
+Then (Check jobs enabled and view results with times masked):
+  DBResultsClose
+  sleep 250m
   buffer Result
+  call vim#dbext_mask()
+  AssertEqual '1', DB_listOption('job_enable')
 
 Expect (1 in one column with a header):
   Connection: T(SQLITE)  D(XXXXX)   at XX:XX
@@ -18,6 +14,3 @@ Expect (1 in one column with a header):
   1
   ----------
   1
-
-Execute (Clear function):
-  delfunction DBextPostResult
