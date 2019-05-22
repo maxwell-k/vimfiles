@@ -1,12 +1,12 @@
 Execute (Use the :Select syntax):
   Select 3;
 
-Then (View the result):
+Then (Check async and view the result):
+  AssertEqual 1, g:dbext_default_use_jobs
   sleep 250m
   DBResultsClose " must be after any sleep
   buffer Result
   call vim#dbext_mask()
-  AssertEqual 1, g:dbext_default_use_jobs
 
 Expect (3 in one column with a header):
   Connection: T(SQLITE)  D(XXXXX)   at XX:XX
