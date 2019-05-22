@@ -23,9 +23,8 @@ Examples are in ``/usr/share/vim/vimfiles/pack/ac/opt/vader/test/vader.vader``
 Authoring notes
 ===============
 
+-   Avoid Before and After because the can impact on included files
 -   Yank vim script and execute with ``:@"``.
--   Before and After run after the test case; so for example after both the
-    "Do/Execute" and the "Then/Expect" (see ``:help vader-3``)
 -   Move windows from a Do block with ``\<c-w>j`` see
     `pack/tests/opt/vader/autoload/vader/window.vim:115`
 -   Be very careful with Before blocks in test scripts called from

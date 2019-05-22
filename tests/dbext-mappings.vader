@@ -1,6 +1,3 @@
-After:
-  :
-
 " Turn off header and jobs{{{1
 Execute (Turn off header and jobs):
   Save g:dbext_default_SQLITE_cmd_header, g:dbext_default_job_enable
@@ -129,10 +126,6 @@ Expect (4|0 with no header):
   4|0
 
 Execute (Tidy):
-  DBResultsClose
-
-" Initialise{{{1
-After:
   DBResultsClose
 
 Include: includes/reset-jobs.vader

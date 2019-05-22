@@ -1,20 +1,11 @@
 "Python
 Include: Python.vader
 
-Include: dbext-select-other-syntax.vader
-Include: dbext-defaults.vader
-
-After:
-  DBResultsClose
-
-"SQLite using :memory:
-Include: dbext-mappings.vader
-
 "SQLite using :memory: and handling DBResultsClose explicitly
 "  An unplanned second call to DBResultsClose may cause unexpected behaviour
-After:
-  :
-
+Include: dbext-select-other-syntax.vader
+Include: dbext-defaults.vader
+Include: dbext-mappings.vader
 Include: dbext-select-sync.vader
 Include: dbext-hang.vader
 
