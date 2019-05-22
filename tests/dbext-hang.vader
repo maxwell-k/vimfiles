@@ -1,15 +1,12 @@
 After:
   DBResultsClose
 
-" Setup
-Execute (Function to hide irrelevant details):
-  source ./dbext-mask.vim " defines DBextPostResult
-
 Execute (Syncronous first select):
   Save g:dbext_default_job_enable
   let g:dbext_default_job_enable=0
   Select 1;
   buffer Result
+  call vim#dbext_mask()
 
 Expect (1 in one column with a header):
   Connection: T(SQLITE)  D(XXXXX)   at XX:XX
@@ -17,18 +14,15 @@ Expect (1 in one column with a header):
   ----------
   1
 
-Execute (Syncronous second select):
+Execute (Second select):
   Select 2;
   buffer Result
+  call vim#dbext_mask()
 
 Expect (2 in one column with a header):
   Connection: T(SQLITE)  D(XXXXX)   at XX:XX
   2
   ----------
   2
-
-" Tear down
-Execute (Clear function):
-  delfunction DBextPostResult
 
 Include: reset-jobs.vader
