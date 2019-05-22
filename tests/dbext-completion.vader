@@ -98,6 +98,8 @@ Expect (First column from each table):
 " doing column completion: autoload/sqlcomplete.vim:421 in vim 8.0
 
 " Tear down {{{1
+"   DBSetOption sees the second : in :memory: as an option separator, even when
+"   escaped, so don't even try to reset the dbname
 Execute (Clear db file):
   silent !rm -f vader.sqlite
 
