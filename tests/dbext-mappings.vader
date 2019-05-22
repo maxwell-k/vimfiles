@@ -95,6 +95,7 @@ Do (Run with \sel):
 
 Then (View results):
   sleep 250m
+  DBResultsClose " must be after any sleep
   buffer Result
   call vim#dbext_mask()
 
@@ -105,9 +106,6 @@ Expect (3 with a header):
   ----------
   3
 
-Execute (Tidy):
-  DBResultsClose
-
 " Test an opfunc mapping - <Leader>L{{{1
 Given sql (Select 4, 0):
   SELECT 4, 0;
@@ -117,6 +115,7 @@ Do (Run with \LL opfunc):
 
 Then (View results):
   sleep 250m
+  DBResultsClose " must be after any sleep
   buffer Result
   call vim#dbext_mask()
 
@@ -124,9 +123,6 @@ Expect (4|0 with no header):
   Connection: T(SQLITE)  D(XXXXX)   at XX:XX
   job started:XX:XX:XX updates every 2000 ms
   4|0
-
-Execute (Tidy):
-  DBResultsClose
 
 Include: includes/reset-jobs.vader
 

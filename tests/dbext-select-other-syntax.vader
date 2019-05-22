@@ -3,6 +3,7 @@ Execute (Use the :Select syntax):
 
 Then (View the result):
   sleep 250m
+  DBResultsClose " must be after any sleep
   buffer Result
   call vim#dbext_mask()
   AssertEqual 1, g:dbext_default_use_jobs
@@ -13,8 +14,5 @@ Expect (3 in one column with a header):
   3
   ----------
   3
-
-Execute (Tidy):
-  DBResultsClose
 
 " vim: set foldlevel=0 :

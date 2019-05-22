@@ -3,10 +3,10 @@ Execute (Asyncronous "SELECT 1;" by default):
 
 Then (Check jobs enabled and view results with times masked):
   sleep 250m
+  DBResultsClose " must be after any sleep
   buffer Result
   call vim#dbext_mask()
   AssertEqual '1', DB_listOption('job_enable')
-  DBResultsClose
 
 Expect (1 in one column with a header):
   Connection: T(SQLITE)  D(XXXXX)   at XX:XX
