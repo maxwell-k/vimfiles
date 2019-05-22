@@ -9,7 +9,7 @@ Given (Placeholder):
   [placeholder]
 
 Execute (Syncronous first select):
-  let g:dbext_default_use_jobs=0
+  let g:dbext_default_job_enable=0
   Select 1;
   buffer Result
 
@@ -31,4 +31,4 @@ Expect (2 in one column with a header):
 
 " Tear down
 Execute (Clear function):
-    delfunction DBextPostResult
+  delfunction DBextPostResult

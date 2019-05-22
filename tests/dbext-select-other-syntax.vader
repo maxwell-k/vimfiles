@@ -1,18 +1,25 @@
-Given (Placeholder):
-  [placeholder]
-
 Execute (Function to hide irrelevant details):
   source ./dbext-mask.vim " defines DBextPostResult
 
+Then (Check jobs enabled):
+   AssertEqual 1, g:dbext_default_use_jobs
+
+Given (Placeholder):
+  [placeholder]
+
 Execute (Use the :Select syntax):
   Select 3;
-  sleep 1 | buffer Result
+  sleep 1
+  buffer Result
 
 Expect (3 in one column with a header):
   Connection: T(SQLITE)  D(XXXXX)   at XX:XX
+  job started:XX:XX:XX updates every 2000 ms
   3
   ----------
   3
 
 Execute (Clear function):
     delfunction DBextPostResult
+
+" vim: set foldlevel=0 :

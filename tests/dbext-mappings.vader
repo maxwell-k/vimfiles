@@ -1,25 +1,21 @@
-" Setup with jobs disabled{{{1
+" Initialise{{{1
 After:
   DBResultsClose
-
-Given sql (Placeholder):
-  [placeholder]
 
 Execute (Function to hide irrelevant details):
   source ./dbext-mask.vim " defines DBextPostResult
 
-Execute (Check jobs enabled by default):
-   AssertEqual 1, g:dbext_default_use_jobs
-
-Execute (Save dbext variables):
-  Save g:dbext_default_use_jobs,g:dbext_default_SQLITE_cmd_header
-  let g:dbext_default_use_jobs=0
+" Turn off header and jobs{{{1
+Execute (Turn off header and jobs):
+  Save g:dbext_default_SQLITE_cmd_header
   let g:dbext_default_SQLITE_cmd_header = ''
   DBSetOption SQLITE_cmd_header=''
+  DBSetOption job_enable=0
 
-Then (Check cmd_header and jobs disabled):
+Then (Check header and jobs are off):
+  AssertEqual '', DB_listOption('SQLITE_cmd_header')
   AssertEqual '',g:dbext_default_SQLITE_cmd_header
-  AssertEqual 0,g:dbext_default_use_jobs
+  AssertEqual '0', DB_listOption('job_enable')
 
 " Test a basic select works{{{1
 Execute (Test "SELECT 1"):
@@ -67,13 +63,11 @@ Expect (2|1 with no header):
 
 " Move back to default settings with jobs enabled{{{1
 Execute (Default settings, no header):
-  Restore
+  Restore g:dbext_default_SQLITE_cmd_header
   execute 'DBSetOption SQLITE_cmd_header='.g:dbext_default_SQLITE_cmd_header
+  DBSetOption job_enable=1
 
-Execute (Function to hide irrelevant details):
-  source ./dbext-mask.vim " defines DBextPostResult
-
-Execute (Check jobs enabled):
+Then (Check jobs enabled):
    AssertEqual 1, g:dbext_default_use_jobs
 
 " Test a default mapping - <Leader>sel{{{1
@@ -85,6 +79,7 @@ Do (Run with \sel):
 
 Expect (3 with a header):
   Connection: T(SQLITE)  D(XXXXX)   at XX:XX
+  job started:XX:XX:XX updates every 2000 ms
   3
   ----------
   3
@@ -98,6 +93,7 @@ Do (Run with \LL opfunc):
 
 Expect (4|0 with no header):
   Connection: T(SQLITE)  D(XXXXX)   at XX:XX
+  job started:XX:XX:XX updates every 2000 ms
   4|0
 
 " Tear down{{{1

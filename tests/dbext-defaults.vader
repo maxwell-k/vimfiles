@@ -1,21 +1,23 @@
-Given sql (Placeholder):
-  [placeholder]
+After:
+  DBResultsClose
 
 Execute (Function to hide irrelevant details):
   source ./dbext-mask.vim " defines DBextPostResult
 
+Then (Check jobs enabled):
+  AssertEqual '1', DB_listOption('job_enable')
+
 Execute (Asyncronous "SELECT 1;" by default):
   DBExecSQL SELECT 1 ;
-  sleep 1 | buffer Result
-
-Then (Check jobs enabled):
-  AssertEqual 1, g:dbext_default_use_jobs
+  sleep 5
+  buffer Result
 
 Expect (1 in one column with a header):
   Connection: T(SQLITE)  D(XXXXX)   at XX:XX
+  job started:XX:XX:XX updates every 2000 ms
   1
   ----------
   1
 
 Execute (Clear function):
-    delfunction DBextPostResult
+  delfunction DBextPostResult

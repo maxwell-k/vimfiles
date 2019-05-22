@@ -1,14 +1,21 @@
 "Setup {{{1
 Execute (Setup DB and create tables):
   set filetype=sql
-  DBSetOption dbname='vader.sqlite'
-  DBSetOption use_jobs=0
+
+  " if these tests are run before any connection
+  let g:dbext_default_dbname = 'vader.sqlite'
+  let g:dbext_default_job_enable = 0
+  " if these tests are run after a connection, e.g. in a suite
+  execute 'DBSetOption dbname=' g:dbext_default_dbname
+  execute 'DBSetOption job_enable=' g:dbext_default_job_enable
+
+  " create some test data
   DBExecSQL CREATE TABLE table_one(one, two, three);
   DBExecSQL CREATE TABLE table_two(four, five, six);
   DBExecSQL CREATE TABLE table_three("a b", "c d", e);
 
 Then (Check synchronous):
-   AssertEqual 0, g:dbext_default_use_jobs
+  AssertEqual 0, g:dbext_default_job_enable
 
 "Table name completion {{{1
 Given sql (Incomplete table names):

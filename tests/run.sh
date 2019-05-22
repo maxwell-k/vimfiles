@@ -1,6 +1,7 @@
 #!/bin/sh
 # For some reason a second test causes from the same file causes an error
 vader() {
+	# hangs if run with -es
 	vim "+packadd vader | Vader! $1"
 }
 vader_no_bang() {
