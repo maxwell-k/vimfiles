@@ -1,11 +1,3 @@
-function! toggle#toggle_jobs() abort "{{{
-    if !exists('g:dbext_default_use_jobs')
-        let g:dbext_default_use_jobs = 0
-    else
-        let g:dbext_default_use_jobs = !g:dbext_default_use_jobs
-    endif
-    let g:dbext_default_use_jobs
-endfunction "}}}
 function! toggle#toggle_colors() abort "{{{
     if g:colors_name ==# 'mine'
         colorscheme solarized8 | set background=light

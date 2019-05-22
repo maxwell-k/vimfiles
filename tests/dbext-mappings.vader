@@ -100,23 +100,6 @@ Expect (4|0 with no header):
   Connection: T(SQLITE)  D(XXXXX)   at XX:XX
   4|0
 
-" Test a mapping to toggle jobs - <Leader>m{{{1
-
-Execute (Check jobs enabled):
-   AssertEqual 1, g:dbext_default_use_jobs
-
-Do (Mapping to toggle jobs):
-  \m
-
-Execute (Check jobs disabled):
-   AssertEqual 0, g:dbext_default_use_jobs
-
-Do (Mapping to toggle jobs again):
-  \m
-
-Execute (Check jobs enabled again):
-   AssertEqual 1, g:dbext_default_use_jobs
-
 " Tear down{{{1
 Execute (Clear function):
     delfunction DBextPostResult

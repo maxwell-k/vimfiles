@@ -39,4 +39,3 @@ let &formatoptions=s:saved_formatoptions
 
 call opfunc#opfuncmap('l') " run in dbext
 call opfunc#opfuncmap('L') " run in dbext with .mode list
-noremap <Leader>m :call toggle#toggle_jobs()<CR>
