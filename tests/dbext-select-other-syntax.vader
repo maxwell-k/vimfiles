@@ -14,4 +14,7 @@ Expect (3 in one column with a header):
   ----------
   3
 
+Execute (Tidy):
+  DBResultsClose
+
 " vim: set foldlevel=0 :
