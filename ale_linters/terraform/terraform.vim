@@ -20,11 +20,10 @@ function! ale_linters#terraform#terraform#Handle(buffer, lines) abort
         \   l:head.'\(.*\)$'
         \]
   for l:match in ale#util#GetMatches(a:lines, l:patterns)
-      " echom join(l:match, '|')
       if len(l:match[2]) > 0
           call add(l:output, {
-          \   'lnum': l:match[1],
-          \   'col': l:match[2],
+          \   'lnum': str2nr(l:match[1]),
+          \   'col': str2nr(l:match[2]),
           \   'text': l:match[3],
           \   'type': 'E',
           \})
