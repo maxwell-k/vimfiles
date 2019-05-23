@@ -15,6 +15,7 @@ Execute (Setup DB and create tables):
   DBExecSQL CREATE TABLE IF NOT EXISTS table_one(one, two, three);
   DBExecSQL CREATE TABLE IF NOT EXISTS table_two(four, five, six);
   DBExecSQL CREATE TABLE IF NOT EXISTS table_three("a b", "c d", e);
+  DBResultsClose
 
 Then (Check synchronous):
   AssertEqual 0, g:dbext_default_job_enable
@@ -81,6 +82,8 @@ Given sql (Complete columns with drill down):
 
 " ``:normal`` can only be used to select the first column, for some reason <C-N>
 " doesn't work after a tab
+" use Execute instead of Do so that tabs work
+" use :execute to represent special characters with printable characters
 Execute (Shift-tab, ctrl-n and tab):
   exe "normal Go\<s-Tab>t\t"
   exe "normal Go,\<s-Tab>t\<C-N>\<C-N>\t"
@@ -96,6 +99,8 @@ Expect (First column from each table):
 " doing column completion: autoload/sqlcomplete.vim:421 in vim 8.0
 
 " Tear down{{{1
+Given:
+
 "   DBSetOption sees the second : in :memory: as an option separator, even when
 "   escaped, so don't even try to reset the dbname
 Execute (Clear db file):
