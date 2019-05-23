@@ -1,8 +1,14 @@
 " Author: Keith Maxwell <keith.maxwell@gmail.com>
 " Description: terraform fmt to check for errors
 
+call ale#Set('terraform_terraformfmt_executable', 'terraform')
+
+function! ale_linters#terraform#terraformfmt#GetExecutable(buffer) abort
+  return ale#Var(a:buffer, 'terraform_terraformfmt_executable')
+endfunction
+
 function! ale_linters#terraform#terraformfmt#GetCommand(buffer) abort
-  return ale#Escape(ale#handlers#terraformfmt#GetExecutable(a:buffer))
+  return ale#Escape(ale_linters#terraform#terraformfmt#GetExecutable(a:buffer))
   \ . ' fmt -no-color --check=true -'
 endfunction
 
@@ -36,7 +42,7 @@ endfunction
 call ale#linter#Define('terraform', {
 \ 'name': 'terraformfmt',
 \ 'output_stream': 'stderr',
-\ 'executable': function('ale#handlers#terraformfmt#GetExecutable'),
+\ 'executable': function('ale_linters#terraform#terraformfmt#GetExecutable'),
 \ 'command': function('ale_linters#terraform#terraformfmt#GetCommand'),
 \ 'callback': 'ale_linters#terraform#terraformfmt#Handle',
 \})
