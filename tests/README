@@ -8,7 +8,7 @@ below:
 
 .. code:: sh
 
-    sudo apk -X https://aports.keithmaxwell.uk/user add runVimTests
+    sudo apk -X https://aports.keithmaxwell.uk/user add runvimtests
     sh run.sh
 
 Vader usage
