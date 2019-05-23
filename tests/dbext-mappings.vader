@@ -1,4 +1,4 @@
-" Turn off header and jobs{{{1
+" Setup - turn off header and jobs{{{1
 Execute (Turn off header and jobs):
   Save g:dbext_default_SQLITE_cmd_header, g:dbext_default_job_enable
   let g:dbext_default_SQLITE_cmd_header = ''
@@ -124,6 +124,7 @@ Expect (4|0 with no header):
   job started:XX:XX:XX updates every 2000 ms
   4|0
 
+" Tear down{{{1
 Include: includes/reset-jobs.vader
 
 " vim: set foldlevel=0 :
