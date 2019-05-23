@@ -12,3 +12,6 @@ Include: dbext-hang.vader
 "SQLite using vader.sqlite
 "  Must be run last as :DBSetOption dbname=:memory: fails, without a workaround
 Include: dbext-completion.vader
+
+" ALE linters
+Include: test_terraformfmt_command_callback.vader

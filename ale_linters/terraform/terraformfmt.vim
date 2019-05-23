@@ -2,7 +2,7 @@
 " Description: terraform fmt to check for errors
 
 function! ale_linters#terraform#terraformfmt#GetCommand(buffer) abort
-  return ale#handlers#terraformfmt#GetExecutable(a:buffer)
+  return ale#Escape(ale#handlers#terraformfmt#GetExecutable(a:buffer))
   \ . ' fmt -no-color --check=true -'
 endfunction
 
