@@ -1,6 +1,6 @@
 " Based upon :help ale-development
 Before:
-  call ale#assert#SetUpLinterTest('terraform', 'terraformfmt')
+  call ale#assert#SetUpLinterTest('terraform', 'terraform')
 
 After:
   call ale#assert#TearDownLinterTest()

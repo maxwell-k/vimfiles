@@ -1,18 +1,18 @@
 " Author: Keith Maxwell <keith.maxwell@gmail.com>
 " Description: terraform fmt to check for errors
 
-call ale#Set('terraform_terraformfmt_executable', 'terraform')
+call ale#Set('terraform_terraform_executable', 'terraform')
 
-function! ale_linters#terraform#terraformfmt#GetExecutable(buffer) abort
-  return ale#Var(a:buffer, 'terraform_terraformfmt_executable')
+function! ale_linters#terraform#terraform#GetExecutable(buffer) abort
+  return ale#Var(a:buffer, 'terraform_terraform_executable')
 endfunction
 
-function! ale_linters#terraform#terraformfmt#GetCommand(buffer) abort
-  return ale#Escape(ale_linters#terraform#terraformfmt#GetExecutable(a:buffer))
+function! ale_linters#terraform#terraform#GetCommand(buffer) abort
+  return ale#Escape(ale_linters#terraform#terraform#GetExecutable(a:buffer))
   \ . ' fmt -no-color --check=true -'
 endfunction
 
-function! ale_linters#terraform#terraformfmt#Handle(buffer, lines) abort
+function! ale_linters#terraform#terraform#Handle(buffer, lines) abort
   let l:head = '^Error running fmt: In <standard input>: '
   let l:output = []
   let l:patterns = [
@@ -40,9 +40,9 @@ function! ale_linters#terraform#terraformfmt#Handle(buffer, lines) abort
 endfunction
 
 call ale#linter#Define('terraform', {
-\ 'name': 'terraformfmt',
+\ 'name': 'terraform',
 \ 'output_stream': 'stderr',
-\ 'executable': function('ale_linters#terraform#terraformfmt#GetExecutable'),
-\ 'command': function('ale_linters#terraform#terraformfmt#GetCommand'),
-\ 'callback': 'ale_linters#terraform#terraformfmt#Handle',
+\ 'executable': function('ale_linters#terraform#terraform#GetExecutable'),
+\ 'command': function('ale_linters#terraform#terraform#GetCommand'),
+\ 'callback': 'ale_linters#terraform#terraform#Handle',
 \})

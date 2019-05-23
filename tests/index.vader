@@ -14,5 +14,5 @@ Include: dbext-hang.vader
 Include: dbext-completion.vader
 
 " ALE linters
-Include: test_terraformfmt_command_callback.vader
+Include: test_terraform_command_callback.vader
 Include: test_beanformat_fixer_callback.vader
