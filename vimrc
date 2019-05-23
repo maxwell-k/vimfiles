@@ -18,9 +18,11 @@ syntax enable
 " Options {{{1
 " -------
 "
-" Alphabetical, "scripted" settings last
+" Alphabetical hard-coded options
 set autoindent
 set backspace=indent,eol,start " backspace deletes special characters
+set backup " to avoid loosing file conents after an inadvertent :.wq then Y
+set backupdir=~/.backupdir,.
 set colorcolumn=80
 set confirm " prompt before discarding changes
 set expandtab
@@ -58,7 +60,9 @@ set spellfile=~/.vim/spell/en.utf-8.add " second file in autocommand below
 set splitbelow
 set termguicolors
 set wildmenu
-let s:list_settings = 'set list showbreak=→ '
+
+" Scripted options
+let s:list_settings = 'set list showbreak=→ ' " also used in a mapping below
 let s:list_settings .= 'listchars=trail:←,tab:→—,extends:▓,precedes:▓'
 execute s:list_settings
 
