@@ -1,0 +1,12 @@
+" Based upon :help ale-development
+Before:
+  call ale#assert#SetUpFixerTest('beancount', 'beanformat')
+
+After:
+  call ale#assert#TearDownFixerTest()
+
+Execute(The default command should be correct):
+  AssertFixer 
+  \ {
+  \   'command': ale#Escape('bean-format') . ' -'
+  \ }

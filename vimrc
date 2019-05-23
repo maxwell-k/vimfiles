@@ -147,6 +147,9 @@ colorscheme mine
 let g:ale_fix_on_save = 1
 let g:ale_lint_delay = 50
 let g:ale_sh_shellcheck_options = '-x'
+" custom fixers
+call ale#fix#registry#Add('beanformat', 'ale#fixers#beanformat#Fix',
+  \ ['beancount'], 'Format with bean-format')
 let g:is_posix = 1  " $() isn't an error in sh
 " The two lines below prevent vim-gitgutter over-riding [c and ]c
 nmap [h <Plug>GitGutterPrevHunk
