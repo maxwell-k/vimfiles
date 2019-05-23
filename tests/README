@@ -20,14 +20,11 @@ Run all tests: ``sh run.sh``
 
 Examples are in ``/usr/share/vim/vimfiles/pack/ac/opt/vader/test/vader.vader``
 
-Authoring notes
-===============
+Vader authoring notes
+=====================
 
 -   Avoid Before and After because the can impact on included files
--   Yank vim script and execute with ``:@"``.
--   Move windows from a Do block with ``\<c-w>j`` see
-    `pack/tests/opt/vader/autoload/vader/window.vim:115`
--   Be very careful with Before blocks in test scripts called from
-    `index.vader`
+-   Avoid `DBextPostResult` which complicates and slows the test suite
+-   Move buffers with `:buffer` in an Execute block
 
 .. vim: filetype=rst
