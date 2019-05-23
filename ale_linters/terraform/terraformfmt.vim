@@ -36,7 +36,7 @@ endfunction
 call ale#linter#Define('terraform', {
 \ 'name': 'terraformfmt',
 \ 'output_stream': 'stderr',
-\ 'executable_callback': 'ale#handlers#terraformfmt#GetExecutable',
-\ 'command_callback': 'ale_linters#terraform#terraformfmt#GetCommand',
+\ 'executable': function('ale#handlers#terraformfmt#GetExecutable'),
+\ 'command': function('ale_linters#terraform#terraformfmt#GetCommand'),
 \ 'callback': 'ale_linters#terraform#terraformfmt#Handle',
 \})
