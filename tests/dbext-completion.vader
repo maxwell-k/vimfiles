@@ -80,9 +80,11 @@ Expect (Tables in order):
 Given sql (Complete columns with drill down):
   SELECT
 
-" ``:normal`` can only be used to select the first column, for some reason <C-N>
-" doesn't work after a tab
-" use Execute instead of Do so that tabs work
+" see :help sql-completion-dynamic
+" this test works around various limitations of vader
+" - use Execute instead of Do so that tabs work
+" - can only be select the first column, for some reason <C-N> doesn't work
+"   after a tab, an alternative test can't be found
 " use :execute to represent special characters with printable characters
 Execute (Shift-tab, ctrl-n and tab):
   exe "normal Go\<s-Tab>t\t"
