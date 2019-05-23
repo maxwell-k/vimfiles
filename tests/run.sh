@@ -12,12 +12,12 @@ case "$0" in
 	-*)
 		;;
 	*)
+		vader index.vader ||
+		{ printf 'vader tests failed\n'; exit 1 ; }
 		runVimTests test-transform.vim ||
 		{ printf 'runVimTest pure tests failed\n'; exit 1 ; }
 		runVimTests --user test-dbext.vim ||
 		{ printf 'runVimTest user tests failed\n'; exit 1 ; }
-		vader index.vader ||
-		{ printf 'vader tests failed\n'; exit 1 ; }
 		unset -f vader vader_no_bang ;
 		;;
 esac
