@@ -1,4 +1,4 @@
-"Setup {{{1
+"Setup connection and create database tables{{{1
 Execute (Setup DB and create tables):
   set filetype=sql
 
@@ -6,19 +6,20 @@ Execute (Setup DB and create tables):
   " if the tests in this file are run before any connection is made
   let g:dbext_default_dbname = 'vader.sqlite'
   let g:dbext_default_job_enable = 0
-  " if the tests in shit file are run after a connection is made , e.g. in a suite
+  " if the tests in this file are run after a connection is made , e.g. in a
+  " suite
   execute 'DBSetOption dbname=' g:dbext_default_dbname
   execute 'DBSetOption job_enable=' g:dbext_default_job_enable
 
   " create some test data
-  DBExecSQL CREATE TABLE table_one(one, two, three);
-  DBExecSQL CREATE TABLE table_two(four, five, six);
-  DBExecSQL CREATE TABLE table_three("a b", "c d", e);
+  DBExecSQL CREATE TABLE IF NOT EXISTS table_one(one, two, three);
+  DBExecSQL CREATE TABLE IF NOT EXISTS table_two(four, five, six);
+  DBExecSQL CREATE TABLE IF NOT EXISTS table_three("a b", "c d", e);
 
 Then (Check synchronous):
   AssertEqual 0, g:dbext_default_job_enable
 
-"Table name completion {{{1
+"Table name completion{{{1
 Given sql (Incomplete table names):
   SELECT * FROM table_o
   SELECT * FROM table_tw
@@ -43,34 +44,31 @@ Expect (Table names completed again):
   SELECT * FROM table_one
   SELECT * FROM table_two
 
-Execute (Restore):
-  Restore
-
-"Column drill down {{{1
+"Column drill down{{{1
 Given sql (Incomplete column names):
   SELECT
 
-"Difficult to get the syntax right
-"You must complete using the a table first before you can complete a column
-"
-Do (Complete):
-  otable_one.\<s-Tab>c\<c-\>\<c-n>Bdf.
-  o,\<s-Tab>c\<c-n>\<c-\>\<c-n>o,\<s-Tab>c\<c-n>\<c-n>\<c-\>\<c-n>
+"You must complete using a table first before you can complete a column on its
+"own
+Do (Complete three column names):
+  otable_one.\<s-Tab>c\<Esc>
+  o,\<s-Tab>c\<c-n>\<Esc>
+  o,\<s-Tab>c\<c-n>\<c-n>\<Esc>
 
 Expect (Column names completed):
   SELECT
-  one
+  table_one.one
   ,two
   ,three
 
-" Drill down {{{1
+" Drill down{{{1
 Given sql (Complete tables with drill down):
   FROM
 
-Execute (Tab, shift tab and ctrl n):
-  exe "normal Go\<s-Tab>t"
-  exe "normal Go,\<s-Tab>t\<C-N>\<C-N>"
-  exe "normal Go,\<s-Tab>t\<C-N>"
+Do (Tab, shift tab and ctrl n):
+  Go\<s-Tab>t\<Esc>
+  Go,\<s-Tab>t\<C-N>\<C-N>\<Esc>
+  Go,\<s-Tab>t\<C-N>\<Esc>
 
 Expect (Tables in order):
   FROM
@@ -97,10 +95,12 @@ Expect (First column from each table):
 " The built in completion uses ``s:save_prev_table`` which is only set when
 " doing column completion: autoload/sqlcomplete.vim:421 in vim 8.0
 
-" Tear down {{{1
+" Tear down{{{1
 "   DBSetOption sees the second : in :memory: as an option separator, even when
 "   escaped, so don't even try to reset the dbname
 Execute (Clear db file):
   silent !rm -f vader.sqlite
 
 Include: includes/reset-jobs.vader
+
+" vim: set foldlevel=0 :
