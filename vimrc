@@ -40,8 +40,8 @@ set isfname+=? " for web addresses
 set isfname-=\= "complete e.g. home=/home/liveuser
 set keywordprg= " use `K` for `:help`
 set linebreak " do not wrap in the middle of a word
-set mouse= " disable the mouse
 set modeline " unset in /etc/vim/vimrc by Alpine Linux
+set mouse= " disable the mouse
 set nojoinspaces " one space between sentences
 set noshiftround
 set nostartofline " don't move to start of line with H, M, L…
