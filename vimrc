@@ -137,8 +137,8 @@ augroup vimrc
 autocmd BufNewFile example.yaml 0r ~/.sd/configuration/vim/example.yaml |
   \ normal Gddf:ll
 autocmd BufReadCmd *.tbz2 call tar#Browse(expand("<amatch>")) "Gentoo binaries
-autocmd BufReadPost COMMIT_EDITMSG setlocal nomodeline spell
-autocmd BufReadPost * execute 'setlocal spellfile+='
+autocmd BufNewFile,BufReadPost COMMIT_EDITMSG setlocal nomodeline spell
+autocmd BufNewFile,BufReadPost * execute 'setlocal spellfile+='
   \ . fnamemodify(resolve(bufname('%')), ':h').'/.en.utf-8.add'
 autocmd BufReadPost /tmp/histedit.* let $PATH .= ':/usr/local/bin'
 autocmd StdInReadPost * setlocal nowrap
