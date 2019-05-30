@@ -214,12 +214,66 @@ syn match sqlFunction /json_each(/me=e-1
 syn match sqlFunction /json_tree(/me=e-1
 syn match sqlFunction /json_tree(/me=e-1
 
-" Adapted from GitHub:
-" https://github.com/JessicaKMcIntosh/Vim/blob/master/syntax/sql.vim
-syn match sqlSpecialCommand "^\.\w\+ .*$" contains=sqlString
+" https://www.sqlite.org/cli.html#special_commands_to_sqlite3_dot_commands_
+syn match sqlSpecialCommand
+  \ "^\.\(help\|databases\|excel\|expert\|quit\|show\|vfslist\)$"
+syn match sqlSpecialCommand "^\.archive .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.auth .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.backup .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.bail .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.binary .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.cd .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.changes .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.checkclone .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.dbconfig .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.dbinfo .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.dump .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.echo .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.eqp .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.exit .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.fullschema .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.headers .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.help .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.import .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.imposter .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.indexes .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.iotrace .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.limit .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.lint .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.load .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.log .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.mode .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.nullvalue .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.once .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.open .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.output .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.parameter .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.print .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.progress .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.prompt .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.read .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.restore .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.save .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.scanstats .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.schema .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.selftest .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.separator .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.session .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.sha3sum .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.shell .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.stats .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.system .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.tables .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.testcase .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.timeout .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.timer .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.trace .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.vfsinfo .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.vfsname .\+$" contains=sqlString
+syn match sqlSpecialCommand "^\.width .\+$" contains=sqlString
 highlight def link sqlSpecialCommand Define
 
-" From syntax/sqloracle.vim
+" Comments
 syn region sqlComment start="/\*" end="\*/" contains=sqlTodo
 syn match sqlComment "--.*$" contains=sqlTodo
 highlight def link sqlComment Comment
