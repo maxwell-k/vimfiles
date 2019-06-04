@@ -89,10 +89,10 @@ noremap <silent> <Leader>gg
   \ \| silent exec 'noremap <Leader>gg :GitGutterBufferToggle<lt>CR>'<CR>
 " <Leader>h see vim/ftplugin/rst.vim
 noremap <Leader>i :echo synIDattr(synID(line('.'),col('.'),1),'name')<CR>
-call opfunc#opfuncmap('j', 'jupyter') " run in jupyter
-nmap <Leader>J :call jupyter#toggle()<CR>
 vnoremap <Leader>k <ESC>:if line("'<") > 1 \| 0,'<-1d \| en \|
   \ if line("'>") < line('$') \| '>+1,$d \| en<CR>0gg
+" <leader>j see vim/pack/configuration/opt/jupyter/plugin/jupyter.vim
+" <leader>J see vim/pack/configuration/opt/jupyter/plugin/jupyter.vim
 " <leader>l see vim/plugin/dbext.vim
 " <leader>L see vim/plugin/dbext.vim
 noremap <C-L> :noh<CR><C-L>
@@ -110,11 +110,6 @@ noremap Y y$
 vnoremap <Leader>= :<C-U>call vim#sum()<CR>
 noremap <Leader>\ :s,\\,/,g<CR>
 noremap <Leader>/ :s,/,\\,g<CR>
-
-" Commands {{{1
-" --------
-"
-command! -nargs=+ Jupyter :call jupyter#command(<q-args>)
 
 " Digraphs {{{1
 " --------
