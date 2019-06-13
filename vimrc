@@ -63,7 +63,8 @@ set wildmenu
 
 " Scripted options
 let s:list_settings = 'set list showbreak=→ ' " also used in a mapping below
-let s:list_settings .= 'listchars=trail:←,tab:→—,extends:▓,precedes:▓'
+let s:list_settings .= 'listchars='
+let s:list_settings .= 'trail:←,tab:→—,extends:▓,precedes:▓'
 execute s:list_settings
 
 " Mappings {{{1
