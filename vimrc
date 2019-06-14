@@ -7,7 +7,6 @@
 "
 set encoding=utf-8 viminfo='20,<50,h
 scriptencoding utf-8
-packloadall
 autocmd!
 " The two lines below ensure ftdetect files are loaded despite system settings
 " http://vim.1045645.n5.nabble.com/Issues-with-ftdetect-td1193595.html
@@ -143,6 +142,7 @@ augroup END
 " Plugin, syntax and highlighting configuration {{{1
 " ---------------------------------------------
 "
+colorscheme ayu " to search below pack/*/start & avoid calling packloadall
 colorscheme mine
 let g:ale_fix_on_save = 1
 let g:ale_lint_delay = 50
