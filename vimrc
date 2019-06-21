@@ -151,3 +151,14 @@ let g:is_posix = 1  " $() isn't an error in sh
 " The two lines below prevent vim-gitgutter over-riding [c and ]c
 nmap [h <Plug>GitGutterPrevHunk
 nmap ]h <Plug>GitGutterNextHunk
+
+" Workaround for vim without patch 8.1.0353 {{{1
+" -----------------------------------------
+"
+" https://github.com/vim/vim/issues/3409
+" https://github.com/vim/vim/commit/99396d4cbf78d313a454c7448acc07412d2e45b7
+if v:version < 801
+  packloadall
+  set runtimepath-=~/.vim/after
+  set runtimepath+=~/.vim/after
+endif
