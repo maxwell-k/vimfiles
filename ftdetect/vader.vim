@@ -1,2 +1,1 @@
-" vint: -ProhibitAutocmdWithNoGroup
-autocmd BufRead,BufNewFile *.vader set filetype=vader
+runtime pack/ansible/opt/vader/ftdetect/vader.vim
