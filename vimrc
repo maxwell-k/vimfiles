@@ -76,10 +76,11 @@ noremap <Leader>ad :unlet! b:ale_fixers \| ALEDisableBuffer<CR>
 noremap <Leader>b :call toggle#toggle_colors()<CR>
 call opfunc#opfuncmap('c') " straight yank
 noremap <Leader>C :call SendViaOSC52(join(getline(1,'$'),'\n'))<CR>
+noremap <Leader>fa :edit ~/.sd/planning/Next-Actions/index.md<CR>
 noremap <Leader>fc :call vim#cipher()<CR>
 noremap <Leader>fg :call fzf#run({'source': 'git ls-files', 'sink': 'e'})<CR>
-noremap <Leader>fi :edit ~/.sd/planning/ideas.txt<CR>:$-1<CR>
-noremap <Leader>fr :edit ~/.sd/planning/reference.txt<CR>:$-1<CR>
+noremap <Leader>fi :edit ~/.sd/planning/In-Basket.md<CR>:$-1<CR>
+noremap <Leader>fr :edit ~/.sd/planning/Reference/index.md<CR>:$-1<CR>
 noremap <Leader>fR :edit ~/.sd/planning/Someday-Maybe/Read.md<CR>
 noremap <Leader>fw :edit ~/.sd/planning/Someday-Maybe/Watch.md<CR>
 noremap <Leader>fe
