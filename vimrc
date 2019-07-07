@@ -84,7 +84,7 @@ noremap <Leader>fr :edit ~/.sd/planning/Reference/index.md<CR>:$-1<CR>
 noremap <Leader>fR :edit ~/.sd/planning/Someday-Maybe/Read.md<CR>
 noremap <Leader>fw :edit ~/.sd/planning/Someday-Maybe/Watch.md<CR>
 noremap <Leader>fe
-  \ :edit ~/.sd/planning/Housekeeping/Emails.txt<CR>:$<CR>0Wy$kk
+  \ :edit ~/.sd/planning/Reference/Housekeeping/Emails.txt<CR>:$<CR>0Wy$kk
 noremap <silent> <Leader>gg
   \ :packadd gitgutter \| :GitGutterDisable \| :GitGutterEnable
   \ \| silent exec 'noremap <Leader>gg :GitGutterBufferToggle<lt>CR>'<CR>
