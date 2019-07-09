@@ -82,6 +82,7 @@ noremap <Leader>fg :call fzf#run({'source': 'git ls-files', 'sink': 'e'})<CR>
 noremap <Leader>fi :edit ~/.sd/planning/In-Basket.md<CR>:$-1<CR>
 noremap <Leader>fp :edit ~/.sd/planning/Projects/index.md<CR>:$-1<CR>
 noremap <Leader>fr :edit ~/.sd/planning/Reference/index.md<CR>:$-1<CR>
+noremap <Leader>fs :edit ~/.sd/planning/Someday-Maybe/index.md<CR>
 noremap <Leader>fR :edit ~/.sd/planning/Someday-Maybe/Read.md<CR>
 noremap <Leader>fw :edit ~/.sd/planning/Someday-Maybe/Watch.md<CR>
 noremap <Leader>fe
