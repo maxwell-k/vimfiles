@@ -1,4 +1,4 @@
-function! toggle#toggle_colors() abort "{{{
+function! toggle#toggle_colors() abort
     if !exists('g:colors_name') " added for compatibility with vim 8.0
         colorscheme mine
     elseif g:colors_name ==# 'mine'
@@ -8,4 +8,4 @@ function! toggle#toggle_colors() abort "{{{
     else
         colorscheme mine
     endif
-endfunction "}}}
+endfunction

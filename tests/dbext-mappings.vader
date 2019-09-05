@@ -127,4 +127,5 @@ Expect (4|0 with no header):
 " Tear down{{{1
 Include: includes/reset-jobs.vader
 
+" }}}1
 " vim: set foldlevel=0 :

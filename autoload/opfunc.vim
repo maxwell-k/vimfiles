@@ -132,3 +132,4 @@ function! opfunc#y(type, ...) abort " transform then yank {{{
     if a:type ==# 'line' | call opfunc#restore() | endif
 endfunction
 "}}}
+" vim: set foldlevel=0 :

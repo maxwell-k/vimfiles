@@ -30,3 +30,4 @@ function! planning#commit() abort "{{{
     endif
     execute 'lcd '.l:wd_save
 endfunction "}}}
+" vim: set foldlevel=0 :

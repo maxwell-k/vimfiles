@@ -188,6 +188,7 @@ function! jupyter#toggle() abort " {{{
     let g:jupyter_output = l:values[g:jupyter_output]
     let g:jupyter_output
 endfunction " }}}
-function! jupyter#load() abort
+function! jupyter#load() abort "{{{
     echom 'jupyter.vim loaded'
-endfunction
+endfunction "}}}
+" vim: set foldlevel=0 :

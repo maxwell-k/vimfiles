@@ -84,3 +84,4 @@ function! rst#link() abort "{{{
 
   return l:result
 endfunction "}}}
+" vim: set foldlevel=0 :

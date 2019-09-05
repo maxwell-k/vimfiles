@@ -166,3 +166,5 @@ if v:version < 801
   set runtimepath-=~/.vim/after
   set runtimepath+=~/.vim/after
 endif
+"}}}1
+" vim: set foldlevel=0 :
