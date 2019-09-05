@@ -80,6 +80,7 @@ noremap <Leader>fa :edit ~/.sd/planning/Next-Actions/index.md<CR>
 noremap <Leader>fc :call vim#cipher()<CR>
 noremap <Leader>fg :call fzf#run({'source': 'git ls-files', 'sink': 'e'})<CR>
 noremap <Leader>fi :edit ~/.sd/planning/In-Basket.md<CR>:$-1<CR>
+noremap <Leader>fl :edit ~/.sd/planning/Someday-Maybe/Listen.md<CR>
 noremap <Leader>fp :edit ~/.sd/planning/Projects/index.md<CR>:$-1<CR>
 noremap <Leader>fr :edit ~/.sd/planning/Reference/index.md<CR>:$-1<CR>
 noremap <Leader>fs :edit ~/.sd/planning/Someday-Maybe/index.md<CR>
