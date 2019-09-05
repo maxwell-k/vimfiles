@@ -1,5 +1,4 @@
 scriptencoding utf-8
-setlocal conceallevel=1
 setlocal listchars+=conceal:▭
 setlocal spell
 setlocal suffixesadd+=.md
