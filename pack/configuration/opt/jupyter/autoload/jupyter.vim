@@ -191,4 +191,4 @@ endfunction " }}}
 function! jupyter#load() abort "{{{
     echom 'jupyter.vim loaded'
 endfunction "}}}
-" vim: set foldlevel=0 :
+" vim: set foldmethod=marker foldlevel=0 :

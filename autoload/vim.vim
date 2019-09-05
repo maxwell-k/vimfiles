@@ -54,4 +54,4 @@ function! vim#dbext_mask() abort "{{{1
     call maktaba#buffer#Substitute(l:regex, 'job started:XX:XX:XX', 'e', 2, 2)
   endif
 endfunction "}}}1
-" vim: set foldlevel=0 :
+" vim: set foldmethod=marker foldlevel=0 :
