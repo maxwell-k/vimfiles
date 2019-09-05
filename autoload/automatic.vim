@@ -1,4 +1,4 @@
-function! planning#commit() abort "{{{
+function! automatic#commit() abort "{{{
     let l:wd_save = getcwd()
     execute 'lcd '.fnameescape(expand('%:p:h'))
     let l:result = system('git rev-parse --show-cdup')
