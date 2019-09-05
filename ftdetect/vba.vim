@@ -1,2 +1,2 @@
-" vint: -ProhibitAutocmdWithNoGroup
-au! BufRead,BufNewFile *.bas setfiletype vba
+augroup filetypedetect " to match filetype.vim
+autocmd! BufRead,BufNewFile *.bas setfiletype vba

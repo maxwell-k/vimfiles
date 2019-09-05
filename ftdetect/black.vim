@@ -1,4 +1,4 @@
-" vint: -ProhibitAutocmdWithNoGroup
+augroup filetypedetect " to match filetype.vim
 autocmd BufRead,BufNewFile **/configuration/**/*.py set filetype=python.black
 autocmd BufRead,BufNewFile $HOME/**/*.py set filetype=python.black
 autocmd BufRead,BufNewFile $HOME/**/* if &filetype ==? 'python'
