@@ -1,4 +1,4 @@
-function! hovercraft#foldexpr( lnum ) abort "{{{
+function! hovercraft#foldexpr( lnum ) abort
   let l:transition = '^----$'
   let l:modeline = '^.. vim:'
   if getline(a:lnum)=~l:transition
@@ -8,4 +8,4 @@ function! hovercraft#foldexpr( lnum ) abort "{{{
   else
     return '='
   endif
-endfunction "}}}
+endfunction

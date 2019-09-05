@@ -1,4 +1,4 @@
-function! python#foldtext() abort "{{{
+function! python#foldtext() abort
   "get first non-blank line
   let l:fs = v:foldstart
   while getline(l:fs) =~# '^\s*$'
@@ -17,4 +17,4 @@ function! python#foldtext() abort "{{{
   let l:size = winwidth(0) - &foldcolumn - &number ? 8 : 0 - strwidth(l:out)
   let l:out = l:line . repeat('.', l:size) . l:out
   return l:out
-endf "}}}
+endf
