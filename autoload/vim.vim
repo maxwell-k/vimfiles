@@ -54,4 +54,14 @@ function! vim#dbext_mask() abort "{{{1
     call maktaba#buffer#Substitute(l:regex, 'job started:XX:XX:XX', 'e', 2, 2)
   endif
 endfunction "}}}1
+function! vim#keep() abort "{{{1
+  " keep only the selected lines, delete all of the others
+  if line("'<") > 1
+    silent 0,'<-1d
+  endif
+  if line("'>") < line('$')
+    silent '>+1,$d
+  endif
+  normal! 0gg
+endfunction "}}}1
 " vim: set foldmethod=marker foldlevel=0 :

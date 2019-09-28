@@ -70,7 +70,6 @@ execute s:list_settings
 " --------
 "
 " Alphabetical
-" <Leader>` see vim/ftplugin/rst.vim
 noremap <Leader>aq :call ale#quit#Mapping()<CR>
 noremap <Leader>ad :unlet! b:ale_fixers \| ALEDisableBuffer<CR>
 noremap <Leader>b :call toggle#toggle_colors()<CR>
@@ -86,16 +85,15 @@ noremap <Leader>fr :edit ~/.sd/planning/Reference/index.md<CR>:$-1<CR>
 noremap <Leader>fs :edit ~/.sd/planning/Someday-Maybe/index.md<CR>
 noremap <Leader>fR :edit ~/.sd/planning/Someday-Maybe/Read.md<CR>
 noremap <Leader>fw :edit ~/.sd/planning/Someday-Maybe/Watch.md<CR>
-" <Leader>h see vim/ftplugin/rst.vim
+"       <Leader>h see vim/ftplugin/rst.vim
 noremap <Leader>i :echo synIDattr(synID(line('.'),col('.'),1),'name')<CR>
-vnoremap <Leader>k <ESC>:if line("'<") > 1 \| 0,'<-1d \| en \|
-  \ if line("'>") < line('$') \| '>+1,$d \| en<CR>0gg
+vnoremap <Leader>k <ESC>:call vim#keep()<CR>
 " <leader>j see vim/pack/configuration/opt/jupyter/plugin/jupyter.vim
 " <leader>J see vim/pack/configuration/opt/jupyter/plugin/jupyter.vim
-" <leader>l see vim/plugin/dbext.vim
-" <leader>L see vim/plugin/dbext.vim
+"       <leader>l see vim/plugin/dbext.vim
+"       <leader>L see vim/plugin/dbext.vim
 noremap <C-L> :noh<CR><C-L>
-" <leader>m see vim/plugin/dbext.vim
+"       <leader>m see vim/plugin/dbext.vim
 noremap <Leader>n :silent!
   \ 5new +setlocal\ buftype=nofile\ bufhidden=hide\ noswapfile<CR><CR>
 noremap <Leader>s :call vim#scriptnames()<CR>
