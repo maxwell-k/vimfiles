@@ -75,16 +75,17 @@ execute s:list_settings
  noremap <Leader>b :call toggle#toggle_colors()<CR>
 call opfunc#opfuncmap('c') " straight yank
  noremap <Leader>C :call SendViaOSC52(join(getline(1,'$'),'\n'))<CR>
- noremap <Leader>fa :edit ~/.sd/planning/Next-Actions/index.md<CR>
  noremap <Leader>fc :call vim#cipher()<CR>
  noremap <Leader>fg :call fzf#run({'source': 'git ls-files', 'sink': 'e'})<CR>
- noremap <Leader>fi :edit ~/.sd/planning/In-Basket.md<CR>:$-1<CR>
- noremap <Leader>fl :edit ~/.sd/planning/Someday-Maybe/Listen.md<CR>
- noremap <Leader>fp :edit ~/.sd/planning/Projects/index.md<CR>:$-1<CR>
- noremap <Leader>fr :edit ~/.sd/planning/Reference/index.md<CR>:$-1<CR>
- noremap <Leader>fs :edit ~/.sd/planning/Someday-Maybe/index.md<CR>
- noremap <Leader>fR :edit ~/.sd/planning/Someday-Maybe/Read.md<CR>
- noremap <Leader>fw :edit ~/.sd/planning/Someday-Maybe/Watch.md<CR>
+ noremap <Leader>ga :edit ~/.sd/planning/Next-Actions/index.md<CR>
+ noremap <Leader>gg :edit ~/.sd/planning/<CR>
+ noremap <Leader>gi :edit ~/.sd/planning/In-Basket.md<CR>:$-1<CR>
+ noremap <Leader>gl :edit ~/.sd/planning/Someday-Maybe/Listen.md<CR>
+ noremap <Leader>gp :edit ~/.sd/planning/Projects/index.md<CR>:$-1<CR>
+ noremap <Leader>gr :edit ~/.sd/planning/Reference/index.md<CR>:$-1<CR>
+ noremap <Leader>gs :edit ~/.sd/planning/Someday-Maybe/index.md<CR>
+ noremap <Leader>gR :edit ~/.sd/planning/Someday-Maybe/Read.md<CR>
+ noremap <Leader>gw :edit ~/.sd/planning/Someday-Maybe/Watch.md<CR>
         "<Leader>h see vim/ftplugin/rst.vim
  noremap <Leader>i :echo synIDattr(synID(line('.'),col('.'),1),'name')<CR>
 vnoremap <Leader>k <ESC>:call vim#keep()<CR>
