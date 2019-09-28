@@ -70,43 +70,41 @@ execute s:list_settings
 " --------
 "
 " Alphabetical
-noremap <Leader>aq :call ale#quit#Mapping()<CR>
-noremap <Leader>ad :unlet! b:ale_fixers \| ALEDisableBuffer<CR>
-noremap <Leader>b :call toggle#toggle_colors()<CR>
+ noremap <Leader>aq :call ale#quit#Mapping()<CR>
+ noremap <Leader>ad :unlet! b:ale_fixers \| ALEDisableBuffer<CR>
+ noremap <Leader>b :call toggle#toggle_colors()<CR>
 call opfunc#opfuncmap('c') " straight yank
-noremap <Leader>C :call SendViaOSC52(join(getline(1,'$'),'\n'))<CR>
-noremap <Leader>fa :edit ~/.sd/planning/Next-Actions/index.md<CR>
-noremap <Leader>fc :call vim#cipher()<CR>
-noremap <Leader>fg :call fzf#run({'source': 'git ls-files', 'sink': 'e'})<CR>
-noremap <Leader>fi :edit ~/.sd/planning/In-Basket.md<CR>:$-1<CR>
-noremap <Leader>fl :edit ~/.sd/planning/Someday-Maybe/Listen.md<CR>
-noremap <Leader>fp :edit ~/.sd/planning/Projects/index.md<CR>:$-1<CR>
-noremap <Leader>fr :edit ~/.sd/planning/Reference/index.md<CR>:$-1<CR>
-noremap <Leader>fs :edit ~/.sd/planning/Someday-Maybe/index.md<CR>
-noremap <Leader>fR :edit ~/.sd/planning/Someday-Maybe/Read.md<CR>
-noremap <Leader>fw :edit ~/.sd/planning/Someday-Maybe/Watch.md<CR>
-"       <Leader>h see vim/ftplugin/rst.vim
-noremap <Leader>i :echo synIDattr(synID(line('.'),col('.'),1),'name')<CR>
+ noremap <Leader>C :call SendViaOSC52(join(getline(1,'$'),'\n'))<CR>
+ noremap <Leader>fa :edit ~/.sd/planning/Next-Actions/index.md<CR>
+ noremap <Leader>fc :call vim#cipher()<CR>
+ noremap <Leader>fg :call fzf#run({'source': 'git ls-files', 'sink': 'e'})<CR>
+ noremap <Leader>fi :edit ~/.sd/planning/In-Basket.md<CR>:$-1<CR>
+ noremap <Leader>fl :edit ~/.sd/planning/Someday-Maybe/Listen.md<CR>
+ noremap <Leader>fp :edit ~/.sd/planning/Projects/index.md<CR>:$-1<CR>
+ noremap <Leader>fr :edit ~/.sd/planning/Reference/index.md<CR>:$-1<CR>
+ noremap <Leader>fs :edit ~/.sd/planning/Someday-Maybe/index.md<CR>
+ noremap <Leader>fR :edit ~/.sd/planning/Someday-Maybe/Read.md<CR>
+ noremap <Leader>fw :edit ~/.sd/planning/Someday-Maybe/Watch.md<CR>
+        "<Leader>h see vim/ftplugin/rst.vim
+ noremap <Leader>i :echo synIDattr(synID(line('.'),col('.'),1),'name')<CR>
 vnoremap <Leader>k <ESC>:call vim#keep()<CR>
-" <leader>j see vim/pack/configuration/opt/jupyter/plugin/jupyter.vim
-" <leader>J see vim/pack/configuration/opt/jupyter/plugin/jupyter.vim
-"       <leader>l see vim/plugin/dbext.vim
-"       <leader>L see vim/plugin/dbext.vim
-noremap <C-L> :noh<CR><C-L>
-"       <leader>m see vim/plugin/dbext.vim
-noremap <Leader>n :silent!
-  \ 5new +setlocal\ buftype=nofile\ bufhidden=hide\ noswapfile<CR><CR>
-noremap <Leader>s :call vim#scriptnames()<CR>
-execute "noremap <Leader>t :silent! call vim#toggleListMode('"
-  \.s:list_settings."')<CR>"
-noremap <Leader>v :set paste! paste?<CR>
-noremap <Leader>w :call rst#wrap()<CR>
-noremap <Leader>W :call opfunc#clipboard(rst#link())<CR>
+        "<Leader>j see plugin/jupyter.vim in the jupyter package
+        "<Leader>J see plugin/jupyter.vim in the jupyter package
+        "<Leader>l see vim/plugin/dbext.vim
+        "<Leader>L see vim/plugin/dbext.vim
+ noremap <C-L> :noh<CR><C-L>
+        "<Leader>m see vim/plugin/dbext.vim
+ noremap <Leader>n :call vim#new()<CR>
+ noremap <Leader>S :call vim#scriptnames()<CR>
+execute "noremap <Leader>t :call vim#toggleListMode('".s:list_settings."')<CR>"
+ noremap <Leader>v :set paste! paste?<CR>
+ noremap <Leader>w :call rst#wrap()<CR>
+ noremap <Leader>W :call opfunc#clipboard(rst#link())<CR>
 call opfunc#opfuncmap('y')
-noremap Y y$
+ noremap Y y$
 vnoremap <Leader>= :<C-U>call vim#sum()<CR>
-noremap <Leader>\ :s,\\,/,g<CR>
-noremap <Leader>/ :s,/,\\,g<CR>
+ noremap <Leader>\ :s,\\,/,g<CR>
+ noremap <Leader>/ :s,/,\\,g<CR>
 
 " Digraphs {{{1
 " --------

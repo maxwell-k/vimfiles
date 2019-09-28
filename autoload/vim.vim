@@ -38,11 +38,11 @@ endfunction "}}}1
 function! vim#toggleListMode(default_settings) abort "{{{1
 " Toggle through three states, ``:help digraph-table`` lists symbols
   if !&list
-    set list listchars&vim showbreak&vim
+    silent set list listchars&vim showbreak&vim
   elseif &listchars==#'eol:$'
-    execute a:default_settings
+    silent execute a:default_settings
   else
-    set nolist listchars&vim showbreak&vim
+    silent set nolist listchars&vim showbreak&vim
   end
 endfunction "}}}1
 function! vim#dbext_mask() abort "{{{1
@@ -63,5 +63,8 @@ function! vim#keep() abort "{{{1
     silent '>+1,$d
   endif
   normal! 0gg
+endfunction "}}}1
+function! vim#new() abort "{{{1
+ silent! 5new +setlocal\ buftype=nofile\ bufhidden=hide\ noswapfile<CR>
 endfunction "}}}1
 " vim: set foldmethod=marker foldlevel=0 :
