@@ -86,8 +86,6 @@ noremap <Leader>fr :edit ~/.sd/planning/Reference/index.md<CR>:$-1<CR>
 noremap <Leader>fs :edit ~/.sd/planning/Someday-Maybe/index.md<CR>
 noremap <Leader>fR :edit ~/.sd/planning/Someday-Maybe/Read.md<CR>
 noremap <Leader>fw :edit ~/.sd/planning/Someday-Maybe/Watch.md<CR>
-noremap <Leader>fe
-  \ :edit ~/.sd/planning/Reference/Housekeeping/Emails.txt<CR>:$<CR>0Wy$kk
 " <Leader>h see vim/ftplugin/rst.vim
 noremap <Leader>i :echo synIDattr(synID(line('.'),col('.'),1),'name')<CR>
 vnoremap <Leader>k <ESC>:if line("'<") > 1 \| 0,'<-1d \| en \|
