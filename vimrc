@@ -88,9 +88,6 @@ noremap <Leader>fR :edit ~/.sd/planning/Someday-Maybe/Read.md<CR>
 noremap <Leader>fw :edit ~/.sd/planning/Someday-Maybe/Watch.md<CR>
 noremap <Leader>fe
   \ :edit ~/.sd/planning/Reference/Housekeeping/Emails.txt<CR>:$<CR>0Wy$kk
-noremap <silent> <Leader>gg
-  \ :packadd gitgutter \| :GitGutterDisable \| :GitGutterEnable
-  \ \| silent exec 'noremap <Leader>gg :GitGutterBufferToggle<lt>CR>'<CR>
 " <Leader>h see vim/ftplugin/rst.vim
 noremap <Leader>i :echo synIDattr(synID(line('.'),col('.'),1),'name')<CR>
 vnoremap <Leader>k <ESC>:if line("'<") > 1 \| 0,'<-1d \| en \|
@@ -152,9 +149,6 @@ let g:ale_fix_on_save = 1
 let g:ale_lint_delay = 50
 let g:ale_sh_shellcheck_options = '-x'
 let g:is_posix = 1  " $() isn't an error in sh
-" The two lines below prevent vim-gitgutter over-riding [c and ]c
-nmap [h <Plug>GitGutterPrevHunk
-nmap ]h <Plug>GitGutterNextHunk
 
 " Workaround for vim without patch 8.1.0353 {{{1
 " -----------------------------------------
