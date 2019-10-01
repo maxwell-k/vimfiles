@@ -81,8 +81,8 @@ call opfunc#opfuncmap('c') " straight yank
  noremap <Leader>gg :edit ~/.sd/planning/<CR>
  noremap <Leader>gi :edit ~/.sd/planning/In-Basket.md<CR>:$-1<CR>
  noremap <Leader>gl :edit ~/.sd/planning/Someday-Maybe/Listen.md<CR>
- noremap <Leader>gp :edit ~/.sd/planning/Projects/index.md<CR>:$-1<CR>
- noremap <Leader>gr :edit ~/.sd/planning/Reference/index.md<CR>:$-1<CR>
+ noremap <Leader>gp :edit ~/.sd/planning/Projects/<CR><CR>
+ noremap <Leader>gr :edit ~/.sd/planning/Reference/index.md<CR>:$<CR>
  noremap <Leader>gs :edit ~/.sd/planning/Someday-Maybe/index.md<CR>
  noremap <Leader>gR :edit ~/.sd/planning/Someday-Maybe/Read.md<CR>
  noremap <Leader>gw :edit ~/.sd/planning/Someday-Maybe/Watch.md<CR>
