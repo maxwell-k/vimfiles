@@ -22,6 +22,8 @@ augroup filetypedetect
 
   autocmd BufRead,BufNewFile */planning/*.txt setfiletype rst.automatic
 
+  autocmd BufRead,BufNewFile *src/*.js set filetype=javascript.jsx
+
 
 " Tests described below
 
