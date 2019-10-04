@@ -16,6 +16,8 @@ augroup filetypedetect
 
   autocmd BufRead,BufNewFile *.bas setfiletype vba
 
+  autocmd BufRead,BufNewFile known_hosts setfiletype known_hosts
+
 
   " **Tests described below**
   "
