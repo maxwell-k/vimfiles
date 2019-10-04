@@ -1,3 +1,1 @@
-if g:ale_enabled == 1
-  let b:ale_fixers = ['black',]
-endif
+let b:ale_fixers = ['black',]
