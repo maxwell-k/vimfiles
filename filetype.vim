@@ -18,6 +18,8 @@ augroup filetypedetect
 
   autocmd BufRead,BufNewFile known_hosts setfiletype known_hosts
 
+  autocmd BufRead,BufNewFile *.vader setfiletype vader
+
 
   " **Tests described below**
   "
