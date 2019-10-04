@@ -28,6 +28,8 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile *.tfvars setfiletype terraform
   autocmd BufRead,BufNewFile *.tfstate setfiletype javascript
 
+  autocmd BufRead,BufNewFile **/configuration/**/*.py setfiletype python.black
+
 
 
 " Tests described below
