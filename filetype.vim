@@ -9,4 +9,6 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile *.dart setfiletype dart
   " based on runtime pack/ansible/opt/mdx/ftdetect/mdx.vim
   autocmd BufNewFile,BufRead *.mdx setfiletype markdown.mdx
+  " man pages test with `man man`
+  autocmd BufRead,BufNewFile /tmp/man.* setfiletype man
 augroup END
