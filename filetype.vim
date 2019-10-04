@@ -3,7 +3,7 @@ if exists('did_load_filetypes')
   finish
 endif
 augroup filetypedetect
-" Tests in ./tests/file-type-detection/**
+" Tests in ./tests/file-type-detection/
 
   autocmd BufRead,BufNewFile APKBUILD setfiletype sh.apkbuild
 
@@ -22,7 +22,12 @@ augroup filetypedetect
 
   autocmd BufRead,BufNewFile */planning/*.txt setfiletype rst.automatic
 
-  autocmd BufRead,BufNewFile *src/*.js set filetype=javascript.jsx
+  autocmd BufRead,BufNewFile *src/*.js setfiletype javascript.jsx
+
+  autocmd BufRead,BufNewFile *.tf setfiletype terraform
+  autocmd BufRead,BufNewFile *.tfvars setfiletype terraform
+  autocmd BufRead,BufNewFile *.tfstate setfiletype javascript
+
 
 
 " Tests described below
