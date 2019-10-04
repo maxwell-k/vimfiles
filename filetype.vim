@@ -17,6 +17,8 @@ augroup filetypedetect
   " https://github.com/dart-lang/dart-vim-plugin/blob/master/ftdetect/dart.vim
   autocmd BufRead,BufNewFile *.dart setfiletype dart
 
+  autocmd BufRead,BufNewFile *.gfm setfiletype markdown.gfm
+
   " based on runtime pack/ansible/opt/mdx/ftdetect/mdx.vim
   autocmd BufRead,BufNewFile *.mdx setfiletype markdown.mdx
 
