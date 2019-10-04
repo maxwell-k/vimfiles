@@ -28,7 +28,7 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile *.tfvars setfiletype terraform
   autocmd BufRead,BufNewFile *.tfstate setfiletype javascript
 
-  autocmd BufRead,BufNewFile **/configuration/**/*.py setfiletype python.black
+  autocmd BufRead,BufNewFile */configuration/*.py setfiletype python.black
 
   autocmd BufRead,BufNewFile */playbooks/*.yaml setfiletype yaml.ansible
 
