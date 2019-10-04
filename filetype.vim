@@ -6,11 +6,15 @@ augroup filetypedetect
   " **Tests in ./tests/file-type-detection/**
   "
   autocmd BufRead,BufNewFile APKBUILD setfiletype sh.apkbuild
+
   " For shebang based detection see also:
   " https://github.com/dart-lang/dart-vim-plugin/blob/master/ftdetect/dart.vim
   autocmd BufRead,BufNewFile *.dart setfiletype dart
+
   " based on runtime pack/ansible/opt/mdx/ftdetect/mdx.vim
-  autocmd BufNewFile,BufRead *.mdx setfiletype markdown.mdx
+  autocmd BufRead,BufNewFile *.mdx setfiletype markdown.mdx
+
+  autocmd BufRead,BufNewFile *.bas setfiletype vba
 
 
   " **Tests described below**
