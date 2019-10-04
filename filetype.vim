@@ -30,6 +30,7 @@ augroup filetypedetect
 
   autocmd BufRead,BufNewFile **/configuration/**/*.py setfiletype python.black
 
+  autocmd BufRead,BufNewFile */playbooks/*.yaml setfiletype yaml.ansible
 
 
 " Tests described below
