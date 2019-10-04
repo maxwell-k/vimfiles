@@ -3,9 +3,15 @@ if exists('did_load_filetypes')
   finish
 endif
 augroup filetypedetect
+" Sorted based on the autocmd-patterns
+"
 " Tests in ./tests/file-type-detection/
 
   autocmd BufRead,BufNewFile APKBUILD setfiletype sh.apkbuild
+
+  autocmd BufRead,BufNewFile known_hosts setfiletype known_hosts
+
+  autocmd BufRead,BufNewFile *.bas setfiletype vba
 
   " For shebang based detection see also:
   " https://github.com/dart-lang/dart-vim-plugin/blob/master/ftdetect/dart.vim
@@ -14,15 +20,7 @@ augroup filetypedetect
   " based on runtime pack/ansible/opt/mdx/ftdetect/mdx.vim
   autocmd BufRead,BufNewFile *.mdx setfiletype markdown.mdx
 
-  autocmd BufRead,BufNewFile *.bas setfiletype vba
-
-  autocmd BufRead,BufNewFile known_hosts setfiletype known_hosts
-
   autocmd BufRead,BufNewFile *.vader setfiletype vader
-
-  autocmd BufRead,BufNewFile */planning/*.txt setfiletype rst.automatic
-
-  autocmd BufRead,BufNewFile *src/*.js setfiletype javascript.jsx
 
   autocmd BufRead,BufNewFile *.tf setfiletype terraform
   autocmd BufRead,BufNewFile *.tfvars setfiletype terraform
@@ -30,7 +28,11 @@ augroup filetypedetect
 
   autocmd BufRead,BufNewFile */configuration/*.py setfiletype python.black
 
+  autocmd BufRead,BufNewFile */planning/*.txt setfiletype rst.automatic
+
   autocmd BufRead,BufNewFile */playbooks/*.yaml setfiletype yaml.ansible
+
+  autocmd BufRead,BufNewFile */src/*.js setfiletype javascript.jsx
 
 
 " Tests described below
