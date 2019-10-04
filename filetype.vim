@@ -3,8 +3,8 @@ if exists('did_load_filetypes')
   finish
 endif
 augroup filetypedetect
-  " **Tests in ./tests/file-type-detection/**
-  "
+" Tests in ./tests/file-type-detection/**
+
   autocmd BufRead,BufNewFile APKBUILD setfiletype sh.apkbuild
 
   " For shebang based detection see also:
@@ -20,9 +20,11 @@ augroup filetypedetect
 
   autocmd BufRead,BufNewFile *.vader setfiletype vader
 
+  autocmd BufRead,BufNewFile */planning/*.txt setfiletype rst.automatic
 
-  " **Tests described below**
-  "
+
+" Tests described below
+
   " test with `man man`
   autocmd BufRead,BufNewFile /tmp/man.* setfiletype man
   " test with `fc` from inside dash
