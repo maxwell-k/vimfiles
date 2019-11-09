@@ -77,7 +77,7 @@ call opfunc#opfuncmap('c') " straight yank
  noremap <Leader>C :call SendViaOSC52(join(getline(1,'$'),'\n'))<CR>
  noremap <Leader>fc :call vim#cipher()<CR>
  noremap <Leader>fg :call fzf#run({'source': 'git ls-files', 'sink': 'e'})<CR>
-source ~/.sd/planning/.mappings.vim " all begin <Leader>g
+        "<Leader>g see plugin/mappings.vim
         "<Leader>h see vim/ftplugin/rst.vim
  noremap <Leader>i :echo synIDattr(synID(line('.'),col('.'),1),'name')<CR>
 vnoremap <Leader>k <ESC>:call vim#keep()<CR>
