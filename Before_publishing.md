@@ -1,0 +1,2 @@
+- Move `spellfile` somewhere else
+- Add copyright and license, get `reuse` from the FSFE to pass
