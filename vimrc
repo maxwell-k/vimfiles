@@ -81,6 +81,7 @@ source ~/.sd/planning/.mappings.vim " all begin <Leader>g
         "<Leader>h see vim/ftplugin/rst.vim
  noremap <Leader>i :echo synIDattr(synID(line('.'),col('.'),1),'name')<CR>
 vnoremap <Leader>k <ESC>:call vim#keep()<CR>
+        "<Leader>j see ftplugin/python.vim for Jedi mappings or
         "<Leader>j see plugin/jupyter.vim in the jupyter package
         "<Leader>J see plugin/jupyter.vim in the jupyter package
         "<Leader>l see vim/plugin/dbext.vim
