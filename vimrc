@@ -77,18 +77,11 @@ call opfunc#opfuncmap('c') " straight yank
  noremap <Leader>C :call SendViaOSC52(join(getline(1,'$'),'\n'))<CR>
  noremap <Leader>fc :call vim#cipher()<CR>
  noremap <Leader>fg :call fzf#run({'source': 'git ls-files', 'sink': 'e'})<CR>
- noremap <Leader>ga :edit ~/.sd/planning/Next-Actions/index.md<CR>
- noremap <Leader>gg :edit ~/.sd/planning/<CR>
- noremap <Leader>gi :edit ~/.sd/planning/In-Basket.md<CR>:$-1<CR>
- noremap <Leader>gl :edit ~/.sd/planning/Someday-Maybe/Listen.md<CR>
- noremap <Leader>gp :edit ~/.sd/planning/Projects/<CR><CR>
- noremap <Leader>gr :edit ~/.sd/planning/Reference/index.md<CR>:$<CR>
- noremap <Leader>gs :edit ~/.sd/planning/Someday-Maybe/index.md<CR>
- noremap <Leader>gR :edit ~/.sd/planning/Someday-Maybe/Read.md<CR>
- noremap <Leader>gw :edit ~/.sd/planning/Someday-Maybe/Watch.md<CR>
+        "<Leader>g see plugin/mappings.vim
         "<Leader>h see vim/ftplugin/rst.vim
  noremap <Leader>i :echo synIDattr(synID(line('.'),col('.'),1),'name')<CR>
 vnoremap <Leader>k <ESC>:call vim#keep()<CR>
+        "<Leader>j see ftplugin/python.vim for Jedi mappings or
         "<Leader>j see plugin/jupyter.vim in the jupyter package
         "<Leader>J see plugin/jupyter.vim in the jupyter package
         "<Leader>l see vim/plugin/dbext.vim
@@ -125,8 +118,7 @@ digraphs %< 9986 " black scissors ✂
 "
 " Use a file in ftplugin if file-type related
 augroup vimrc
-autocmd BufNewFile example.yaml 0r ~/.sd/configuration/vim/example.yaml |
-  \ normal Gddf:ll
+autocmd BufNewFile example.yaml 0r ~/.vim/example.yaml | normal Gddf:ll
 autocmd BufReadCmd *.tbz2 call tar#Browse(expand("<amatch>")) "Gentoo binaries
 autocmd BufNewFile,BufReadPost COMMIT_EDITMSG setlocal nomodeline spell
 autocmd BufNewFile,BufReadPost * execute 'setlocal spellfile+='

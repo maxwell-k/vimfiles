@@ -28,7 +28,7 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile *.tfvars setfiletype terraform
   autocmd BufRead,BufNewFile *.tfstate setfiletype javascript
 
-  autocmd BufRead,BufNewFile */configuration/*.py setfiletype python.black
+  autocmd BufRead,BufNewFile */site-packages/**.py setfiletype python
 
   autocmd BufRead,BufNewFile */planning/tlf/*.txt setfiletype text
   autocmd BufRead,BufNewFile */planning/*.txt setfiletype rst.automatic
@@ -44,5 +44,7 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile /tmp/man.* setfiletype man
   " test with `fc` from inside dash
   autocmd BufRead,BufNewFile /tmp/_sh?????? setfiletype sh
+  " test with `vim ~/example.py`
+  autocmd BufRead,BufNewFile /home/**.py setfiletype python.black
 
 augroup END
