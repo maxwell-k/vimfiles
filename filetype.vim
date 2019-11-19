@@ -33,7 +33,11 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile */planning/tlf/*.txt setfiletype text
   autocmd BufRead,BufNewFile */planning/*.txt setfiletype rst.automatic
 
+  autocmd BufRead,BufNewFile */example.yaml setfiletype yaml.ansible
   autocmd BufRead,BufNewFile */playbooks/*.yaml setfiletype yaml.ansible
+
+  autocmd BufNewFile,BufRead hosts setfiletype yaml.ansible.hosts
+  " need to clear augroup ansible_vim_fthosts
 
   autocmd BufRead,BufNewFile */src/*.js setfiletype javascript.jsx
 
