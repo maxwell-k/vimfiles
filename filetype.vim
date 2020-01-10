@@ -22,6 +22,8 @@ augroup filetypedetect
   " based on runtime pack/ansible/opt/mdx/ftdetect/mdx.vim
   autocmd BufRead,BufNewFile *.mdx setfiletype markdown.mdx
 
+  autocmd BufRead,BufNewFile *.svelte setfiletype html.svelte
+
   autocmd BufRead,BufNewFile *.tf setfiletype terraform
   autocmd BufRead,BufNewFile *.tfvars setfiletype terraform
   autocmd BufRead,BufNewFile *.tfstate setfiletype javascript
