@@ -41,9 +41,6 @@ augroup filetypedetect
   autocmd BufNewFile,BufRead hosts setfiletype yaml.ansible.hosts
   " need to clear augroup ansible_vim_fthosts
 
-  autocmd BufRead,BufNewFile */src/*.js setfiletype javascript.jsx
-
-
 " Tests described below
 
   " test with `man man`
