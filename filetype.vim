@@ -19,6 +19,7 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile */planning/tlf/*.txt setfiletype text
   autocmd BufRead,BufNewFile */playbooks/*.yaml setfiletype yaml.ansible
   autocmd BufRead,BufNewFile */site-packages/**.py setfiletype python
+  autocmd BufRead,BufNewFile */src/**.html setfiletype html.svelte
   autocmd BufRead,BufNewFile APKBUILD setfiletype sh.apkbuild
   autocmd BufRead,BufNewFile hosts setfiletype yaml.ansible.hosts " [1]
   autocmd BufRead,BufNewFile known_hosts setfiletype known_hosts
