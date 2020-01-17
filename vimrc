@@ -145,4 +145,5 @@ if v:version < 801
   set runtimepath+=~/.vim/after
 endif
 "}}}1
+
 " vim: set foldmethod=marker foldlevel=0 :
