@@ -76,7 +76,6 @@ execute s:list_settings
 call opfunc#opfuncmap('c') " straight yank
  noremap <Leader>C :call SendViaOSC52(join(getline(1,'$'),'\n'))<CR>
  noremap <Leader>fc :call vim#cipher()<CR>
- noremap <Leader>fg :call fzf#run({'source': 'git ls-files', 'sink': 'e'})<CR>
         "<Leader>g see plugin/mappings.vim
         "<Leader>h see vim/ftplugin/rst.vim
  noremap <Leader>i :echo synIDattr(synID(line('.'),col('.'),1),'name')<CR>
@@ -92,8 +91,8 @@ vnoremap <Leader>k <ESC>:call vim#keep()<CR>
  noremap <Leader>S :call vim#scriptnames()<CR>
 execute "noremap <Leader>t :call vim#toggleListMode('".s:list_settings."')<CR>"
  noremap <Leader>v :set paste! paste?<CR>
- noremap <Leader>w :call rst#wrap()<CR>
- noremap <Leader>W :call opfunc#clipboard(rst#link())<CR>
+ noremap <Leader>zg :call fzf#run(fzf#wrap({'source': 'git ls-files'}))<CR>
+ noremap <Leader>zs :call fzf#custom_git_status()<CR>
 call opfunc#opfuncmap('y')
  noremap Y y$
 vnoremap <Leader>= :<C-U>call vim#sum()<CR>
@@ -148,4 +147,5 @@ if v:version < 801
   set runtimepath+=~/.vim/after
 endif
 "}}}1
+
 " vim: set foldmethod=marker foldlevel=0 :
