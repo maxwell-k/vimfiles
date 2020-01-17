@@ -91,8 +91,6 @@ vnoremap <Leader>k <ESC>:call vim#keep()<CR>
  noremap <Leader>S :call vim#scriptnames()<CR>
 execute "noremap <Leader>t :call vim#toggleListMode('".s:list_settings."')<CR>"
  noremap <Leader>v :set paste! paste?<CR>
- noremap <Leader>w :call rst#wrap()<CR>
- noremap <Leader>W :call opfunc#clipboard(rst#link())<CR>
 call opfunc#opfuncmap('y')
  noremap Y y$
 vnoremap <Leader>= :<C-U>call vim#sum()<CR>
