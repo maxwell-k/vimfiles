@@ -88,7 +88,7 @@ vnoremap <Leader>k <ESC>:call vim#keep()<CR>
         "<Leader>m see vim/plugin/dbext.vim
  noremap <Leader>n :call vim#new()<CR>
  noremap <Leader>S :call vim#scriptnames()<CR>
-execute "noremap <Leader>t :call vim#toggleListMode('".s:list_settings."')<CR>"
+execute "noremap <Leader>t :call toggle#toggle_list('".s:list_settings."')<CR>"
  noremap <Leader>v :set paste! paste?<CR>
  noremap <Leader>zg :call fzf#run(fzf#wrap({'source': 'git ls-files'}))<CR>
  noremap <Leader>zs :call fzf#custom_git_status()<CR>

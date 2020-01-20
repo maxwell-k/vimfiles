@@ -26,16 +26,6 @@ print(result)
 EOS
 let @= = "'".py3eval('result')."'"
 endfunction "}}}1
-function! vim#toggleListMode(default_settings) abort "{{{1
-" Toggle through three states, ``:help digraph-table`` lists symbols
-  if !&list
-    silent set list listchars&vim showbreak&vim
-  elseif &listchars==#'eol:$'
-    silent execute a:default_settings
-  else
-    silent set nolist listchars&vim showbreak&vim
-  end
-endfunction "}}}1
 function! vim#dbext_mask() abort "{{{1
   call maktaba#buffer#Substitute('\d\d:\d\d$', 'XX:XX','e', 1, 1)
   call maktaba#buffer#Substitute(' \+$', '')
