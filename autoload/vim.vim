@@ -1,12 +1,3 @@
-let s:repository = fnamemodify(resolve(expand('<sfile>')),':p:h')
-function! vim#cipher() abort "{{{1
-  let s:file = resolve(s:repository.'/../../../safe/cipher.aes')
-  if bufexists(s:file) | execute 'buffer '.s:file
-  elseif filereadable(s:file) | execute 'edit '.s:file
-  else | find safe/cipher.bf
-  endif
-endfunction
-" }}}
 function! vim#scriptnames() abort "{{{1
   "Open the output of :scriptnames for searching
   let l:file=tempname()
