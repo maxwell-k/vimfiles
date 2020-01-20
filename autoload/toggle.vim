@@ -18,5 +18,6 @@ function! toggle#toggle_list(default_settings) abort "{{{1
   else
     silent set nolist listchars&vim showbreak&vim
   end
+  redraw
 endfunction "}}}1
 " vim: set foldmethod=marker foldlevel=0 :
