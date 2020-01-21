@@ -61,21 +61,22 @@ set termguicolors
 set wildmenu
 
 " Scripted options
-let s:list_settings = 'set list showbreak=→ ' " also used in a mapping below
+let s:list_settings = 'set list showbreak=→ '
 let s:list_settings .= 'listchars='
 let s:list_settings .= 'trail:←,tab:→—,extends:▓,precedes:▓'
 execute s:list_settings
+execute "noremap <Leader>t :call toggle#toggle_list('".s:list_settings."')<CR>"
+unlet s:list_settings
 
 " Mappings {{{1
 " --------
 "
-" Alphabetical
+" Using <Leader>, alphabetically:
  noremap <Leader>aq :call ale#quit#Mapping()<CR>
  noremap <Leader>ad :unlet! b:ale_fixers \| ALEDisableBuffer<CR>
  noremap <Leader>b :call toggle#toggle_colors()<CR>
 call opfunc#opfuncmap('c') " straight yank
  noremap <Leader>C :call SendViaOSC52(join(getline(1,'$'),'\n'))<CR>
- noremap <Leader>fc :call vim#cipher()<CR>
         "<Leader>g see plugin/mappings.vim
         "<Leader>h see vim/ftplugin/rst.vim
  noremap <Leader>i :echo synIDattr(synID(line('.'),col('.'),1),'name')<CR>
@@ -85,19 +86,20 @@ vnoremap <Leader>k <ESC>:call vim#keep()<CR>
         "<Leader>J see plugin/jupyter.vim in the jupyter package
         "<Leader>l see vim/plugin/dbext.vim
         "<Leader>L see vim/plugin/dbext.vim
- noremap <C-L> :noh<CR><C-L>
         "<Leader>m see vim/plugin/dbext.vim
  noremap <Leader>n :call vim#new()<CR>
  noremap <Leader>S :call vim#scriptnames()<CR>
-execute "noremap <Leader>t :call vim#toggleListMode('".s:list_settings."')<CR>"
+        "<Leader>t see above
  noremap <Leader>v :set paste! paste?<CR>
+call opfunc#opfuncmap('y')
  noremap <Leader>zg :call fzf#run(fzf#wrap({'source': 'git ls-files'}))<CR>
  noremap <Leader>zs :call fzf#custom_git_status()<CR>
-call opfunc#opfuncmap('y')
- noremap Y y$
 vnoremap <Leader>= :<C-U>call vim#sum()<CR>
  noremap <Leader>\ :s,\\,/,g<CR>
  noremap <Leader>/ :s,/,\\,g<CR>
+" Other:
+ noremap <C-L> :noh<CR><C-L>
+ noremap Y y$
 
 " Digraphs {{{1
 " --------

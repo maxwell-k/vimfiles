@@ -1,4 +1,6 @@
 function! fzf#custom_git_status() abort
+  " manually tested only
+  " neither vader nor runVimTests can pass keys to FZF
   let l:spec = {}
   let l:spec['options'] = '--ansi --nth 2..'
   let l:spec['source'] = 

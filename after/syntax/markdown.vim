@@ -1,10 +1,3 @@
-" based upon https://github.com/plasticboy/vim-markdown/pull/367/
-" highlight strike through, built in support isn't functioning
-syntax region mkdStrike
-  \ matchgroup=mkdDelimiter start=/\%(\~\~\)/ end=/\%(\~\~\)/ concealends
-syntax cluster mkdNonListItem add=mkdStrike
-highlight link mkdStrike htmlStrike
-
 " don't spell check block quotes
 syn region mkdBlockquote start=/^\s*>/ end=/$/
   \ contains=mkdLink,mkdInlineURL,mkdLineBreak,@NoSpell
