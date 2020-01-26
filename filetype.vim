@@ -29,11 +29,11 @@ augroup filetypedetect
 
 " Tests described below
 
-  autocmd BufRead,BufNewFile /home/**.py setfiletype python.black
+  autocmd BufRead,BufNewFile /home/**.py setfiletype python.auto
   autocmd BufRead,BufNewFile /tmp/_sh?????? setfiletype sh
   autocmd BufRead,BufNewFile /tmp/man.* setfiletype man
 
-  " `vim ~/example.py`: python.black
+  " `vim ~/example.py`: python.auto
   " `fc` inside dash: sh
   " `man man`: man
 
