@@ -1,1 +1,1 @@
-html.svelte
+svelte
