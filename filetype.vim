@@ -6,6 +6,7 @@ augroup filetypedetect
 " Tests in ./tests/file-type-detection/
 
   autocmd BufRead,BufNewFile *.bas setfiletype vba
+  autocmd BufRead,BufNewFile *.beancount setfiletype beancount
   autocmd BufRead,BufNewFile *.dart setfiletype dart
   autocmd BufRead,BufNewFile *.gfm setfiletype markdown.gfm
   autocmd BufRead,BufNewFile *.mdx setfiletype markdown.mdx
