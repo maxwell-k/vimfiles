@@ -1,0 +1,10 @@
+setlocal textwidth=0
+setlocal spell
+
+let b:ale_linter_aliases = {'pullrequest': 'markdown'}
+let b:ale_fixers = ['prettier',]
+let b:ale_javascript_prettier_options = '--prose-wrap never --parser markdown'
+
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_no_default_key_mappings = 1
+let g:vim_markdown_strikethrough = 1
