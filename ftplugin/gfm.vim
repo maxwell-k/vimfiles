@@ -10,3 +10,4 @@
 "
 " [1] https://github.github.com/gfm/#soft-line-breaks
 let b:ale_javascript_prettier_options = '--prose-wrap never --parser markdown'
+setlocal textwidth=0

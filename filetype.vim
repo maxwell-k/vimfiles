@@ -6,10 +6,11 @@ augroup filetypedetect
 " Tests in ./tests/file-type-detection/
 
   autocmd BufRead,BufNewFile *.bas setfiletype vba
+  autocmd BufRead,BufNewFile *.beancount setfiletype beancount
   autocmd BufRead,BufNewFile *.dart setfiletype dart
   autocmd BufRead,BufNewFile *.gfm setfiletype markdown.gfm
   autocmd BufRead,BufNewFile *.mdx setfiletype markdown.mdx
-  autocmd BufRead,BufNewFile *.svelte setfiletype html.svelte
+  autocmd BufRead,BufNewFile *.svelte setfiletype svelte
   autocmd BufRead,BufNewFile *.tf setfiletype terraform
   autocmd BufRead,BufNewFile *.tfstate setfiletype javascript
   autocmd BufRead,BufNewFile *.tfvars setfiletype terraform
@@ -19,7 +20,7 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile */planning/tlf/*.txt setfiletype text
   autocmd BufRead,BufNewFile */playbooks/*.yaml setfiletype yaml.ansible
   autocmd BufRead,BufNewFile */site-packages/**.py setfiletype python
-  autocmd BufRead,BufNewFile */src/**.html setfiletype html.svelte
+  autocmd BufRead,BufNewFile */src/template.html setfiletype svelte
   autocmd BufRead,BufNewFile APKBUILD setfiletype sh.apkbuild
   autocmd BufRead,BufNewFile hosts setfiletype yaml.ansible.hosts " [1]
   autocmd BufRead,BufNewFile known_hosts setfiletype known_hosts
@@ -29,11 +30,11 @@ augroup filetypedetect
 
 " Tests described below
 
-  autocmd BufRead,BufNewFile /home/**.py setfiletype python.black
+  autocmd BufRead,BufNewFile /home/**.py setfiletype python.auto
   autocmd BufRead,BufNewFile /tmp/_sh?????? setfiletype sh
   autocmd BufRead,BufNewFile /tmp/man.* setfiletype man
 
-  " `vim ~/example.py`: python.black
+  " `vim ~/example.py`: python.auto
   " `fc` inside dash: sh
   " `man man`: man
 

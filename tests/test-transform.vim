@@ -12,4 +12,5 @@ echo opfunc#transform("11\n12")
 echo opfunc#transform("13\n14 ")
 echo opfunc#transform("15\n\\ 16")
 echo opfunc#transform("  17\n    \\ 18")
+echo opfunc#transform('19	20')
 quit

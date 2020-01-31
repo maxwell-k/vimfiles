@@ -6,6 +6,7 @@ setlocal spell
 setlocal textwidth=78
 noremap <Leader>h :call rst#headings()<CR>
 
+let b:ale_linter_aliases = {'rst': 'vim'}
 let b:ale_linters = ['rstcheckwarn', 'sed', 'rst2pseudoxml']
 let b:ale_fixers = ['remove_trailing_lines', 'trim_whitespace']
 let b:ale_rst_rst2pseudoxml_executable = 'rst2pseudoxml-3'

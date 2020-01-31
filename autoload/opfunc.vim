@@ -78,6 +78,7 @@ function! opfunc#transform(input) abort "{{{ Tranform string
   let l:s = substitute(l:s, '\(^\|\n\)#', '\1', 'g') " uncomment if '#'
   let l:s = substitute(l:s, '\(^\|\n\) *\\', '\1', 'g') " vim line continuation
   let l:s = substitute(l:s, '\n', ' ', 'g') " replace newlines with spaces
+  let l:s = substitute(l:s, '\t', ' ', 'g') " replace tabs with spaces
   let l:s = substitute(l:s, ' \+', ' ', 'g') " multiple to single spaces
   let l:s = substitute(l:s, '^ ', '', '') " remove leading space
   let l:s = substitute(l:s, ' $', '', '') " remove trailing space
