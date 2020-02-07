@@ -2,6 +2,7 @@
 " Description: Formatting files with bean-format, part of beeancount
 function! ale#fixers#beanformat#Fix(buffer) abort
   let l:executable = ale#handlers#beanformat#GetExecutable(a:buffer)
+  let l:options = ale#Var(a:buffer, 'beancount_beanformat_options')
 
-  return { 'command': ale#Escape(l:executable) . ' -' }
+  return { 'command': ale#Escape(l:executable) . ale#Pad(l:options) . ' -' }
 endfunction
