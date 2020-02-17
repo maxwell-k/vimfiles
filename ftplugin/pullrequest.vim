@@ -1,5 +1,6 @@
 setlocal textwidth=0
 setlocal spell
+setlocal nolinebreak
 
 let b:ale_linter_aliases = {'pullrequest': 'markdown'}
 let b:ale_fixers = ['prettier',]
