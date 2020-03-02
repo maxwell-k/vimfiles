@@ -1,2 +1,16 @@
+- Review and move all of `roles/script/files/`
+- Convert `roles/script/` to a tasks include/import
+- Publish vim_package as an Ansible role (for details, see below)
+- Replace `playbooks/ansible.yaml` with instructions to install vim_package
 - Move `spellfile` somewhere else
 - Add copyright and license, get `reuse` from the FSFE to pass
+- Move `playbooks/vim.yaml` into `vim/.ansible`
+- Write a README
+- Move to a separate repository
+
+# Publish vim_package as an Ansible role
+
+- New repository on GitHub
+- `ansible-galaxy role init`
+- reuse compliant: MPL-2.0 and CC-BY-SA-4.0
+- playbooks/ansible.
