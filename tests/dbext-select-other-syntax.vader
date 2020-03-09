@@ -1,4 +1,5 @@
 Execute (Use the :Select syntax):
+  call my_dbext#load()
   Select 3;
 
 Then (Check async and view the result):

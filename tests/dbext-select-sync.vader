@@ -1,4 +1,5 @@
 Execute (Disable jobs):
+  call my_dbext#load()
   Save g:dbext_default_job_enable
   let g:dbext_default_job_enable = 0
   execute 'DBSetOption job_enable=' g:dbext_default_job_enable

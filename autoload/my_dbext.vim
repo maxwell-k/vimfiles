@@ -1,3 +1,9 @@
+" Configuration for dbext
+"
+" The dbext package should be loaded with:
+"    :call my_dbext#load()
+function my_dbext#load()
+
 packadd dbext
 
 let g:dbext_default_always_prompt_for_variables = 1
@@ -39,3 +45,5 @@ let &formatoptions=s:saved_formatoptions
 
 call opfunc#opfuncmap('l') " run in dbext
 call opfunc#opfuncmap('L') " run in dbext with .mode list
+
+endfunction
