@@ -1,4 +1,5 @@
 Execute (Asyncronous "SELECT 1;" by default):
+  call my_dbext#load()
   DBExecSQL SELECT 1 ;
 
 Then (Check jobs enabled and view results with times masked):

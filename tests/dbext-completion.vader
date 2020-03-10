@@ -1,5 +1,6 @@
 "Setup connection and create database tables{{{1
 Execute (Setup DB and create tables):
+  call my_dbext#load()
   set filetype=sql
 
   Save g:dbext_default_job_enable

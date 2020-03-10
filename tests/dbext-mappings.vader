@@ -1,5 +1,6 @@
 " Setup - turn off header and jobs{{{1
 Execute (Turn off header and jobs):
+  call my_dbext#load()
   Save g:dbext_default_SQLITE_cmd_header, g:dbext_default_job_enable
   let g:dbext_default_SQLITE_cmd_header = ''
   DBSetOption SQLITE_cmd_header=''

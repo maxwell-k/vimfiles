@@ -88,6 +88,7 @@ vnoremap <Leader>k <ESC>:call vim#keep()<CR>
         "<Leader>L see vim/plugin/dbext.vim
         "<Leader>m see vim/plugin/dbext.vim
  noremap <Leader>n :call vim#new()<CR>
+ noremap <Leader>s :call toggle#toggle_shiftwidth()<CR>
  noremap <Leader>S :call vim#scriptnames()<CR>
         "<Leader>t see above
  noremap <Leader>v :set paste! paste?<CR>
