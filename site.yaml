@@ -1,0 +1,308 @@
+- name:
+    Update to a recent vim on Ubuntu using a PPA, which is a prerequisite for
+    tasks/matkaba.yaml
+  become: yes
+  hosts: localhost
+  tags: light
+  tasks:
+    - when: ansible_distribution == 'Ubuntu'
+      block:
+        - name: Install dependencies for apt Ansible module called via package
+          package: { name: [python-apt, aptitude] }
+        - name: Install dirmngr for apt_key
+          package: { name: dirmngr }
+        - name: Add apt key for Ubuntu ppas with recent vim
+          apt_key:
+            keyserver: "hkps://keyserver.ubuntu.com:443"
+            id: 4ab0f789cba31744cc7da76a8cf63ad3f06fc659
+        - name: Install Ubuntu ppas for a recent vim
+          apt_repository: { repo: "{{ item }}" }
+          loop:
+            - deb http://ppa.launchpad.net/jonathonf/vim/ubuntu {{
+              ansible_distribution_release }} main
+            - deb-src http://ppa.launchpad.net/jonathonf/vim/ubuntu {{
+              ansible_distribution_release }} main
+        - name: Install current vim on Ubuntu
+          apt: { name: "vim=2:8.1*", update_cache: yes }
+
+- name: Install opfunc.vim to local disk
+  become: yes
+  hosts: localhost
+  tags: [light, setting]
+  tasks:
+    - name: Create an autoload directory
+      file:
+        path: /usr/share/vim/vimfiles/autoload
+        state: directory
+        mode: 0o755
+    - name: Copy opfunc.vim from removable media
+      register: opfunc_copy
+      copy:
+        src: ../vim/autoload/opfunc.vim
+        dest: /usr/share/vim/vimfiles/autoload
+
+- name: Create directory used in vimrc
+  hosts: localhost
+  tags: [light, setting]
+  tasks:
+    - name:
+        Create an directory to use with the backup and backupdir options in vim,
+        to avoid loosing file contents if it is accidentally partially written,
+        for example with :.wq
+      file:
+        path: /home/{{ ansible_user }}/.backupdir
+        state: directory
+        mode: 0o700
+
+- name: Testing vim
+  become: yes
+  hosts: localhost
+  tags: setting
+  roles:
+    - name: Vader (only release was 2014)
+      role: vim_package
+      vars:
+        vim_package: vader
+        vim_package_url: https://github.com/junegunn/vader.vim
+        vim_package_version: de8a976f1eae2c2b680604205c3e8b5c8882493c
+
+- name: ALE
+  tags: package
+  become: yes
+  hosts: localhost
+  roles:
+    - role: vim_package
+      tags: light
+      vars:
+        vim_package: ale
+        vim_package_url: https://github.com/dense-analysis/ale
+        vim_package_version: v2.6.0
+        vim_package_optional: no
+  tasks:
+    - name: jq for an ALE JSON fixer and for command line use
+      package: { name: jq }
+
+- name: dbext (personal fork)
+  tags: package
+  become: yes
+  hosts: localhost
+  roles:
+    - role: vim_package
+      vars:
+        vim_package: dbext
+        vim_package_url: https://github.com/maxwell-k/dbext.vim
+        vim_package_version: eab2ab12c91759fe902f6d7734a1b03c1d0107a2
+  tasks:
+    - name: sqlite for dbext on Alpine Linux
+      package: { name: "sqlite{{ '3' if ansible_distribution != 'Alpine' }}" }
+
+- name: ansible-vim and related packages
+  hosts: localhost
+  tags: [light, package]
+  become: yes
+  roles:
+    - role: vim_package
+      name: Syntax highlighting for Ansible
+      vars:
+        vim_package: ansible
+        vim_package_url: https://github.com/pearofducks/ansible-vim
+        vim_package_version: 19e6ae0f2258953591d7c674abd7aca3ceb51374
+        vim_package_optional: no
+  tasks:
+    - name: Check ansible-lint is installed
+      command: { cmd: ansible-lint --version }
+      changed_when: False
+
+- name: Simple vim packages, with no dependencies — loaded on startup
+  become: yes
+  hosts: localhost
+  tags: [light, package]
+  roles:
+    - name: Commentary (last release was 2016)
+      role: vim_package
+      tags: light
+      vars:
+        vim_package: commentary
+        vim_package_url: https://github.com/tpope/vim-commentary
+        vim_package_version: f8238d70f873969fb41bf6a6b07ca63a4c0b82b1
+        vim_package_optional: no
+    - name: Install maktaba
+      tags: light
+      role: vim_package
+      vars:
+        vim_package: maktaba
+        vim_package_url: https://github.com/google/vim-maktaba
+        vim_package_version: v0.15.0
+        vim_package_optional: no
+    - name: Ayu colorscheme (no releases), used in vim/colors/mine.vim
+      role: vim_package
+      vars:
+        vim_package: ayu
+        vim_package_url: https://github.com/ayu-theme/ayu-vim
+        vim_package_version: 9dab20b38335ed06738f251e92e3817182063759
+        vim_package_optional: no
+    - name: surround from Tim Pope no releases since 2015
+      role: vim_package
+      vars:
+        vim_package: surround
+        vim_package_url: https://github.com/tpope/vim-surround
+        vim_package_version: f51a26d3710629d031806305b6c8727189cd1935
+        vim_package_optional: no
+    - name: plasticboy's markdown no releases since 2015, unreliable if optional
+      role: vim_package
+      vars:
+        vim_package: markdown
+        vim_package_url: https://github.com/plasticboy/vim-markdown
+        vim_package_version: da5a7ac96f517e0fd6f886bc3fbe27156ca1f946
+        vim_package_optional: no
+    - name: repeat from Tim Pope to improve other plugins
+      role: vim_package
+      vars:
+        vim_package: repeat
+        vim_package_url: https://github.com/tpope/vim-repeat
+        vim_package_version: v1.2
+        vim_package_optional: no
+    - name: Install toml syntax highlighting
+      role: vim_package
+      vars:
+        vim_package: toml
+        vim_package_url: https://github.com/cespare/vim-toml/
+        vim_package_version: a4ec206052aa347d7df90dc4b6697b7f2b7929bc
+        vim_package_optional: no
+
+- name: Simple vim packages, with no dependencies — optional
+  become: yes
+  hosts: localhost
+  tags: [light, package]
+  roles:
+    - name: Colorizer that support termguicolors
+      role: vim_package
+      vars:
+        vim_package: colorizer
+        vim_package_url: https://github.com/chrisbra/Colorizer
+        vim_package_version: 5fbdf24d17465c3be03b20c591ceae82f793ae1c
+    - name:
+        Modern, maintained fork of Solarized for better higlighting with
+        ``:diffthis`` and ``:Gvdiff``
+      role: vim_package
+      vars:
+        vim_package: solarized8
+        vim_package_url: https://github.com/lifepillar/vim-solarized8
+        vim_package_version: v1.2.0
+
+- name: Accounting with Beancount
+  become: yes
+  hosts: localhost
+  roles:
+    - name: Install vim package for beancount
+      role: vim_package
+      vars:
+        vim_package: beancount
+        vim_package_url: https://github.com/nathangrigg/vim-beancount
+        vim_package_version: 8054352c43168ece62094dfc8ec510e347e19e3c
+        vim_package_optional: yes
+
+- name: Editing Gatsby or React
+  become: yes
+  hosts: localhost
+  roles:
+    - name: Install jsx syntax highlighting
+      role: vim_package
+      vars:
+        vim_package: jsx
+        vim_package_url: https://github.com/MaxMEllon/vim-jsx-pretty/
+        vim_package_version: v3.0.0
+        vim_package_optional: yes
+    - name: Install mdx syntax highlighting
+      role: vim_package
+      vars:
+        vim_package: mdx
+        vim_package_url: https://github.com/jxnblk/vim-mdx-js/
+        vim_package_version: 17179d7f2a73172af5f9a8d65b01a3acf12ddd50
+        vim_package_optional: yes
+
+- name: Editing Svelte
+  become: yes
+  hosts: localhost
+  roles:
+    - name: Install svelte syntax highlighting
+      role: vim_package
+      vars:
+        vim_package: svelte
+        vim_package_url: https://github.com/leafoftree/vim-svelte-plugin/
+        vim_package_version: c6fd39f83d9142d0736d9fa974a57fbdd880fd06
+        vim_package_optional: yes
+
+- name: Refactoring Python
+  become: yes
+  hosts: localhost
+  roles:
+    - name:
+        Install jedi-vim; an unreleased version for better usage highlighting
+        https://github.com/davidhalter/jedi-vim/pull/851
+      role: vim_package
+      vars:
+        vim_package: jedi
+        vim_package_url: https://github.com/davidhalter/jedi-vim/
+        vim_package_version: e8790b1d8f486fe0284687a416feb62788cd8e33
+        vim_package_optional: yes
+
+- name: Tools for editing files on remote machines
+  become: yes
+  hosts: localhost
+  tasks:
+    - name:
+        Install sshfs because it works better with ALE linters than netrw and
+        scp; need fuse to unmount directories with fusermount -u
+      package: { name: [sshfs, fuse] }
+
+- name:
+    Setup vimrc, do this last as the vimrc assumes packages are available and if
+    another step fails this may leave vim difficult to start
+  hosts: localhost
+  tags: [light, setting]
+  tasks:
+    - name: Create a link from ~/.vim for ansible user
+      file:
+        follow: no
+        src: "{{ 'vim'|realpath }}"
+        path: "/home/{{ ansible_user }}/.vim"
+        state: link
+        group: "{{ ansible_user }}"
+        owner: "{{ ansible_user }}"
+    - name:
+        Create a link from ~/.vim for root user; except on Fedora to avoid "src
+        file does not exist"
+      become: yes
+      file:
+        follow: no
+        src: "{{ 'vim'|realpath }}"
+        path: /root/.vim
+        state: link
+        group: root
+        owner: root
+      when: ansible_distribution != 'Fedora'
+
+- name: Backup world
+  hosts: localhost
+  tags: [always]
+  tasks:
+    - name: Save to backups/
+      import_tasks: ../tasks/backup.yaml
+#
+# Copyright 2018, 2019 Keith Maxwell
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# vim.yaml
+#

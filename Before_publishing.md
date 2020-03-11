@@ -1,10 +1,10 @@
 - ~~Review and move all of `roles/script/files/`~~
 - ~~Convert `roles/script/` to a tasks include~~
+- ~~Move `playbooks/vim.yaml` to `vim/site.yaml`~~
 - Publish `vim_package` as an Ansible collection
 - Replace `playbooks/ansible.yaml` with instructions to install vim_package
 - Move `spellfile` somewhere else
 - Add copyright and license, get `reuse` from the FSFE to pass
-- Move `playbooks/vim.yaml` to `vim/site.yaml`
 - Write a README
 - Move to a separate repository
 
