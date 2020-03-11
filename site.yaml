@@ -1,11 +1,12 @@
-- name:
-    Update to a recent vim on Ubuntu using a PPA, which is a prerequisite for
-    tasks/matkaba.yaml
+- name: Install vim
   become: yes
   hosts: localhost
   tags: light
   tasks:
     - when: ansible_distribution == 'Ubuntu'
+      name:
+        Update to a recent vim on Ubuntu using a PPA, which is a prerequisite
+        for tasks/matkaba.yaml
       block:
         - name: Install dependencies for apt Ansible module called via package
           package: { name: [python-apt, aptitude] }
@@ -24,6 +25,8 @@
               ansible_distribution_release }} main
         - name: Install current vim on Ubuntu
           apt: { name: "vim=2:8.1*", update_cache: yes }
+    - name: Make sure vim is installed
+      package: { name: vim }
 
 - name: Install opfunc.vim to local disk
   become: yes
