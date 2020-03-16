@@ -1,7 +1,6 @@
 - name: Install vim
   become: yes
   hosts: localhost
-  tags: light
   tasks:
     - when: ansible_distribution == 'Ubuntu'
       name:
@@ -31,7 +30,6 @@
 - name: Install opfunc.vim to local disk
   become: yes
   hosts: localhost
-  tags: [light, setting]
   tasks:
     - name: Create an autoload directory
       file:
@@ -46,7 +44,6 @@
 
 - name: Create directory used in vimrc
   hosts: localhost
-  tags: [light, setting]
   tasks:
     - name:
         Create an directory to use with the backup and backupdir options in vim,
@@ -60,7 +57,6 @@
 - name: Testing vim
   become: yes
   hosts: localhost
-  tags: setting
   roles:
     - name: Vader (only release was 2014)
       role: vim_package
@@ -70,12 +66,10 @@
         vim_package_version: de8a976f1eae2c2b680604205c3e8b5c8882493c
 
 - name: ALE
-  tags: package
   become: yes
   hosts: localhost
   roles:
     - role: vim_package
-      tags: light
       vars:
         vim_package: ale
         vim_package_url: https://github.com/dense-analysis/ale
@@ -86,7 +80,6 @@
       package: { name: jq }
 
 - name: dbext (personal fork)
-  tags: package
   become: yes
   hosts: localhost
   roles:
@@ -101,7 +94,6 @@
 
 - name: ansible-vim and related packages
   hosts: localhost
-  tags: [light, package]
   become: yes
   roles:
     - role: vim_package
@@ -119,18 +111,15 @@
 - name: Simple vim packages, with no dependencies — loaded on startup
   become: yes
   hosts: localhost
-  tags: [light, package]
   roles:
     - name: Commentary (last release was 2016)
       role: vim_package
-      tags: light
       vars:
         vim_package: commentary
         vim_package_url: https://github.com/tpope/vim-commentary
         vim_package_version: f8238d70f873969fb41bf6a6b07ca63a4c0b82b1
         vim_package_optional: no
     - name: Install maktaba
-      tags: light
       role: vim_package
       vars:
         vim_package: maktaba
@@ -176,7 +165,6 @@
 - name: Simple vim packages, with no dependencies — optional
   become: yes
   hosts: localhost
-  tags: [light, package]
   roles:
     - name: Colorizer that support termguicolors
       role: vim_package
@@ -263,7 +251,6 @@
     Setup vimrc, do this last as the vimrc assumes packages are available and if
     another step fails this may leave vim difficult to start
   hosts: localhost
-  tags: [light, setting]
   tasks:
     - name: Create a link from ~/.vim for ansible user
       file:
