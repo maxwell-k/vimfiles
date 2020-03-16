@@ -288,10 +288,7 @@
 
 - name: Backup world
   hosts: localhost
-  tags: [always]
-  tasks:
-    - name: Save to backups/
-      import_tasks: ../tasks/backup.yaml
+  tasks: [{ name: Save to backups/, import_tasks: ../tasks/backup.yaml }]
 #
 # Copyright 2018, 2019 Keith Maxwell
 #
