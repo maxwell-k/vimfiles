@@ -1,4 +1,8 @@
+# Usage:
+# ansible-playbook -i, vim/site.yaml
+# ansible-playbook -i, --tags ansible,react,dart,rust vim/site.yaml
 - name: Install vim
+  tags: always
   become: yes
   hosts: localhost
   tasks:
@@ -27,22 +31,8 @@
     - name: Make sure vim is installed
       package: { name: vim }
 
-- name: Install opfunc.vim to local disk
-  become: yes
-  hosts: localhost
-  tasks:
-    - name: Create an autoload directory
-      file:
-        path: /usr/share/vim/vimfiles/autoload
-        state: directory
-        mode: 0o755
-    - name: Copy opfunc.vim from removable media
-      register: opfunc_copy
-      copy:
-        src: ../vim/autoload/opfunc.vim
-        dest: /usr/share/vim/vimfiles/autoload
-
 - name: Create directory used in vimrc
+  tags: always
   hosts: localhost
   tasks:
     - name:
@@ -55,7 +45,7 @@
         mode: 0o700
 
 - name: Testing vim
-  become: yes
+  tags: always
   hosts: localhost
   roles:
     - name: Vader (only release was 2014)
@@ -66,7 +56,7 @@
         vim_package_version: de8a976f1eae2c2b680604205c3e8b5c8882493c
 
 - name: ALE
-  become: yes
+  tags: always
   hosts: localhost
   roles:
     - role: vim_package
@@ -77,10 +67,11 @@
         vim_package_optional: no
   tasks:
     - name: jq for an ALE JSON fixer and for command line use
+      become: yes
       package: { name: jq }
 
 - name: dbext (personal fork)
-  become: yes
+  tags: always
   hosts: localhost
   roles:
     - role: vim_package
@@ -90,11 +81,12 @@
         vim_package_version: eab2ab12c91759fe902f6d7734a1b03c1d0107a2
   tasks:
     - name: sqlite for dbext on Alpine Linux
+      become: yes
       package: { name: "sqlite{{ '3' if ansible_distribution != 'Alpine' }}" }
 
 - name: ansible-vim and related packages
+  tags: [never, ansible]
   hosts: localhost
-  become: yes
   roles:
     - role: vim_package
       name: Syntax highlighting for Ansible
@@ -109,7 +101,7 @@
       changed_when: False
 
 - name: Simple vim packages, with no dependencies — loaded on startup
-  become: yes
+  tags: always
   hosts: localhost
   roles:
     - name: Commentary (last release was 2016)
@@ -163,7 +155,7 @@
         vim_package_optional: no
 
 - name: Simple vim packages, with no dependencies — optional
-  become: yes
+  tags: always
   hosts: localhost
   roles:
     - name: Colorizer that support termguicolors
@@ -181,8 +173,46 @@
         vim_package_url: https://github.com/lifepillar/vim-solarized8
         vim_package_version: v1.2.0
 
+- name: Depenedencies for ./autoload/fzf.vim
+  tags: always
+  hosts: localhost
+  tasks:
+    - name: Install fzf on Alpine Linux
+      become: yes
+      apk: { name: [fzf@edge-community, fzf-vim@edge-community] }
+      when: ansible_distribution == 'Alpine'
+    - name:
+        Enable stretch-backports repository following
+        https://backports.debian.org/Instructions/
+      become: yes
+      apt_repository:
+        repo: deb https://deb.debian.org/debian stretch-backports main
+      when: ansible_distribution == 'Debian'
+    - name: Install fzf on Debian GNU/Linux
+      become: yes
+      apt: { default_release: stretch-backports, name: fzf }
+      when: ansible_distribution == 'Debian'
+    - name:
+        Install vim files on Debian as they're not packaged, see
+        https://packages.debian.org/stretch-backports/amd64/fzf/filelist
+      include_role: { name: vim_package }
+      vars:
+        vim_package: fzf
+        vim_package_url: https://github.com/junegunn/fzf
+        vim_package_version: 0.17.5
+        vim_package_optional: no
+      when: ansible_distribution == 'Debian'
+    - name: Install default settings
+      become: yes
+      copy:
+        dest: /etc/profile.d/fzf.sh
+        mode: 0o444
+        content: |
+          export FZF_DEFAULT_COMMAND='find . -type f'
+          export FZF_DEFAULT_OPTS='--height 10'
+
 - name: Accounting with Beancount
-  become: yes
+  tags: always
   hosts: localhost
   roles:
     - name: Install vim package for beancount
@@ -193,8 +223,8 @@
         vim_package_version: 8054352c43168ece62094dfc8ec510e347e19e3c
         vim_package_optional: yes
 
-- name: Editing Gatsby or React
-  become: yes
+- name: Editing React, including Gatsby
+  tags: [never, react]
   hosts: localhost
   roles:
     - name: Install jsx syntax highlighting
@@ -213,7 +243,7 @@
         vim_package_optional: yes
 
 - name: Editing Svelte
-  become: yes
+  tags: always
   hosts: localhost
   roles:
     - name: Install svelte syntax highlighting
@@ -225,7 +255,7 @@
         vim_package_optional: yes
 
 - name: Refactoring Python
-  become: yes
+  tags: always
   hosts: localhost
   roles:
     - name:
@@ -239,23 +269,106 @@
         vim_package_optional: yes
 
 - name: Tools for editing files on remote machines
-  become: yes
+  tags: always
   hosts: localhost
   tasks:
     - name:
         Install sshfs because it works better with ALE linters than netrw and
         scp; need fuse to unmount directories with fusermount -u
+      become: yes
       package: { name: [sshfs, fuse] }
+
+- name: Install dart
+  tags: [never, dart]
+  hosts: localhost
+  roles:
+    - name: Dart syntax highlighting
+      role: vim_package
+      vars:
+        vim_package: dart
+        vim_package_url: https://github.com/dart-lang/dart-vim-plugin
+        vim_package_version: 8ffc3e208c282f19afa237d343fa1533146bd2b4
+        vim_package_optional: yes
+  tasks:
+    - name: Add the key specified by https://dart.dev/get-dart
+      become: yes
+      apt_key: { url: https://dl-ssl.google.com/linux/linux_signing_key.pub }
+      when: ansible_distribution in ('Ubuntu', 'Debian')
+    - name: Install repository specified by https://dart.dev/get-dart
+      become: yes
+      apt_repository:
+        repo:
+          deb [arch=amd64]
+          https://storage.googleapis.com/download.dartlang.org/linux/debian
+          stable main
+      when: ansible_distribution in ('Ubuntu', 'Debian')
+    - name: Install dart as explained https://dart.dev/get-dart
+      become: yes
+      package: { name: dart }
+      when: ansible_distribution in ('Ubuntu', 'Debian')
+    - name: Add the other dart binaries to path
+      when: ansible_distribution in ('Ubuntu', 'Debian')
+      become: yes
+      file:
+        state: link
+        src: /usr/lib/dart/bin/{{ item }}
+        path: /usr/local/bin/{{ item }}
+      loop:
+        - dartanalyzer
+        - dartdoc
+        - dartfmt
+        - dart2js
+        - dartdevc
+        - pub
+    - name: Install https://github.com/natebosch/dart_language_server
+      when: ansible_distribution in ('Ubuntu', 'Debian')
+      command: pub global activate dart_language_server
+      args:
+        creates: /home/{{ ansible_user }}/.pub-cache/bin/dart_language_server
+    - name: Include pub executables on PATH on Ubuntu and Debian
+      become: yes
+      when: ansible_distribution in ('Ubuntu', 'Debian')
+      copy:
+        dest: /etc/profile.d/dart.sh
+        mode: 0o444
+        content: |
+          if [ -d "$HOME/.pub-cache/bin" ] ; then
+            PATH="$PATH":"$HOME/.pub-cache/bin"
+          fi
+
+- name: Configure vim to edit rust
+  tags: [never, rust]
+  hosts: localhost
+  tasks:
+    - name: Install rust.vim
+      include_role: { name: vim_package }
+      vars:
+        vim_package: rust
+        vim_package_url: https://github.com/rust-lang/rust.vim
+        vim_package_version: fabad27559c5bde02e0f0a855d07d9dda9aef9a9
+        vim_package_optional: no
+    - name: Install vim-racer
+      include_role: { name: vim_package }
+      vars:
+        vim_package: racer
+        vim_package_url: https://github.com/racer-rust/vim-racer
+        vim_package_version: 9c0a05e8b97700ee5d3e742fab889cf40e9e7b88
+        vim_package_optional: no
+    - name: Install cc for racer
+      become: yes
+      package: { name: build-essential }
+      when: ansible_distribution in ('Ubuntu', 'Debian')
 
 - name:
     Setup vimrc, do this last as the vimrc assumes packages are available and if
     another step fails this may leave vim difficult to start
+  tags: always
   hosts: localhost
   tasks:
     - name: Create a link from ~/.vim for ansible user
       file:
         follow: no
-        src: "{{ 'vim'|realpath }}"
+        src: "{{ playbook_dir }}"
         path: "/home/{{ ansible_user }}/.vim"
         state: link
         group: "{{ ansible_user }}"
@@ -266,7 +379,7 @@
       become: yes
       file:
         follow: no
-        src: "{{ 'vim'|realpath }}"
+        src: "{{ playbook_dir }}"
         path: /root/.vim
         state: link
         group: root
@@ -274,6 +387,7 @@
       when: ansible_distribution != 'Fedora'
 
 - name: Backup world
+  tags: always
   hosts: localhost
   tasks: [{ name: Save to backups/, import_tasks: ../tasks/backup.yaml }]
 #
