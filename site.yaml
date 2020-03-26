@@ -385,11 +385,6 @@
         group: root
         owner: root
       when: ansible_distribution != 'Fedora'
-
-- name: Backup world
-  tags: always
-  hosts: localhost
-  tasks: [{ name: Save to backups/, import_tasks: ../tasks/backup.yaml }]
 #
 # Copyright 2018, 2019 Keith Maxwell
 #
