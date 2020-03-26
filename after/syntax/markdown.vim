@@ -22,8 +22,8 @@ syntax region htmlH6 matchgroup=mkdHeading start="^\s*######" end="$"
   \ contains=@mkdHeadingContains,@Spell
 
 " don't spell check words in quotes
-syntax match mkdWordInQuotes '\v"[^"]*"' transparent contains=@NoSpell
+syntax match mkdWordInQuotes '\v"[^"]*"' contains=@NoSpell
 " the line below is fooled by contractions with '
-syntax match mkdWordInQuotes "\v'[^']*'" transparent contains=@NoSpell
+syntax match mkdWordInQuotes "\v'[^']*'" contains=@NoSpell
 syntax cluster mkdNonListItem add=mkdWordInQuotes
 syntax cluster mkdHeadingContains add=mkdWordInQuotes
