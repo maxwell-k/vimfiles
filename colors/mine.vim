@@ -6,3 +6,4 @@ highlight SignColumn guibg=#FFD57F
 highlight Folded guifg=#F07178
 highlight StatusLine guibg=#828C99 guifg=#14191F
 highlight StatusLineNC guibg=#3E4B59 guifg=#000000
+highlight SpecialKey gui=bold guifg=#cb4b16
