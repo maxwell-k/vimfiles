@@ -1,6 +1,6 @@
-" --------------------
-" vimrc, Keith Maxwell
-" --------------------
+" vimrc
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
 "
 " Fundamental configuration {{{1
 " -------------------------

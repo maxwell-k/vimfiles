@@ -1,3 +1,7 @@
+" ftplugin/rst.vim
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
 setlocal foldexpr=rst#foldexpr(v:lnum)
 setlocal foldmethod=expr
 setlocal foldtext=getline(v:foldstart)

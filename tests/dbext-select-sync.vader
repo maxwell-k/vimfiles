@@ -1,3 +1,7 @@
+" tests/dbext-select-sync.vader
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
 Execute (Disable jobs):
   call my_dbext#load()
   Save g:dbext_default_job_enable

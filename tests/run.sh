@@ -1,5 +1,9 @@
 #!/bin/sh
-# For some reason a second test causes from the same file causes an error
+# tests/run.sh
+# Copyright 2020 Keith Maxwell
+# SPDX-License-Identifier: MPL-2.0
+#
+# For some reason a second test from the same file causes an error
 vader() {
 	# hangs if run with -es
 	vim "+packadd vader | Vader! $1"

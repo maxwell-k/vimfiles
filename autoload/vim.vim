@@ -1,3 +1,7 @@
+" autoload/vim.vim
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
 function! vim#scriptnames() abort "{{{1
   "Open the output of :scriptnames for searching
   let l:file=tempname()

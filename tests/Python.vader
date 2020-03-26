@@ -1,6 +1,7 @@
-" Based on
-" https://github.com/junegunn/vader.vim/blob/master/test/feature/lang-if.vader
-
+" tests/Python.vader
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
 Given (Some string):
   Hello
 

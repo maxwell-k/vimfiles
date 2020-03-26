@@ -1,3 +1,7 @@
+" pack/configuration/start/automatic/autoload/automatic.vim
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
 function! automatic#commit() abort "{{{
     let l:wd_save = getcwd()
     execute 'lcd '.fnameescape(expand('%:p:h'))

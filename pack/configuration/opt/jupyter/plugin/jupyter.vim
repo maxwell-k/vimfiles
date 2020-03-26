@@ -1,3 +1,7 @@
+" pack/configuration/opt/jupyter/plugin/jupyter.vim
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
 command! -nargs=+ Jupyter :call jupyter#command(<q-args>)
 
 " Mappings

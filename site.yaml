@@ -1,6 +1,12 @@
+# site.yaml
+# Copyright 2020 Keith Maxwell
+# SPDX-License-Identifier: MPL-2.0
+#
 # Usage:
-# ansible-playbook -i, vim/site.yaml
-# ansible-playbook -i, --tags ansible,react,dart,rust vim/site.yaml
+#
+#     ansible-playbook -i, vim/site.yaml
+#     ansible-playbook -i, --tags ansible,react,dart,rust vim/site.yaml
+#
 - name: Install vim
   tags: always
   become: yes

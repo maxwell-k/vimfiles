@@ -1,8 +1,11 @@
 " Author: John Nduli https://github.com/jnduli
 " Description: Rstcheck for reStructuredText files
+" Copyright (c) 2016-2019, w0rp <devw0rp@gmail.com>
+" SPDX-License-Identifier: BSD-2-Clause
 " Author: Keith Maxwell
 " Modification: Added `--report warning` as a separate linter because the
 " original doesn't support passing options
+" Copyright 2020 Keith Maxwell
 
 function! ale_linters#rst#rstcheckwarn#Handle(buffer, lines) abort
     " matches: 'bad_rst.rst:1: (SEVERE/4) Title overline & underline

@@ -1,3 +1,7 @@
+" after/syntax/markdown.vim
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
 " don't spell check block quotes
 syntax region mkdBlockquote start=/^\s*>/ end=/$/
   \ contains=mkdLink,mkdInlineURL,mkdLineBreak,@NoSpell

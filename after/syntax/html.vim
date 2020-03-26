@@ -1,3 +1,7 @@
+" after/syntax/html.vim
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
 "Must be in vim/after/syntax because vim/syntax is read before built in syntax
 "rules
 syn region htmlDel start="<del\>" end="</del\>" contains=@htmlTop

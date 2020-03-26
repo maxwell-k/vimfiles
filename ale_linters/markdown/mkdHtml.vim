@@ -1,3 +1,7 @@
+" ale_linters/markdown/mkdHtml.vim
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
 scriptencoding utf-8
 call ale#linter#Define(fnamemodify(expand('<sfile>:p:h'), ':t'), {
 \   'name': 'mkdHtml',

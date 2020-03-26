@@ -1,5 +1,8 @@
-" Author: Keith Maxwell <keith.maxwell@gmail.com
+" autoload/ale/quit.vim
 " Description: Quit ALE after running a fixer
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
 function! ale#quit#Mapping() abort
   " For use with:
   " noremap <Leader>a :call ale#quit#Mapping()<CR>

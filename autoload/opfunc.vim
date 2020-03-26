@@ -1,3 +1,7 @@
+" autoload/opfunc.vim
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
 function! opfunc#All() abort "{{{
     " map everything from this file
     " yank below means yank to system clipboard

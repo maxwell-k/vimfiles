@@ -1,3 +1,7 @@
+" tests/dbext-defaults.vader
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
 Execute (Asyncronous "SELECT 1;" by default):
   call my_dbext#load()
   DBExecSQL SELECT 1 ;

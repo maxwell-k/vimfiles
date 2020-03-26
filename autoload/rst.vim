@@ -1,4 +1,6 @@
-" Suggested uses for these functions:
+" autoload/rst.vim
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
 "
 function! rst#headings() abort "{{{
 " provide a table of contents in the location list

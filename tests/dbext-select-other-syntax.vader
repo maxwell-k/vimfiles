@@ -1,3 +1,7 @@
+" tests/dbext-select-other-syntax.vader
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
 Execute (Use the :Select syntax):
   call my_dbext#load()
   Select 3;

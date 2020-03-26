@@ -1,3 +1,7 @@
+" ftplugin/python.vim
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
 setlocal commentstring=#\ %s
 setlocal foldtext=PythonFoldText()
 setlocal shiftwidth=4

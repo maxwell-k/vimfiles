@@ -1,4 +1,9 @@
+" filetype.vim
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
 " see :help new-filetype option C
+"
 if exists('did_load_filetypes')
   finish
 endif

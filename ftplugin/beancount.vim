@@ -1,3 +1,7 @@
+" ftplugin/beancount.vim
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
 packadd beancount
 runtime OPT ftplugin/beancount.vim
 setlocal commentstring=;%s

@@ -1,3 +1,7 @@
+" syntax/frontmatter.vim
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
 " Use with a comment to set ft=markdown.gfm.frontmatter
 " implement highlighting for https://dev.to/p/editor_guide
 syntax region frontmatter

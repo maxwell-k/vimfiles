@@ -1,0 +1,24 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name:
+Upstream-Contact: Keith Maxwell <keith.maxwell@gmail.com>
+Source:
+
+Files: tests/*.msgok
+# comments aren't supported in .msgok files see ;help runVimMsgFilter-todo
+Copyright: 2020 Keith Maxwell
+License: MPL-2.0
+
+Files: example.yaml
+# don't want to include copyright comments when instantiating this template
+Copyright: 2020 Keith Maxwell
+License: MPL-2.0
+
+Files: tests/file-type-detection/*
+# short, likely single line, files, copyright block would treble length
+Copyright: 2020 Keith Maxwell
+License: MPL-2.0
+
+Files: .gitignore
+# comments are not sorted correctly
+Copyright: 2020 Keith Maxwell
+License: CC0-1.0

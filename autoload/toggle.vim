@@ -1,3 +1,7 @@
+" autoload/toggle.vim
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
 function! toggle#toggle_colors() abort "{{{1
   if !exists('g:colors_name') " added for compatibility with vim 8.0
     colorscheme mine
