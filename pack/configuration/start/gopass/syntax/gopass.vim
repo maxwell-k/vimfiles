@@ -1,0 +1,7 @@
+scriptencoding utf-8
+if exists('b:current_syntax')
+  finish
+endif
+syntax match secretSecret /\%1l./ conceal cchar=█
+highlight Conceal guifg=fg
+let b:current_syntax='gopass'
