@@ -34,10 +34,12 @@ function! toggle#toggle_ale() abort "{{{1
 endfunction "}}}1
 function! toggle#toggle_shiftwidth() abort "{{{1
   if &shiftwidth == 2
-    set shiftwidth=3
+    setlocal shiftwidth=3
+    setlocal softtabstop=3
   else
-    set shiftwidth=2
+    setlocal shiftwidth=2
+    setlocal softtabstop=2
   end
-  set shiftwidth
+  setlocal shiftwidth
 endfunction "}}}1
 " vim: set foldmethod=marker foldlevel=0 :
