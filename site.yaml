@@ -84,6 +84,17 @@
       become: yes
       package: { name: "sqlite{{ '3' if ansible_distribution != 'Alpine' }}" }
 
+- name: GnuPG
+  tags: always
+  hosts: localhost
+  roles:
+    - role: vim_package
+      vars:
+        vim_package: gnupg
+        vim_package_url: https://github.com/jamessan/vim-gnupg
+        vim_package_version: f663d0e857bd88cb39c16ca45c37a27488648562
+        vim_package_optional: yes
+
 - name: ansible-vim and related packages
   tags: [never, ansible]
   hosts: localhost
