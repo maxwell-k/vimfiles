@@ -17,5 +17,5 @@ if !exists('g:vim_markdown_folding_disabled')
   " See also g:vim_markdown_folding_style_pythonic
 endif
 let g:vim_markdown_no_default_key_mappings = 1
-let g:vim_markdown_fenced_languages = ['viml=vim']
+let g:vim_markdown_fenced_languages = ['viml=vim', 'py=python']
 let g:vim_markdown_strikethrough = 1
