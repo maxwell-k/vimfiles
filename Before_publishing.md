@@ -6,6 +6,7 @@
 - Write a README
 - Move to a separate repository
 - Add CI to check `vim/site.yaml` succeeds on Debian and Alpine
+- Remove rules for this repository from `../package.json`
 
 # Publish vim_package as an Ansible collection
 
