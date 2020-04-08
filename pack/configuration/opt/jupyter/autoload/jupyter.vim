@@ -1,6 +1,5 @@
-"""
-" Jupyter.vim
-" -----------
+" pack/configuration/opt/jupyter/autoload/jupyter.vim
+" ---------------------------------------------------
 "
 " Carefully commented to be valid Python and vim script to enable
 " testing with ``python -i jupyter.vim`` and autoloading in ``vim``.
@@ -35,6 +34,9 @@
 "
 " ``:call jupyter#load()`` for testing and to make vim autoload the
 " ``:python3`` functions
+"
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
 "
 scriptencoding utf-8
 if !has('python3') | finish | endif

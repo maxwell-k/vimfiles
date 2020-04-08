@@ -1,3 +1,7 @@
+" autoload/mkdHtml.vim
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
 function! mkdHtml#GetCommand(buffer) abort
     return ale#path#BufferCdString(a:buffer)
     \   . "sed -n -e '/````*html/=' "

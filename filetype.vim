@@ -1,4 +1,9 @@
+" filetype.vim
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
 " see :help new-filetype option C
+"
 if exists('did_load_filetypes')
   finish
 endif
@@ -22,6 +27,7 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile */site-packages/**.py setfiletype python
   autocmd BufRead,BufNewFile */src/template.html setfiletype svelte
   autocmd BufRead,BufNewFile APKBUILD setfiletype sh.apkbuild
+  autocmd BufRead,BufNewFile git-revise-todo setfiletype gitrebase
   autocmd BufRead,BufNewFile hosts setfiletype yaml.ansible.hosts " [1]
   autocmd BufRead,BufNewFile known_hosts setfiletype known_hosts
   autocmd BufRead,BufNewFile secret setfiletype gopass

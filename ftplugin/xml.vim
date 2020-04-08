@@ -1,4 +1,8 @@
+" ftplugin/xml.vim
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
 let g:xml_syntax_folding=1
+let b:ale_fixers = ['xmllint',]
 setlocal nowrap
 setlocal foldmethod=syntax
-let b:ale_fixers = ['xmllint',]

@@ -1,3 +1,7 @@
+" tests/test_beanformat_fixer_callback.vader
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
 " Based upon :help ale-development
 Before:
   set filetype=beancount " without this line exits on function not found error

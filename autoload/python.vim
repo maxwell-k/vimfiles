@@ -1,3 +1,7 @@
+" autoload/python.vim
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
 function! python#foldtext() abort
   "get first non-blank line
   let l:fs = v:foldstart

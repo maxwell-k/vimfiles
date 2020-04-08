@@ -1,3 +1,7 @@
+" tests/dbext-mappings.vader
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
 " Setup - turn off header and jobs{{{1
 Execute (Turn off header and jobs):
   call my_dbext#load()

@@ -1,3 +1,7 @@
+" tests/dbext-completion.vader
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
 "Setup connection and create database tables{{{1
 Execute (Setup DB and create tables):
   call my_dbext#load()

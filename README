@@ -1,0 +1,34 @@
+<!--
+README
+Copyright 2020 Keith Maxwell
+SPDX-License-Identifier: CC-BY-SA-4.0
+-->
+
+My style
+
+- support only recent versions of vim
+
+## Contents
+
+- Complete syntax files for SQLite and Visual Basic for Applications (VBA)
+  written from scratch.
+
+## System packages
+
+As well as installing vim, `site.yaml` will installs the system packages below:
+
+| Package            | Debian/Ubuntu | Alpine Linux |
+| ------------------ | ------------- | ------------ |
+| `aptitutde`        | x             |              |
+| `build-essential`  | x             |              |
+| `dart`             | x             |              |
+| `dirmngr`          | x             |              |
+| `fuse`             | x             | x            |
+| `fzf`              | x             | x            |
+| `fzf-vim`          |               | x            |
+| `jq`               | x             | x            |
+| `python-apt`       | x             |              |
+| `sqlite / sqlite3` | x             | x            |
+| `sshfs`            | x             | x            |
+
+<!-- vim: set filetype=markdown : -->

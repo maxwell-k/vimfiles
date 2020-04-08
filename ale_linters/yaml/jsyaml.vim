@@ -1,3 +1,7 @@
+" ale_linters/yaml/jsyaml.vim
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
 " For example:
 "     $ echo '"' | js-yaml
 "     YAMLException: unexpected end of the stream within a double quoted

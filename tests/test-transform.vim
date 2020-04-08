@@ -1,3 +1,7 @@
+" tests/test-transform.vim
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
 " Edit with: vim -o test-transform.vim test-transform.msgok
 " For efficient development replace the local copy of opfunc.vim in
 " /usr/share/vim/vimfiles/autoload/ with a symbolic link file.

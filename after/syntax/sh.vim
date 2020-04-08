@@ -1,3 +1,7 @@
+" after/syntax/sh.vim
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
 " Don't spell check quoted strings in sh
 syn region  shSingleQuote matchgroup=shQuote start=+'+ end=+'+
   \ contains=@NoSpell

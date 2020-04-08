@@ -1,8 +1,10 @@
 " Author: Cyril Roelandt <tipecaml@gmail.com>
 " Description: Integration of xmllint with ALE.
-"
+" Copyright (c) 2016-2019, w0rp <devw0rp@gmail.com>
+" SPDX-License-Identifier: BSD-2-Clause
 " Author: Keith Maxwell <keith.maxwell@gmail.com>
 " Description: Switched to --pretty 2 from --format
+" Copyright 2020 Keith Maxwell
 
 call ale#Set('xml_xmllint_executable', 'xmllint')
 call ale#Set('xml_xmllint_options', '')

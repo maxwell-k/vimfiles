@@ -1,4 +1,9 @@
-":help group-name
+" syntax/vba.vim
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
+"see :help group-name for a list of groups
+"
 syntax case match
 
 syn region   Comment      start="\(^\|\s\)\'" end="$" contains=Todo,@Spell

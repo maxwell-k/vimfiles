@@ -1,3 +1,7 @@
+" syntax/sqlite.vim
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
 syn case match "encourage consistency in capitalisation
 
 " 4 sqlite types from https://www.sqlite.org/datatype3.html

@@ -1,12 +1,18 @@
-- ~~Remove include `import_tasks: ../tasks/backup.yaml` from `vim/site.yaml`~~
-- Publish `vim_package` as an Ansible collection
+- [x] Separate `.gitignore`
+- [x] `.` (`vim`) is reuse compliant
+  - [x] Decide upon approach for `.msgok` files
+  - [x] Decide upon documentation licence
+  - [x] Licenses downloaded
+  - [x] All files except spelling files comply
+- [ ] Move `spellfile` somewhere else
+- Publish `vim_package` as an Ansible collection (detail below)
 - Replace `playbooks/ansible.yaml` with instructions to install vim_package
-- Move `spellfile` somewhere else
 - Add copyright and license, get `reuse` from the FSFE to pass
 - Write a README
 - Move to a separate repository
 - Add CI to check `vim/site.yaml` succeeds on Debian and Alpine
 - Remove rules for this repository from `../package.json`
+- Add name and source to `.reuse/dep5`
 
 # Publish vim_package as an Ansible collection
 
@@ -25,3 +31,9 @@ Then
 Or
 
 - add a GitHub action that will upload a `.tar.gz` as a release
+
+<!--
+Before_publishing.md
+Copyright 2020 Keith Maxwell
+SPDX-License-Identifier: CC-BY-SA-4.0
+-->

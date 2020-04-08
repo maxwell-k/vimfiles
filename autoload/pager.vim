@@ -1,3 +1,7 @@
+" autoload/pager.vim
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
 function! pager#pager() abort
   " Tested with and for example for use with:
   " $ PAGER='vim -c "call pager#pager()" -' ansible-doc file
