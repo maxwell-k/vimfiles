@@ -7,13 +7,15 @@ Introduction
 
 This folder contains tests for vim written using both `runVimTests` and
 `vader`. ``vim/site.yaml`` installs `vader` and the first command
-below installs `runVimTests`. To run both sets of tests use the second command
+below installs `runVimTests`. To run both sets of tests use the commands
 below:
 
 .. code:: sh
 
-    sudo apk -X https://aports.keithmaxwell.uk/user add runvimtests
+    sudo apk -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
+        add runvimtests
     sh run.sh
+    sudo apk del runvimtests
 
 Vader usage
 ===========
