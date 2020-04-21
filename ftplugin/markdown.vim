@@ -20,6 +20,23 @@ if !exists('g:vim_markdown_folding_disabled')
   let g:vim_markdown_folding_disabled = 1
   " See also g:vim_markdown_folding_style_pythonic
 endif
+
+" default mappings for gx and ge don't work, so disable them all
 let g:vim_markdown_no_default_key_mappings = 1
+" add working default mappings from
+" https://github.com/plasticboy/vim-markdown/blob/master/ftplugin/markdown.vim
+function! s:MapNotHasmapto(lhs, rhs)
+    if !hasmapto('<Plug>' . a:rhs)
+        execute 'nmap <buffer>' . a:lhs . ' <Plug>' . a:rhs
+        execute 'vmap <buffer>' . a:lhs . ' <Plug>' . a:rhs
+    endif
+endfunction
+call <sid>MapNotHasmapto(']]', 'Markdown_MoveToNextHeader')
+call <sid>MapNotHasmapto('[[', 'Markdown_MoveToPreviousHeader')
+call <sid>MapNotHasmapto('][', 'Markdown_MoveToNextSiblingHeader')
+call <sid>MapNotHasmapto('[]', 'Markdown_MoveToPreviousSiblingHeader')
+call <sid>MapNotHasmapto(']u', 'Markdown_MoveToParentHeader')
+call <sid>MapNotHasmapto(']c', 'Markdown_MoveToCurHeader')
+
 let g:vim_markdown_fenced_languages = ['viml=vim', 'py=python']
 let g:vim_markdown_strikethrough = 1
