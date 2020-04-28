@@ -35,6 +35,7 @@ function! toggle#toggle_ale() abort "{{{1
     let g:ale_fix_on_save = 1
     ALEEnable
   endif
+  let g:ale_fix_on_save
 endfunction "}}}1
 function! toggle#toggle_shiftwidth() abort "{{{1
   if &shiftwidth == 2
