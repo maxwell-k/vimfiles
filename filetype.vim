@@ -41,9 +41,12 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile /home/**.py setfiletype python.black.personal
   autocmd BufRead,BufNewFile /tmp/_sh?????? setfiletype sh
   autocmd BufRead,BufNewFile /tmp/man.* setfiletype man
+  autocmd BufRead,BufNewFile */gitlab.novastone.net/**.py
+    \ setfiletype python.novastone
 
   " `vim ~/example.py`: python.black.personal
   " `fc` inside dash: sh
   " `man man`: man
+  " `vim`: hard to give an example
 
 augroup END
