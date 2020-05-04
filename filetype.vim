@@ -19,6 +19,7 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile *.tf setfiletype terraform
   autocmd BufRead,BufNewFile *.tfstate setfiletype javascript
   autocmd BufRead,BufNewFile *.tfvars setfiletype terraform
+  autocmd BufRead,BufNewFile *.yaml.jinja setfiletype yaml.jinja2
   autocmd BufRead,BufNewFile *.vader setfiletype vader
   autocmd BufRead,BufNewFile */example.yaml setfiletype yaml.ansible
   autocmd BufRead,BufNewFile */planning/*.txt setfiletype rst.automatic
