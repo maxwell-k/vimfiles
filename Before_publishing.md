@@ -4,7 +4,7 @@
   - [x] Decide upon documentation licence
   - [x] Licenses downloaded
   - [x] All files except spelling files comply
-- [ ] Move `spellfile` somewhere else
+- [x] Move `spellfile` somewhere else
 - Publish `vim_package` as an Ansible collection (detail below)
 - Replace `playbooks/ansible.yaml` with instructions to install vim_package
 - Add copyright and license, get `reuse` from the FSFE to pass

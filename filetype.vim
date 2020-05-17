@@ -19,6 +19,7 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile *.tf setfiletype terraform
   autocmd BufRead,BufNewFile *.tfstate setfiletype javascript
   autocmd BufRead,BufNewFile *.tfvars setfiletype terraform
+  autocmd BufRead,BufNewFile *.yaml.jinja setfiletype yaml.jinja2
   autocmd BufRead,BufNewFile *.vader setfiletype vader
   autocmd BufRead,BufNewFile */example.yaml setfiletype yaml.ansible
   autocmd BufRead,BufNewFile */planning/*.txt setfiletype rst.automatic
@@ -40,9 +41,12 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile /home/**.py setfiletype python.black.personal
   autocmd BufRead,BufNewFile /tmp/_sh?????? setfiletype sh
   autocmd BufRead,BufNewFile /tmp/man.* setfiletype man
+  autocmd BufRead,BufNewFile */gitlab.novastone.net/**.py
+    \ setfiletype python.novastone
 
   " `vim ~/example.py`: python.black.personal
   " `fc` inside dash: sh
   " `man man`: man
+  " `vim`: hard to give an example
 
 augroup END
