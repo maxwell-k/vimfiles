@@ -1,0 +1,57 @@
+[submodule "vim/pack/submodules/opt/vader"]
+	path = vim/pack/submodules/opt/vader
+	url = https://github.com/junegunn/vader.vim
+[submodule "vim/pack/submodules/opt/gnupg"]
+	path = vim/pack/submodules/opt/gnupg
+	url = https://github.com/jamessan/vim-gnupg
+[submodule "vim/pack/submodules/start/commentary"]
+	path = vim/pack/submodules/start/commentary
+	url = https://github.com/tpope/vim-commentary
+[submodule "vim/pack/submodules/start/ayu"]
+	path = vim/pack/submodules/start/ayu
+	url = https://github.com/ayu-theme/ayu-vim
+[submodule "vim/pack/submodules/start/surround"]
+	path = vim/pack/submodules/start/surround
+	url = https://github.com/tpope/vim-surround
+[submodule "vim/pack/submodules/start/markdown"]
+	path = vim/pack/submodules/start/markdown
+	url = https://github.com/plasticboy/vim-markdown
+[submodule "vim/pack/submodules/start/toml"]
+	path = vim/pack/submodules/start/toml
+	url = https://github.com/cespare/vim-toml/
+[submodule "vim/pack/submodules/start/maktaba"]
+	path = vim/pack/submodules/start/maktaba
+	url = https://github.com/google/vim-maktaba
+[submodule "vim/pack/submodules/start/ansible"]
+	path = vim/pack/submodules/start/ansible
+	url = https://github.com/pearofducks/ansible-vim
+[submodule "vim/pack/submodules/start/repeat"]
+	path = vim/pack/submodules/start/repeat
+	url = https://github.com/tpope/vim-repeat
+[submodule "vim/pack/submodules/start/ale"]
+	path = vim/pack/submodules/start/ale
+	url = https://github.com/dense-analysis/ale
+[submodule "vim/pack/submodules/opt/jedi"]
+	path = vim/pack/submodules/opt/jedi
+	url = https://github.com/davidhalter/jedi-vim/
+[submodule "vim/pack/submodules/opt/svelte"]
+	path = vim/pack/submodules/opt/svelte
+	url = https://github.com/leafoftree/vim-svelte-plugin/
+[submodule "vim/pack/submodules/opt/beancount"]
+	path = vim/pack/submodules/opt/beancount
+	url = https://github.com/nathangrigg/vim-beancount
+[submodule "vim/pack/submodules/opt/solarized8"]
+	path = vim/pack/submodules/opt/solarized8
+	url = https://github.com/lifepillar/vim-solarized8
+[submodule "vim/pack/submodules/opt/colorizer"]
+	path = vim/pack/submodules/opt/colorizer
+	url = https://github.com/chrisbra/Colorizer
+[submodule "vim/pack/submodules/opt/vinfo"]
+	path = vim/pack/submodules/opt/vinfo
+	url = https://github.com/alx741/vinfo
+[submodule "vim/pack/submodules/opt/terraform"]
+	path = vim/pack/submodules/opt/terraform
+	url = https://github.com/hashivim/vim-terraform
+[submodule "vim/pack/submodules/opt/dart"]
+	path = vim/pack/submodules/opt/dart
+	url = https://github.com/dart-lang/dart-vim-plugin

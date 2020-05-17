@@ -31,4 +31,33 @@ As well as installing vim, `site.yaml` will installs the system packages below:
 | `sqlite / sqlite3` | x             | x            |
 | `sshfs`            | x             | x            |
 
+## Other vim modules
+
+### `start/fzf`
+
+- https://github.com/junegunn/fzf
+- 0.17.5
+- only required on Debian and Ubuntu, where they're not packaged
+
+### `start/rust`
+
+- https://github.com/rust-lang/rust.vim
+
+### `start/racer` for rust
+
+- https://github.com/racer-rust/vim-racer
+- needs `cc`, so install build-essential on Ubuntu or Debian
+
+### `opt/jsx`
+
+- https://github.com/MaxMEllon/vim-jsx-pretty/
+- `v3.0.0`
+
+<!-- test asdfasd asdf a -->
+
+### `opt/mdx`
+
+- https://github.com/jxnblk/vim-mdx-js/
+- clear settings from `ftplugin/markdown.vim`
+
 <!-- vim: set filetype=markdown : -->

@@ -50,131 +50,22 @@
         state: directory
         mode: 0o700
 
-- name: Testing vim
-  tags: always
-  hosts: localhost
-  roles:
-    - name: Vader (only release was 2014)
-      role: vim_package
-      vars:
-        vim_package: vader
-        vim_package_url: https://github.com/junegunn/vader.vim
-        vim_package_version: de8a976f1eae2c2b680604205c3e8b5c8882493c
-
 - name: ALE
   tags: always
   hosts: localhost
-  roles:
-    - role: vim_package
-      vars:
-        vim_package: ale
-        vim_package_url: https://github.com/dense-analysis/ale
-        vim_package_version: v2.6.0
-        vim_package_optional: no
   tasks:
     - name: jq for an ALE JSON fixer and for command line use
       become: yes
       package: { name: jq }
 
-- name: GnuPG
-  tags: always
-  hosts: localhost
-  roles:
-    - role: vim_package
-      vars:
-        vim_package: gnupg
-        vim_package_url: https://github.com/jamessan/vim-gnupg
-        vim_package_version: f663d0e857bd88cb39c16ca45c37a27488648562
-        vim_package_optional: yes
-
 - name: ansible-vim and related packages
   tags: [never, ansible]
   hosts: localhost
   roles:
-    - role: vim_package
-      name: Syntax highlighting for Ansible
-      vars:
-        vim_package: ansible
-        vim_package_url: https://github.com/pearofducks/ansible-vim
-        vim_package_version: 19e6ae0f2258953591d7c674abd7aca3ceb51374
-        vim_package_optional: no
   tasks:
     - name: Check ansible-lint is installed
       command: { cmd: ansible-lint --version }
       changed_when: False
-
-- name: Simple vim packages, with no dependencies — loaded on startup
-  tags: always
-  hosts: localhost
-  roles:
-    - name: Commentary (last release was 2016)
-      role: vim_package
-      vars:
-        vim_package: commentary
-        vim_package_url: https://github.com/tpope/vim-commentary
-        vim_package_version: f8238d70f873969fb41bf6a6b07ca63a4c0b82b1
-        vim_package_optional: no
-    - name: Install maktaba
-      role: vim_package
-      vars:
-        vim_package: maktaba
-        vim_package_url: https://github.com/google/vim-maktaba
-        vim_package_version: v0.15.0
-        vim_package_optional: no
-    - name: Ayu colorscheme (no releases), used in vim/colors/mine.vim
-      role: vim_package
-      vars:
-        vim_package: ayu
-        vim_package_url: https://github.com/ayu-theme/ayu-vim
-        vim_package_version: 9dab20b38335ed06738f251e92e3817182063759
-        vim_package_optional: no
-    - name: surround from Tim Pope no releases since 2015
-      role: vim_package
-      vars:
-        vim_package: surround
-        vim_package_url: https://github.com/tpope/vim-surround
-        vim_package_version: f51a26d3710629d031806305b6c8727189cd1935
-        vim_package_optional: no
-    - name: plasticboy's markdown no releases since 2015, unreliable if optional
-      role: vim_package
-      vars:
-        vim_package: markdown
-        vim_package_url: https://github.com/plasticboy/vim-markdown
-        vim_package_version: da5a7ac96f517e0fd6f886bc3fbe27156ca1f946
-        vim_package_optional: no
-    - name: repeat from Tim Pope to improve other plugins
-      role: vim_package
-      vars:
-        vim_package: repeat
-        vim_package_url: https://github.com/tpope/vim-repeat
-        vim_package_version: v1.2
-        vim_package_optional: no
-    - name: Install toml syntax highlighting
-      role: vim_package
-      vars:
-        vim_package: toml
-        vim_package_url: https://github.com/cespare/vim-toml/
-        vim_package_version: a4ec206052aa347d7df90dc4b6697b7f2b7929bc
-        vim_package_optional: no
-
-- name: Simple vim packages, with no dependencies — optional
-  tags: always
-  hosts: localhost
-  roles:
-    - name: Colorizer that support termguicolors
-      role: vim_package
-      vars:
-        vim_package: colorizer
-        vim_package_url: https://github.com/chrisbra/Colorizer
-        vim_package_version: 5fbdf24d17465c3be03b20c591ceae82f793ae1c
-    - name:
-        Modern, maintained fork of Solarized for better higlighting with
-        ``:diffthis`` and ``:Gvdiff``
-      role: vim_package
-      vars:
-        vim_package: solarized8
-        vim_package_url: https://github.com/lifepillar/vim-solarized8
-        vim_package_version: v1.2.0
 
 - name: Depenedencies for ./autoload/fzf.vim
   tags: always
@@ -195,16 +86,6 @@
       become: yes
       apt: { default_release: stretch-backports, name: fzf }
       when: ansible_distribution == 'Debian'
-    - name:
-        Install vim files on Debian as they're not packaged, see
-        https://packages.debian.org/stretch-backports/amd64/fzf/filelist
-      include_role: { name: vim_package }
-      vars:
-        vim_package: fzf
-        vim_package_url: https://github.com/junegunn/fzf
-        vim_package_version: 0.17.5
-        vim_package_optional: no
-      when: ansible_distribution == 'Debian'
     - name: Install default settings
       become: yes
       copy:
@@ -213,63 +94,6 @@
         content: |
           export FZF_DEFAULT_COMMAND='find . -type f'
           export FZF_DEFAULT_OPTS='--height 10'
-
-- name: Accounting with Beancount
-  tags: always
-  hosts: localhost
-  roles:
-    - name: Install vim package for beancount
-      role: vim_package
-      vars:
-        vim_package: beancount
-        vim_package_url: https://github.com/nathangrigg/vim-beancount
-        vim_package_version: 8054352c43168ece62094dfc8ec510e347e19e3c
-        vim_package_optional: yes
-
-- name: Editing React, including Gatsby
-  tags: [never, react]
-  hosts: localhost
-  roles:
-    - name: Install jsx syntax highlighting
-      role: vim_package
-      vars:
-        vim_package: jsx
-        vim_package_url: https://github.com/MaxMEllon/vim-jsx-pretty/
-        vim_package_version: v3.0.0
-        vim_package_optional: yes
-    - name: Install mdx syntax highlighting
-      role: vim_package
-      vars:
-        vim_package: mdx
-        vim_package_url: https://github.com/jxnblk/vim-mdx-js/
-        vim_package_version: 17179d7f2a73172af5f9a8d65b01a3acf12ddd50
-        vim_package_optional: yes
-
-- name: Editing Svelte
-  tags: always
-  hosts: localhost
-  roles:
-    - name: Install svelte syntax highlighting
-      role: vim_package
-      vars:
-        vim_package: svelte
-        vim_package_url: https://github.com/leafoftree/vim-svelte-plugin/
-        vim_package_version: c6fd39f83d9142d0736d9fa974a57fbdd880fd06
-        vim_package_optional: yes
-
-- name: Refactoring Python
-  tags: always
-  hosts: localhost
-  roles:
-    - name:
-        Install jedi-vim; an unreleased version for better usage highlighting
-        https://github.com/davidhalter/jedi-vim/pull/851
-      role: vim_package
-      vars:
-        vim_package: jedi
-        vim_package_url: https://github.com/davidhalter/jedi-vim/
-        vim_package_version: e8790b1d8f486fe0284687a416feb62788cd8e33
-        vim_package_optional: yes
 
 - name: Tools for editing files on remote machines
   tags: always
@@ -284,14 +108,6 @@
 - name: Install dart
   tags: [never, dart]
   hosts: localhost
-  roles:
-    - name: Dart syntax highlighting
-      role: vim_package
-      vars:
-        vim_package: dart
-        vim_package_url: https://github.com/dart-lang/dart-vim-plugin
-        vim_package_version: 8ffc3e208c282f19afa237d343fa1533146bd2b4
-        vim_package_optional: yes
   tasks:
     - name: Add the key specified by https://dart.dev/get-dart
       become: yes
@@ -338,29 +154,6 @@
           if [ -d "$HOME/.pub-cache/bin" ] ; then
             PATH="$PATH":"$HOME/.pub-cache/bin"
           fi
-
-- name: Configure vim to edit rust
-  tags: [never, rust]
-  hosts: localhost
-  tasks:
-    - name: Install rust.vim
-      include_role: { name: vim_package }
-      vars:
-        vim_package: rust
-        vim_package_url: https://github.com/rust-lang/rust.vim
-        vim_package_version: fabad27559c5bde02e0f0a855d07d9dda9aef9a9
-        vim_package_optional: no
-    - name: Install vim-racer
-      include_role: { name: vim_package }
-      vars:
-        vim_package: racer
-        vim_package_url: https://github.com/racer-rust/vim-racer
-        vim_package_version: 9c0a05e8b97700ee5d3e742fab889cf40e9e7b88
-        vim_package_optional: no
-    - name: Install cc for racer
-      become: yes
-      package: { name: build-essential }
-      when: ansible_distribution in ('Ubuntu', 'Debian')
 
 - name:
     Setup vimrc, do this last as the vimrc assumes packages are available and if
