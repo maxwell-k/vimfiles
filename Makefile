@@ -1,3 +1,3 @@
 _test:
 	cd tests && vim '+packadd vader | Vader! index.vader'
-	# incomplete not all tests are run
+	# incomplete because runVimTests tests are not run

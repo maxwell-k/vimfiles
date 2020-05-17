@@ -30,7 +30,6 @@ Vader authoring notes
 =====================
 
 -   Avoid Before and After because the can impact on included files
--   Avoid `DBextPostResult` which complicates and slows the test suite
 -   Move buffers with `:buffer` in an Execute block
 
 .. vim: filetype=rst

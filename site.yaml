@@ -76,20 +76,6 @@
       become: yes
       package: { name: jq }
 
-- name: dbext (personal fork)
-  tags: always
-  hosts: localhost
-  roles:
-    - role: vim_package
-      vars:
-        vim_package: dbext
-        vim_package_url: https://github.com/maxwell-k/dbext.vim
-        vim_package_version: eab2ab12c91759fe902f6d7734a1b03c1d0107a2
-  tasks:
-    - name: sqlite for dbext
-      become: yes
-      package: { name: "sqlite{{ '3' if ansible_distribution != 'Alpine' }}" }
-
 - name: GnuPG
   tags: always
   hosts: localhost

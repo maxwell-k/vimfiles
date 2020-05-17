@@ -8,8 +8,6 @@ function! opfunc#All() abort "{{{
     call opfunc#opfuncmap('c') " straight yank
     call opfunc#opfuncmap('C') " dedent then yank
     "call opfunc#opfuncmap('j', 'jupyter') " run in jupyter
-    call opfunc#opfuncmap('l') " run in dbext
-    call opfunc#opfuncmap('L') " run in dbext with .mode list
     call opfunc#opfuncmap('y') " transform then yank
 endfunction "}}}
 function! opfunc#opfuncInput(type, count) abort " {{{
@@ -103,27 +101,6 @@ function! opfunc#C(type, ...) abort " Dedent then yank {{{
     call opfunc#opfuncInput(a:type, a:0)
     let @@ = opfunc#dedent(@@)
     call opfunc#clipboard(@@)
-
-    let &selection = l:sel_save | let @@ = l:reg_save
-    if a:type ==# 'line' | call opfunc#restore() | endif
-endfunction " }}}
-function! opfunc#l(type, ...) abort " run in dbext {{{
-    let l:sel_save=&selection | let &selection='inclusive' |let l:reg_save=@@
-
-    call opfunc#opfuncInput(a:type, a:0)
-    let @@ = opfunc#dedent(@@)
-    call dbext#DB_execSql(@@)
-
-    let &selection = l:sel_save | let @@ = l:reg_save
-    if a:type ==# 'line' | call opfunc#restore() | endif
-endfunction " }}}
-function! opfunc#L(type, ...) abort " run in dbext .header off & .mode list {{{
-    let l:sel_save=&selection | let &selection='inclusive' |let l:reg_save=@@
-
-    call opfunc#opfuncInput(a:type, a:0)
-    let @@ = opfunc#dedent(@@)
-    let @@ = ".header off\n.mode list\n".@@
-    call dbext#DB_execSql(@@)
 
     let &selection = l:sel_save | let @@ = l:reg_save
     if a:type ==# 'line' | call opfunc#restore() | endif

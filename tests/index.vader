@@ -5,18 +5,6 @@
 "Python
 Include: Python.vader
 
-"SQLite using :memory: and handling DBResultsClose explicitly
-"  An unplanned second call to DBResultsClose may cause unexpected behaviour
-Include: dbext-select-other-syntax.vader
-Include: dbext-defaults.vader
-Include: dbext-mappings.vader
-Include: dbext-select-sync.vader
-Include: dbext-hang.vader
-
-"SQLite using vader.sqlite
-"  Must be run last as :DBSetOption dbname=:memory: fails, without a workaround
-Include: dbext-completion.vader
-
 " ALE linters
 Include: test_terraform_handler.vader
 Include: test_terraform_terraform_command_callback.vader
