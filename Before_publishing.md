@@ -1,5 +1,6 @@
 - [ ] Add instructions to the readme
-- [ ] Move `spellfile` somewhere else
+- [ ] Check `spellfile` on Chrome book
+- [ ] Check README instructions for spellfile
 - Add copyright and license, get `reuse` from the FSFE to pass
 - Add copyright and license, get `reuse` from the `FSFE` to pass
 - Write a README
