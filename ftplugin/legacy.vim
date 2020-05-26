@@ -1,8 +1,8 @@
-" ftplugin/novastone.vim
+" ftplugin/legacy.vim
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
-" Use as set filetype=python.novastone
+" Use as set filetype=python.legacy
 let b:ale_fixers = get(b:, 'ale_fixers', []) + ['black']
 " based upon https://github.com/psf/black/issues/429
 let s:options = '--ignore='
