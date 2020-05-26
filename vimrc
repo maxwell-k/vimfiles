@@ -77,6 +77,7 @@ unlet s:list_settings
  noremap <Leader>b :call toggle#toggle_colors()<CR>
 call opfunc#opfuncmap('c') " straight yank
  noremap <Leader>C :call SendViaOSC52(join(getline(1,'$'),'\n'))<CR>
+ noremap <Leader>e :edit %:h<CR>
         "<Leader>g see plugin/mappings.vim
         "<Leader>h see vim/ftplugin/rst.vim
  noremap <Leader>i :echo synIDattr(synID(line('.'),col('.'),1),'name')<CR>
@@ -84,9 +85,7 @@ vnoremap <Leader>k <ESC>:call vim#keep()<CR>
         "<Leader>j see ftplugin/python.vim for Jedi mappings or
         "<Leader>j see plugin/jupyter.vim in the jupyter package
         "<Leader>J see plugin/jupyter.vim in the jupyter package
-        "<Leader>l see vim/plugin/dbext.vim
-        "<Leader>L see vim/plugin/dbext.vim
-        "<Leader>m see vim/plugin/dbext.vim
+ noremap <Leader>m :/<<<<<<<\\|=======\\|>>>>>>><CR>
  noremap <Leader>n :call vim#new()<CR>
  noremap <Leader>s :call toggle#toggle_shiftwidth()<CR>
  noremap <Leader>S :call vim#scriptnames()<CR>
