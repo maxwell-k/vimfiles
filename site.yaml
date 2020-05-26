@@ -61,7 +61,6 @@
 - name: ansible-vim and related packages
   tags: [never, ansible]
   hosts: localhost
-  roles:
   tasks:
     - name: Check ansible-lint is installed
       command: { cmd: ansible-lint --version }
