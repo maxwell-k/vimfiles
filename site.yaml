@@ -5,7 +5,7 @@
 # Usage:
 #
 #     ansible-playbook -i, vim/site.yaml
-#     ansible-playbook -i, --tags ansible,react,dart,rust vim/site.yaml
+#     ansible-playbook -i, --tags dart vim/site.yaml
 #
 - name: Install vim
   tags: always
@@ -50,22 +50,6 @@
         state: directory
         mode: 0o700
 
-- name: ALE
-  tags: always
-  hosts: localhost
-  tasks:
-    - name: jq for an ALE JSON fixer and for command line use
-      become: yes
-      package: { name: jq }
-
-- name: ansible-vim and related packages
-  tags: [never, ansible]
-  hosts: localhost
-  tasks:
-    - name: Check ansible-lint is installed
-      command: { cmd: ansible-lint --version }
-      changed_when: False
-
 - name: Depenedencies for ./autoload/fzf.vim
   tags: always
   hosts: localhost
@@ -94,7 +78,7 @@
           export FZF_DEFAULT_COMMAND='find . -type f'
           export FZF_DEFAULT_OPTS='--height 10'
 
-- name: Tools for editing files on remote machines
+- name: Other system packages to work with vim plugins
   tags: always
   hosts: localhost
   tasks:
@@ -103,6 +87,9 @@
         scp; need fuse to unmount directories with fusermount -u
       become: yes
       package: { name: [sshfs, fuse] }
+    - name: jq for an ALE JSON fixer and for command line use
+      become: yes
+      package: { name: jq }
 
 - name: Install dart
   tags: [never, dart]
