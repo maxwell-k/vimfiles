@@ -15,5 +15,5 @@ let s:options .= ',E704,W1,W2,W3,W503,W504'
 let s:options .= ',E702,E711,E712'
 " To work on Python 2
 " based upon https://github.com/psf/black/issues/429
-let s:options .= ' --builtins=unicode'
+let s:options .= ' --builtins=unicode,file'
 let b:ale_python_flake8_options = s:options
