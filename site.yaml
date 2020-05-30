@@ -4,8 +4,9 @@
 #
 # Usage:
 #
-#     ansible-playbook -i, vim/site.yaml
-#     ansible-playbook -i, --tags dart vim/site.yaml
+#     ansible-playbook -i, site.yaml
+#     ansible-playbook -i, --tags dart site.yaml
+#     ansible-playbook -i, --tags help site.yaml
 #
 - name: Install vim
   tags: always
@@ -167,3 +168,28 @@
         group: root
         owner: root
       when: ansible_distribution != 'Fedora'
+
+- name: Create vim help tags for all packages - optional and startup
+  tags: [never, help]
+  hosts: localhost
+  tasks:
+    - name: Create a temporary file for use as a script
+      tempfile: { state: file, suffix: .vim }
+      register: site_script
+    - name: List optional packages
+      find: { paths: ./pack/submodules/opt/, file_type: directory }
+      register: site_find
+    - name:
+        Write the commands to the script to avoid an error about too many
+        command line flags
+      copy:
+        dest: "{{ site_script.path }}"
+        content: |
+          {% for i in  site_find.files %}
+          packadd {{ i.path | basename }}
+          {% endfor %}
+          helptags ALL
+          quit
+    - name: Run the script file with vim
+      command: vim -S {{ site_script.path }}
+      changed_when: true
