@@ -1,3 +1,5 @@
+- [ ] Merge sub-modules branch
+- [ ] Test sub-modules branch on NUC
 - [ ] Add instructions to the readme
 - [ ] Check `spellfile` on Chrome book
 - [ ] Check README instructions for spellfile
