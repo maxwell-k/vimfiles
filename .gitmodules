@@ -30,7 +30,8 @@
 	url = https://github.com/tpope/vim-repeat
 [submodule "vim/pack/submodules/start/ale"]
 	path = vim/pack/submodules/start/ale
-	url = https://github.com/dense-analysis/ale
+	url = https://github.com/maxwell-k/ale.git
+	branch = vint
 [submodule "vim/pack/submodules/opt/jedi"]
 	path = vim/pack/submodules/opt/jedi
 	url = https://github.com/davidhalter/jedi-vim/
