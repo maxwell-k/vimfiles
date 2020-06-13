@@ -4,18 +4,31 @@ Copyright 2020 Keith Maxwell
 SPDX-License-Identifier: CC-BY-SA-4.0
 -->
 
-My style
+# .vim
 
-- support only recent versions of vim
+## Quick start
+
+- Clone this repository and its sub-modules as `~/.vim`
+- Run `ansible-playbook -i, site.yaml`
+
+Supported operating systems: recent versions of Alpine Linux, Debian and Ubuntu.
 
 ## Contents
 
+This repository contains about 1,000 lines of vim script accumulated since 2012.
+Much of it will not be of interest to anyone but the original author; a few
+"features" may be:
+
 - Complete syntax files for SQLite and Visual Basic for Applications (VBA)
   written from scratch.
+- A plugin for interacting with a https://jupyter.org kernel inspired by
+  https://github.com/ivanov/vim-ipython
+- A file type plugin for automatically committing to Git
+- A few extra linters or fixers for https://github.com/dense-analysis/ale
 
 ## System packages
 
-As well as installing vim, `site.yaml` will installs the system packages below:
+As well as installing vim, `site.yaml` will install the system packages below:
 
 | Package            | Debian/Ubuntu | Alpine Linux |
 | ------------------ | ------------- | ------------ |
@@ -31,13 +44,15 @@ As well as installing vim, `site.yaml` will installs the system packages below:
 | `sqlite / sqlite3` | x             | x            |
 | `sshfs`            | x             | x            |
 
-## Other vim modules
+## Removed sub-modules
+
+The following plugins are not currently in use:
 
 ### `start/fzf`
 
 - https://github.com/junegunn/fzf
 - 0.17.5
-- only required on Debian and Ubuntu, where they're not packaged
+- only required on Debian and Ubuntu, as system packages aren't available
 
 ### `start/rust`
 
@@ -52,8 +67,6 @@ As well as installing vim, `site.yaml` will installs the system packages below:
 
 - https://github.com/MaxMEllon/vim-jsx-pretty/
 - `v3.0.0`
-
-<!-- test asdfasd asdf a -->
 
 ### `opt/mdx`
 
