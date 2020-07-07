@@ -2,7 +2,8 @@
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
-" see :help new-filetype option C
+" See :help new-filetype option C
+" See also ./scripts.vim
 "
 if exists('did_load_filetypes')
   finish
@@ -22,6 +23,8 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile *.yaml.jinja setfiletype yaml.jinja2
   autocmd BufRead,BufNewFile *.vader setfiletype vader
   autocmd BufRead,BufNewFile */example.yaml setfiletype yaml.ansible
+  autocmd BufRead,BufNewFile */keith.maxwell/**.py
+    \ setfiletype python.black.personal
   autocmd BufRead,BufNewFile */planning/*.txt setfiletype rst.automatic
   autocmd BufRead,BufNewFile */planning/tlf/*.txt setfiletype text
   autocmd BufRead,BufNewFile */playbooks/*.yaml setfiletype yaml.ansible
