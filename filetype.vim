@@ -11,6 +11,7 @@ endif
 augroup filetypedetect
 " Tests in ./tests/file-type-detection/
 
+  autocmd BufRead,BufNewFile .env setfiletype text
   autocmd BufRead,BufNewFile *.bas setfiletype vba
   autocmd BufRead,BufNewFile *.beancount setfiletype beancount
   autocmd BufRead,BufNewFile *.dart setfiletype dart
