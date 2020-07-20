@@ -32,6 +32,7 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile */site-packages/**.py setfiletype python
   autocmd BufRead,BufNewFile */src/template.html setfiletype svelte
   autocmd BufRead,BufNewFile APKBUILD setfiletype sh.apkbuild
+  autocmd BufRead,BufNewFile Jenkinsfile setfiletype groovy
   autocmd BufRead,BufNewFile git-revise-todo setfiletype gitrebase
   autocmd BufRead,BufNewFile hosts setfiletype yaml.ansible.hosts " [1]
   autocmd BufRead,BufNewFile known_hosts setfiletype known_hosts
