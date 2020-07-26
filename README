@@ -44,6 +44,12 @@ As well as installing vim, `site.yaml` will install the system packages below:
 | `sqlite / sqlite3` | x             | x            |
 | `sshfs`            | x             | x            |
 
+## Git configuration
+
+This repository uses approximately twenty git sub-modules. It may be helpful to
+set `git config diff.ignoreSubmodules dirty` so that `git status` completes
+quickly.
+
 ## Removed sub-modules
 
 The following plugins are not currently in use:
