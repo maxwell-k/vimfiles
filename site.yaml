@@ -93,6 +93,10 @@
     - name: jq for an ALE JSON fixer and for command line use
       become: yes
       package: { name: jq }
+    - name: jedi for use with Python
+      become: yes
+      package: { name: py3-jedi@edge-community }
+      when: ansible_distribution == 'Alpine'
 
 - name: Install dart
   tags: [never, dart]
