@@ -6,6 +6,6 @@
 "
 "     :set filetype=markdown.htmlCommentNoSpell
 "
-"Disable spell checking from /usr/share/vim/vim81/syntax/html.vim
+"Disable spell checking from /usr/share/vim/vim??/syntax/html.vim
 syn region htmlCommentPart contained start=+--+ end=+--\s*+
   \ contains=@htmlPreProc,@NoSpell
