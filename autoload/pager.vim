@@ -11,6 +11,7 @@ function! pager#pager() abort
   "   vim -c "call pager#pager()" -
   " $ PAGER=/usr/local/bin/pager gsutil ls --help
   setlocal nolist buftype=nofile colorcolumn=
+  call maktaba#plugin#Detect()
   silent call maktaba#buffer#Substitute('.\b','')
   silent call maktaba#buffer#Substitute('[[:escape:]]\[[^@-~]*[@-~]','')
 endfunction
