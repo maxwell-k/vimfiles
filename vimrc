@@ -50,6 +50,7 @@ set nrformats+=alpha " increment a to b
 set nrformats-=octal " increment 07 to 08 and not 010
 set path+=** " recursively search, misses hidden files e.g. /.vim/
 set ruler " show position
+set shell=/usr/bin/dash\ -l
 set shiftwidth=2
 set shortmess+=I
 set showcmd
@@ -138,6 +139,7 @@ colorscheme mine
 let g:ale_fix_on_save = 1
 let g:ale_lint_delay = 50
 let g:ale_sh_shellcheck_options = '-x'
+let g:ale_shell='/usr/bin/dash'
 let g:is_posix = 1  " $() isn't an error in sh
 
 " Workaround for vim without patch 8.1.0353 {{{1
