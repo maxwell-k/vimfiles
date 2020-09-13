@@ -47,4 +47,16 @@ function! toggle#toggle_shiftwidth() abort "{{{1
   end
   setlocal shiftwidth
 endfunction "}}}1
+function! toggle#toggle_python() abort "{{{1
+  if &filetype ==# 'python'
+    setlocal filetype=python.legacy
+  elseif &filetype ==# 'python.legacy'
+    setlocal filetype=python.black
+  elseif &filetype ==# 'python.black'
+    setlocal filetype=python.black.personal
+  else
+    setlocal filetype=python
+  end
+  setlocal filetype
+endfunction "}}}1
 " vim: set foldmethod=marker foldlevel=0 :

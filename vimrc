@@ -50,6 +50,7 @@ set nrformats+=alpha " increment a to b
 set nrformats-=octal " increment 07 to 08 and not 010
 set path+=** " recursively search, misses hidden files e.g. /.vim/
 set ruler " show position
+set shell=/usr/bin/dash\ -l
 set shiftwidth=2
 set shortmess+=I
 set showcmd
@@ -87,6 +88,7 @@ vnoremap <Leader>k <ESC>:call vim#keep()<CR>
         "<Leader>J see plugin/jupyter.vim in the jupyter package
  noremap <Leader>m :/<<<<<<<\\|=======\\|>>>>>>><CR>
  noremap <Leader>n :call vim#new()<CR>
+ noremap <Leader>p :call toggle#toggle_python()<CR>
  noremap <Leader>s :call toggle#toggle_shiftwidth()<CR>
  noremap <Leader>S :call vim#scriptnames()<CR>
         "<Leader>t see above
@@ -137,6 +139,7 @@ colorscheme mine
 let g:ale_fix_on_save = 1
 let g:ale_lint_delay = 50
 let g:ale_sh_shellcheck_options = '-x'
+let g:ale_shell='/usr/bin/dash'
 let g:is_posix = 1  " $() isn't an error in sh
 
 " Workaround for vim without patch 8.1.0353 {{{1
