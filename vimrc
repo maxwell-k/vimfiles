@@ -79,6 +79,7 @@ unlet s:list_settings
 call opfunc#opfuncmap('c') " straight yank
  noremap <Leader>C :call SendViaOSC52(join(getline(1,'$'),'\n'))<CR>
  noremap <Leader>e :edit %:h<CR>
+ noremap <Leader>f :call SendViaOSC52(@%)<CR>
         "<Leader>g see plugin/mappings.vim
         "<Leader>h see vim/ftplugin/rst.vim
  noremap <Leader>i :echo synIDattr(synID(line('.'),col('.'),1),'name')<CR>
