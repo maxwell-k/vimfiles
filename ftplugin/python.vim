@@ -2,6 +2,8 @@
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
+" Python filetype settings for working on any Python code
+"
 setlocal commentstring=#\ %s
 setlocal foldtext=PythonFoldText()
 setlocal shiftwidth=4
