@@ -14,4 +14,5 @@ function! pager#pager() abort
   call maktaba#plugin#Detect()
   silent call maktaba#buffer#Substitute('.\b','')
   silent call maktaba#buffer#Substitute('[[:escape:]]\[[^@-~]*[@-~]','')
+  silent call maktaba#buffer#Substitute('[[:cntrl:]]','')
 endfunction
