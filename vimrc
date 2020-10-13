@@ -48,6 +48,7 @@ set noshiftround
 set nostartofline " don't move to start of line with H, M, L…
 set nrformats+=alpha " increment a to b
 set nrformats-=octal " increment 07 to 08 and not 010
+set omnifunc=ale#completion#OmniFunc
 set path+=** " recursively search, misses hidden files e.g. /.vim/
 set ruler " show position
 set shell=/usr/bin/dash\ -l
