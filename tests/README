@@ -6,8 +6,8 @@ Introduction
 ============
 
 This folder contains tests for vim written using both `runVimTests` and
-`vader`. ``vim/site.yaml`` installs `vader` and the first command
-below installs `runVimTests`. To run both sets of tests use `make _test`.
+`vader`. ``vim/site.yaml`` installs `vader`. To run both sets of tests on
+Alpine Linux use `make test`.
 
 Vader usage
 ===========
