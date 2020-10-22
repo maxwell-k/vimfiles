@@ -37,6 +37,9 @@
           apt: { name: "vim=2:8.1*", update_cache: yes }
     - name: Make sure vim is installed
       package: { name: vim }
+    - name: Make sure vim-help is installed on Alpine Linux
+      package: { name: vim-help }
+      when: ansible_distribution == 'Alpine'
 
 - name: Create directory used in vimrc
   tags: always
