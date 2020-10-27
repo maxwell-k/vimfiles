@@ -5,5 +5,10 @@
 " SPDX-License-Identifier: MPL-2.0
 "
 function! ale#fixers#markdown_toc#Fix(buffer) abort
-  return {'command': 'markdown-toc -i %t', 'read_temporary_file': 1}
+  " Use --bullets=- to be compatible with prettier, see also
+  " https://github.com/jonschlinkert/markdown-toc/issues/146
+  return {
+    \ 'command': 'markdown-toc --bullets=- -i %t',
+    \ 'read_temporary_file': 1,
+  \ }
 endfunction
