@@ -1,8 +1,15 @@
+"
 " ftplugin/black.vim
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
+" Python filetype settings for working on black Python code
+"
+" - black with default configuration
+" - flake8 doesn't warn about black formatting
+"
 " Use as set filetype=python.black
+let b:ale_python_black_options = ''
 let b:ale_fixers = get(b:, 'ale_fixers', []) + ['black']
 " For Black compatiblity based upon https://github.com/psf/black/issues/429
 let s:options = '--ignore='

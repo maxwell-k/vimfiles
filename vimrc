@@ -48,6 +48,7 @@ set noshiftround
 set nostartofline " don't move to start of line with H, M, L…
 set nrformats+=alpha " increment a to b
 set nrformats-=octal " increment 07 to 08 and not 010
+set omnifunc=ale#completion#OmniFunc
 set path+=** " recursively search, misses hidden files e.g. /.vim/
 set ruler " show position
 set shell=/usr/bin/dash\ -l
@@ -79,6 +80,7 @@ unlet s:list_settings
 call opfunc#opfuncmap('c') " straight yank
  noremap <Leader>C :call SendViaOSC52(join(getline(1,'$'),'\n'))<CR>
  noremap <Leader>e :edit %:h<CR>
+ noremap <Leader>f :call SendViaOSC52(@%)<CR>
         "<Leader>g see plugin/mappings.vim
         "<Leader>h see vim/ftplugin/rst.vim
  noremap <Leader>i :echo synIDattr(synID(line('.'),col('.'),1),'name')<CR>
@@ -99,6 +101,7 @@ call opfunc#opfuncmap('y')
 vnoremap <Leader>= :<C-U>call vim#sum()<CR>
  noremap <Leader>\ :s,\\,/,g<CR>
  noremap <Leader>/ :s,/,\\,g<CR>
+        "<Leader>] see ftplugin/markdown-toc.vim
 " Other:
  noremap <C-L> :noh<CR><C-L>
  noremap Y y$

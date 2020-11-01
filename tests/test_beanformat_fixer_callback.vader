@@ -11,7 +11,7 @@ After:
   call ale#assert#TearDownFixerTest()
 
 Execute(The default command should be correct):
-  AssertFixer 
+  AssertFixer
   \ {
   \   'command': ale#Escape('bean-format') . ' -'
   \ }
