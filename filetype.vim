@@ -15,6 +15,7 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile *.bas setfiletype vba
   autocmd BufRead,BufNewFile *.beancount setfiletype beancount
   autocmd BufRead,BufNewFile *.dart setfiletype dart
+  autocmd BufRead,BufNewFile *.docker setfiletype dockerfile
   autocmd BufRead,BufNewFile *.gfm setfiletype markdown.gfm
   autocmd BufRead,BufNewFile *.mdx setfiletype markdown.mdx
   autocmd BufRead,BufNewFile *.svelte setfiletype svelte
