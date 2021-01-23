@@ -4,3 +4,4 @@
 "
 packadd todo.txt
 setlocal nowrap
+setlocal autowriteall
