@@ -44,11 +44,9 @@ augroup filetypedetect
 " Tests described below
 
   autocmd BufRead,BufNewFile /home/**.py setfiletype python.black.personal
-  autocmd BufRead,BufNewFile /tmp/_sh?????? setfiletype sh
   autocmd BufRead,BufNewFile /tmp/man.* setfiletype man
 
   " `vim ~/example.py`: python.black.personal
-  " `fc` inside dash: sh
   " `man man`: man
 
 " No tests
