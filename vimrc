@@ -67,7 +67,7 @@ let s:list_settings = 'set list showbreak=→ '
 let s:list_settings .= 'listchars='
 let s:list_settings .= 'trail:←,tab:→—,extends:▓,precedes:▓'
 execute s:list_settings
-execute "noremap <Leader>t :call toggle#toggle_list('".s:list_settings."')<CR>"
+execute "noremap <Leader>l :call toggle#toggle_list('".s:list_settings."')<CR>"
 unlet s:list_settings
 
 " Mappings {{{1
@@ -88,12 +88,12 @@ vnoremap <Leader>k <ESC>:call vim#keep()<CR>
         "<Leader>j see ftplugin/python.vim for Jedi mappings or
         "<Leader>j see plugin/jupyter.vim in the jupyter package
         "<Leader>J see plugin/jupyter.vim in the jupyter package
+        "<Leader>l see above
  noremap <Leader>m :/<<<<<<<\\|=======\\|>>>>>>><CR>
  noremap <Leader>n :call vim#new()<CR>
  noremap <Leader>p :call toggle#toggle_python()<CR>
  noremap <Leader>s :call toggle#toggle_shiftwidth()<CR>
  noremap <Leader>S :call vim#scriptnames()<CR>
-        "<Leader>t see above
  noremap <Leader>v :set paste! paste?<CR>
 call opfunc#opfuncmap('y')
  noremap <Leader>zg :call fzf#run(fzf#wrap({'source': 'git ls-files'}))<CR>
