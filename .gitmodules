@@ -18,7 +18,7 @@
 	url = https://github.com/plasticboy/vim-markdown
 [submodule "vim/pack/submodules/start/toml"]
 	path = vim/pack/submodules/start/toml
-	url = https://github.com/cespare/vim-toml/
+	url = https://github.com/cespare/vim-toml
 [submodule "vim/pack/submodules/start/maktaba"]
 	path = vim/pack/submodules/start/maktaba
 	url = https://github.com/google/vim-maktaba
@@ -30,14 +30,13 @@
 	url = https://github.com/tpope/vim-repeat
 [submodule "vim/pack/submodules/start/ale"]
 	path = vim/pack/submodules/start/ale
-	url = https://github.com/dense-analysis/ale/
-	branch = vint
+	url = https://github.com/dense-analysis/ale
 [submodule "vim/pack/submodules/opt/jedi"]
 	path = vim/pack/submodules/opt/jedi
-	url = https://github.com/davidhalter/jedi-vim/
+	url = https://github.com/davidhalter/jedi-vim
 [submodule "vim/pack/submodules/opt/svelte"]
 	path = vim/pack/submodules/opt/svelte
-	url = https://github.com/leafoftree/vim-svelte-plugin/
+	url = https://github.com/leafoftree/vim-svelte-plugin
 [submodule "vim/pack/submodules/opt/beancount"]
 	path = vim/pack/submodules/opt/beancount
 	url = https://github.com/nathangrigg/vim-beancount
