@@ -31,7 +31,6 @@
 [submodule "vim/pack/submodules/start/ale"]
 	path = vim/pack/submodules/start/ale
 	url = https://github.com/dense-analysis/ale/
-	branch = vint
 [submodule "vim/pack/submodules/opt/jedi"]
 	path = vim/pack/submodules/opt/jedi
 	url = https://github.com/davidhalter/jedi-vim/
