@@ -56,3 +56,6 @@
 [submodule "vim/pack/submodules/opt/dart"]
 	path = vim/pack/submodules/opt/dart
 	url = https://github.com/dart-lang/dart-vim-plugin
+[submodule "vim/pack/submodules/opt/todo.txt"]
+	path = vim/pack/submodules/opt/todo.txt
+	url = https://gitlab.com/dbeniamine/todo.txt-vim.git
