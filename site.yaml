@@ -40,6 +40,12 @@
     - name: Make sure vim-help is installed on Alpine Linux
       package: { name: vim-help }
       when: ansible_distribution == 'Alpine'
+    - name: Add the vi link on Alpine Linux
+      when: ansible_distribution == 'Alpine'
+      file:
+        state: link
+        src: /usr/bin/vim
+        path: /usr/local/bin/vi
 
 - name: Create directory used in vimrc
   tags: always
