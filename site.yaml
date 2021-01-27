@@ -4,9 +4,9 @@
 #
 # Usage:
 #
-#     ansible-playbook -i, site.yaml
-#     ansible-playbook -i, --tags dart site.yaml
-#     ansible-playbook -i, --tags help site.yaml
+#     ansible-playbook -i, --user $USER site.yaml
+#     ansible-playbook -i, --user $USER --tags dart site.yaml
+#     ansible-playbook -i, --user $USER --tags help site.yaml
 #
 - name: Install vim
   tags: always
