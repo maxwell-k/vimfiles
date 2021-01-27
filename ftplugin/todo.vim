@@ -8,6 +8,7 @@ runtime OPT ftplugin/todo.vim
 setlocal nowrap
 setlocal autowriteall
 
-noremap  <script> <silent> <buffer> <localleader>td :call todo#PrependDate()<CR>
-nnoremap <script> <silent> <buffer> <localleader>tD :call todo#RemoveCompleted()<CR>
-nmap              <silent> <buffer> <localleader>tx <Plug>DoToggleMarkAsDone
+noremap <script> <silent> <buffer> <localleader>td :call todo#PrependDate()<CR>
+nnoremap <script> <silent> <buffer>
+  \ <localleader>tD :call todo#RemoveCompleted()<CR>
+nmap <silent> <buffer> <localleader>tx <Plug>DoToggleMarkAsDone
