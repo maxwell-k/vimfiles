@@ -10,6 +10,7 @@ To test the `embedme` fixer from `autoload/ale/fixers/embedme.vim` and
 <!-- embedme example.sh -->
 
 ```sh
+#!/bin/sh
 echo 1
 echo 2
 echo 3
@@ -19,6 +20,7 @@ echo 3
 ```sh
 # example.sh
 
+#!/bin/sh
 echo 1
 echo 2
 echo 3
