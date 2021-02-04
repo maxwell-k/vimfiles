@@ -8,6 +8,7 @@ packadd todo.txt
 runtime OPT ftplugin/todo.vim
 setlocal nowrap
 setlocal autowriteall
+setlocal omnifunc=todo#Complete
 
 nnoremap <script> <silent> <buffer>
   \ <localleader>tD :call todo#RemoveCompleted()<CR>
