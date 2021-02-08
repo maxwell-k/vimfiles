@@ -42,10 +42,7 @@
       when: ansible_distribution == 'Alpine'
     - name: Add the vi link on Alpine Linux
       when: ansible_distribution == 'Alpine'
-      file:
-        state: link
-        src: /usr/bin/vim
-        path: /usr/local/bin/vi
+      file: { state: link, src: /usr/bin/vim, path: /usr/local/bin/vi }
 
 - name: osc52.vim
   tags: always
@@ -173,6 +170,7 @@
         state: link
         group: "{{ ansible_user }}"
         owner: "{{ ansible_user }}"
+      when: ansible_connection == 'local'
     - name:
         Create a link from ~/.vim for root user; except on Fedora to avoid "src
         file does not exist"
@@ -184,7 +182,7 @@
         state: link
         group: root
         owner: root
-      when: ansible_distribution != 'Fedora'
+      when: ansible_distribution in ('Ubuntu', 'Debian', 'Alpine')
 
 - name: Create vim help tags for all packages - optional and startup
   tags: [never, help]
