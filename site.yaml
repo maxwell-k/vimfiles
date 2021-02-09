@@ -56,12 +56,6 @@
   tags: always
   hosts: localhost
   tasks:
-    - name: Install fzf on Alpine Linux
-      become: yes
-      apk:
-        name: [fzf, fzf-vim]
-        repository: http://dl-cdn.alpinelinux.org/alpine/edge/community
-      when: ansible_distribution == 'Alpine'
     - name:
         Enable stretch-backports repository following
         https://backports.debian.org/Instructions/
