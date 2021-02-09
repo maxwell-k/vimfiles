@@ -20,32 +20,5 @@
     - name: Download osc52.vim
       get_url: { dest: "{{ dest }}", url: "{{ url }}" }
       when: ansible_distribution == 'Alpine'
-
-- name:
-    Setup vimrc, do this last as the vimrc assumes packages are available and if
-    another step fails this may leave vim difficult to start
-  tags: always
-  hosts: localhost
-  tasks:
-    - name: Create a link from ~/.vim for ansible user
-      file:
-        follow: no
-        src: "{{ playbook_dir }}"
-        path: "/home/{{ ansible_user }}/.vim"
-        state: link
-        group: "{{ ansible_user }}"
-        owner: "{{ ansible_user }}"
-      when: ansible_connection == 'local'
-    - name:
-        Create a link from ~/.vim for root user; except on Fedora to avoid "src
-        file does not exist"
-      become: yes
-      file:
-        follow: no
-        src: "{{ playbook_dir }}"
-        path: /root/.vim
-        state: link
-        group: root
-        owner: root
-      when: ansible_distribution in ('Ubuntu', 'Debian', 'Alpine')
 # see also tasks/vim-help.yaml
+# see also tasks/vim-links.yaml
