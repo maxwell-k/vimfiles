@@ -59,7 +59,7 @@
       get_url: { dest: "{{ dest }}", url: "{{ url }}" }
       when: ansible_distribution == 'Alpine'
 
-- name: Depenedencies for ./autoload/fzf.vim
+- name: Dependencies for ./autoload/fzf.vim
   tags: always
   hosts: localhost
   tasks:
