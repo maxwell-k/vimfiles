@@ -56,17 +56,6 @@
   tags: always
   hosts: localhost
   tasks:
-    - name:
-        Enable stretch-backports repository following
-        https://backports.debian.org/Instructions/
-      become: yes
-      apt_repository:
-        repo: deb https://deb.debian.org/debian stretch-backports main
-      when: ansible_distribution == 'Debian'
-    - name: Install fzf on Debian GNU/Linux
-      become: yes
-      apt: { default_release: stretch-backports, name: fzf }
-      when: ansible_distribution == 'Debian'
     - name: Install default settings
       become: yes
       copy:
