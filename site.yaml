@@ -52,23 +52,6 @@
       get_url: { dest: "{{ dest }}", url: "{{ url }}" }
       when: ansible_distribution == 'Alpine'
 
-- name: Other system packages to work with vim plugins
-  tags: always
-  hosts: localhost
-  tasks:
-    - name:
-        Install sshfs because it works better with ALE linters than netrw and
-        scp; need fuse to unmount directories with fusermount -u
-      become: yes
-      package: { name: [sshfs, fuse] }
-    - name: jq for an ALE JSON fixer and for command line use
-      become: yes
-      package: { name: jq }
-    - name: jedi for use with Python
-      become: yes
-      package: { name: py3-jedi@edge-community }
-      when: ansible_distribution == 'Alpine'
-
 - name:
     Setup vimrc, do this last as the vimrc assumes packages are available and if
     another step fails this may leave vim difficult to start
