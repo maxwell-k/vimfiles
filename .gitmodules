@@ -1,60 +1,60 @@
-[submodule "vim/pack/submodules/opt/vader"]
-	path = vim/pack/submodules/opt/vader
+[submodule "pack/submodules/opt/vader"]
+	path = pack/submodules/opt/vader
 	url = https://github.com/junegunn/vader.vim
-[submodule "vim/pack/submodules/opt/gnupg"]
-	path = vim/pack/submodules/opt/gnupg
+[submodule "pack/submodules/opt/gnupg"]
+	path = pack/submodules/opt/gnupg
 	url = https://github.com/jamessan/vim-gnupg
-[submodule "vim/pack/submodules/start/commentary"]
-	path = vim/pack/submodules/start/commentary
+[submodule "pack/submodules/start/commentary"]
+	path = pack/submodules/start/commentary
 	url = https://github.com/tpope/vim-commentary
-[submodule "vim/pack/submodules/start/ayu"]
-	path = vim/pack/submodules/start/ayu
+[submodule "pack/submodules/start/ayu"]
+	path = pack/submodules/start/ayu
 	url = https://github.com/ayu-theme/ayu-vim
-[submodule "vim/pack/submodules/start/surround"]
-	path = vim/pack/submodules/start/surround
+[submodule "pack/submodules/start/surround"]
+	path = pack/submodules/start/surround
 	url = https://github.com/tpope/vim-surround
-[submodule "vim/pack/submodules/start/markdown"]
-	path = vim/pack/submodules/start/markdown
+[submodule "pack/submodules/start/markdown"]
+	path = pack/submodules/start/markdown
 	url = https://github.com/plasticboy/vim-markdown
-[submodule "vim/pack/submodules/start/toml"]
-	path = vim/pack/submodules/start/toml
+[submodule "pack/submodules/start/toml"]
+	path = pack/submodules/start/toml
 	url = https://github.com/cespare/vim-toml
-[submodule "vim/pack/submodules/start/maktaba"]
-	path = vim/pack/submodules/start/maktaba
+[submodule "pack/submodules/start/maktaba"]
+	path = pack/submodules/start/maktaba
 	url = https://github.com/google/vim-maktaba
-[submodule "vim/pack/submodules/start/ansible"]
-	path = vim/pack/submodules/start/ansible
+[submodule "pack/submodules/start/ansible"]
+	path = pack/submodules/start/ansible
 	url = https://github.com/pearofducks/ansible-vim
-[submodule "vim/pack/submodules/start/repeat"]
-	path = vim/pack/submodules/start/repeat
+[submodule "pack/submodules/start/repeat"]
+	path = pack/submodules/start/repeat
 	url = https://github.com/tpope/vim-repeat
-[submodule "vim/pack/submodules/start/ale"]
-	path = vim/pack/submodules/start/ale
+[submodule "pack/submodules/start/ale"]
+	path = pack/submodules/start/ale
 	url = https://github.com/dense-analysis/ale
-[submodule "vim/pack/submodules/opt/jedi"]
-	path = vim/pack/submodules/opt/jedi
+[submodule "pack/submodules/opt/jedi"]
+	path = pack/submodules/opt/jedi
 	url = https://github.com/davidhalter/jedi-vim
-[submodule "vim/pack/submodules/opt/svelte"]
-	path = vim/pack/submodules/opt/svelte
+[submodule "pack/submodules/opt/svelte"]
+	path = pack/submodules/opt/svelte
 	url = https://github.com/leafoftree/vim-svelte-plugin
-[submodule "vim/pack/submodules/opt/beancount"]
-	path = vim/pack/submodules/opt/beancount
+[submodule "pack/submodules/opt/beancount"]
+	path = pack/submodules/opt/beancount
 	url = https://github.com/nathangrigg/vim-beancount
-[submodule "vim/pack/submodules/opt/solarized8"]
-	path = vim/pack/submodules/opt/solarized8
+[submodule "pack/submodules/opt/solarized8"]
+	path = pack/submodules/opt/solarized8
 	url = https://github.com/lifepillar/vim-solarized8
-[submodule "vim/pack/submodules/opt/colorizer"]
-	path = vim/pack/submodules/opt/colorizer
+[submodule "pack/submodules/opt/colorizer"]
+	path = pack/submodules/opt/colorizer
 	url = https://github.com/chrisbra/Colorizer
-[submodule "vim/pack/submodules/opt/vinfo"]
-	path = vim/pack/submodules/opt/vinfo
+[submodule "pack/submodules/opt/vinfo"]
+	path = pack/submodules/opt/vinfo
 	url = https://github.com/alx741/vinfo
-[submodule "vim/pack/submodules/opt/terraform"]
-	path = vim/pack/submodules/opt/terraform
+[submodule "pack/submodules/opt/terraform"]
+	path = pack/submodules/opt/terraform
 	url = https://github.com/hashivim/vim-terraform
-[submodule "vim/pack/submodules/opt/dart"]
-	path = vim/pack/submodules/opt/dart
+[submodule "pack/submodules/opt/dart"]
+	path = pack/submodules/opt/dart
 	url = https://github.com/dart-lang/dart-vim-plugin
-[submodule "vim/pack/submodules/opt/todo.txt"]
-	path = vim/pack/submodules/opt/todo.txt
+[submodule "pack/submodules/opt/todo.txt"]
+	path = pack/submodules/opt/todo.txt
 	url = https://gitlab.com/dbeniamine/todo.txt-vim.git
