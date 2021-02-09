@@ -5,7 +5,6 @@
 # Usage:
 #
 #     ansible-playbook -i, -u $USER site.yaml
-#     ansible-playbook -i, -u $USER -t dart site.yaml
 #
 - name: Install vim
   tags: always
@@ -99,56 +98,6 @@
       become: yes
       package: { name: py3-jedi@edge-community }
       when: ansible_distribution == 'Alpine'
-
-- name: Install dart
-  tags: [never, dart]
-  hosts: localhost
-  tasks:
-    - name: Add the key specified by https://dart.dev/get-dart
-      become: yes
-      apt_key: { url: https://dl-ssl.google.com/linux/linux_signing_key.pub }
-      when: ansible_distribution in ('Ubuntu', 'Debian')
-    - name: Install repository specified by https://dart.dev/get-dart
-      become: yes
-      apt_repository:
-        repo:
-          deb [arch=amd64]
-          https://storage.googleapis.com/download.dartlang.org/linux/debian
-          stable main
-      when: ansible_distribution in ('Ubuntu', 'Debian')
-    - name: Install dart as explained https://dart.dev/get-dart
-      become: yes
-      package: { name: dart }
-      when: ansible_distribution in ('Ubuntu', 'Debian')
-    - name: Add the other dart binaries to path
-      when: ansible_distribution in ('Ubuntu', 'Debian')
-      become: yes
-      file:
-        state: link
-        src: /usr/lib/dart/bin/{{ item }}
-        path: /usr/local/bin/{{ item }}
-      loop:
-        - dartanalyzer
-        - dartdoc
-        - dartfmt
-        - dart2js
-        - dartdevc
-        - pub
-    - name: Install https://github.com/natebosch/dart_language_server
-      when: ansible_distribution in ('Ubuntu', 'Debian')
-      command: pub global activate dart_language_server
-      args:
-        creates: /home/{{ ansible_user }}/.pub-cache/bin/dart_language_server
-    - name: Include pub executables on PATH on Ubuntu and Debian
-      become: yes
-      when: ansible_distribution in ('Ubuntu', 'Debian')
-      copy:
-        dest: /etc/profile.d/dart.sh
-        mode: 0o444
-        content: |
-          if [ -d "$HOME/.pub-cache/bin" ] ; then
-            PATH="$PATH":"$HOME/.pub-cache/bin"
-          fi
 
 - name:
     Setup vimrc, do this last as the vimrc assumes packages are available and if
