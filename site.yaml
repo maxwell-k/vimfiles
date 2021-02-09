@@ -6,34 +6,6 @@
 #
 #     ansible-playbook -i, -u $USER site.yaml
 #
-- name: Install vim
-  tags: always
-  become: yes
-  hosts: localhost
-  tasks:
-    - when: ansible_distribution == 'Ubuntu'
-      name:
-        Update to a recent vim on Ubuntu using a PPA, which is a prerequisite
-        for tasks/matkaba.yaml
-      block:
-        - name: Install dependencies for apt Ansible module called via package
-          package: { name: [python-apt, aptitude] }
-        - name: Install dirmngr for apt_key
-          package: { name: dirmngr }
-        - name: Add apt key for Ubuntu ppas with recent vim
-          apt_key:
-            keyserver: "hkps://keyserver.ubuntu.com:443"
-            id: 4ab0f789cba31744cc7da76a8cf63ad3f06fc659
-        - name: Install Ubuntu ppas for a recent vim
-          apt_repository: { repo: "{{ item }}" }
-          loop:
-            - deb http://ppa.launchpad.net/jonathonf/vim/ubuntu {{
-              ansible_distribution_release }} main
-            - deb-src http://ppa.launchpad.net/jonathonf/vim/ubuntu {{
-              ansible_distribution_release }} main
-        - name: Install current vim on Ubuntu
-          apt: { name: "vim=2:8.1*", update_cache: yes }
-
 - name: osc52.vim
   tags: always
   hosts: localhost
