@@ -33,9 +33,6 @@
               ansible_distribution_release }} main
         - name: Install current vim on Ubuntu
           apt: { name: "vim=2:8.1*", update_cache: yes }
-    - name: Add the vi link on Alpine Linux
-      when: ansible_distribution == 'Alpine'
-      file: { state: link, src: /usr/bin/vim, path: /usr/local/bin/vi }
 
 - name: osc52.vim
   tags: always
