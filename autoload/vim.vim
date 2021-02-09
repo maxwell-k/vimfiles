@@ -43,4 +43,12 @@ endfunction "}}}1
 function! vim#new() abort "{{{1
  silent! 5new +setlocal\ buftype=nofile\ bufhidden=hide\ noswapfile<CR>
 endfunction "}}}1
+function! vim#spellfile() abort "{{{1
+  let l:path = resolve(expand('%'))
+  if ! maktaba#string#StartsWith(l:path, 'scp')
+    execute 'setlocal spellfile+='
+    \ . ( bufname('%') =~# '[' ? '.' : fnamemodify(l:path, ':h') )
+    \ . '/.en.utf-8.add'
+  endif
+endfunction "}}}1
 " vim: set foldmethod=marker foldlevel=0 :
