@@ -4,6 +4,5 @@
 "
 " Python filetype settings for working on personal Python code
 "
-" Use as set filetype=python.black.personal
+" Use as set filetype=python.personal
 let b:ale_python_black_options = '--line-length 79'
-let b:ale_fixers = get(b:, 'ale_fixers', []) + ['isort']
