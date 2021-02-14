@@ -9,6 +9,7 @@ setlocal foldtext=PythonFoldText()
 setlocal shiftwidth=4
 setlocal softtabstop=4
 setlocal suffixesadd+=.py
+unlet! b:ale_fixers  " reset for use in autoload/toggle.vim
 " 5.1. Start completion               Ctrl+Space
 " 5.2. Go to definition               <Leader>d  (includes recursive lookups)
 let g:jedi#goto_definitions_command = '<leader>jd'

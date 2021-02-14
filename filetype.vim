@@ -27,7 +27,7 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile *.vader setfiletype vader
   autocmd BufRead,BufNewFile */example.yaml setfiletype yaml.ansible
   autocmd BufRead,BufNewFile */playbooks/*.yaml setfiletype yaml.ansible
-  autocmd BufRead,BufNewFile */site-packages/**.py setfiletype python
+  autocmd BufRead,BufNewFile */site-packages/*.py setfiletype python
   autocmd BufRead,BufNewFile */src/template.html setfiletype svelte
   autocmd BufRead,BufNewFile APKBUILD setfiletype sh.apkbuild
   autocmd BufRead,BufNewFile Jenkinsfile setfiletype groovy
@@ -43,16 +43,13 @@ augroup filetypedetect
 
 " Tests described below
 
-  autocmd BufRead,BufNewFile /home/**.py setfiletype python.black.personal
+  autocmd BufRead,BufNewFile ~/*.py setfiletype python.black.isort.personal
   autocmd BufRead,BufNewFile /tmp/man.* setfiletype man
 
   " `vim ~/example.py`: python.black.personal
   " `man man`: man
 
-" No tests
-
-  if filereadable('filetype.gitignored.vim')
-    source filetype.gitignored.vim
-  endif
+" No tests, may override above with setlocal filetype= see :help :setfiletype
+  runtime filetype.gitignored.vim
 
 augroup END

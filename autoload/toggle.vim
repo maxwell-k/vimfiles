@@ -49,11 +49,11 @@ function! toggle#toggle_shiftwidth() abort "{{{1
 endfunction "}}}1
 function! toggle#toggle_python() abort "{{{1
   if &filetype ==# 'python'
-    setlocal filetype=python.legacy
-  elseif &filetype ==# 'python.legacy'
     setlocal filetype=python.black
   elseif &filetype ==# 'python.black'
-    setlocal filetype=python.black.personal
+    setlocal filetype=python.black.isort
+  elseif &filetype ==# 'python.black.isort'
+    setlocal filetype=python.black.isort.personal
   else
     setlocal filetype=python
   end
