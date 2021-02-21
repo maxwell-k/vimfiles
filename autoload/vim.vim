@@ -44,11 +44,22 @@ function! vim#new() abort "{{{1
  silent! 5new +setlocal\ buftype=nofile\ bufhidden=hide\ noswapfile<CR>
 endfunction "}}}1
 function! vim#spellfile() abort "{{{1
-  let l:path = resolve(expand('%'))
-  if ! maktaba#string#StartsWith(l:path, 'scp')
-    execute 'setlocal spellfile+='
-    \ . ( bufname('%') =~# '[' ? '.' : fnamemodify(l:path, ':h') )
-    \ . '/.en.utf-8.add'
+  " Sometimes add $PWD/.en.utf-8.add to spellfile
+
+  " If editing over netrw, e.g. http: or scp:
+  if exists('b:netrw_lastfile')
+    return
   endif
+
+  " Handle []s in path
+  if bufname('%') =~# '['
+    setlocal spellfile+=./.en.utf-8.add
+    return
+  endif
+
+  let l:cmd = 'setlocal spellfile+='
+  let l:cmd .= fnamemodify(resolve(expand('%')), ':h')
+  let l:cmd .= '/.en.utf-8.add'
+  execute l:cmd
 endfunction "}}}1
 " vim: set foldmethod=marker foldlevel=0 :
