@@ -7,7 +7,6 @@ let g:Todo_txt_do_not_map=1
 packadd todo.txt
 runtime OPT ftplugin/todo.vim
 setlocal nowrap
-setlocal autowriteall
 setlocal omnifunc=todo#Complete
 
 nnoremap <script> <silent> <buffer>

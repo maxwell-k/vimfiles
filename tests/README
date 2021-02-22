@@ -1,27 +1,26 @@
-.. tests/README
+<!--
+   tests/README
    Copyright 2020 Keith Maxwell
    SPDX-License-Identifier: CC-BY-SA-4.0
+-->
 
-Introduction
-============
+# Introduction
 
-This folder contains tests for vim written using both `runVimTests` and
-`vader`. `vader` is installed as a git sub-module. To run both sets of tests
-on Alpine Linux use `make test`.
+This folder contains tests for vim written using both `runVimTests` and `vader`.
+`vader` is installed as a git sub-module. To run both sets of tests on Alpine
+Linux use `make test`.
 
-Vader usage
-===========
+# Vader usage
 
-Run inside vim: ``:packadd vader | Vader %``
-Run from command line: ``vim '+packadd vader | Vader! index.vader'``
-Run all tests: ``sh run.sh``
+- Run inside vim: `:packadd vader | Vader %`
+- Run from command line: `vim '+packadd vader | Vader! index.vader'`
+- Run all tests: `sh run.sh`
 
-Examples are in ``/usr/share/vim/vimfiles/pack/ac/opt/vader/test/vader.vader``
+Examples are in `/usr/share/vim/vimfiles/pack/ac/opt/vader/test/vader.vader`
 
-Vader authoring notes
-=====================
+# Vader authoring notes
 
--   Avoid Before and After because the can impact on included files
--   Move buffers with `:buffer` in an Execute block
+- Avoid Before and After because the can impact on included files
+- Move buffers with `:buffer` in an Execute block
 
-.. vim: filetype=rst
+<!-- vim: set filetype=markdown : -->

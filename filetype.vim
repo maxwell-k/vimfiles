@@ -36,7 +36,9 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile known_hosts setfiletype known_hosts
   autocmd BufRead,BufNewFile secret setfiletype gopass
   autocmd BufRead,BufNewFile todo.txt setfiletype todo
+  autocmd BufRead,BufNewFile someday-maybe.txt setfiletype todo
   autocmd BufRead,BufNewFile done.txt setfiletype todo
+  autocmd BufRead,BufNewFile tickler.txt setfiletype todo
 
   " [1] also need to clear augroup ansible_vim_fthosts see
   " ./after/ftplugin/ansible.vim
