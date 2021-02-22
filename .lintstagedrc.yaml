@@ -1,4 +1,5 @@
 "*.vim": ["awk '$0 ~ /.{81}/ { exit 1 }'", vint -s]
 ./.gitignore: sort -c
 ./README: prettier --prose-wrap always --list-different
+./tests/README: prettier --prose-wrap always --list-different
 ./vimrc: ["awk '$0 ~ /.{81}/ { exit 1 }'", vint -s]
