@@ -6,3 +6,4 @@ highlight default link TodoPriorityA Identifier
 highlight default link TodoPriorityB Identifier
 highlight default link TodoPriorityC Identifier
 highlight link TodoDueToday SpellBad
+" see also after/syntax/todo.vim

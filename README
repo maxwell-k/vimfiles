@@ -8,10 +8,12 @@ SPDX-License-Identifier: CC-BY-SA-4.0
 
 ## Quick start
 
-- Clone this repository and its sub-modules as `~/.vim`
-- Run `ansible-playbook -i, site.yaml`
+Clone this repository and its sub-modules as `~/.vim`:
 
-Supported operating systems: recent versions of Alpine Linux, Debian and Ubuntu.
+    git clone --recurse-submodules <url>/vimfiles ~/.vim
+
+Regularly tested on Alpine Linux and Mac OS. Infrequently tested on Debian and
+Ubuntu.
 
 ## Contents
 
