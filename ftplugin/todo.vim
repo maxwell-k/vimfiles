@@ -8,6 +8,8 @@ packadd todo.txt
 runtime OPT ftplugin/todo.vim
 setlocal nowrap
 setlocal omnifunc=todo#Complete
+setlocal isfname-=+
+setlocal path+=./Projects
 
 nnoremap <script> <silent> <buffer>
   \ <localleader>tD :call todo#RemoveCompleted()<CR>
