@@ -36,6 +36,7 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile known_hosts setfiletype known_hosts
   autocmd BufRead,BufNewFile secret setfiletype gopass
   autocmd BufRead,BufNewFile done.txt setfiletype todo
+  autocmd BufRead,BufNewFile in-basket.txt setfiletype todo
   autocmd BufRead,BufNewFile someday-maybe.txt setfiletype todo
   autocmd BufRead,BufNewFile tickler.txt setfiletype todo
   autocmd BufRead,BufNewFile todo.txt setfiletype todo
