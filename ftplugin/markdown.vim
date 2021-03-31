@@ -40,3 +40,5 @@ call <sid>MapNotHasmapto(']c', 'Markdown_MoveToCurHeader')
 
 let g:vim_markdown_fenced_languages = ['viml=vim', 'py=python']
 let g:vim_markdown_strikethrough = 1
+
+runtime ftplugin/todo.vim
