@@ -30,3 +30,8 @@ syntax match mkdWordInQuotes '\v"[^"]*"' contains=@NoSpell
 syntax match mkdWordInQuotes "\v '[^']*'" contains=@NoSpell
 syntax cluster mkdNonListItem add=mkdWordInQuotes
 syntax cluster mkdHeadingContains add=mkdWordInQuotes
+
+syntax keyword htmlTodo contained TODO FIXME
+highlight link htmlTodo Todo
+syn region htmlCommentPart contained start=+--+ end=+--\s*+
+  \ contains=htmlCommentNested,@htmlPreproc,@Spell,htmlTodo
