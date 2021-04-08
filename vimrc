@@ -28,6 +28,7 @@ set expandtab
 set foldlevelstart=99
 set formatlistpat=^\\s*[0-9-#•]\\+[.\ ]\\s*\\\|^\\s*[a-z]\\.\\s
 set formatoptions+=n " format lists
+set grepprg=git\ grep\ -n
 set guioptions+=c " keyboard workaround for file changed dialog
 set guioptions-=L " no scrollbar
 set guioptions-=T " no toolbar
