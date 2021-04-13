@@ -8,12 +8,6 @@ elseif exists('g:Todo_txt_prefix_creation_date')
     unlet g:Todo_txt_prefix_creation_date
 endif
 
-if &filetype==#'markdown'
-  let g:TodoTxtForceDoneName='../done.txt'
-else
-  let g:TodoTxtForceDoneName='done.txt'
-endif
-
 let g:Todo_txt_do_not_map=1
 packadd todo.txt
 runtime OPT ftplugin/todo.vim
@@ -23,6 +17,12 @@ setlocal isfname-=+
 setlocal path+=./Projects
 setlocal suffixesadd+=.md
 
-nnoremap <script> <silent> <buffer>
-  \ <localleader>tD :call todo#RemoveCompleted()<CR>
+if stridx(&filetype, 'markdown') >= 0
+  nnoremap <script> <silent> <buffer>
+    \ <localleader>tD :call vim#RemoveCompletedWrapped()<CR>
+else
+  nnoremap <script> <silent> <buffer>
+    \ <localleader>tD :call todo#RemoveCompleted()<CR>
+endif
+
 nmap <silent> <buffer> <localleader>td <Plug>DoToggleMarkAsDone
