@@ -12,4 +12,4 @@
 let b:ale_python_black_options = ''
 let b:ale_fixers = get(b:, 'ale_fixers', []) + ['black']
 " https://black.readthedocs.io/en/stable/compatible_configs.html#flake8
-let b:ale_python_flake8_options = '--ignore=E203,W503 --max-line-length=88'
+let b:ale_python_flake8_options = '--max-line-length=88 --ignore=E203,W503'
