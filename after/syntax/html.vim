@@ -16,3 +16,10 @@ endif
 " don't spell check modelines
 syn match htmlModeline '^<!-- vim[:] set [^:]* : -->$' contains=@NoSpell
 highlight link htmlModeline Comment
+
+" used inside markdown documents
+syntax keyword htmlTodo contained TODO FIXME
+highlight link htmlTodo Todo
+syn region htmlComment matchgroup=htmlComment start=+<!--\%(-\?>\)\@!+
+  \ end=+--!\?>+ contains=htmlCommentNested,@htmlPreProc,@Spell,htmlTodo
+  \ keepend
