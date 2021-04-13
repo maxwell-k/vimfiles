@@ -62,4 +62,10 @@ function! vim#spellfile() abort "{{{1
   let l:cmd .= '/.en.utf-8.add'
   execute l:cmd
 endfunction "}}}1
+function! vim#RemoveCompletedWrapped() abort "{{{1
+  "Call todo#RemoveComplete with a specific file set for done
+  let g:TodoTxtForceDoneName='../done.txt'
+  call todo#RemoveCompleted()
+  unlet g:TodoTxtForceDoneName
+endfunction
 " vim: set foldmethod=marker foldlevel=0 :
