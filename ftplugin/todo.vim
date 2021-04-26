@@ -17,12 +17,6 @@ setlocal isfname-=+
 setlocal path+=./Projects
 setlocal suffixesadd+=.md
 
-if stridx(&filetype, 'markdown') >= 0
-  nnoremap <script> <silent> <buffer>
-    \ <localleader>tD :call vim#RemoveCompletedWrapped()<CR>
-else
-  nnoremap <script> <silent> <buffer>
-    \ <localleader>tD :call todo#RemoveCompleted()<CR>
-endif
-
+nnoremap <script> <silent> <buffer>
+  \ <localleader>tD :call vim#RemoveCompletedWrapped()<CR>
 nmap <silent> <buffer> <localleader>td <Plug>DoToggleMarkAsDone
