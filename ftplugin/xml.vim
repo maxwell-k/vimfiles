@@ -6,3 +6,5 @@ let g:xml_syntax_folding=1
 let b:ale_fixers = ['xmllint',]
 setlocal nowrap
 setlocal foldmethod=syntax
+setlocal suffixesadd+=.py
+setlocal includeexpr=substitute(v:fname,'\\.','/','g')
