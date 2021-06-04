@@ -2,7 +2,7 @@
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
-" hex codes from /usr/share/vim/vimfiles/pack/ansible/start/ayu/colors/ayu.vim
+" hex codes from pack/submodules/start/ayu/colors/ayu.vim
 runtime colors/ayu.vim
 let g:colors_name='mine'
 highlight NonText guifg=#F29718
@@ -12,3 +12,5 @@ highlight StatusLine guibg=#828C99 guifg=#14191F
 highlight StatusLineNC guibg=#3E4B59 guifg=#000000
 highlight SpecialKey gui=bold guifg=#cb4b16
 highlight Statement guifg=#E6B673
+highlight ToDoOverDueDate cterm=bold guifg=#F07178
+highlight CursorLine guibg=#3E4B59

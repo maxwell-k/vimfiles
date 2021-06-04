@@ -4,8 +4,9 @@
 "
 if &filetype==#'todo'
   let g:Todo_txt_prefix_creation_date=1
+  setlocal cursorline
 elseif exists('g:Todo_txt_prefix_creation_date')
-    unlet g:Todo_txt_prefix_creation_date
+  unlet g:Todo_txt_prefix_creation_date
 endif
 
 let g:Todo_txt_do_not_map=1
@@ -16,13 +17,8 @@ setlocal omnifunc=todo#Complete
 setlocal isfname-=+
 setlocal path+=./Projects
 setlocal suffixesadd+=.md
+setlocal colorcolumn=
 
-if stridx(&filetype, 'markdown') >= 0
-  nnoremap <script> <silent> <buffer>
-    \ <localleader>tD :call vim#RemoveCompletedWrapped()<CR>
-else
-  nnoremap <script> <silent> <buffer>
-    \ <localleader>tD :call todo#RemoveCompleted()<CR>
-endif
-
+nnoremap <script> <silent> <buffer>
+  \ <localleader>tD :call vim#RemoveCompletedWrapped()<CR>
 nmap <silent> <buffer> <localleader>td <Plug>DoToggleMarkAsDone

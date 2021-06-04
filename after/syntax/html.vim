@@ -13,13 +13,17 @@ else
     highlight htmlDel cterm=reverse
 endif
 
-" don't spell check modelines
-syn match htmlModeline '^<!-- vim[:] set [^:]* : -->$' contains=@NoSpell
-highlight link htmlModeline Comment
-
 " used inside markdown documents
 syntax keyword htmlTodo contained TODO FIXME
 highlight link htmlTodo Todo
 syn region htmlComment matchgroup=htmlComment start=+<!--\%(-\?>\)\@!+
   \ end=+--!\?>+ contains=htmlCommentNested,@htmlPreProc,@Spell,htmlTodo
   \ keepend
+
+" don't spell check modelines
+" see tests/manual/example.html for a manual test
+" make sure the match group below is defined after htmlComment
+" see :help syn-priority - 'the item defined last has priority'
+syn match htmlModeline '^<!-- vim[:] set [^:]* : -->$' contains=@NoSpell
+highlight link htmlModeline Comment
+

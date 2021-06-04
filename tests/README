@@ -16,7 +16,7 @@ Linux use `make test`.
 - Run from command line: `vim '+packadd vader | Vader! index.vader'`
 - Run all tests: `sh run.sh`
 
-Examples are in `/usr/share/vim/vimfiles/pack/ac/opt/vader/test/vader.vader`
+Examples are in `pack/submodules/opt/vader/test/vader.vader`
 
 # Vader authoring notes
 

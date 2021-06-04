@@ -64,8 +64,18 @@ function! vim#spellfile() abort "{{{1
 endfunction "}}}1
 function! vim#RemoveCompletedWrapped() abort "{{{1
   "Call todo#RemoveComplete with a specific file set for done
-  let g:TodoTxtForceDoneName='../done.txt'
+  let l:forced = 0
+  if stridx(&filetype, 'markdown') >= 0
+    let g:TodoTxtForceDoneName = '../done.txt'
+    let l:forced = 1
+  endif
+  if expand('%') =~# 'someday-maybe.txt$\|in-basket.txt$'
+    let g:TodoTxtForceDoneName = 'done.txt'
+    let l:forced = 1
+  endif
   call todo#RemoveCompleted()
-  unlet g:TodoTxtForceDoneName
+  if l:forced
+    unlet g:TodoTxtForceDoneName
+  endif
 endfunction
 " vim: set foldmethod=marker foldlevel=0 :
