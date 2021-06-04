@@ -4,6 +4,7 @@
 "
 if &filetype==#'todo'
   let g:Todo_txt_prefix_creation_date=1
+  setlocal cursorline
 elseif exists('g:Todo_txt_prefix_creation_date')
   unlet g:Todo_txt_prefix_creation_date
 endif
@@ -16,6 +17,7 @@ setlocal omnifunc=todo#Complete
 setlocal isfname-=+
 setlocal path+=./Projects
 setlocal suffixesadd+=.md
+setlocal colorcolumn=
 
 nnoremap <script> <silent> <buffer>
   \ <localleader>tD :call vim#RemoveCompletedWrapped()<CR>
