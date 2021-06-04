@@ -2,7 +2,7 @@
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
-" hex codes from /usr/share/vim/vimfiles/pack/ansible/start/ayu/colors/ayu.vim
+" hex codes from pack/submodules/start/ayu/colors/ayu.vim
 runtime colors/ayu.vim
 let g:colors_name='mine'
 highlight NonText guifg=#F29718
