@@ -2,6 +2,10 @@
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
+
+" sourced early so that we can override settings like textwidth
+runtime ftplugin/todo.vim
+
 scriptencoding utf-8
 setlocal listchars+=conceal:▭
 setlocal spell
@@ -40,5 +44,3 @@ call <sid>MapNotHasmapto(']c', 'Markdown_MoveToCurHeader')
 
 let g:vim_markdown_fenced_languages = ['viml=vim', 'py=python']
 let g:vim_markdown_strikethrough = 1
-
-runtime ftplugin/todo.vim
