@@ -5,7 +5,7 @@
 if &filetype==#'todo'
   let g:Todo_txt_prefix_creation_date=1
 elseif exists('g:Todo_txt_prefix_creation_date')
-    unlet g:Todo_txt_prefix_creation_date
+  unlet g:Todo_txt_prefix_creation_date
 endif
 
 let g:Todo_txt_do_not_map=1
