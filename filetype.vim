@@ -46,7 +46,7 @@ augroup filetypedetect
 
 " Tests described below
 
-  autocmd BufRead,BufNewFile ~/*.py setfiletype python.black.isort.personal
+  autocmd BufRead,BufNewFile ~/*.py setfiletype python.black.reorder.personal
   autocmd BufRead,BufNewFile /tmp/man.* setfiletype man
 
   " `vim ~/example.py`: python.black.personal

@@ -6,7 +6,8 @@ scriptencoding utf-8
 call ale#linter#Define(fnamemodify(expand('<sfile>:p:h'), ':t'), {
 \   'name': 'mkdHtml',
 \   'executable': 'sed',
-\   'command': function('mkdHtml#GetCommand'),
+\   'command': "sed -n -e '/````*html/=' %t",
+\   'cwd': '%s:h',
 \   'callback': 'mkdHtml#Handle',
 \   'output_stream': 'stdout',
 \})

@@ -92,6 +92,7 @@ vnoremap <Leader>k <ESC>:call vim#keep()<CR>
         "<Leader>l see above
  noremap <Leader>m :/<<<<<<<\\|=======\\|>>>>>>><CR>
  noremap <Leader>n :call vim#new()<CR>
+ noremap <Leader>o :call toggle#toggle_python_import_ordering()<CR>
  noremap <Leader>p :call toggle#toggle_python()<CR>
  noremap <Leader>s :call toggle#toggle_shiftwidth()<CR>
  noremap <Leader>S :call vim#scriptnames()<CR>
