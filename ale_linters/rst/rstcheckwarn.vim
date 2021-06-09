@@ -26,17 +26,11 @@ function! ale_linters#rst#rstcheckwarn#Handle(buffer, lines) abort
     return l:output
 endfunction
 
-function! ale_linters#rst#rstcheckwarn#GetCommand(buffer) abort
-    return ale#path#BufferCdString(a:buffer)
-    \   . 'rstcheck --report warning'
-    \   . ' %t'
-endfunction
-
-
 call ale#linter#Define('rst', {
 \   'name': 'rstcheckwarn',
 \   'executable': 'rstcheck',
-\   'command': function('ale_linters#rst#rstcheckwarn#GetCommand'),
+\   'command': 'rstcheck --report warning %t',
+\   'cwd': '%s:h',
 \   'callback': 'ale_linters#rst#rstcheckwarn#Handle',
 \   'output_stream': 'both',
 \})

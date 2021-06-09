@@ -1,13 +1,7 @@
 " autoload/sed.vim
-" Copyright 2020 Keith Maxwell
+" Copyright 2020, 2021 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
-function! sed#GetCommand(buffer) abort
-    return ale#path#BufferCdString(a:buffer)
-    \   . 'sed -n -e "/.\{80\}/=" '
-    \   . ' %t'
-endfunction
-
 function! sed#Handle(buffer, lines) abort
     let l:output = []
     for l:number in a:lines
