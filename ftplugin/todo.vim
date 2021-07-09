@@ -22,3 +22,4 @@ setlocal colorcolumn=
 nnoremap <script> <silent> <buffer>
   \ <localleader>tD :call vim#RemoveCompletedWrapped()<CR>
 nmap <silent> <buffer> <localleader>td <Plug>DoToggleMarkAsDone
+nnoremap <script> <silent> <buffer> <localleader>ts :call todo#SortDue()<CR>

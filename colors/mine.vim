@@ -14,3 +14,7 @@ highlight SpecialKey gui=bold guifg=#cb4b16
 highlight Statement guifg=#E6B673
 highlight ToDoOverDueDate cterm=bold guifg=#F07178
 highlight CursorLine guibg=#3E4B59
+highlight ToDoPriorityA cterm=bold
+highlight link ToDoPriorityB NONE
+highlight link ToDoPriorityC NONE
+highlight link TodoURL Underlined
