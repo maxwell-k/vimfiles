@@ -1,6 +1,6 @@
 /.netrwhist
 /filetype.gitignored.vim
 /pack/gitignored/
-/plugin/mappings.vim
+/plugin/
 /spell/
 /tests/vader.sqlite
