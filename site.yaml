@@ -1,0 +1,45 @@
+# Run as:
+#
+#     ansible-playbook -i, site.yaml
+#
+- name: Download scrips to the plugin/ directory
+  hosts: localhost
+  tasks:
+    - name: Create the plugin folder
+      file: { state: directory, path: ./plugin/, mode: 0o755 }
+    - name: Download osc52.vim
+      get_url:
+        dest: ./plugin/osc52.vim
+        url: https://raw.githubusercontent.com/libapps/libapps-mirror/master/hterm/etc/osc52.vim
+    - name:
+        Download fzf.vim, on MacOSX it isn't added to runtimepath, on Alpine
+        Linux the fzf-vim package also includes documentation
+      get_url:
+        dest: ./plugin/fzf.vim
+        url: https://raw.githubusercontent.com/junegunn/fzf/master/plugin/fzf.vim
+      when: ansible_distribution in ('MacOSX')
+
+- name: Tag vim help files, these tasks always report changes
+  hosts: localhost
+  tasks:
+    - name: Create a temporary file for use as a script
+      tempfile: { state: file, suffix: .vim }
+      register: site_script
+    - name: List optional packages
+      find: { paths: ~/.vim/pack/submodules/opt/, file_type: directory }
+      register: site_find
+    - name:
+        Write the commands to the script to avoid an error about too many
+        command line flags
+      copy:
+        dest: "{{ site_script.path }}"
+        content: |
+          {% for i in  site_find.files %}
+          packadd {{ i.path | basename }}
+          {% endfor %}
+          helptags ALL
+          quit
+        mode: 0o700
+    - name: Run the script file with vim
+      command: vim -S {{ site_script.path }}
+      changed_when: true
