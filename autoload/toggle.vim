@@ -52,8 +52,6 @@ function! toggle#toggle_python() abort "{{{1
     setlocal filetype=python.black
   elseif &filetype ==# 'python.black'
     setlocal filetype=python.black.isort
-  elseif &filetype ==# 'python.black.isort'
-    setlocal filetype=python.black.isort.personal
   else
     setlocal filetype=python
   end
