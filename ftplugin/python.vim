@@ -21,3 +21,14 @@ let g:jedi#rename_command = '<leader>jr'
 " 5.7. Show name usages               <leader>n  [clashes]
 let g:jedi#usages_command = '<leader>jn'
 " 5.8. Open module by name            :Pyimport
+let b:ale_linters = ['flake8', 'mypy', 'pylsp']
+let b:ale_python_flake8_options = '--max-line-length=88'
+let b:ale_python_pylsp_config = {
+  \   'pylsp': {
+  \     'plugins': {
+  \       'pycodestyle': {
+  \         'enabled': v:false
+  \       }
+  \     }
+  \   },
+  \ }
