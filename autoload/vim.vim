@@ -51,8 +51,8 @@ function! vim#spellfile() abort "{{{1
     return
   endif
 
-  " Handle []s in path
-  if bufname('%') =~# '[' || bufname('%') =~# '@'
+  " Handle special characters in path
+  if bufname('%') =~# '[' || bufname('%') =~# '@' || bufname('%') =~# ' '
     setlocal spellfile+=./.en.utf-8.add
     return
   endif
