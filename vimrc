@@ -63,7 +63,7 @@ set splitbelow
 set termguicolors
 set wildmenu
 " Enable colours inside tmux see :help xterm-true-color
-if $TERM ==# 'tmux'
+if $TERM ==# 'tmux-256color'
   let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
   let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
 endif
