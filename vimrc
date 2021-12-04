@@ -82,6 +82,7 @@ unlet s:list_settings
 " Using <Leader>, alphabetically:
  noremap <Leader>aq :call ale#quit#Mapping()<CR>
  noremap <Leader>ad :call toggle#toggle_ale()<CR>
+ noremap <Leader>aD :call toggle#toggle_python_linters()<CR>
  noremap <Leader>b :call toggle#toggle_colors()<CR>
 call opfunc#opfuncmap('c') " straight yank
  noremap <Leader>C :call SendViaOSC52(join(getline(1,'$'),'\n'))<CR>

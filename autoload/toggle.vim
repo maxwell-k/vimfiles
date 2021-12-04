@@ -57,6 +57,17 @@ function! toggle#toggle_python() abort "{{{1
   end
   setlocal filetype
 endfunction "}}}1
+function! toggle#toggle_python_linters(...) abort "{{{1
+  if get(b:, 'ale_linters', []) == ['flake8', 'pyright']
+    let b:ale_linters = ['flake8']
+  else
+    let b:ale_linters = ['flake8', 'pyright']
+  end
+  if a:0 > 0
+    let b:ale_linters = ['flake8', 'pyright']
+  end
+  redraw | echom 'let b:ale_linters = '.string(b:ale_linters)
+endfunction "}}}1
 function! toggle#toggle_python_import_ordering() abort "{{{1
   let l:after = substitute(&filetype, '.isort', '.reorder', '')
   if &filetype ==# l:after
