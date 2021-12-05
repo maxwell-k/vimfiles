@@ -62,8 +62,8 @@ set spellfile=~/.vim/spell/en.utf-8.add " second file in autocommand below
 set splitbelow
 set termguicolors
 set wildmenu
-" Enable colours inside tmux see :help xterm-true-color
-if $TERM ==# 'tmux-256color'
+" See help xterm-true-color
+if $TERM !~# 'xterm*'
   let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
   let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
 endif
