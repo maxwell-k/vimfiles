@@ -6,9 +6,8 @@
 
 # Introduction
 
-This folder contains tests for vim written using both `runVimTests` and `vader`.
-`vader` is installed as a git sub-module. To run both sets of tests on Alpine
-Linux use `make test`.
+This folder contains tests for vim. Some are written using `vader`. `vader` is
+installed as a git sub-module. To run all of these use `./run.sh`
 
 # Vader usage
 
