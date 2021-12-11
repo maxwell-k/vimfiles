@@ -109,7 +109,6 @@ call opfunc#opfuncmap('y')
 vnoremap <Leader>= :<C-U>call vim#sum()<CR>
  noremap <Leader>\ :s,\\,/,g<CR>
  noremap <Leader>/ :s,/,\\,g<CR>
-        "<Leader>] see ftplugin/markdown-toc.vim
 " Other:
  noremap <C-L> :noh<CR><C-L>
  noremap Y y$
