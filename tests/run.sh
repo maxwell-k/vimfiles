@@ -20,6 +20,8 @@ case "$0" in
 		{ printf 'vader tests failed\n'; exit 1 ; }
 		vim "+source test-transform.vim" ||
 		{ printf 'test-transform.vim tests failed\n'; exit 1 ; }
+		python3 file-type-detection.py ||
+		{ printf 'file-type-detection.py failed\n'; exit 1 ; }
 		unset -f vader vader_no_bang ;
 		;;
 esac
