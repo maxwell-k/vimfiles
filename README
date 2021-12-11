@@ -42,6 +42,15 @@ quickly.
 
 The following plugins are not currently in use:
 
+## `opt/jedi`
+
+- https://github.com/davidhalter/jedi-vim
+- switched to pyright via ALE
+
+### `opt/gnupg`
+
+- https://github.com/jamessan/vim-gnupg
+
 ### `start/fzf`
 
 - https://github.com/junegunn/fzf
