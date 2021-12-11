@@ -12,12 +12,16 @@ Clone this repository and its sub-modules as `~/.vim`:
 
     git clone --recurse-submodules <url>/vimfiles ~/.vim
 
+Update the help files and download a few scripts:
+
+    ansible-playbook -i, site.yaml
+
 Regularly tested on Alpine Linux and Mac OS. Infrequently tested on Debian and
 Ubuntu.
 
 ## Contents
 
-This repository contains about 1,000 lines of vim script accumulated since 2012.
+This repository contains about 1,300 lines of vim script accumulated since 2012.
 Much of it will not be of interest to anyone but the original author; a few
 "features" may be:
 
@@ -28,24 +32,6 @@ Much of it will not be of interest to anyone but the original author; a few
 - A file type plugin for automatically committing to Git
 - A few extra linters or fixers for https://github.com/dense-analysis/ale
 
-## System packages
-
-As well as installing vim, `site.yaml` will install the system packages below:
-
-| Package            | Debian/Ubuntu | Alpine Linux |
-| ------------------ | ------------- | ------------ |
-| `aptitutde`        | x             |              |
-| `build-essential`  | x             |              |
-| `dart`             | x             |              |
-| `dirmngr`          | x             |              |
-| `fuse`             | x             | x            |
-| `fzf`              | x             | x            |
-| `fzf-vim`          |               | x            |
-| `jq`               | x             | x            |
-| `python-apt`       | x             |              |
-| `sqlite / sqlite3` | x             | x            |
-| `sshfs`            | x             | x            |
-
 ## Git configuration
 
 This repository uses approximately twenty git sub-modules. It may be helpful to
@@ -55,6 +41,15 @@ quickly.
 ## Removed sub-modules
 
 The following plugins are not currently in use:
+
+## `opt/jedi`
+
+- https://github.com/davidhalter/jedi-vim
+- switched to pyright via ALE
+
+### `opt/gnupg`
+
+- https://github.com/jamessan/vim-gnupg
 
 ### `start/fzf`
 

@@ -4,3 +4,4 @@
 /plugin/
 /spell/
 /tests/vader.sqlite
+/tests/file-type-detection.txt

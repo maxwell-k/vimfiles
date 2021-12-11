@@ -10,16 +10,5 @@ setlocal shiftwidth=4
 setlocal softtabstop=4
 setlocal suffixesadd+=.py
 unlet! b:ale_fixers  " reset for use in autoload/toggle.vim
-" 5.1. Start completion               Ctrl+Space
-" 5.2. Go to definition               <Leader>d  (includes recursive lookups)
-let g:jedi#goto_definitions_command = '<leader>jd'
-" 5.3. Go to assignment               <leader>g  [clashes]
-let g:jedi#goto_assignments_command = '<leader>jg'
-" 5.5. Show documentation             K
-" 5.6. Rename variables               <leader>r
-let g:jedi#rename_command = '<leader>jr'
-" 5.7. Show name usages               <leader>n  [clashes]
-let g:jedi#usages_command = '<leader>jn'
-" 5.8. Open module by name            :Pyimport
 call toggle#toggle_python_linters('default')
 let b:ale_python_flake8_options = '--max-line-length=88'

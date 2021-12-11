@@ -6,6 +6,4 @@
 Include: Python.vader
 
 " ALE linters
-Include: test_terraform_handler.vader
-Include: test_terraform_terraform_command_callback.vader
 Include: test_beanformat_fixer_callback.vader

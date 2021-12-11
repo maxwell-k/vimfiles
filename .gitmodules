@@ -1,9 +1,6 @@
 [submodule "pack/submodules/opt/vader"]
 	path = pack/submodules/opt/vader
 	url = https://github.com/junegunn/vader.vim
-[submodule "pack/submodules/opt/gnupg"]
-	path = pack/submodules/opt/gnupg
-	url = https://github.com/jamessan/vim-gnupg
 [submodule "pack/submodules/start/commentary"]
 	path = pack/submodules/start/commentary
 	url = https://github.com/tpope/vim-commentary
@@ -31,9 +28,6 @@
 [submodule "pack/submodules/start/ale"]
 	path = pack/submodules/start/ale
 	url = https://github.com/dense-analysis/ale
-[submodule "pack/submodules/opt/jedi"]
-	path = pack/submodules/opt/jedi
-	url = https://github.com/davidhalter/jedi-vim
 [submodule "pack/submodules/opt/svelte"]
 	path = pack/submodules/opt/svelte
 	url = https://github.com/leafoftree/vim-svelte-plugin

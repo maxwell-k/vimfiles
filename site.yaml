@@ -10,7 +10,7 @@
     - name: Download osc52.vim
       get_url:
         dest: ./plugin/osc52.vim
-        url: https://raw.githubusercontent.com/libapps/libapps-mirror/master/hterm/etc/osc52.vim
+        url: https://raw.githubusercontent.com/libapps/libapps-mirror/main/hterm/etc/osc52.vim
     - name:
         Download fzf.vim, on MacOSX it isn't added to runtimepath, on Alpine
         Linux the fzf-vim package also includes documentation
