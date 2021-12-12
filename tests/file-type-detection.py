@@ -4,26 +4,19 @@ Usage:
 
     python3 tests/file-type-detection.py
 
+Only uses the standard library. Includes tests of test code inline.
 """
 from pathlib import Path
 from subprocess import check_call
 
 
-ROOT = Path(__file__).parent
-DATA = ROOT / "file-type-detection"
-OUTPUT = ROOT / 'file-type-detection.txt'
+TESTS = Path(__file__).parent
+DATA = TESTS / "file-type-detection"
+OUTPUT = TESTS / 'file-type-detection.txt'
 
-def clean(before: str) -> str:
-    after = before.removeprefix("# ")
-    after = after.removeprefix("// ")
-    return after
 
-if __name__ == "__main__":
-
-    assert clean("# python") == "python"
-    assert clean("// javascript") == "javascript"
-
-    issues = 0
+def issues() -> int:
+    result = 0
     for path in DATA.rglob("*"):
 
         if not path.is_file():
@@ -40,10 +33,32 @@ if __name__ == "__main__":
             print(f"Error running {command}")
 
         with path.open() as file:
-            expected = clean(file.read().strip())
+            expected = clean_expected(file.read())
         with open(OUTPUT) as file:
-            actual = file.read().strip().removeprefix('filetype=')
+            actual = clean_actual(file.read())
         if expected != actual:
             print(f"{expected!r} != {actual!r} for {path}")
-            issues += 1
-    exit(issues)
+            result += 1
+    return result
+
+
+def clean_expected(before: str) -> str:
+    after = before.strip()
+    after = after.removeprefix("# ")
+    after = after.removeprefix("// ")
+    return after
+
+
+def clean_actual(before: str) -> str:
+    after = before.strip()
+    after = after.removeprefix('filetype=')
+    return after
+
+
+if __name__ == "__main__":
+    assert clean_actual('\n  filetype=groovy') == "groovy"
+    assert clean_expected("text\n") == "text"
+    assert clean_expected("# python") == "python"
+    assert clean_expected("// javascript") == "javascript"
+
+    exit(min(issues(), 1))
