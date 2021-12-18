@@ -1,9 +1,5 @@
 """Check that file types are detected correctly
 
-Usage:
-
-    python3 tests/file-type-detection.py
-
 Only uses the standard library. Includes tests of test code inline.
 """
 from pathlib import Path
@@ -11,8 +7,8 @@ from subprocess import check_call
 
 
 TESTS = Path(__file__).parent
-DATA = TESTS / "file-type-detection"
-OUTPUT = TESTS / 'file-type-detection.txt'
+DATA = TESTS / "fixtures"
+OUTPUT = TESTS / 'run.txt'
 
 
 def issues() -> int:

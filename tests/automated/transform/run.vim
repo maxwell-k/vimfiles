@@ -1,8 +1,6 @@
-" tests/test-transform.vim
+" tests/automated/transform/run.vim
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
-"
-" Run with: vim "+source test-transform.vim"
 function s:Error(a, b)
     execute 'silent !echo "Failed because \"'
       \ . a:a

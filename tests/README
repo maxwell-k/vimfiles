@@ -22,10 +22,10 @@ Examples are in `pack/submodules/opt/vader/test/vader.vader`
 - Avoid Before and After because the can impact on included files
 - Move buffers with `:buffer` in an Execute block
 
-# File type detection
+# Structure
 
-Run with:
+Each set of automated tests is laid out in a directory under `./automated`.
 
-    python3 tests/file-type-detection.py
+`run.sh` in each directory will run the tests.
 
 <!-- vim: set filetype=markdown : -->
