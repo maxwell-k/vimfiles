@@ -1,6 +1,9 @@
 #!/bin/sh
 npm exec -- lint-staged \
 && if ! git symbolic-ref -q HEAD | grep -vq master ; then
-  printf 'Avoid committing to master directly\n'
-  exit 1
+  printf 'Avoid committing to master directly\n' \
+  && exit 1
 fi
+# For some reason in certain environments tests/run.sh takes over a minute to
+# execute if run as a pre-commit hook. A typical execution is less than ten
+# seconds.
