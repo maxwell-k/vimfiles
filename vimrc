@@ -131,7 +131,6 @@ digraphs %< 9986 " black scissors ✂
 "
 " Use a file in ftplugin if file-type related
 augroup vimrc
-autocmd BufNewFile example.yaml 0r ~/.vim/example.yaml | normal Gddf:ll
 autocmd BufReadCmd *.tbz2 call tar#Browse(expand("<amatch>")) "Gentoo binaries
 autocmd BufNewFile,BufReadPost COMMIT_EDITMSG setlocal nomodeline spell
 autocmd BufNewFile,BufReadPost * call vim#spellfile()

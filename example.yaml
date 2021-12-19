@@ -1,7 +1,0 @@
-- name: Example play
-  hosts: localhost
-  gather_facts: no
-  tasks:
-    - name: View
-      debug:
-        msg: This example was populated by an autocmd in ~/.vim/vimrc
