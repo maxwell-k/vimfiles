@@ -20,6 +20,10 @@ Test the configuration:
 
     sh tests/run.sh
 
+Set up pre-commit hooks:
+
+    git config core.hooksPath $PWD/hooks
+
 Regularly tested on Alpine Linux and Mac OS. Infrequently tested on Debian and
 Ubuntu.
 
