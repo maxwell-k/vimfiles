@@ -3,5 +3,5 @@
 /pack/gitignored/
 /plugin/
 /spell/
-/tests/vader.sqlite
 /tests/automated/file-type-detection/run.txt
+/tests/vader.sqlite

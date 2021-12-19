@@ -8,11 +8,6 @@ Files: tests/*.msgok
 Copyright: 2020 Keith Maxwell
 License: MPL-2.0
 
-Files: example.yaml
-# don't want to include copyright comments when instantiating this template
-Copyright: 2020 Keith Maxwell
-License: MPL-2.0
-
 Files: tests/file-type-detection/*
 # short, likely single line, files, copyright block would treble length
 Copyright: 2020 Keith Maxwell

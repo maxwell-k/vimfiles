@@ -30,10 +30,4 @@ Each set of automated tests is laid out in a directory under `./automated`.
 
 `run.sh` in each directory will run the tests.
 
-## Pre-commit hooks
-
-For some reason in certain environments these tests take over a minute to
-execute if run as a pre-commit hook. A typical execution is less than ten
-seconds.
-
 <!-- vim: set filetype=markdown : -->
