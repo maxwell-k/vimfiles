@@ -51,3 +51,11 @@
         path: "{{ site_script.path }}"
         state: absent
       changed_when: false
+
+- name: Make sure packages are available through npx
+  hosts: localhost
+  tasks:
+    - name: Make sure embedme is available in the npm cache
+      command:
+        cmd: npm exec --yes -- embedme --help
+        creates: ~/.npm/_npx/*/node_modules/.bin/embedme
