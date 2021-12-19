@@ -8,7 +8,17 @@ Files: tests/automated/file-type-detection/fixtures/*
 Copyright: 2020 Keith Maxwell
 License: MPL-2.0
 
-Files: .gitignore .prettierignore
+Files: .gitignore .prettierignore .lintstagedrc.yaml
 # comments are not sorted correctly
 Copyright: 2020 Keith Maxwell
+License: CC0-1.0
+
+Files: tests/automated/embedme/example.sh
+# short, example file for inlusion in documentation, copyright block would confuse purpose
+Copyright: 2021 Keith Maxwell
+License: MPL-2.0
+
+Files: tests/automated/embedme/*.md tests/automated/markdown-toc/*.md
+# short, example file for inlusion in documentation, copyright block would confuse purpose
+Copyright: 2021 Keith Maxwell
 License: CC0-1.0

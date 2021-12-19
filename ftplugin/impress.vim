@@ -1,3 +1,7 @@
+" ftplugin/impress.vim
+" Copyright 2021 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
 " The impress progress bar relies on an empty div inside #impress-progressbar
 " [tidy](https://www.w3.org/People/Raggett/tidy/) highlights this as an error
 " the solution is to disable tidy

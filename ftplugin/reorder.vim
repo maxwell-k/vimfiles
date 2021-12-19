@@ -1,3 +1,7 @@
+" ftplugin/reorder.vim
+" Copyright 2021 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
 " Install using pipx because
 "
 " > reorder-python-imports works best when entirely isolated
