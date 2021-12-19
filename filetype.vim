@@ -21,7 +21,7 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile *.mdx setfiletype markdown.mdx
   autocmd BufRead,BufNewFile *.svelte setfiletype svelte
   autocmd BufRead,BufNewFile *.tf setfiletype terraform
-  autocmd BufRead,BufNewFile *.tfstate setfiletype javascript
+  autocmd BufRead,BufNewFile *.tfstate setfiletype json
   autocmd BufRead,BufNewFile *.tfvars setfiletype terraform
   autocmd BufRead,BufNewFile *.yaml.jinja setfiletype yaml.jinja2
   autocmd BufRead,BufNewFile *.vader setfiletype vader
