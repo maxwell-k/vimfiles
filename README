@@ -18,7 +18,7 @@ Update the help files and download a few scripts:
 
 Test the configuration:
 
-    sh tests/run.sh
+    ./tests/run.sh
 
 Set up pre-commit hooks:
 
