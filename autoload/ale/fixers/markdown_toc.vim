@@ -7,8 +7,9 @@
 function! ale#fixers#markdown_toc#Fix(buffer) abort
   " Use --bullets=- to be compatible with prettier, see also
   " https://github.com/jonschlinkert/markdown-toc/issues/146
+  let s:npx = 'npm exec -- '
   return {
-    \ 'command': 'markdown-toc --bullets=- -i %t',
+    \ 'command': s:npx . 'markdown-toc --bullets=- -i %t',
     \ 'read_temporary_file': 1,
   \ }
 endfunction

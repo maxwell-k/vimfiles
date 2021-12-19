@@ -55,7 +55,10 @@
 - name: Make sure packages are available through npx
   hosts: localhost
   tasks:
-    - name: Make sure embedme is available in the npm cache
+    - name: Make sure embedme and markdown-toc are available in the npm cache
       command:
-        cmd: npm exec --yes -- embedme --help
-        creates: ~/.npm/_npx/*/node_modules/.bin/embedme
+        cmd: npm exec --yes -- {{ item }} --help
+        creates: ~/.npm/_npx/*/node_modules/.bin/{{ item }}
+      loop:
+        - embedme
+        - markdown-toc
