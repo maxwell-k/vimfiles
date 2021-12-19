@@ -2,26 +2,12 @@
 # tests/run.sh
 # Copyright 2020 Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
-#
-# For some reason a second test from the same file causes an error
-vader() {
-	# hangs if run with -es
-	vim "+packadd vader | Vader! $1"
-}
-vader_no_bang() {
-	# For debugging with . ./run.sh ; vader_no_bang index.vader
-	vim "+packadd vader | Vader $1"
-}
-case "$0" in
-	-*)
-		;;
-	*)
-		vader index.vader ||
-		{ printf 'vader tests failed\n'; exit 1 ; }
-		vim "+source test-transform.vim" ||
-		{ printf 'test-transform.vim tests failed\n'; exit 1 ; }
-		python3 file-type-detection.py ||
-		{ printf 'file-type-detection.py failed\n'; exit 1 ; }
-		unset -f vader vader_no_bang ;
-		;;
-esac
+
+# If run as `sh tests/run.sh` from the root of the repository
+test -d automated || cd tests || exit
+
+for i in automated/* ; do
+  cd "$i" || exit 1
+  sh run.sh || { printf '%s tests failed\n' "$i" ; exit 1 ; }
+  cd ../.. || exit 1
+done

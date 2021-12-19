@@ -9,7 +9,9 @@
 This folder contains tests for vim. Some are written using `vader`. `vader` is
 installed as a git sub-module. To run all of these use `./run.sh`
 
-# Vader usage
+## Vader
+
+### Usage
 
 - Run inside vim: `:packadd vader | Vader %`
 - Run from command line: `vim '+packadd vader | Vader! index.vader'`
@@ -17,15 +19,21 @@ installed as a git sub-module. To run all of these use `./run.sh`
 
 Examples are in `pack/submodules/opt/vader/test/vader.vader`
 
-# Vader authoring notes
+### Authoring notes
 
 - Avoid Before and After because the can impact on included files
 - Move buffers with `:buffer` in an Execute block
 
-# File type detection
+## Structure
 
-Run with:
+Each set of automated tests is laid out in a directory under `./automated`.
 
-    python3 tests/file-type-detection.py
+`run.sh` in each directory will run the tests.
+
+## Pre-commit hooks
+
+For some reason in certain environments these tests take over a minute to
+execute if run as a pre-commit hook. A typical execution is less than ten
+seconds.
 
 <!-- vim: set filetype=markdown : -->

@@ -16,6 +16,10 @@ Update the help files and download a few scripts:
 
     ansible-playbook -i, site.yaml
 
+Test the configuration:
+
+    sh tests/run.sh
+
 Regularly tested on Alpine Linux and Mac OS. Infrequently tested on Debian and
 Ubuntu.
 

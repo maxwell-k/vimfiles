@@ -22,9 +22,10 @@
 - name: Tag vim help files, these tasks always report changes
   hosts: localhost
   tasks:
-    - name: Create a temporary file for use as a script
+    - name: Create a temporary file for use as a script to generate help tags
       tempfile: { state: file, suffix: .vim }
       register: site_script
+      changed_when: false
     - name: List optional packages
       find: { paths: ~/.vim/pack/submodules/opt/, file_type: directory }
       register: site_find
@@ -40,6 +41,24 @@
           helptags ALL
           quit
         mode: 0o700
-    - name: Run the script file with vim
+      changed_when: false
+    - name:
+        Run the script to generate help tags with vim ( {{ site_script.path }} )
       command: vim -S {{ site_script.path }}
       changed_when: true
+    - name: Remove the temporary file used as script for generating help tags
+      file:
+        path: "{{ site_script.path }}"
+        state: absent
+      changed_when: false
+
+- name: Make sure packages are available through npx
+  hosts: localhost
+  tasks:
+    - name: Make sure embedme and markdown-toc are available in the npm cache
+      command:
+        cmd: npm exec --yes -- {{ item }} --help
+        creates: ~/.npm/_npx/*/node_modules/.bin/{{ item }}
+      loop:
+        - embedme
+        - markdown-toc
