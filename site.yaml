@@ -1,3 +1,7 @@
+# site.yaml
+# Copyright 2021 Keith Maxwell
+# SPDX-License-Identifier: MPL-2.0
+#
 # Run as:
 #
 #     ansible-playbook -i, site.yaml
