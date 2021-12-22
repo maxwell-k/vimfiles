@@ -8,6 +8,9 @@ test -d automated || cd tests || exit
 
 for i in automated/* ; do
   cd "$i" || exit 1
-  sh run.sh || { printf '%s tests failed\n' "$i" ; exit 1 ; }
+  if ! ./run.sh ; then
+    printf '%s tests failed\n' "$i"
+    exit 1
+  fi
   cd ../.. || exit 1
 done

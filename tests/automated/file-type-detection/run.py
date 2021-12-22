@@ -2,6 +2,10 @@
 
 Only uses the standard library. Includes tests of test code inline.
 """
+# tests/automated/file-type-detection/run.py
+# Copyright 2021 Keith Maxwell
+# SPDX-License-Identifier: MPL-2.0
+import json
 from pathlib import Path
 from subprocess import check_call
 
@@ -39,9 +43,12 @@ def issues() -> int:
 
 
 def clean_expected(before: str) -> str:
-    after = before.strip()
-    after = after.removeprefix("# ")
-    after = after.removeprefix("// ")
+    try:
+        after = json.loads(before)["filetype"]
+    except json.decoder.JSONDecodeError:
+        after = before.strip()
+        after = after.removeprefix("# ")
+        after = after.removeprefix("// ")
     return after
 
 
@@ -56,5 +63,6 @@ if __name__ == "__main__":
     assert clean_expected("text\n") == "text"
     assert clean_expected("# python") == "python"
     assert clean_expected("// javascript") == "javascript"
+    assert clean_expected('{"filetype":"json"}') == "json"
 
     exit(min(issues(), 1))

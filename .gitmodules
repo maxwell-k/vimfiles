@@ -1,3 +1,6 @@
+# .gitmodules
+# Copyright 2021 Keith Maxwell
+# SPDX-License-Identifier: CC0-1.0
 [submodule "pack/submodules/opt/vader"]
 	path = pack/submodules/opt/vader
 	url = https://github.com/junegunn/vader.vim

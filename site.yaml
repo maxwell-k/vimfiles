@@ -1,3 +1,7 @@
+# site.yaml
+# Copyright 2021 Keith Maxwell
+# SPDX-License-Identifier: MPL-2.0
+#
 # Run as:
 #
 #     ansible-playbook -i, site.yaml
@@ -11,8 +15,7 @@
       get_url:
         dest: ./plugin/osc52.vim
         url: https://raw.githubusercontent.com/libapps/libapps-mirror/main/hterm/etc/osc52.vim
-    - name:
-        Download fzf.vim, on MacOSX it isn't added to runtimepath, on Alpine
+    - name: Download fzf.vim, on MacOSX it isn't added to runtimepath, on Alpine
         Linux the fzf-vim package also includes documentation
       get_url:
         dest: ./plugin/fzf.vim
@@ -29,8 +32,7 @@
     - name: List optional packages
       find: { paths: ~/.vim/pack/submodules/opt/, file_type: directory }
       register: site_find
-    - name:
-        Write the commands to the script to avoid an error about too many
+    - name: Write the commands to the script to avoid an error about too many
         command line flags
       copy:
         dest: "{{ site_script.path }}"
@@ -42,8 +44,7 @@
           quit
         mode: 0o700
       changed_when: false
-    - name:
-        Run the script to generate help tags with vim ( {{ site_script.path }} )
+    - name: Run the script to generate help tags with vim ( {{ site_script.path }} )
       command: vim -S {{ site_script.path }}
       changed_when: true
     - name: Remove the temporary file used as script for generating help tags
@@ -65,4 +66,4 @@
         cmd: npm exec --yes -- markdown-toc --help
         creates: ~/.npm/_npx/*/node_modules/.bin/markdown-toc
       register: npm_exec_markdown_toc_cmd
-      failed_when: npm_exec_markdown_toc_cmd.rc not in (0, 1)  # 0 if skipped
+      failed_when: npm_exec_markdown_toc_cmd.rc not in (0, 1) # 0 if skipped

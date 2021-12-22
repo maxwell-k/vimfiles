@@ -3,17 +3,22 @@ Upstream-Name:
 Upstream-Contact: Keith Maxwell <keith.maxwell@gmail.com>
 Source:
 
-Files: tests/*.msgok
-# comments aren't supported in .msgok files see ;help runVimMsgFilter-todo
-Copyright: 2020 Keith Maxwell
-License: MPL-2.0
-
-Files: tests/file-type-detection/*
+Files: tests/automated/file-type-detection/fixtures/*
 # short, likely single line, files, copyright block would treble length
 Copyright: 2020 Keith Maxwell
 License: MPL-2.0
 
-Files: .gitignore
+Files: .gitignore .prettierignore .lintstagedrc.yaml
 # comments are not sorted correctly
 Copyright: 2020 Keith Maxwell
+License: CC0-1.0
+
+Files: tests/automated/embedme/example.sh
+# short, example file for inlusion in documentation, copyright block would confuse purpose
+Copyright: 2021 Keith Maxwell
+License: MPL-2.0
+
+Files: tests/automated/embedme/*.md tests/automated/markdown-toc/*.md
+# short, example file for inlusion in documentation, copyright block would confuse purpose
+Copyright: 2021 Keith Maxwell
 License: CC0-1.0

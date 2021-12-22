@@ -1,3 +1,7 @@
+#!/bin/sh
+# tests/automated/beancount/run.sh
+# Copyright 2021 Keith Maxwell
+# SPDX-License-Identifier: MPL-2.0
 # sed may not be portable across systems e.g. BSD uses -I, BusyBox -i
 vim -u NONE \
   "+edit example.beancount" \
