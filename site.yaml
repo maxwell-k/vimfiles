@@ -55,7 +55,6 @@
 
 - name: Make sure packages are available through npx
   hosts: localhost
-  # These tasks are never skipped if a binary is on PATH
   tasks:
     - name: npm is available
       ansible.builtin.command: npm --version
@@ -85,3 +84,19 @@
           #!/bin/sh
           npm exec --yes -- prettier@2.5.1 "$@"
       when: "'.local/bin' in lookup('env', 'PATH')"
+    - name: Add prettier to npm cache
+      ansible.builtin.command: prettier --version
+      changed_when: no
+    - name: Install ~/.local/bin/jsonlint
+      ansible.builtin.copy:
+        dest: ~/.local/bin/jsonlint
+        mode: 0o544
+        content: |
+          #!/bin/sh
+          npm exec --yes -- jsonlint "$@"
+      when: "'.local/bin' in lookup('env', 'PATH')"
+    - name: Add jsonlint to npm cache
+      ansible.builtin.command: jsonlint --version
+      changed_when: no
+      register: npm_exec_jsonlint_cmd
+      failed_when: npm_exec_jsonlint_cmd.rc != 1
