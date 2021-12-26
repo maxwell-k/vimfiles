@@ -14,7 +14,7 @@ Execute(The output should be correct):
   " Test that the right loclist items are parsed from the handler.
   "
   " This test case was created with the output from:
-  " echo '"' | npm exec --yes -- js-yaml@3
+  " echo '"' | npm exec --yes -- js-yaml
   AssertEqual
   \ [
   \   {
@@ -24,7 +24,9 @@ Execute(The output should be correct):
   \   },
   \ ],
   \ ale_linters#yaml#jsyaml#Handle(bufnr(''), [
-    \ 'YAMLException: unexpected end of the stream within a double quoted scalar at line 2, column 1:',
+    \ 'YAMLException: unexpected end of the stream within a double quoted scalar (2:1)',
     \ '',
-    \ '    ^',
+    \ ' 1 | "',
+    \ ' 2 |',
+    \ '-----^',
   \ ])
