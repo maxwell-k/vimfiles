@@ -5,9 +5,13 @@
 " see :help ale-development
 Before:
   let g:original_buffer = bufnr('%')
+  let b:ale_linters = ['jsonlint',]  " otherwise jq also reports issues
 
-Given yaml (Invalid yaml):
-  "
+Given json (Invalid JSON with an extra trailing comma):
+  {
+    "key1": "value1",
+    "key2": "value2",
+  }
 
 Execute(Run the linter):
   ALELint
@@ -17,8 +21,7 @@ Execute(Run the linter):
     call ale#test#WaitForJobs(2000)
   endif
 
-
-Then (An issue is found):
+Then (At least one issue is found):
   AssertEqual 1, len(getloclist(bufwinid(g:original_buffer)))
 
 After:
