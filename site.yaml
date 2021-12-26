@@ -57,14 +57,13 @@
   hosts: localhost
   # These tasks are never skipped if a binary is on PATH
   tasks:
-    - name: Make sure js-yaml is available in the npm cache
+    - name: Make sure tools are available in the npm cache
       command:
-        cmd: npm exec --yes -- js-yaml --version
-        creates: ~/.npm/_npx/*/node_modules/.bin/js-yaml
-    - name: Make sure embedme is available in the npm cache
-      command:
-        cmd: npm exec --yes -- embedme --help
-        creates: ~/.npm/_npx/*/node_modules/.bin/embedme
+        cmd: npm exec --yes -- {{ item }} --help
+        creates: ~/.npm/_npx/*/node_modules/.bin/{{ item }}
+      loop:
+        - embedme
+        - js-yaml
     - name: Make sure markdown-toc is available in the npm cache
       command:
         cmd: npm exec --yes -- markdown-toc --help
