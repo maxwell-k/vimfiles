@@ -1,4 +1,4 @@
 "*.vim": ["awk '$0 ~ /.{81}/ { exit 1 }'", vint -s]
-"**/*": "npm exec --yes -- prettier@2.5.1 --check"
+"**/*": prettier --check
 ./.gitignore: sort -c
 ./vimrc: ["awk '$0 ~ /.{81}/ { exit 1 }'", vint -s]
