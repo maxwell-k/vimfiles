@@ -13,7 +13,7 @@ setlocal suffixesadd+=.md
 setlocal textwidth=80
 
 let b:ale_fixers = ['prettier',]
-let b:ale_javascript_prettier_options = '--prose-wrap always --parser markdown'
+let b:ale_javascript_prettier_options = '--prose-wrap always'
 let g:vim_markdown_toc_autofit = 1
 if !exists('g:vim_markdown_folding_disabled')
   " Disabled by default because horizontal rules, ---, are misinterpreted as
