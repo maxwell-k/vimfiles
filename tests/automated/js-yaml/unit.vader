@@ -12,6 +12,9 @@ After:
 
 Execute(The output should be correct):
   " Test that the right loclist items are parsed from the handler.
+  "
+  " This test case was created with the output from:
+  " echo '"' | npm exec --yes -- js-yaml@3
   AssertEqual
   \ [
   \   {

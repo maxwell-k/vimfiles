@@ -1,0 +1,26 @@
+" tests/automated/js-yaml/integration.vader
+" Copyright 2021 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
+" see :help ale-development
+Before:
+  let g:original_buffer = bufnr('%')
+
+Given yaml (Invalid yaml):
+  "
+
+Execute(Run the linter):
+  ALELint
+  call ale#test#WaitForJobs(2000)
+  " sometimes the linter must be run a second time
+  if len(getloclist(bufwinid(g:original_buffer))) == 0
+    ALELint
+    call ale#test#WaitForJobs(2000)
+  endif
+
+
+Then (An issue is found):
+  AssertEqual 1, len(getloclist(bufwinid(g:original_buffer)))
+
+After:
+  unlet! g:original_buffer

@@ -6,10 +6,7 @@
 " Invalid syntax is highlighted without writing the current file to disk.
 " Rules are compatible with prettier.
 "
-" For example:
-"   % echo '"' | npm exec --yes -- js-yaml@3 2>&1 | head -n 1
-"   YAMLException: unexpected end of the stream within a double quoted scalar
-"   \ at line 2, column 1:
+" See also tests/automated/js-yaml/unit.vader
 function! ale_linters#yaml#jsyaml#Handle(buffer, lines) abort
     let l:output = []
     " See https://github.com/nodeca/js-yaml/ - lib/js-yaml/mark.js and
