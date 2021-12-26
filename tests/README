@@ -12,6 +12,9 @@ installed as a git sub-module. To run all of these use `./run.sh`.
 Some tests will require `pipx` or `npm` to pass. Isolation between tests is
 achieved by re-starting vim.
 
+The layout uses a directory for `automated` tests so that it is easy to add a
+manual test separately. It is better to have a manual test than no test.
+
 ## Vader
 
 ### Usage

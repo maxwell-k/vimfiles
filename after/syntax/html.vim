@@ -21,7 +21,6 @@ syn region htmlComment matchgroup=htmlComment start=+<!--\%(-\?>\)\@!+
   \ keepend
 
 " don't spell check modelines
-" see tests/manual/example.html for a manual test
 " make sure the match group below is defined after htmlComment
 " see :help syn-priority - 'the item defined last has priority'
 syn match htmlModeline '^<!-- vim[:] set [^:]* : -->$' contains=@NoSpell
