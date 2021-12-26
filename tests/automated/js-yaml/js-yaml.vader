@@ -1,0 +1,27 @@
+" tests/automated/js-yaml/js-yaml.vader
+" Copyright 2021 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
+" see :help ale-development
+Before:
+  runtime ale_linters/yaml/jsyaml.vim
+
+After:
+  " Unload all linters again.
+  call ale#linter#Reset()
+
+Execute(The output should be correct):
+  " Test that the right loclist items are parsed from the handler.
+  AssertEqual
+  \ [
+  \   {
+  \     'lnum': 2,
+  \     'col': 1,
+  \     'text': 'unexpected end of the stream within a double quoted scalar',
+  \   },
+  \ ],
+  \ ale_linters#yaml#jsyaml#Handle(bufnr(''), [
+    \ 'YAMLException: unexpected end of the stream within a double quoted scalar at line 2, column 1:',
+    \ '',
+    \ '    ^',
+  \ ])
