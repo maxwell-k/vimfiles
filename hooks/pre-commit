@@ -3,7 +3,7 @@
 # Copyright 2021 Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
 npm exec -- lint-staged \
-&& if ! git symbolic-ref -q HEAD | grep -vq master ; then
+&& if git symbolic-ref -q HEAD | grep -q master ; then
   printf 'Avoid committing to master directly\n' \
   && exit 1
 fi

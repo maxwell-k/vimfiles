@@ -1,9 +1,0 @@
-" tests/index.vader
-" Copyright 2020 Keith Maxwell
-" SPDX-License-Identifier: MPL-2.0
-"
-"Python
-Include: Python.vader
-
-" ALE linters
-Include: test_beanformat_fixer_callback.vader
