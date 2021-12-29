@@ -1,7 +1,9 @@
 /.netrwhist
+/done.txt
 /filetype.gitignored.vim
 /pack/gitignored/
 /plugin/
 /spell/
 /tests/automated/file-type-detection/run.txt
 /tests/vader.sqlite
+/todo.txt
