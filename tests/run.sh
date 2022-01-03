@@ -14,3 +14,5 @@ for i in automated/* ; do
   fi
   cd ../.. || exit 1
 done
+
+touch .success

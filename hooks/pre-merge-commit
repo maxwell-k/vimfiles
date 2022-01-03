@@ -1,0 +1,34 @@
+#!/usr/bin/python3
+#
+# hooks/pre-merge-commit
+# Copyright 2021 Keith Maxwell
+# SPDX-License-Identifier: MPL-2.0
+from os import execvp
+from pathlib import Path
+from shutil import which
+from subprocess import check_output
+from time import time
+
+COMMAND = ("git", "config", "core.hooksPath")
+
+LIMIT = 1  # hour(s)
+MESSAGE = "tests/.success is not found or is older than one hour"
+
+if __name__ == "__main__":
+    directory = Path(check_output(COMMAND).decode('utf8').strip())
+
+    marker = directory / ".." / "tests" / ".success"
+    try:
+        age = (time() - marker.stat().st_mtime) / 60 / 60
+    except FileNotFoundError:
+        age = LIMIT + 1
+
+    if age >= LIMIT:
+        print(MESSAGE)
+        exit(1)
+
+    # don't run the pre-commit hook, as it prevents committing to master
+    # instead run a script that is sometimes installed
+    executable = which('lint-all')
+    if executable:
+        execvp(executable, (executable,))

@@ -4,6 +4,7 @@
 /pack/gitignored/
 /plugin/
 /spell/
+/tests/.success
 /tests/automated/file-type-detection/run.txt
 /tests/vader.sqlite
 /todo.txt
