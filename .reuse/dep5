@@ -1,7 +1,7 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name:
+Upstream-Name: vimfiles
 Upstream-Contact: Keith Maxwell <keith.maxwell@gmail.com>
-Source:
+Source: https://codeberg.org/maxwell-k/vimfiles
 
 Files: tests/automated/file-type-detection/fixtures/*
 # short, likely single line, files, copyright block would treble length
