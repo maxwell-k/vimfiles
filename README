@@ -18,7 +18,7 @@ Update the help files and download a few scripts:
 
 Test the configuration:
 
-    ./tests/run.sh
+    tests/run.sh
 
 Set up pre-commit hooks:
 
@@ -26,6 +26,10 @@ Set up pre-commit hooks:
 
 Regularly tested on Alpine Linux and Mac OS. Infrequently tested on Debian and
 Ubuntu.
+
+Test inside a Linux container:
+
+    tests/podman.sh
 
 ## Contents
 
