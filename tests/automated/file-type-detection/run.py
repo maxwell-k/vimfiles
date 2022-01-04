@@ -39,6 +39,8 @@ def issues() -> int:
         if expected != actual:
             print(f"{expected!r} != {actual!r} for {path}")
             result += 1
+        else:
+            OUTPUT.unlink()
     return result
 
 
