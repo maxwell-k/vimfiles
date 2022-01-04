@@ -1,0 +1,33 @@
+# pipx.yaml
+# Copyright 2021 Keith Maxwell
+# SPDX-License-Identifier: MPL-2.0
+#
+- name: Install pipx if pipx --version fails
+  hosts: localhost
+  tasks:
+    - name: Try running pipx --version
+      ansible.builtin.command:
+        argv: [pipx, --version]
+      failed_when: no
+      changed_when: no
+      register: pipx_version
+    - name: Stop this play if pipx --version succeeded
+      meta: end_host
+      when: pipx_version.rc == 0
+    - name: Make sure ~/.local hierarchy exists
+      ansible.builtin.file:
+        state: directory
+        path: "{{ item }}"
+        mode: 0o755
+      loop: [~/.local, ~/.local/bin, ~/.local/venvs]
+    - name: Install pipx into a venv
+      ansible.builtin.pip:
+        name: pipx
+        virtualenv: ~/.local/venvs/pipx
+        virtualenv_command: python3 -m venv
+    - name: Put a link to the pipx command into ~/.local/bin
+      ansible.builtin.file:
+        state: link
+        src: ~/.local/venvs/pipx/bin/pipx
+        path: ~/.local/bin/pipx
+# vim: set filetype=yaml.ansible :

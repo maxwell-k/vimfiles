@@ -6,6 +6,17 @@
 #
 #     ansible-playbook -i, site.yaml
 #
+# This playbook can be run as a normal user, no super-user privileges are
+# necessary.
+- name: Create the backupdir
+  hosts: localhost
+  tasks:
+    - name: Make sure ~/.backupdir exists
+      ansible.builtin.file:
+        state: directory
+        path: ~/.backupdir
+        mode: 0o700
+
 - name: Download scrips to the plugin/ directory
   hosts: localhost
   tasks:
@@ -76,6 +87,12 @@
         creates: ~/.npm/_npx/*/node_modules/.bin/markdown-toc
       register: npm_exec_markdown_toc_cmd
       failed_when: npm_exec_markdown_toc_cmd.rc not in (0, 1) # 0 if skipped
+    - name: Make sure ~/.local/bin exists
+      ansible.builtin.file:
+        state: directory
+        path: "{{ item }}"
+        mode: 0o755
+      loop: [~/.local, ~/.local/bin]
     - name: Install ~/.local/bin/prettier
       ansible.builtin.copy:
         dest: ~/.local/bin/prettier
@@ -100,3 +117,38 @@
       changed_when: no
       register: npm_exec_jsonlint_cmd
       failed_when: npm_exec_jsonlint_cmd.rc != 1
+    - name: Install ~/.local/bin/lint-all
+      ansible.builtin.copy:
+        dest: ~/.local/bin/lint-all
+        mode: 0o544
+        content: |
+          #!/bin/sh
+          #
+          # lint-all
+          #
+          # Run all of the lint-staged rules on the current repository
+          #
+          # Dependencies:
+          # - npm (tested on version 8.3.0)
+          # - git (tested on version 2.25.0)
+          #
+          # lint-staged is run via npm `exec` (tested on version 12.1.4)
+          #
+          # See https://www.npmjs.com/package/lint-staged
+          #
+          # all is a new repository where everything has been staged
+          all="$(mktemp -d /tmp/lint-all.XXXXXX)" \
+          && cd "$all" \
+          && git init -b main \
+          && git commit --allow-empty -m "Initial commit" \
+          && git -C "$OLDPWD" write-tree \
+          | xargs git -C "$OLDPWD" archive \
+          | tar x \
+          && git add . \
+          && npm exec -- lint-staged \
+          && cd "$OLDPWD" \
+          && rm -rf "$all" \
+          && unset all
+      when: "'.local/bin' in lookup('env', 'PATH')"
+
+- import_playbook: pipx.yaml

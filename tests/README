@@ -1,3 +1,4 @@
+<!-- vim: set filetype=markdown.embedme : -->
 <!--
    tests/README
    Copyright 2020 Keith Maxwell
@@ -36,4 +37,24 @@ Each set of automated tests is laid out in a directory under `./automated`.
 
 `run.sh` in each directory will run the tests.
 
-<!-- vim: set filetype=markdown : -->
+# Test in a container
+
+All commands in this section are run from the root of this repository.
+
+    . tests/podman-run.sh
+
+Or in full:
+
+<!-- embedme podman-run.sh -->
+
+```sh
+podman run -ti \
+  --volume "$PWD":/root/.vim:Z \
+  --workdir /root/.vim \
+  --env PATH=/usr/sbin:/usr/bin:/sbin:/bin:/root/.local/bin \
+  alpine:edge \
+  sh -c "apk add vim npm ansible git beancount \
+    && ansible-playbook -i, site.yaml \
+    && tests/run.sh"
+
+```
