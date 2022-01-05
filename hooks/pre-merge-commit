@@ -27,8 +27,8 @@ if __name__ == "__main__":
         print(MESSAGE)
         exit(1)
 
-    # don't run the pre-commit hook, as it prevents committing to master
-    # instead run a script that is sometimes installed
+    # don't run the pre-commit hook, as it prevents committing to main
+    # instead run a script that is installed via site.yaml
     executable = which('lint-all')
     if executable:
         execvp(executable, (executable,))
