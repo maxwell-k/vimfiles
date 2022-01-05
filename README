@@ -16,7 +16,7 @@ Update the help files and download a few scripts:
 
     ansible-playbook -i, site.yaml
 
-Test the configuration:
+Test the current configuration:
 
     tests/run.sh
 
@@ -24,12 +24,14 @@ Set up pre-commit hooks:
 
     git config core.hooksPath $PWD/hooks
 
+Run tests inside a Linux container:
+
+    tests/podman-run.sh
+
+## Supported operating systems
+
 Regularly tested on Alpine Linux and Mac OS. Infrequently tested on Debian and
 Ubuntu.
-
-Test inside a Linux container:
-
-    tests/podman.sh
 
 ## Contents
 
