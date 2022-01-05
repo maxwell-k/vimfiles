@@ -3,8 +3,8 @@
 # Copyright 2021 Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
 npm exec -- lint-staged \
-&& if git symbolic-ref -q HEAD | grep -q master ; then
-  printf 'Avoid committing to master directly\n' \
+&& if git symbolic-ref -q HEAD | grep -q main ; then
+  printf 'Avoid committing to the main branch directly\n' \
   && exit 1
 fi
 # For some reason in certain environments tests/run.sh takes over a minute to
