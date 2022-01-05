@@ -1,3 +1,4 @@
 "*.vim": ["awk '$0 ~ /.{81}/ { exit 1 }'", vint -s]
-"**/*": prettier --check
+"**/*": npm exec -- prettier --check
 ./vimrc: ["awk '$0 ~ /.{81}/ { exit 1 }'", vint -s]
+README.md: npm exec -- prettier --check --prose-wrap always
