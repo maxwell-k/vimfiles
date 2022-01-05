@@ -1,4 +1,3 @@
 "*.vim": ["awk '$0 ~ /.{81}/ { exit 1 }'", vint -s]
 "**/*": prettier --check
-./.gitignore: sort -c
 ./vimrc: ["awk '$0 ~ /.{81}/ { exit 1 }'", vint -s]

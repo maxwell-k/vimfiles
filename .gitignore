@@ -1,10 +1,28 @@
-/.netrwhist
-/done.txt
+# filetype settings stored outside this version control repository
 /filetype.gitignored.vim
-/pack/gitignored/
-/plugin/
+
+# script to source mappings from outside this repository
+/plugin/mappings.vim
+
+# clipboard integration installed via site.yaml
+/plugin/osc52.vim
+
+# integration with fzf, installed via site.yaml:
+/plugin/fzf.vim
+
+# spelling data like word lists is stored in a separate repository as it is
+# very personal — for example individual's names
 /spell/
-/tests/.success
-/tests/automated/file-type-detection/run.txt
-/tests/vader.sqlite
+
+# tasks managment information is stored in another repository
+/done.txt
 /todo.txt
+
+# links to runtimepath directories in other repositories
+/pack/gitignored/
+
+# "timestamp" for last successful test run
+/tests/.success
+
+# history for the netrw plugin
+/.netrwhist
