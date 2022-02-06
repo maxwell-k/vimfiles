@@ -15,4 +15,4 @@ for i in automated/* ; do
   cd ../.. || exit 1
 done
 
-touch .success
+git branch --show-current > .success
