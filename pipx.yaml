@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: MPL-2.0
 #
 - name: Install pipx if pipx --version fails
-  hosts: localhost
+  hosts: all
   tasks:
     - name: Try running pipx --version
       ansible.builtin.command:

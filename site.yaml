@@ -9,7 +9,7 @@
 # This playbook can be run as a normal user, no super-user privileges are
 # necessary.
 - name: Create the backupdir
-  hosts: localhost
+  hosts: all
   tasks:
     - name: Make sure ~/.backupdir exists
       ansible.builtin.file:
@@ -18,7 +18,7 @@
         mode: 0o700
 
 - name: Download scripts to the plugin/ directory
-  hosts: localhost
+  hosts: all
   tasks:
     - name: Create the plugin folder
       file: { state: directory, path: ./plugin/, mode: 0o755 }
@@ -33,7 +33,7 @@
       when: ansible_distribution not in ('Alpine')
 
 - name: Tag vim help files, these tasks always report changes
-  hosts: localhost
+  hosts: all
   tasks:
     - name: Create a temporary file for use as a script to generate help tags
       tempfile: { state: file, suffix: .vim }
@@ -64,7 +64,7 @@
       changed_when: false
 
 - name: Make sure packages are available through npx
-  hosts: localhost
+  hosts: all
   tasks:
     - name: npm is available
       ansible.builtin.command: npm --version
