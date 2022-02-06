@@ -81,6 +81,7 @@
       loop:
         - embedme
         - js-yaml
+        - pyright
     - name: Make sure markdown-toc is available in the npm cache
       command:
         cmd: npm exec --yes -- markdown-toc --help
@@ -99,7 +100,7 @@
         mode: 0o544
         content: |
           #!/bin/sh
-          npm exec --yes -- prettier@2.5.1 "$@"
+          exec npm exec --yes -- prettier@2.5.1 "$@"
       when: "'.local/bin' in lookup('env', 'PATH')"
     - name: Add prettier to npm cache
       ansible.builtin.command: prettier --version
@@ -110,7 +111,7 @@
         mode: 0o544
         content: |
           #!/bin/sh
-          npm exec --yes -- jsonlint "$@"
+          exec npm exec --yes -- jsonlint "$@"
       when: "'.local/bin' in lookup('env', 'PATH')"
     - name: Add jsonlint to npm cache
       ansible.builtin.command: jsonlint --version
@@ -149,6 +150,14 @@
           && cd "$OLDPWD" \
           && rm -rf "$all" \
           && unset all
+      when: "'.local/bin' in lookup('env', 'PATH')"
+    - name: Install ~/.local/bin/pyright-langserver
+      ansible.builtin.copy:
+        dest: ~/.local/bin/pyright-langserver
+        mode: 0o544
+        content: |
+          #!/bin/sh
+          exec npm exec --package pyright --yes -- pyright-langserver "$@"
       when: "'.local/bin' in lookup('env', 'PATH')"
 
 - import_playbook: pipx.yaml

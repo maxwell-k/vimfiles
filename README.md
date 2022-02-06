@@ -4,7 +4,7 @@ Copyright 2020 Keith Maxwell
 SPDX-License-Identifier: CC-BY-SA-4.0
 -->
 
-# .vim
+# maxwell-k/vimfiles
 
 ## Quick start
 
@@ -97,7 +97,7 @@ quickly.
 
 The following plugins are not currently in use:
 
-## `opt/jedi`
+### `opt/jedi`
 
 - https://github.com/davidhalter/jedi-vim
 - switched to pyright via ALE

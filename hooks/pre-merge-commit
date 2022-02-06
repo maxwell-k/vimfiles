@@ -12,7 +12,6 @@ from time import time
 COMMAND = ("git", "config", "core.hooksPath")
 
 LIMIT = 1  # hour(s)
-MESSAGE = "tests/.success is not found or is older than one hour"
 
 if __name__ == "__main__":
     directory = Path(check_output(COMMAND).decode('utf8').strip())
@@ -24,7 +23,11 @@ if __name__ == "__main__":
         age = LIMIT + 1
 
     if age >= LIMIT:
-        print(MESSAGE)
+        print("tests/.success is not found or is older than one hour")
+        exit(1)
+
+    if marker.read_text().strip() == "main":
+        print("tests/.success contains 'main', run tests against a branch")
         exit(1)
 
     # don't run the pre-commit hook, as it prevents committing to main
