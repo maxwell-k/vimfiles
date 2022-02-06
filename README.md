@@ -24,9 +24,9 @@ Set up pre-commit hooks:
 
     git config core.hooksPath $PWD/hooks
 
-Run tests inside a Linux container:
+Run tests inside an Alpine Linux container:
 
-    tests/podman-run.sh
+    tests/podman-run-alpine-edge.sh
 
 ## Supported operating systems
 

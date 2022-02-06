@@ -23,7 +23,7 @@ Files: tests/automated/embedme/*.md tests/automated/markdown-toc/*.md
 Copyright: 2021 Keith Maxwell
 License: CC0-1.0
 
-Files: tests/podman-run.sh
-# short file included in tests/README.md, copyright block would complicate that
+Files: tests/podman-run-*.sh tests/inside-*.sh
+# short files included in tests/README.md, copyright block would complicate that
 Copyright: 2021 Keith Maxwell
 License: MPL-2.0
