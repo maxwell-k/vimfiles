@@ -17,7 +17,7 @@
         path: ~/.backupdir
         mode: 0o700
 
-- name: Download scrips to the plugin/ directory
+- name: Download scripts to the plugin/ directory
   hosts: localhost
   tasks:
     - name: Create the plugin folder
@@ -26,12 +26,11 @@
       get_url:
         dest: ./plugin/osc52.vim
         url: https://raw.githubusercontent.com/libapps/libapps-mirror/main/hterm/etc/osc52.vim
-    - name: Download fzf.vim, on MacOSX it isn't added to runtimepath, on Alpine
-        Linux the fzf-vim package also includes documentation
+    - name: Download fzf.vim, on Alpine Linux the fzf-vim package also includes documentation
       get_url:
         dest: ./plugin/fzf.vim
         url: https://raw.githubusercontent.com/junegunn/fzf/master/plugin/fzf.vim
-      when: ansible_distribution in ('MacOSX')
+      when: ansible_distribution not in ('Alpine')
 
 - name: Tag vim help files, these tasks always report changes
   hosts: localhost
