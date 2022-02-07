@@ -41,20 +41,41 @@ Each set of automated tests is laid out in a directory under `./automated`.
 
 All commands in this section are run from the root of this repository.
 
-    . tests/podman-run.sh
+    . tests/podman-run-alpine-edge.sh
 
-Or in full:
+`podman-run-alpine-edge.sh` and `alpine-edge.sh` in full:
 
-<!-- embedme podman-run.sh -->
+<!-- embedme podman-run-alpine-edge.sh -->
 
 ```sh
-podman run -ti \
-  --volume "$PWD":/root/.vim:Z \
-  --workdir /root/.vim \
-  --env PATH=/usr/sbin:/usr/bin:/sbin:/bin:/root/.local/bin \
+#!/bin/sh
+podman run \
+  --rm \
+  --tty \
+  --volume="$PWD":/root/.vim:Z \
+  --workdir=/root/.vim \
+  --env=PATH=/usr/sbin:/usr/bin:/sbin:/bin:/root/.local/bin \
   alpine:edge \
-  sh -c "apk add vim npm ansible git beancount \
-    && ansible-playbook -i, site.yaml \
-    && tests/run.sh"
+  tests/inside-alpine-edge.sh
 
 ```
+
+<!-- embedme inside-alpine-edge.sh -->
+
+```sh
+#!/bin/sh
+apk add vim npm ansible git beancount \
+&& mkdir --parents /etc/ansible \
+&& {
+  printf '[all]\n' \
+  && printf 'localhost' \
+  && printf ' ansible_connection=local' \
+  && printf ' ansible_python_interpreter=python3' \
+  && printf '\n' ; } >>/etc/ansible/hosts \
+&& ansible-playbook site.yaml \
+&& tests/run.sh
+
+```
+
+A similar pair of files tests on the latest stable release of Fedora
+`podman-run-fedora-latest.sh` and `inside-fedora-latest.sh`.
