@@ -10,28 +10,23 @@ SPDX-License-Identifier: CC-BY-SA-4.0
 
 Clone this repository and its sub-modules as `~/.vim`:
 
-    git clone --recurse-submodules <url>/vimfiles ~/.vim
+    git clone --recurse-submodules https://codeberg.org/maxwell-k/vimfiles.git ~/.vim
 
-Update the help files and download a few scripts:
-
-    ansible-playbook -i, site.yaml
-
-Test the current configuration:
-
-    tests/run.sh
+Install the appropriate system packages, setup an Ansible inventory, run the
+playbook and test the configuration. See
+[inside-alpine-edge.sh](tests/inside-alpine-edge.sh) and
+[inside-fedora-latest.sh](tests/inside-fedora-latest.sh) for examples.
 
 Set up pre-commit hooks:
 
-    git config core.hooksPath $PWD/hooks
+    git -C ~/.vim config core.hooksPath ~/.vim/hooks
 
-Run tests inside an Alpine Linux container:
-
-    tests/podman-run-alpine-edge.sh
+Further details about testing are in [`tests/README.md`](tests/README.md).
 
 ## Supported operating systems
 
-Regularly tested on Alpine Linux and Mac OS. Infrequently tested on Debian and
-Ubuntu.
+Regularly tested on Alpine Linux and Fedora. Infrequently tested on Debian,
+Ubuntu and Mac OS.
 
 ## Contents
 
