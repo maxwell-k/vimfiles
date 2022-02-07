@@ -88,42 +88,4 @@ This repository uses approximately twenty git sub-modules. It may be helpful to
 set `git config diff.ignoreSubmodules dirty` so that `git status` completes
 quickly.
 
-## Removed sub-modules
-
-The following plugins are not currently in use:
-
-### `opt/jedi`
-
-- https://github.com/davidhalter/jedi-vim
-- switched to pyright via ALE
-
-### `opt/gnupg`
-
-- https://github.com/jamessan/vim-gnupg
-
-### `start/fzf`
-
-- https://github.com/junegunn/fzf
-- 0.17.5
-- only required on Debian and Ubuntu, as system packages aren't available
-
-### `start/rust`
-
-- https://github.com/rust-lang/rust.vim
-
-### `start/racer` for rust
-
-- https://github.com/racer-rust/vim-racer
-- needs `cc`, so install build-essential on Ubuntu or Debian
-
-### `opt/jsx`
-
-- https://github.com/MaxMEllon/vim-jsx-pretty/
-- `v3.0.0`
-
-### `opt/mdx`
-
-- https://github.com/jxnblk/vim-mdx-js/
-- clear settings from `ftplugin/markdown.vim`
-
 <!-- vim: set filetype=markdown : -->
