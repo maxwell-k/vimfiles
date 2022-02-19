@@ -99,7 +99,7 @@ vnoremap <Leader>k <ESC>:call vim#keep()<CR>
  noremap <Leader>m :/<<<<<<<\\|=======\\|>>>>>>><CR>
  noremap <Leader>n :call vim#new()<CR>
  noremap <Leader>o :call toggle#toggle_python_import_ordering()<CR>
- noremap <Leader>p :call toggle#toggle_python()<CR>
+        "<Leader>p see ftplugin/python.vim
  noremap <Leader>s :call toggle#toggle_shiftwidth()<CR>
  noremap <Leader>S :call vim#scriptnames()<CR>
  noremap <Leader>v :set paste! paste?<CR>
