@@ -69,7 +69,7 @@ if $TERM !~# 'xterm*'
 endif
 
 " Scripted options
-let s:list_settings = 'set list showbreak=→ '
+let s:list_settings = 'setlocal list showbreak=→ '
 let s:list_settings .= 'listchars='
 let s:list_settings .= 'trail:←,tab:→—,extends:▓,precedes:▓'
 execute s:list_settings
