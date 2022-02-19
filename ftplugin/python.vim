@@ -13,5 +13,7 @@ unlet! b:ale_fixers  " reset for use in autoload/toggle.vim
 call toggle#toggle_python_linters('default')
 let b:ale_python_flake8_options = '--max-line-length=88'
 noremap <Leader>pp :call toggle#toggle_python()<CR>
+noremap <Leader>pl :call toggle#toggle_python_linters()<CR>
+noremap <Leader>pi :call toggle#toggle_python_import_ordering()<CR>
 noremap <Leader>pt
   \ :exec 'new '. substitute(expand('%'), '.py$', '_test.py', '')<CR>
