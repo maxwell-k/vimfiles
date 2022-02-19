@@ -105,6 +105,7 @@ vnoremap <Leader>k <ESC>:call vim#keep()<CR>
  noremap <Leader>v :set paste! paste?<CR>
 call opfunc#opfuncmap('y')
  noremap <Leader>w <C-w>
+ noremap <Leader>zf :call fzf#run(fzf#wrap({'source': 'find -type f'}))<CR>
  noremap <Leader>zg :call fzf#run(fzf#wrap({'source': 'git ls-files'}))<CR>
  noremap <Leader>zs :call fzf#custom_git_status()<CR>
 vnoremap <Leader>= :<C-U>call vim#sum()<CR>
