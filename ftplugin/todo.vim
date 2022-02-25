@@ -20,15 +20,28 @@ setlocal path+=./Projects
 setlocal suffixesadd+=.md
 setlocal colorcolumn=
 
+noremap <script> <silent> <buffer>
+  \ <Plug>PriorityA :call todo#PrioritizeAdd("A")<CR>
+  \ :silent! call repeat#set("\<Plug>PriorityA")<CR>
+nmap <silent> <buffer> <localleader>tA <Plug>PriorityA
+
+noremap <script> <silent> <buffer>
+  \ <Plug>PriorityB :call todo#PrioritizeAdd("B")<CR>
+  \ :silent! call repeat#set("\<Plug>PriorityB")<CR>
+nmap <silent> <buffer> <localleader>tB <Plug>PriorityB
+
+noremap <script> <silent> <buffer>
+  \ <Plug>PriorityC :call todo#PrioritizeAdd("C")<CR>
+  \ :silent! call repeat#set("\<Plug>PriorityC")<CR>
+nmap <silent> <buffer> <localleader>tC <Plug>PriorityC
+
+nmap <silent> <buffer> <localleader>td <Plug>DoToggleMarkAsDone
+
 " ~/.vim/pack/submodules/opt/todo.txt/ftplugin/todo.vim
 let s:prefix = 'nnoremap <script> <silent> <buffer> <localleader>t'
 ":sort i
 execute s:prefix . '@ :call todo#Sort("@")<CR>'
 execute s:prefix . '+ :call todo#Sort("+")<CR>'
-execute s:prefix . 'a :call todo#PrioritizeAdd("A")<CR>'
-execute s:prefix . 'b :call todo#PrioritizeAdd("B")<CR>'
-execute s:prefix . 'c :call todo#PrioritizeAdd("C")<CR>'
-execute s:prefix . 'd :call todo#ToggleMarkAsDone("")<CR>'
 execute s:prefix . 'D :call vim#RemoveCompletedWrapped()<CR>'
 execute s:prefix . 'p :call todo#Sort("")<CR>'
 execute s:prefix . 'u :call todo#SortDue()<CR>'

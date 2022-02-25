@@ -16,11 +16,11 @@ endfunction "}}}1
 function! toggle#toggle_list(default_settings) abort "{{{1
 " Toggle through three states, ``:help digraph-table`` lists symbols
   if !&list
-    silent set list listchars&vim showbreak&vim
+    silent setlocal list listchars&vim showbreak&vim
   elseif &listchars==#'eol:$'
     silent execute a:default_settings
   else
-    silent set nolist listchars&vim showbreak&vim
+    silent setlocal nolist listchars&vim showbreak&vim
   end
   redraw
 endfunction "}}}1

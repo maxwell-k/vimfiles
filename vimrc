@@ -69,7 +69,7 @@ if $TERM !~# 'xterm*'
 endif
 
 " Scripted options
-let s:list_settings = 'set list showbreak=→ '
+let s:list_settings = 'setlocal list showbreak=→ '
 let s:list_settings .= 'listchars='
 let s:list_settings .= 'trail:←,tab:→—,extends:▓,precedes:▓'
 execute s:list_settings
@@ -81,8 +81,12 @@ unlet s:list_settings
 "
 " Using <Leader>, alphabetically:
  noremap <Leader>aq :call ale#quit#Mapping()<CR>
- noremap <Leader>ad :call toggle#toggle_ale()<CR>
- noremap <Leader>aD :call toggle#toggle_python_linters()<CR>
+ noremap <Leader>aD :call toggle#toggle_ale()<CR>
+     map <Leader>af <Plug>(ale_find_references)
+     map <Leader>ad <Plug>(ale_go_to_definition)
+     map <Leader>ah <Plug>(ale_hover)
+     map <Leader>ar <Plug>(ale_rename)
+     map <Leader>at <Plug>(ale_go_to_type_definition)
  noremap <Leader>b :call toggle#toggle_colors()<CR>
 call opfunc#opfuncmap('c') " straight yank
  noremap <Leader>C :call SendViaOSC52(join(getline(1,'$'),'\n'))<CR>
@@ -98,13 +102,13 @@ vnoremap <Leader>k <ESC>:call vim#keep()<CR>
         "<Leader>l see above
  noremap <Leader>m :/<<<<<<<\\|=======\\|>>>>>>><CR>
  noremap <Leader>n :call vim#new()<CR>
- noremap <Leader>o :call toggle#toggle_python_import_ordering()<CR>
- noremap <Leader>p :call toggle#toggle_python()<CR>
+        "<Leader>p? see ftplugin/python.vim
  noremap <Leader>s :call toggle#toggle_shiftwidth()<CR>
  noremap <Leader>S :call vim#scriptnames()<CR>
  noremap <Leader>v :set paste! paste?<CR>
 call opfunc#opfuncmap('y')
  noremap <Leader>w <C-w>
+ noremap <Leader>zf :call fzf#run(fzf#wrap({'source': 'find -type f'}))<CR>
  noremap <Leader>zg :call fzf#run(fzf#wrap({'source': 'git ls-files'}))<CR>
  noremap <Leader>zs :call fzf#custom_git_status()<CR>
 vnoremap <Leader>= :<C-U>call vim#sum()<CR>

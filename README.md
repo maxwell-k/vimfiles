@@ -10,28 +10,23 @@ SPDX-License-Identifier: CC-BY-SA-4.0
 
 Clone this repository and its sub-modules as `~/.vim`:
 
-    git clone --recurse-submodules <url>/vimfiles ~/.vim
+    git clone --recurse-submodules https://codeberg.org/maxwell-k/vimfiles.git ~/.vim
 
-Update the help files and download a few scripts:
-
-    ansible-playbook -i, site.yaml
-
-Test the current configuration:
-
-    tests/run.sh
+Install the appropriate system packages, setup an Ansible inventory, run the
+playbook and test the configuration. See
+[inside-alpine-edge.sh](tests/inside-alpine-edge.sh) and
+[inside-fedora-latest.sh](tests/inside-fedora-latest.sh) for examples.
 
 Set up pre-commit hooks:
 
-    git config core.hooksPath $PWD/hooks
+    git -C ~/.vim config core.hooksPath ~/.vim/hooks
 
-Run tests inside an Alpine Linux container:
-
-    tests/podman-run-alpine-edge.sh
+Further details about testing are in [`tests/README.md`](tests/README.md).
 
 ## Supported operating systems
 
-Regularly tested on Alpine Linux and Mac OS. Infrequently tested on Debian and
-Ubuntu.
+Regularly tested on Alpine Linux and Fedora. Infrequently tested on Debian,
+Ubuntu and Mac OS.
 
 ## Contents
 
@@ -92,43 +87,5 @@ Overall I prefer the name `vimfiles`.
 This repository uses approximately twenty git sub-modules. It may be helpful to
 set `git config diff.ignoreSubmodules dirty` so that `git status` completes
 quickly.
-
-## Removed sub-modules
-
-The following plugins are not currently in use:
-
-### `opt/jedi`
-
-- https://github.com/davidhalter/jedi-vim
-- switched to pyright via ALE
-
-### `opt/gnupg`
-
-- https://github.com/jamessan/vim-gnupg
-
-### `start/fzf`
-
-- https://github.com/junegunn/fzf
-- 0.17.5
-- only required on Debian and Ubuntu, as system packages aren't available
-
-### `start/rust`
-
-- https://github.com/rust-lang/rust.vim
-
-### `start/racer` for rust
-
-- https://github.com/racer-rust/vim-racer
-- needs `cc`, so install build-essential on Ubuntu or Debian
-
-### `opt/jsx`
-
-- https://github.com/MaxMEllon/vim-jsx-pretty/
-- `v3.0.0`
-
-### `opt/mdx`
-
-- https://github.com/jxnblk/vim-mdx-js/
-- clear settings from `ftplugin/markdown.vim`
 
 <!-- vim: set filetype=markdown : -->
