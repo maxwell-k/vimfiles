@@ -67,6 +67,8 @@ if $TERM !~# 'xterm*'
   let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
   let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
 endif
+" override /etc/vimrc on Fedora
+set incsearch& scrolloff&
 
 " Scripted options
 let s:list_settings = 'setlocal list showbreak=→ '
