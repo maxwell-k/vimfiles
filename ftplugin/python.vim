@@ -17,3 +17,5 @@ noremap <Leader>pl :call toggle#toggle_python_linters()<CR>
 noremap <Leader>pi :call toggle#toggle_python_import_ordering()<CR>
 noremap <Leader>pt
   \ :exec 'new '. substitute(expand('%'), '.py$', '_test.py', '')<CR>
+noremap <Leader>pT
+  \ :exec 'new '. substitute(expand('%'), '_test.py$', '.py', '')<CR>
