@@ -12,8 +12,8 @@ augroup filetypedetect
 " Tests in ./tests/file-type-detection/
 
   autocmd BufRead,BufNewFile .ansible-lint setfiletype yaml
-  autocmd BufRead,BufNewFile .env setfiletype text
-  autocmd BufRead,BufNewFile .env.local setfiletype text
+  autocmd BufRead,BufNewFile .env setfiletype dotenv
+  autocmd BufRead,BufNewFile .env.local setfiletype dotenv
   autocmd BufRead,BufNewFile *.bas setfiletype vba
   autocmd BufRead,BufNewFile *.beancount setfiletype beancount
   autocmd BufRead,BufNewFile *.dart setfiletype dart
