@@ -4,7 +4,7 @@
 #
 # Run as:
 #
-#     ansible-playbook -i, site.yaml
+#     ansible-playbook -i::1, site.yaml
 #
 # This playbook can be run as a normal user, no super-user privileges are
 # necessary.
@@ -102,7 +102,8 @@
           exec npm exec --yes -- prettier@2.5.1 "$@"
       when: "'.local/bin' in lookup('env', 'PATH')"
     - name: Add prettier to npm cache
-      ansible.builtin.command: prettier --version
+      ansible.builtin.command: ~/.local/bin/prettier --version
+      when: "'.local/bin' in lookup('env', 'PATH')"
       changed_when: no
     - name: Install ~/.local/bin/jsonlint
       ansible.builtin.copy:
@@ -113,7 +114,8 @@
           exec npm exec --yes -- jsonlint "$@"
       when: "'.local/bin' in lookup('env', 'PATH')"
     - name: Add jsonlint to npm cache
-      ansible.builtin.command: jsonlint --version
+      ansible.builtin.command: ~/.local/bin/jsonlint --version
+      when: "'.local/bin' in lookup('env', 'PATH')"
       changed_when: no
       register: npm_exec_jsonlint_cmd
       failed_when: npm_exec_jsonlint_cmd.rc != 1
