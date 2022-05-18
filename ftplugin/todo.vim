@@ -45,3 +45,6 @@ execute s:prefix . '+ :call todo#Sort("+")<CR>'
 execute s:prefix . 'D :call vim#RemoveCompletedWrapped()<CR>'
 execute s:prefix . 'p :call todo#Sort("")<CR>'
 execute s:prefix . 'u :call todo#SortDue()<CR>'
+nnoremap <script> <silent> <buffer> <CR>
+  \ :silent .w !pipx run urlscan --no-browser
+  \ \| xargs xdg-open 1>/dev/null 2>/dev/null<CR>
