@@ -35,22 +35,32 @@ noremap <script> <silent> <buffer>
   \ :silent! call repeat#set("\<Plug>PriorityC")<CR>
 nmap <silent> <buffer> <localleader>tC <Plug>PriorityC
 
-nmap <silent> <buffer> <localleader>td <Plug>DoToggleMarkAsDone
-
 " ~/.vim/pack/submodules/opt/todo.txt/ftplugin/todo.vim
-let s:prefix = 'nnoremap <script> <silent> <buffer> <localleader>t'
+let s:prefix_start = 'nnoremap <script> <silent> <buffer> '
+let s:prefix = s:prefix_start.'<localleader>t'
+
 ":sort i
 execute s:prefix . '@ :call todo#Sort("@")<CR>'
 execute s:prefix . '+ :call todo#Sort("+")<CR>'
 execute s:prefix . 'D :call vim#RemoveCompletedWrapped()<CR>'
 execute s:prefix . 'p :call todo#Sort("")<CR>'
 execute s:prefix . 'u :call todo#SortDue()<CR>'
-nnoremap <script> <silent> <buffer> <CR>
-  \ :silent .w !pipx run urlscan --no-browser
-  \ \| xargs xdg-open 1>/dev/null 2>/dev/null<CR>
-nnoremap <script> <silent> <buffer> <BS>
-  \ :s/$/ \~\~/
-  \ \| s/\d\d\d\d-\d\d-\d\d /\0\~\~/
-  \ \| noh
-  \ \| call todo#ToggleMarkAsDone('')
-  \ <CR>
+
+" Only prefix <Space>, <CR> and <BS> with \t if another filetype like markdown
+if &filetype==#'todo'
+  nmap <silent> <buffer> <Space> <Plug>DoToggleMarkAsDone
+  let s:prefix = s:prefix_start
+else
+  nmap <silent> <buffer> <localleader>t<Space> <Plug>DoToggleMarkAsDone
+endif
+
+execute s:prefix.'<CR>'
+  \ .' :silent .w !pipx run urlscan --no-browser'
+  \ .' \| xargs xdg-open 1>/dev/null 2>/dev/null'
+  \ .'<CR>'
+execute s:prefix.'<BS>'
+  \ .' :s/$/ \~\~/'
+  \ .' \| s/\d\d\d\d-\d\d-\d\d /\0\~\~/'
+  \ .' \| noh'
+  \ .' \| call todo#ToggleMarkAsDone("")'
+  \ .'<CR>'
