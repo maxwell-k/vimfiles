@@ -48,3 +48,9 @@ execute s:prefix . 'u :call todo#SortDue()<CR>'
 nnoremap <script> <silent> <buffer> <CR>
   \ :silent .w !pipx run urlscan --no-browser
   \ \| xargs xdg-open 1>/dev/null 2>/dev/null<CR>
+nnoremap <script> <silent> <buffer> <BS>
+  \ :s/$/ \~\~/
+  \ \| s/\d\d\d\d-\d\d-\d\d /\0\~\~/
+  \ \| noh
+  \ \| call todo#ToggleMarkAsDone('')
+  \ <CR>
