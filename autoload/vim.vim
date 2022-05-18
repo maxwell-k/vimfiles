@@ -82,6 +82,8 @@ function! vim#Cancel() abort "{{{1
   let l:out = getline('.').' ~~'
   let l:out = substitute(l:out, '\d\d\d\d-[01]\d-[0-3]\d ', '\0\~\~', '')
   call setline('.', l:out)
-  call todo#MarkAsDone('')
+  if l:out[0] !=# 'x'
+    call todo#MarkAsDone('')
+  endif
 endfunction
 " vim: set foldmethod=marker foldlevel=0 :
