@@ -1,0 +1,3 @@
+2022-06-19 The following bare URL should be highlighted https://example.org
+2022-06-19 The following URL surrounded in <>s should be highlighted <https://example.org>
+2022-06-19 [The following URL for this Markdown link should be highlighted](https://example.org)
