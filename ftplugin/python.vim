@@ -19,3 +19,4 @@ noremap <Leader>pt
   \ :exec 'new '. substitute(expand('%'), '.py$', '_test.py', '')<CR>
 noremap <Leader>pT
   \ :exec 'above new '. substitute(expand('%'), '_test.py$', '.py', '')<CR>
+noremap K :call python#documentation()<CR>
