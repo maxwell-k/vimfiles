@@ -11,9 +11,6 @@ endif
 augroup filetypedetect
 " Tests in ./tests/file-type-detection/
 
-  autocmd BufRead,BufNewFile .ansible-lint setfiletype yaml
-  autocmd BufRead,BufNewFile .env setfiletype dotenv
-  autocmd BufRead,BufNewFile .env.local setfiletype dotenv
   autocmd BufRead,BufNewFile *.bas setfiletype vba
   autocmd BufRead,BufNewFile *.beancount setfiletype beancount
   autocmd BufRead,BufNewFile *.dart setfiletype dart
@@ -25,19 +22,22 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile *.tf setfiletype terraform
   autocmd BufRead,BufNewFile *.tfstate setfiletype json
   autocmd BufRead,BufNewFile *.tfvars setfiletype terraform
-  autocmd BufRead,BufNewFile *.yaml.jinja setfiletype yaml.jinja2
   autocmd BufRead,BufNewFile *.vader setfiletype vader
+  autocmd BufRead,BufNewFile *.yaml.jinja setfiletype yaml.jinja2
   autocmd BufRead,BufNewFile */playbooks/*.yaml setfiletype yaml.ansible
   autocmd BufRead,BufNewFile */site-packages/*.py setfiletype python
   autocmd BufRead,BufNewFile */src/template.html setfiletype svelte
+  autocmd BufRead,BufNewFile .ansible-lint setfiletype yaml
+  autocmd BufRead,BufNewFile .env setfiletype dotenv
+  autocmd BufRead,BufNewFile .env.local setfiletype dotenv
   autocmd BufRead,BufNewFile APKBUILD setfiletype sh.apkbuild
   autocmd BufRead,BufNewFile Jenkinsfile setfiletype groovy
+  autocmd BufRead,BufNewFile done.txt setfiletype todo
   autocmd BufRead,BufNewFile git-revise-todo setfiletype gitrebase
   autocmd BufRead,BufNewFile hosts setfiletype yaml.ansible.hosts " [1]
+  autocmd BufRead,BufNewFile in-basket.txt setfiletype todo
   autocmd BufRead,BufNewFile known_hosts setfiletype known_hosts
   autocmd BufRead,BufNewFile secret setfiletype gopass
-  autocmd BufRead,BufNewFile done.txt setfiletype todo
-  autocmd BufRead,BufNewFile in-basket.txt setfiletype todo
   autocmd BufRead,BufNewFile someday-maybe.txt setfiletype todo
   autocmd BufRead,BufNewFile tickler.txt setfiletype todo
   autocmd BufRead,BufNewFile todo.txt setfiletype todo
