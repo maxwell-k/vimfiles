@@ -24,7 +24,7 @@ function! python#foldtext() abort
   return l:out
 endfunction
 function! python#documentation() abort
-  let l:head = 'venv/bin/python -m pydoc '
+  let l:head = 'py -m pydoc '
   let l:tail = input('Prefix → ')
   if len(l:tail) > 0
      let l:tail .= '.'
