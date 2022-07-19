@@ -15,6 +15,7 @@ highlight Statement guifg=#E6B673
 highlight ToDoOverDueDate cterm=bold guifg=#F07178
 highlight CursorLine guibg=#3E4B59
 highlight ToDoPriorityA cterm=bold
+highlight TodoCancel cterm=strikethrough guifg=#5C6773
 highlight link ToDoPriorityB NONE
 highlight link ToDoPriorityC NONE
 highlight link TodoURL Underlined

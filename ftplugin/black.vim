@@ -11,5 +11,8 @@
 " Use as set filetype=python.black
 let b:ale_python_black_options = ''
 let b:ale_fixers = get(b:, 'ale_fixers', []) + ['black']
-" https://black.readthedocs.io/en/stable/compatible_configs.html#flake8
-let b:ale_python_flake8_options = '--max-line-length=88 --ignore=E203,W503'
+" Configuration to be compatible with flake8, typically stored in .flake8
+" https://black.readthedocs.io/en/stable/guides/
+" using_black_with_other_tools.html?#flake8
+" If required:
+" let b:ale_python_flake8_options = '--max-line-length=88 --extend-ignore=E203'

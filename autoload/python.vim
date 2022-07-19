@@ -1,3 +1,4 @@
+scriptencoding utf-8
 " autoload/python.vim
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
@@ -21,4 +22,14 @@ function! python#foldtext() abort
   let l:size = winwidth(0) - &foldcolumn - &number ? 8 : 0 - strwidth(l:out)
   let l:out = l:line . repeat('.', l:size) . l:out
   return l:out
-endf
+endfunction
+function! python#documentation() abort
+  let l:head = 'py -m pydoc '
+  let l:tail = input('Prefix → ')
+  if len(l:tail) > 0
+     let l:tail .= '.'
+  endif
+  let l:tail .= expand('<cword>')
+  let l:name = input(l:head, l:tail)
+  execute ':!'.l:head.l:name
+endfunction

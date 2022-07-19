@@ -27,3 +27,8 @@ Files: tests/podman-run-*.sh tests/inside-*.sh
 # short files included in tests/README.md, copyright block would complicate that
 Copyright: 2021 Keith Maxwell
 License: MPL-2.0
+
+Files: tests/manual/todo.txt
+# test fixture where syntax does not support comments
+Copyright: 2022 Keith Maxwell
+License: CC0-1.0

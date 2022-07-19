@@ -69,13 +69,21 @@ function! vim#RemoveCompletedWrapped() abort "{{{1
     let g:TodoTxtForceDoneName = '../done.txt'
     let l:forced = 1
   endif
-  if expand('%') =~# 'someday-maybe.txt$\|in-basket.txt$'
+  if expand('%') =~# 'someday-maybe.txt$\|in-basket.txt$\|backlog.txt$'
     let g:TodoTxtForceDoneName = 'done.txt'
     let l:forced = 1
   endif
   call todo#RemoveCompleted()
   if l:forced
     unlet g:TodoTxtForceDoneName
+  endif
+endfunction
+function! vim#Cancel() abort "{{{1
+  let l:out = getline('.').' ~~'
+  let l:out = substitute(l:out, '\d\d\d\d-[01]\d-[0-3]\d ', '\0\~\~', '')
+  call setline('.', l:out)
+  if l:out[0] !=# 'x'
+    call todo#MarkAsDone('')
   endif
 endfunction
 " vim: set foldmethod=marker foldlevel=0 :
