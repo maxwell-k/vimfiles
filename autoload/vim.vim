@@ -69,7 +69,7 @@ function! vim#RemoveCompletedWrapped() abort "{{{1
     let g:TodoTxtForceDoneName = '../done.txt'
     let l:forced = 1
   endif
-  if expand('%') =~# 'someday-maybe.txt$\|in-basket.txt$'
+  if expand('%') =~# 'someday-maybe.txt$\|in-basket.txt$\|backlog.txt$'
     let g:TodoTxtForceDoneName = 'done.txt'
     let l:forced = 1
   endif
