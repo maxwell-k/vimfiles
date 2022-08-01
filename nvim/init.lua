@@ -1,5 +1,6 @@
 vim.api.nvim_command("set packpath +=~/.config/nvim")
 require("lspconfig").pyright.setup({})
+require("nvim_comment").setup()
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 require("null-ls").setup({
 	sources = {
