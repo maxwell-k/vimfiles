@@ -4,6 +4,7 @@ require("nvim_comment").setup()
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 require("null-ls").setup({
 	sources = {
+		require("null-ls").builtins.formatting.reorder_python_imports,
 		require("null-ls").builtins.formatting.stylua,
 		require("null-ls").builtins.formatting.black.with({
 			only_local = ".venv/bin",
