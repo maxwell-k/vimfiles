@@ -7,6 +7,9 @@ require("null-ls").setup({
 		require("null-ls").builtins.formatting.black.with({
 			only_local = ".venv/bin",
 		}),
+		require("null-ls").builtins.diagnostics.flake8.with({
+			only_local = ".venv/bin",
+		}),
 	},
 	-- from https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Formatting-on-save#sync-formatting
 	on_attach = function(client, bufnr)
