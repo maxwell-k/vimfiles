@@ -55,3 +55,6 @@
 [submodule "pack/submodules/opt/todo.txt"]
 	path = pack/submodules/opt/todo.txt
 	url = https://gitlab.com/dbeniamine/todo.txt-vim.git
+[submodule "nvim/pack/gitsubmodules/start/lspconfig"]
+	path = nvim/pack/gitsubmodules/start/lspconfig
+	url = https://github.com/neovim/nvim-lspconfig

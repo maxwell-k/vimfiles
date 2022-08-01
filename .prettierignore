@@ -1,1 +1,5 @@
+*.lua
+/.gitmodules
+/.prettierignore
 /pack/
+/nvim/pack/
