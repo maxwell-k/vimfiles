@@ -4,6 +4,9 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 require("null-ls").setup({
 	sources = {
 		require("null-ls").builtins.formatting.stylua,
+		require("null-ls").builtins.formatting.black.with({
+			only_local = ".venv/bin",
+		}),
 	},
 	-- from https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Formatting-on-save#sync-formatting
 	on_attach = function(client, bufnr)
