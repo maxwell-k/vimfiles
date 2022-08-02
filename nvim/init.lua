@@ -1,3 +1,4 @@
+vim.o.hidden = false
 vim.api.nvim_command("set packpath +=~/.config/nvim")
 require("lspconfig").pyright.setup({})
 require("nvim_comment").setup()
