@@ -67,3 +67,6 @@
 [submodule "nvim/pack/gitsubmodules/start/nvim_comment"]
 	path = nvim/pack/gitsubmodules/start/nvim_comment
 	url = https://github.com/terrortylor/nvim-comment
+[submodule "nvim/pack/gitsubmodules/start/nvim-surround"]
+	path = nvim/pack/gitsubmodules/start/nvim-surround
+	url = https://github.com/kylechui/nvim-surround
