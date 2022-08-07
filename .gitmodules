@@ -55,3 +55,18 @@
 [submodule "pack/submodules/opt/todo.txt"]
 	path = pack/submodules/opt/todo.txt
 	url = https://gitlab.com/dbeniamine/todo.txt-vim.git
+[submodule "nvim/start/null-ls"]
+	path = nvim/pack/gitsubmodules/start/null-ls
+	url = https://github.com/jose-elias-alvarez/null-ls.nvim.git
+[submodule "nvim/pack/gitsubmodules/start/plenary"]
+	path = nvim/pack/gitsubmodules/start/plenary
+	url = https://github.com/nvim-lua/plenary.nvim
+[submodule "nvim/pack/gitsubmodules/start/lspconfig"]
+	path = nvim/pack/gitsubmodules/start/lspconfig
+	url = https://github.com/neovim/nvim-lspconfig
+[submodule "nvim/pack/gitsubmodules/start/nvim_comment"]
+	path = nvim/pack/gitsubmodules/start/nvim_comment
+	url = https://github.com/terrortylor/nvim-comment
+[submodule "nvim/pack/gitsubmodules/start/nvim-surround"]
+	path = nvim/pack/gitsubmodules/start/nvim-surround
+	url = https://github.com/kylechui/nvim-surround

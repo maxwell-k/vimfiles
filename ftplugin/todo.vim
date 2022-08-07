@@ -19,6 +19,7 @@ setlocal isfname-=+
 setlocal path+=./Projects
 setlocal suffixesadd+=.md
 setlocal colorcolumn=
+setlocal shiftwidth=4
 
 noremap <script> <silent> <buffer>
   \ <Plug>PriorityA :call todo#PrioritizeAdd("A")<CR>
