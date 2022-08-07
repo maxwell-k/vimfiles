@@ -1,3 +1,9 @@
+<!--
+nvim/README.md
+Copyright 2022 Keith Maxwell
+SPDX-License-Identifier: CC-BY-SA-4.0
+-->
+
 This configuration for <https://neovim.io/> is experimental.
 
 To configure `nvim` to pick up these settings use:

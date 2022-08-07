@@ -1,5 +1,5 @@
 <!--
-README
+README.md
 Copyright 2020 Keith Maxwell
 SPDX-License-Identifier: CC-BY-SA-4.0
 -->

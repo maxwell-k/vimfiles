@@ -1,3 +1,7 @@
+-- nvim/init.lua
+-- Copyright 2022 Keith Maxwell
+-- SPDX-License-Identifier: MPL-2.0
+
 -- Basic options
 vim.o.hidden = false
 vim.o.packpath = "~/.config/nvim"
