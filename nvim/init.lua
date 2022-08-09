@@ -8,7 +8,6 @@ vim.o.packpath = "~/.config/nvim"
 vim.o.mouse = ""
 
 -- Packages
-require("nvim_comment").setup()
 require("nvim-surround").setup()
 
 -- Mappings
