@@ -57,6 +57,6 @@ endif
 
 execute s:prefix.'<CR>'
   \ .' :silent .w !pipx run urlscan --no-browser'
-  \ .' \| xargs xdg-open 1>/dev/null 2>/dev/null'
+  \ .' \| xargs --max-args=1 xdg-open 1>/dev/null 2>/dev/null'
   \ .'<CR>'
 execute s:prefix.'<BS> :call vim#Cancel()<CR>'
