@@ -2,7 +2,7 @@
 # hooks/pre-commit
 # Copyright 2021 Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
-npm exec -- lint-staged \
+npm exec --prefer-offline -- lint-staged \
 && if git symbolic-ref -q HEAD | grep -q main ; then
   printf 'Avoid committing to the main branch directly\n' \
   && exit 1

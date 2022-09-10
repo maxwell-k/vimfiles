@@ -17,6 +17,8 @@
         path: ~/.backupdir
         mode: 0o700
 
+- import_playbook: pipx.yaml
+
 - name: Download scripts to the plugin/ directory
   hosts: all
   tasks:
@@ -81,6 +83,7 @@
         - embedme
         - js-yaml
         - pyright
+        - lint-staged
     - name: Make sure markdown-toc is available in the npm cache
       command:
         cmd: npm exec --yes -- markdown-toc --help
@@ -111,7 +114,7 @@
         mode: 0o544
         content: |
           #!/bin/sh
-          exec npm exec --yes -- jsonlint "$@"
+          exec npm exec --prefer-offline --yes -- jsonlint "$@"
       when: "'.local/bin' in lookup('env', 'PATH')"
     - name: Add jsonlint to npm cache
       ansible.builtin.command: ~/.local/bin/jsonlint --version
@@ -147,7 +150,7 @@
           | xargs git -C "$OLDPWD" archive \
           | tar x \
           && git add . \
-          && npm exec -- lint-staged \
+          && npm exec --prefer-offline -- lint-staged \
           && cd "$OLDPWD" \
           && rm -rf "$all" \
           && unset all
@@ -160,5 +163,6 @@
           #!/bin/sh
           exec npm exec --package pyright --yes -- pyright-langserver "$@"
       when: "'.local/bin' in lookup('env', 'PATH')"
-
-- import_playbook: pipx.yaml
+    - name: Add reuse to pipx cache so that tests can pass offline
+      ansible.builtin.command: pipx run reuse --help
+      changed_when: no
