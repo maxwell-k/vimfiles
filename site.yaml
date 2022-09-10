@@ -99,7 +99,7 @@
         mode: 0o544
         content: |
           #!/bin/sh
-          exec npm exec --yes -- prettier@2.6.2 "$@"
+          exec npm exec --prefer-offline --yes -- prettier@2.6.2 "$@"
       when: "'.local/bin' in lookup('env', 'PATH')"
     - name: Add prettier to npm cache
       ansible.builtin.command: ~/.local/bin/prettier --version
