@@ -34,37 +34,6 @@
         url: https://raw.githubusercontent.com/junegunn/fzf/master/plugin/fzf.vim
       when: ansible_distribution not in ('Alpine')
 
-- name: Tag vim help files, these tasks always report changes
-  hosts: all
-  tasks:
-    - name: Create a temporary file for use as a script to generate help tags
-      tempfile: { state: file, suffix: .vim }
-      register: site_script
-      changed_when: false
-    - name: List optional packages
-      find: { paths: ~/.vim/pack/submodules/opt/, file_type: directory }
-      register: site_find
-    - name: Write the commands to the script to avoid an error about too many
-        command line flags
-      copy:
-        dest: "{{ site_script.path }}"
-        content: |
-          {% for i in  site_find.files %}
-          packadd {{ i.path | basename }}
-          {% endfor %}
-          helptags ALL
-          quit
-        mode: 0o700
-      changed_when: false
-    - name: Run the script to generate help tags with vim ( {{ site_script.path }} )
-      command: vim -S {{ site_script.path }}
-      changed_when: true
-    - name: Remove the temporary file used as script for generating help tags
-      file:
-        path: "{{ site_script.path }}"
-        state: absent
-      changed_when: false
-
 - name: Make sure packages are available through npx
   hosts: all
   tasks:
@@ -166,3 +135,34 @@
     - name: Add reuse to pipx cache so that tests can pass offline
       ansible.builtin.command: pipx run reuse --help
       changed_when: no
+
+- name: Tag vim help files, these tasks always report a change so they are run last in the playbook
+  hosts: all
+  tasks:
+    - name: Create a temporary file for use as a script to generate help tags
+      tempfile: { state: file, suffix: .vim }
+      register: site_script
+      changed_when: false
+    - name: List optional packages
+      find: { paths: ~/.vim/pack/submodules/opt/, file_type: directory }
+      register: site_find
+    - name: Write the commands to the script to avoid an error about too many
+        command line flags
+      copy:
+        dest: "{{ site_script.path }}"
+        content: |
+          {% for i in  site_find.files %}
+          packadd {{ i.path | basename }}
+          {% endfor %}
+          helptags ALL
+          quit
+        mode: 0o700
+      changed_when: false
+    - name: Run the script to generate help tags with vim ( {{ site_script.path }} )
+      command: vim -S {{ site_script.path }}
+      changed_when: true
+    - name: Remove the temporary file used as script for generating help tags
+      file:
+        path: "{{ site_script.path }}"
+        state: absent
+      changed_when: false
