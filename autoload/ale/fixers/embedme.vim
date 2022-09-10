@@ -5,6 +5,6 @@
 " SPDX-License-Identifier: MPL-2.0
 "
 function! ale#fixers#embedme#Fix(buffer) abort
-  let s:npx = 'npm exec -- '
+  let s:npx = 'npm exec --prefer-offline -- '
   return {'command': s:npx . 'embedme --silent --source-root %s:h --stdout %t'}
 endfunction

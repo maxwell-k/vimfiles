@@ -26,7 +26,7 @@ endfunction
 call ale#linter#Define('yaml', {
 \   'name': 'js-yaml',
 \   'executable': 'npm',
-\   'command': 'npm exec -- js-yaml',
+\   'command': 'npm exec --prefer-offline -- js-yaml',
 \   'callback': 'ale_linters#yaml#jsyaml#Handle',
 \   'output_stream': 'stderr',
 \})

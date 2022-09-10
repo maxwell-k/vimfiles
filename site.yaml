@@ -17,6 +17,8 @@
         path: ~/.backupdir
         mode: 0o700
 
+- import_playbook: pipx.yaml
+
 - name: Download scripts to the plugin/ directory
   hosts: all
   tasks:
@@ -31,37 +33,6 @@
         dest: ./plugin/fzf.vim
         url: https://raw.githubusercontent.com/junegunn/fzf/master/plugin/fzf.vim
       when: ansible_distribution not in ('Alpine')
-
-- name: Tag vim help files, these tasks always report changes
-  hosts: all
-  tasks:
-    - name: Create a temporary file for use as a script to generate help tags
-      tempfile: { state: file, suffix: .vim }
-      register: site_script
-      changed_when: false
-    - name: List optional packages
-      find: { paths: ~/.vim/pack/submodules/opt/, file_type: directory }
-      register: site_find
-    - name: Write the commands to the script to avoid an error about too many
-        command line flags
-      copy:
-        dest: "{{ site_script.path }}"
-        content: |
-          {% for i in  site_find.files %}
-          packadd {{ i.path | basename }}
-          {% endfor %}
-          helptags ALL
-          quit
-        mode: 0o700
-      changed_when: false
-    - name: Run the script to generate help tags with vim ( {{ site_script.path }} )
-      command: vim -S {{ site_script.path }}
-      changed_when: true
-    - name: Remove the temporary file used as script for generating help tags
-      file:
-        path: "{{ site_script.path }}"
-        state: absent
-      changed_when: false
 
 - name: Make sure packages are available through npx
   hosts: all
@@ -81,6 +52,7 @@
         - embedme
         - js-yaml
         - pyright
+        - lint-staged
     - name: Make sure markdown-toc is available in the npm cache
       command:
         cmd: npm exec --yes -- markdown-toc --help
@@ -99,7 +71,7 @@
         mode: 0o544
         content: |
           #!/bin/sh
-          exec npm exec --yes -- prettier@2.6.2 "$@"
+          exec npm exec --prefer-offline --yes -- prettier@2.6.2 "$@"
       when: "'.local/bin' in lookup('env', 'PATH')"
     - name: Add prettier to npm cache
       ansible.builtin.command: ~/.local/bin/prettier --version
@@ -111,7 +83,7 @@
         mode: 0o544
         content: |
           #!/bin/sh
-          exec npm exec --yes -- jsonlint "$@"
+          exec npm exec --prefer-offline --yes -- jsonlint "$@"
       when: "'.local/bin' in lookup('env', 'PATH')"
     - name: Add jsonlint to npm cache
       ansible.builtin.command: ~/.local/bin/jsonlint --version
@@ -147,7 +119,7 @@
           | xargs git -C "$OLDPWD" archive \
           | tar x \
           && git add . \
-          && npm exec -- lint-staged \
+          && npm exec --prefer-offline -- lint-staged \
           && cd "$OLDPWD" \
           && rm -rf "$all" \
           && unset all
@@ -160,5 +132,37 @@
           #!/bin/sh
           exec npm exec --package pyright --yes -- pyright-langserver "$@"
       when: "'.local/bin' in lookup('env', 'PATH')"
+    - name: Add reuse to pipx cache so that tests can pass offline
+      ansible.builtin.command: pipx run reuse --help
+      changed_when: no
 
-- import_playbook: pipx.yaml
+- name: Tag vim help files, these tasks always report a change so they are run last in the playbook
+  hosts: all
+  tasks:
+    - name: Create a temporary file for use as a script to generate help tags
+      tempfile: { state: file, suffix: .vim }
+      register: site_script
+      changed_when: false
+    - name: List optional packages
+      find: { paths: ~/.vim/pack/submodules/opt/, file_type: directory }
+      register: site_find
+    - name: Write the commands to the script to avoid an error about too many
+        command line flags
+      copy:
+        dest: "{{ site_script.path }}"
+        content: |
+          {% for i in  site_find.files %}
+          packadd {{ i.path | basename }}
+          {% endfor %}
+          helptags ALL
+          quit
+        mode: 0o700
+      changed_when: false
+    - name: Run the script to generate help tags with vim ( {{ site_script.path }} )
+      command: vim -S {{ site_script.path }}
+      changed_when: true
+    - name: Remove the temporary file used as script for generating help tags
+      file:
+        path: "{{ site_script.path }}"
+        state: absent
+      changed_when: false
