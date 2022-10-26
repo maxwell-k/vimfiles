@@ -78,7 +78,7 @@ function! vim#RemoveCompletedWrapped() abort "{{{1
     unlet g:TodoTxtForceDoneName
   endif
 endfunction
-function! vim#Cancel() abort "{{{1
+function! vim#cancel() abort "{{{1
   let l:out = getline('.').' ~~'
   let l:out = substitute(l:out, '\d\d\d\d-[01]\d-[0-3]\d ', '\0\~\~', '')
   call setline('.', l:out)
