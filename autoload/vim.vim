@@ -18,6 +18,10 @@ function! vim#RemoveCompletedWrapped() abort "{{{1
     unlet g:TodoTxtForceDoneName
   endif
 endfunction
+function! vim#browser() abort "{{{1
+  silent .w !pipx run urlscan --no-browser | xargs
+    \ xdg-open 1>/dev/null 2>/dev/null
+endfunction
 function! vim#cancel() abort "{{{1
   let l:out = getline('.').' ~~'
   let l:out = substitute(l:out, '\d\d\d\d-[01]\d-[0-3]\d ', '\0\~\~', '')
