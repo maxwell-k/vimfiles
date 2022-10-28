@@ -8,7 +8,7 @@ Files: tests/automated/file-type-detection/fixtures/*
 Copyright: 2020 Keith Maxwell
 License: MPL-2.0
 
-Files: .gitignore .prettierignore .lintstagedrc.yaml
+Files: .gitignore nvim/.gitignore .prettierignore .lintstagedrc.yaml
 # comments are not sorted correctly
 Copyright: 2020 Keith Maxwell
 License: CC0-1.0
@@ -37,3 +37,8 @@ Files: .en.utf-8.add
 # spelling file
 Copyright: 2022 Keith Maxwell
 License: CC0-1.0
+
+Files: tests/automated/cog/missing.txt tests/automated/cog/example.txt
+# missing is copied to example so cannot include a file name
+Copyright: 2022 Keith Maxwell
+License: MPL-2.0

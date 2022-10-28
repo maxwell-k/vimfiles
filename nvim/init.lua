@@ -6,21 +6,35 @@
 vim.o.hidden = false
 vim.o.packpath = "~/.config/nvim"
 vim.o.mouse = ""
+vim.o.shiftwidth = 2
+vim.o.softabstop = vim.o.shiftwidth
 
 -- Packages
-require("nvim_comment").setup()
 require("nvim-surround").setup()
 
 -- Mappings
 vim.api.nvim_set_keymap("n", "<Leader>w", "<C-w>", { noremap = true })
 
 -- Language server settings
-local venv = { only_local = ".venv/bin" }
+local file = io.open(vim.fn.stdpath('config').."/unclassifiable-application-modules", "rb")
+local modules = {}
+if file ~= nil then
+	for line in file:lines() do
+		table.insert(modules, 1, "--unclassifiable-application-module="..line)
+	end
+	file:close()
+end
+local venv = ".venv/bin"
 local sources = {
-	require("null-ls").builtins.formatting.black.with(venv),
-	require("null-ls").builtins.formatting.reorder_python_imports,
+	require("null-ls").builtins.formatting.black.with({
+		only_local = venv,
+		extra_args = { "--skip-string-normalization" },
+	}),
+	require("null-ls").builtins.formatting.reorder_python_imports.with({
+		extra_args = modules,
+	}),
 	require("null-ls").builtins.formatting.stylua,
-	require("null-ls").builtins.diagnostics.flake8.with(venv),
+	require("null-ls").builtins.diagnostics.flake8.with({ only_local = venv }),
 }
 local augroup = vim.api.nvim_create_augroup("Init", {})
 require("null-ls").setup({
