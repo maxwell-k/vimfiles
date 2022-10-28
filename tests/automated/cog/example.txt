@@ -1,0 +1,12 @@
+[[[cog
+import cog
+
+for i in range(5):
+  cog.outl(str(i))
+]]]
+0
+1
+2
+3
+4
+[[[end]]]
