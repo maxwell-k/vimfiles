@@ -32,3 +32,8 @@ Files: tests/manual/todo.txt
 # test fixture where syntax does not support comments
 Copyright: 2022 Keith Maxwell
 License: CC0-1.0
+
+Files: .en.utf-8.add
+# spelling file
+Copyright: 2022 Keith Maxwell
+License: CC0-1.0
