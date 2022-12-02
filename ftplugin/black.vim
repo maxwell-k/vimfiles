@@ -11,6 +11,7 @@
 " Use as set filetype=python.black
 let b:ale_python_black_options = ''
 let b:ale_fixers = get(b:, 'ale_fixers', []) + ['black']
+setlocal nowrap
 " Configuration to be compatible with flake8, typically stored in .flake8
 " https://black.readthedocs.io/en/stable/guides/
 " using_black_with_other_tools.html?#flake8

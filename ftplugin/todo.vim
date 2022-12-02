@@ -60,3 +60,5 @@ execute s:prefix.'<CR>'
   \ .' \| xargs --max-args=1 xdg-open 1>/dev/null 2>/dev/null'
   \ .'<CR>'
 execute s:prefix.'<BS> :call vim#cancel()<CR>'
+
+let b:ale_fixers = ['trim_whitespace',]
