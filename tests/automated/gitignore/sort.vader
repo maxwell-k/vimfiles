@@ -13,5 +13,5 @@ After:
 Execute(The default command should be correct):
   AssertFixer
   \ {
-  \   'command': "LC_ALL='C' sort"
+  \   'command': "LC_ALL='C' sort --unique"
   \ }
