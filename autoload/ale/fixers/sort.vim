@@ -6,7 +6,7 @@
 "
 function! ale#fixers#sort#Fix(buffer) abort
   if search('^#') == 0
-    let l:command = ale#Env('LC_ALL', 'C') . 'sort'
+    let l:command = ale#Env('LC_ALL', 'C') . 'sort --unique'
   else
     let l:command = 'cat'
   end
