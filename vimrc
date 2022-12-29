@@ -78,8 +78,8 @@ execute s:list_settings
 execute "noremap <Leader>l :call toggle#toggle_list('".s:list_settings."')<CR>"
 unlet s:list_settings
 
-" Mappings {{{1
-" --------
+" Mappings and commands {{{1
+" ---------------------
 "
 " Using <Leader>, alphabetically:
  noremap <Leader>aq :call ale#quit#Mapping()<CR>
@@ -120,6 +120,8 @@ vnoremap <Leader>= :<C-U>call vim#sum()<CR>
 " Other:
  noremap <C-L> :noh<CR><C-L>
  noremap Y y$
+
+command! W ALEFix!|w|silent execute '!git add %'|redraw!
 
 " Digraphs {{{1
 " --------
