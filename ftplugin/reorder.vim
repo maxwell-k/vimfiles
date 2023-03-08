@@ -15,3 +15,4 @@ let b:ale_fixers = get(b:, 'ale_fixers', []) + ['reorder-python-imports']
 let b:ale_python_reorder_python_imports_options = '--py310-plus'
 let b:ale_python_reorder_python_imports_options .=
   \ ' --application-directories=src'
+runtime reorder.gitignored.vim

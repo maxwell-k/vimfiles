@@ -1,6 +1,9 @@
 # filetype settings stored outside this version control repository
 /filetype.gitignored.vim
 
+# ftplugin settings stored outside this version control repository
+/reorder.gitignored.vim
+
 # script to source mappings from outside this repository
 /plugin/mappings.vim
 
