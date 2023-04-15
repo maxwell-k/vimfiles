@@ -42,7 +42,7 @@ call <sid>MapNotHasmapto('[]', 'Markdown_MoveToPreviousSiblingHeader')
 call <sid>MapNotHasmapto(']u', 'Markdown_MoveToParentHeader')
 call <sid>MapNotHasmapto(']c', 'Markdown_MoveToCurHeader')
 
-let g:vim_markdown_fenced_languages = ['viml=vim', 'py=python']
+let g:vim_markdown_fenced_languages = ['viml=text', 'vim=text', 'py=python']
 let g:vim_markdown_strikethrough = 1
 
 nmap <buffer> <Leader>mR  i- Start: ?- Stop: ?- Breaks: ?kkk$s
