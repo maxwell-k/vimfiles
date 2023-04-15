@@ -16,9 +16,6 @@
 [submodule "pack/submodules/start/markdown"]
 	path = pack/submodules/start/markdown
 	url = https://github.com/plasticboy/vim-markdown
-[submodule "pack/submodules/start/toml"]
-	path = pack/submodules/start/toml
-	url = https://github.com/cespare/vim-toml
 [submodule "pack/submodules/start/maktaba"]
 	path = pack/submodules/start/maktaba
 	url = https://github.com/google/vim-maktaba
