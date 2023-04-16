@@ -19,6 +19,7 @@ function! vim#RemoveCompletedWrapped() abort "{{{1
   endif
 endfunction
 function! vim#browser() abort "{{{1
+  " relies upon https://gitlab.com/maxwell-k/linkscan
   if stridx(&filetype, 'markdown') == -1
     silent .w !pipx run urlscan --no-browser | xargs
       \ xdg-open 1>/dev/null 2>/dev/null
