@@ -7,5 +7,9 @@
 "     :set filetype=markdown.htmlCommentNoSpell
 "
 "Disable spell checking from /usr/share/vim/vim??/syntax/html.vim
-syn region htmlCommentPart contained start=+--+ end=+--\s*+
-  \ contains=@htmlPreProc,@NoSpell
+"https://github.com/vim/vim/blob/master/runtime/syntax/html.vim
+syn region htmlComment matchgroup=htmlComment
+  \ start=+<!--\%(-\?>\)\@!+
+  \ end=+--!\?>+
+  \ contains=htmlCommentNested,@htmlPreProc,@NoSpell
+  \ keepend
