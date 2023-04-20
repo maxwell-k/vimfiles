@@ -19,3 +19,25 @@ noremap <Leader>pt
 noremap <Leader>pT
   \ :exec 'above new '. substitute(expand('%'), '_test.py$', '.py', '')<CR>
 noremap K :call python#documentation()<CR>
+
+" Settings for https://github.com/vim-test/vim-test
+packadd test-vim
+let g:test#python#runner = 'pyunit'
+let g:test#python#pyunit#file_pattern = '\v^.*_test.py$'
+let g:test#python#pyunit#executable = '.venv/bin/python -m unittest'
+let g:shtuff_receiver = 'test'
+let g:test#strategy = 'shtuff'
+let g:test#preserve_screen = 1
+
+
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+
+function! TestOnWrite() range abort "{{{1
+  augroup test
+    autocmd!
+    autocmd BufWrite * if test#exists() |
+      \   TestFile |
+      \ endif
+  augroup END
+endfunction "}}}1
