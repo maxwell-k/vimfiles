@@ -23,8 +23,10 @@ noremap K :call python#documentation()<CR>
 " Settings for https://github.com/vim-test/vim-test
 packadd test-vim
 let g:test#python#runner = 'pyunit'
+let g:test#python#pyunit#executable = 'py -m unittest'
 let g:test#python#pyunit#file_pattern = '\v^.*_test.py$'
-let g:test#python#pyunit#executable = '.venv/bin/python -m unittest'
+"let g:test#python#runner = 'pytest'
+"let g:test#python#pytest#executable = 'py -m pytest'
 let g:shtuff_receiver = 'test'
 let g:test#strategy = 'shtuff'
 let g:test#preserve_screen = 1
