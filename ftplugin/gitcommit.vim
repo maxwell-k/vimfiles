@@ -6,3 +6,8 @@ setlocal spell
 
 " so that GitHub formats indented blocks as code in PR messages:
 setlocal softtabstop=4 shiftwidth=4
+
+augroup gitcommit
+  autocmd!
+  autocmd VimEnter * normal gg
+augroup END
