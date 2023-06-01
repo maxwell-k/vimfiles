@@ -11,8 +11,10 @@ highlight htmlDel cterm=reverse
 " used inside markdown documents
 syntax keyword htmlTodo contained TODO FIXME
 highlight link htmlTodo Todo
-syn region htmlComment matchgroup=htmlComment start=+<!--\%(-\?>\)\@!+
-  \ end=+--!\?>+ contains=htmlCommentNested,@htmlPreProc,@Spell,htmlTodo
+syn region htmlComment matchgroup=htmlComment
+  \ start=+<!--\%(-\?>\)\@!+
+  \ end=+--!\?>+
+  \ contains=htmlCommentNested,@htmlPreProc,@Spell,htmlTodo
   \ keepend
 
 " don't spell check modelines
