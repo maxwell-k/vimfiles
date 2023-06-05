@@ -25,6 +25,8 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile *.vader setfiletype vader
   autocmd BufRead,BufNewFile *.yaml.jinja setfiletype yaml.jinja2
   autocmd BufRead,BufNewFile */playbooks/*.yaml setfiletype yaml.ansible
+  autocmd BufRead,BufNewFile */tasks/*.yaml setfiletype yaml.ansible
+  autocmd BufRead,BufNewFile */handlers/*.yaml setfiletype yaml.ansible
   autocmd BufRead,BufNewFile */site-packages/*.py setfiletype python
   autocmd BufRead,BufNewFile */src/template.html setfiletype svelte
   autocmd BufRead,BufNewFile .ansible-lint setfiletype yaml

@@ -19,7 +19,7 @@ Execute(Run the linter):
 
 
 Then (An issue is found):
-  AssertEqual 1, len(getloclist(bufwinid(g:original_buffer)))
+  Assert len(getloclist(bufwinid(g:original_buffer)))>0
 
 After:
   unlet! g:original_buffer

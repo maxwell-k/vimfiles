@@ -8,8 +8,8 @@
     - name: Try running pipx --version
       ansible.builtin.command:
         argv: [pipx, --version]
-      failed_when: no
-      changed_when: no
+      failed_when: false
+      changed_when: false
       register: pipx_version
     - name: Stop this play if pipx --version succeeded
       meta: end_host
@@ -19,15 +19,13 @@
         state: directory
         path: "{{ item }}"
         mode: 0o755
-      loop: [~/.local, ~/.local/bin, ~/.local/venvs]
-    - name: Install pipx into a venv
-      ansible.builtin.pip:
-        name: pipx
-        virtualenv: ~/.local/venvs/pipx
-        virtualenv_command: python3 -m venv
-    - name: Put a link to the pipx command into ~/.local/bin
-      ansible.builtin.file:
-        state: link
-        src: ~/.local/venvs/pipx/bin/pipx
-        path: ~/.local/bin/pipx
+      loop: [~/.local, ~/.local/bin]
+    - name: Install pipx to /usr/local/bin
+      become: true
+      ansible.builtin.get_url:
+        url: https://github.com/pypa/pipx/releases/download/1.2.0/pipx.pyz
+        dest: ~/.local/bin/pipx
+        mode: "0755"
+        owner: root
+        group: root
 # vim: set filetype=yaml.ansible :
