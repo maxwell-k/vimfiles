@@ -24,7 +24,7 @@ function! vim#browser() abort "{{{1
     silent .w !pipx run urlscan --no-browser | xargs
       \ xdg-open 1>/dev/null 2>/dev/null
   else
-    execute '!linkscan '.expand('%:p').' '.line('.')
+    execute 'w !linkscan - '.line('.')
       \ .' | xargs xdg-open 1>/dev/null 2>/dev/null'
   endif
 endfunction
