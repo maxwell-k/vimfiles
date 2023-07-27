@@ -12,9 +12,8 @@ Clone this repository and its sub-modules as `~/.vim`:
 
     git clone --recurse-submodules https://codeberg.org/maxwell-k/vimfiles.git ~/.vim
 
-Install the appropriate system packages, setup an Ansible inventory, run the
-playbook and test the configuration. See
-[inside-alpine-edge.sh](tests/inside-alpine-edge.sh) and
+Install the appropriate system packages, run the playbook and test the
+configuration. See [inside-alpine-edge.sh](tests/inside-alpine-edge.sh) and
 [inside-fedora-latest.sh](tests/inside-fedora-latest.sh) for examples.
 
 Set up pre-commit hooks:
