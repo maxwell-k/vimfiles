@@ -17,35 +17,42 @@
         path: ~/.backupdir
         mode: 0o700
 
-- import_playbook: pipx.yaml
+- name: Ensure that pipx is installed
+  import_playbook: pipx.yaml
 
 - name: Download scripts to the plugin/ directory
   hosts: all
   tasks:
     - name: Create the plugin folder
-      file: { state: directory, path: ./plugin/, mode: 0o755 }
+      ansible.builtin.file: { state: directory, path: ./plugin/, mode: 0o755 }
     - name: Download osc52.vim
-      get_url:
+      ansible.builtin.get_url:
         dest: ./plugin/osc52.vim
-        url: https://raw.githubusercontent.com/libapps/libapps-mirror/main/hterm/etc/osc52.vim
-    - name: Download fzf.vim, on Alpine Linux the fzf-vim package also includes documentation
-      get_url:
+        url: |-
+          https://raw.githubusercontent.com/libapps/libapps-mirror/main/hterm/etc/osc52.vim
+        mode: "0640"
+    - name: Download fzf.vim
+      ansible.builtin.get_url:
         dest: ./plugin/fzf.vim
-        url: https://raw.githubusercontent.com/junegunn/fzf/master/plugin/fzf.vim
+        url: |-
+          https://raw.githubusercontent.com/junegunn/fzf/master/plugin/fzf.vim
+        mode: "0640"
+      # On Alpine Linux the fzf-vim package also includes documentation so
+      # prefer to install that package manually
       when: ansible_distribution not in ('Alpine')
 
 - name: Make sure packages are available through npx
   hosts: all
   tasks:
-    - name: npm is available
+    - name: Check if npm is available
       ansible.builtin.command: npm --version
-      changed_when: no
+      changed_when: false
       register: npm_check
     - name: Stop this play if npm isnt't available
-      meta: end_host
+      ansible.builtin.meta: end_host
       when: npm_check.rc != 0
     - name: Make sure tools are available in the npm cache
-      command:
+      ansible.builtin.command:
         cmd: npm exec --yes -- {{ item }} --help
         creates: ~/.npm/_npx/*/node_modules/.bin/{{ item }}
       loop:
@@ -53,7 +60,7 @@
         - pyright
         - lint-staged
     - name: Make sure markdown-toc is available in the npm cache
-      command:
+      ansible.builtin.command:
         cmd: npm exec --yes -- markdown-toc --help
         creates: ~/.npm/_npx/*/node_modules/.bin/markdown-toc
       register: npm_exec_markdown_toc_cmd
@@ -75,7 +82,7 @@
     - name: Add prettier to npm cache
       ansible.builtin.command: ~/.local/bin/prettier --version
       when: "'.local/bin' in lookup('env', 'PATH')"
-      changed_when: no
+      changed_when: false
     - name: Install ~/.local/bin/jsonlint
       ansible.builtin.copy:
         dest: ~/.local/bin/jsonlint
@@ -87,7 +94,7 @@
     - name: Add jsonlint to npm cache
       ansible.builtin.command: ~/.local/bin/jsonlint --version
       when: "'.local/bin' in lookup('env', 'PATH')"
-      changed_when: no
+      changed_when: false
       register: npm_exec_jsonlint_cmd
       failed_when: npm_exec_jsonlint_cmd.rc != 1
     - name: Install ~/.local/bin/lint-all
@@ -133,35 +140,39 @@
       when: "'.local/bin' in lookup('env', 'PATH')"
     - name: Add reuse to pipx cache so that tests can pass offline
       ansible.builtin.command: pipx run reuse --help
-      changed_when: no
+      changed_when: false
 
-- name: Tag vim help files, these tasks always report a change so they are run last in the playbook
+- name:
+    Tag vim help files, these tasks always report a change so they are run last
+    in the playbook
   hosts: all
   tasks:
     - name: Create a temporary file for use as a script to generate help tags
-      tempfile: { state: file, suffix: .vim }
+      ansible.builtin.tempfile: { state: file, suffix: .vim }
       register: site_script
       changed_when: false
     - name: List optional packages
-      find: { paths: ~/.vim/pack/submodules/opt/, file_type: directory }
+      ansible.builtin.find:
+        paths: ~/.vim/pack/submodules/opt/
+        file_type: directory
       register: site_find
     - name: Write the commands to the script to avoid an error about too many
         command line flags
-      copy:
+      ansible.builtin.copy:
         dest: "{{ site_script.path }}"
         content: |
-          {% for i in  site_find.files %}
+          {% for i in site_find.files %}
           packadd {{ i.path | basename }}
           {% endfor %}
           helptags ALL
           quit
         mode: 0o700
       changed_when: false
-    - name: Run the script to generate help tags with vim ( {{ site_script.path }} )
-      command: vim -S {{ site_script.path }}
+    - name: Generate help tags with vim and the script( {{ site_script.path }} )
+      ansible.builtin.command: vim -S {{ site_script.path }}
       changed_when: true
     - name: Remove the temporary file used as script for generating help tags
-      file:
+      ansible.builtin.file:
         path: "{{ site_script.path }}"
         state: absent
       changed_when: false

@@ -12,7 +12,7 @@
       changed_when: false
       register: pipx_version
     - name: Stop this play if pipx --version succeeded
-      meta: end_host
+      ansible.builtin.meta: end_host
       when: pipx_version.rc == 0
     - name: Make sure ~/.local hierarchy exists
       ansible.builtin.file:
