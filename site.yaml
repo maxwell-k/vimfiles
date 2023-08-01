@@ -50,7 +50,6 @@
         creates: ~/.npm/_npx/*/node_modules/.bin/{{ item }}
       loop:
         - embedme
-        - js-yaml
         - pyright
         - lint-staged
     - name: Make sure markdown-toc is available in the npm cache
