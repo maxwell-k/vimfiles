@@ -29,3 +29,6 @@
 
 # history for the netrw plugin
 /.netrwhist
+
+# spell file rendered from work list at .en.utf-8.add
+/.en.utf-8.add.spl
