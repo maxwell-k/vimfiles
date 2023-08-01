@@ -7,7 +7,7 @@ vim.o.hidden = false
 vim.o.packpath = "~/.config/nvim"
 vim.o.mouse = ""
 vim.o.shiftwidth = 2
-vim.o.softabstop = vim.o.shiftwidth
+vim.o.softtabstop = vim.o.shiftwidth
 
 -- Packages
 require("nvim-surround").setup()
