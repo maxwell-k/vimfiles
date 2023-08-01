@@ -6,20 +6,30 @@ SPDX-License-Identifier: CC-BY-SA-4.0
 
 # maxwell-k/vimfiles
 
-## Quick start
+## Quick start on Fedora latest
 
 Clone this repository and its sub-modules as `~/.vim`:
 
     git clone --recurse-submodules https://codeberg.org/maxwell-k/vimfiles.git ~/.vim
 
-Install the appropriate system packages, setup an Ansible inventory, run the
-playbook and test the configuration. See
-[inside-alpine-edge.sh](tests/inside-alpine-edge.sh) and
-[inside-fedora-latest.sh](tests/inside-fedora-latest.sh) for examples.
+Install the appropriate system packages and install the latest `npm`
+
+<!-- keep command below up to date with tests/inside-fedora-latest.sh -->
+
+    sudo dnf install --assumeyes vim-enhanced ansible jq pipx nodejs fzf git
+
+Run the playbook:
+
+    cd ~/.vim \
+    && ansible-playbook site.yaml
 
 Set up pre-commit hooks:
 
     git -C ~/.vim config core.hooksPath ~/.vim/hooks
+
+Check everything is working:
+
+    sh tests/run.sh
 
 Further details about testing are in [`tests/README.md`](tests/README.md).
 
@@ -87,5 +97,9 @@ Overall I prefer the name `vimfiles`.
 This repository uses approximately twenty git sub-modules. It may be helpful to
 set `git config diff.ignoreSubmodules dirty` so that `git status` completes
 quickly.
+
+<!--
+git push git@codeberg.org:maxwell-k/vimfiles.git
+-->
 
 <!-- vim: set filetype=markdown : -->

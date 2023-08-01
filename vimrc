@@ -78,6 +78,18 @@ execute s:list_settings
 execute "noremap <Leader>l :call toggle#toggle_list('".s:list_settings."')<CR>"
 unlet s:list_settings
 
+let s:mappings =[]
+let s:mappings += [['fg', 'filetype=markdown.gfm nowrap']]
+let s:mappings += [['ft', 'filetype=markdown.markdown-toc']]
+for [s:lhs, s:rhs] in s:mappings
+  execute 'noremap <leader>'
+    \ .s:lhs
+    \ .' :normal o<!-- vim: set '
+    \ .s:rhs
+    \ .' : --><CR>'
+endfor
+unlet s:mappings
+
 " Mappings and commands {{{1
 " ---------------------
 "
@@ -93,7 +105,7 @@ unlet s:list_settings
 call opfunc#opfuncmap('c') " straight yank
  noremap <Leader>C :call SendViaOSC52(join(getline(1,'$'),'\n'))<CR>
  noremap <Leader>e :edit %:h<CR>
- noremap <Leader>f :call SendViaOSC52(@%)<CR>
+ noremap <Leader>ff :call SendViaOSC52(@%)<CR>
         "<Leader>g see plugin/mappings.vim
         "<Leader>h see vim/ftplugin/rst.vim
  noremap <Leader>i :echo synIDattr(synID(line('.'),col('.'),1),'name')<CR>
