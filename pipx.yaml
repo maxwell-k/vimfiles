@@ -21,12 +21,9 @@
         mode: 0o755
       loop: [~/.local, ~/.local/bin]
     - name: Install pipx to ~/.local/bin
-      become: true
       ansible.builtin.get_url:
         url: https://github.com/pypa/pipx/releases/download/1.2.0/pipx.pyz
         # no checksum published
         dest: ~/.local/bin/pipx
         mode: "0755"
-        owner: root
-        group: root
 # vim: set filetype=yaml.ansible :
