@@ -77,10 +77,10 @@
         mode: 0o544
         content: |
           #!/bin/sh
-          exec npm exec --prefer-offline --yes -- prettier "$@"
+          exec npm exec --offline -- prettier "$@"
       when: "'.local/bin' in lookup('env', 'PATH')"
     - name: Add prettier to npm cache
-      ansible.builtin.command: ~/.local/bin/prettier --version
+      ansible.builtin.command: npm exec --yes -- prettier --version
       when: "'.local/bin' in lookup('env', 'PATH')"
       changed_when: false
     - name: Install ~/.local/bin/jsonlint
@@ -89,10 +89,10 @@
         mode: 0o544
         content: |
           #!/bin/sh
-          exec npm exec --prefer-offline --yes -- jsonlint "$@"
+          exec npm exec --offline -- jsonlint "$@"
       when: "'.local/bin' in lookup('env', 'PATH')"
     - name: Add jsonlint to npm cache
-      ansible.builtin.command: ~/.local/bin/jsonlint --version
+      ansible.builtin.command: npm exec --yes -- jsonlint --version
       when: "'.local/bin' in lookup('env', 'PATH')"
       changed_when: false
       register: npm_exec_jsonlint_cmd
