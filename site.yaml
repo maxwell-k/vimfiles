@@ -4,7 +4,7 @@
 #
 # Run as:
 #
-#     ansible-playbook -i::1, site.yaml
+#     ansible-playbook -i::1, -c local site.yaml
 #
 # This playbook can be run as a normal user, no super-user privileges are
 # necessary.
