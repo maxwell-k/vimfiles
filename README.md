@@ -87,4 +87,8 @@ This repository uses approximately twenty git sub-modules. It may be helpful to
 set `git config diff.ignoreSubmodules dirty` so that `git status` completes
 quickly.
 
+<!--
+git push git@codeberg.org:maxwell-k/vimfiles.git
+-->
+
 <!-- vim: set filetype=markdown : -->
