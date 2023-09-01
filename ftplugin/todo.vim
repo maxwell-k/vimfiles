@@ -6,6 +6,7 @@
 if &filetype==#'todo'
   let g:Todo_txt_prefix_creation_date=1
   setlocal cursorline
+  setlocal nowrap
 elseif exists('g:Todo_txt_prefix_creation_date')
   unlet g:Todo_txt_prefix_creation_date
 endif
@@ -13,7 +14,6 @@ endif
 let g:Todo_txt_do_not_map=1
 packadd todo.txt
 runtime OPT ftplugin/todo.vim
-setlocal nowrap
 setlocal omnifunc=todo#Complete
 setlocal isfname-=+
 setlocal path+=./Projects
