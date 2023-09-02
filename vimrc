@@ -167,7 +167,6 @@ colorscheme ayu " to search below pack/*/start & avoid calling packloadall
 colorscheme mine
 let g:ale_fix_on_save = 1
 let g:ale_lint_delay = 50
-let g:ale_sh_shellcheck_options = '-x'
 let g:ale_shell='/bin/sh'
 let g:is_posix = 1  " $() isn't an error in sh
 if has('osxdarwin') | set t_ZH=[3m | set t_ZR=[23m | endif

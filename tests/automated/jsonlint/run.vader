@@ -1,4 +1,4 @@
-" tests/automated/jsonlint/integration.vader
+" tests/automated/jsonlint/run.vader
 " Copyright 2021 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
