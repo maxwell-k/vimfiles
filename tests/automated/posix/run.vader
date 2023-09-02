@@ -1,0 +1,9 @@
+" tests/automated/posix/run.vader
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+Execute:
+  edit ./example
+
+Then:
+   AssertEqual 0, exists('b:is_kornshell')
+   AssertEqual 1, b:is_posix

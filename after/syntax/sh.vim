@@ -13,3 +13,11 @@ syn region  shBkslshDblQuote contained matchgroup=shQuote
   \ start=+"+ skip=+\\"+ end=+"+
   \ contains=@shDblQuoteList,shStringSpecial,@NoSpell
 syn cluster shCommentGroup contains=shTodo,@Spell
+" For a file with no extenstion, no shebang and a modeline setting filetype=sh
+" https://github.com/vim/vim/blob/master/runtime/syntax/sh.vim
+" sets b:is_kornehll. I never work with kornshell, so unlet b:is_kornshell and
+" set b:is_posix
+if exists('b:is_kornshell')
+  unlet b:is_kornshell
+  let b:is_posix=1
+endif
