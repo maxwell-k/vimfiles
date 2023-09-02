@@ -12,7 +12,6 @@ Files:
   .gitignore
   .lintstagedrc.yaml
   .prettierignore
-  nvim/.gitignore
 # comments are not sorted correctly
 Copyright: 2020 Keith Maxwell
 License: CC0-1.0
