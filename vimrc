@@ -88,6 +88,7 @@ for [s:lhs, s:rhs] in s:mappings
     \ .s:rhs
     \ .' : --><CR>'
 endfor
+noremap <leader>fa :normal o<Esc>gI# vim: set filetype=yaml.ansible :<Esc>
 unlet s:mappings
 
 " Mappings and commands {{{1
