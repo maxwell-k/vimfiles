@@ -78,17 +78,11 @@ execute s:list_settings
 execute "noremap <Leader>l :call toggle#toggle_list('".s:list_settings."')<CR>"
 unlet s:list_settings
 
-let s:mappings =[]
-let s:mappings += [['fg', 'filetype=markdown.gfm nowrap']]
-let s:mappings += [['ft', 'filetype=markdown.markdown-toc']]
-for [s:lhs, s:rhs] in s:mappings
-  execute 'noremap <leader>'
-    \ .s:lhs
-    \ .' :normal o<!-- vim: set '
-    \ .s:rhs
-    \ .' : --><CR>'
-endfor
-unlet s:mappings
+noremap <leader>fg
+  \ :normal! o<Esc>gI<!-- vim: set filetype=markdown.gfm nowrap : --><Esc>
+noremap <leader>ft
+  \ :normal! O<Esc>gI<!-- vim: set filetype=markdown.markdown-toc : --><Esc>
+noremap <leader>fa :normal! o<Esc>gI# vim: set filetype=yaml.ansible :<Esc>
 
 " Mappings and commands {{{1
 " ---------------------
