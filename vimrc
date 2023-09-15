@@ -81,7 +81,7 @@ unlet s:list_settings
 noremap <leader>fg
   \ :normal! o<Esc>gI<!-- vim: set filetype=markdown.gfm nowrap : --><Esc>
 noremap <leader>ft
-  \ :normal! o<Esc>gI<!-- vim: set filetype=markdown.markdown-toc : --><Esc>
+  \ :normal! O<Esc>gI<!-- vim: set filetype=markdown.markdown-toc : --><Esc>
 noremap <leader>fa :normal! o<Esc>gI# vim: set filetype=yaml.ansible :<Esc>
 
 " Mappings and commands {{{1
