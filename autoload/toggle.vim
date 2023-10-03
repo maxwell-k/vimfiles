@@ -68,12 +68,4 @@ function! toggle#toggle_python_linters(...) abort "{{{1
   end
   redraw | echom 'let b:ale_linters = '.string(b:ale_linters)
 endfunction "}}}1
-function! toggle#toggle_python_import_ordering() abort "{{{1
-  let l:after = substitute(&filetype, '.isort', '.reorder', '')
-  if &filetype ==# l:after
-    let l:after = substitute(&filetype, '.reorder', '.isort', '')
-  endif
-  execute 'setlocal filetype='.l:after
-  setlocal filetype
-endfunction "}}}1
 " vim: set foldmethod=marker foldlevel=0 :
