@@ -5,7 +5,7 @@
 " SPDX-License-Identifier: MPL-2.0
 "
 function! ale#fixers#sort#Fix(buffer) abort
-  if search('^#') == 0
+  if search('^#', 'n') == 0
     let l:command = ale#Env('LC_ALL', 'C') . 'sort --unique'
   else
     let l:command = 'cat'
