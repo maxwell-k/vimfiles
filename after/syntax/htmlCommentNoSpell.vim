@@ -6,6 +6,10 @@
 "
 "     :set filetype=markdown.htmlCommentNoSpell
 "
+" Modeline example:
+"
+"     <!-- vim: set filetype=markdown.htmlCommentNoSpell : -->
+"
 "Disable spell checking from /usr/share/vim/vim??/syntax/html.vim
 "https://github.com/vim/vim/blob/master/runtime/syntax/html.vim
 " 2 lines below are repeated from ./html.vim
