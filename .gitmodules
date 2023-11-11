@@ -52,3 +52,6 @@
 [submodule "pack/submodules/opt/todo.txt"]
 	path = pack/submodules/opt/todo.txt
 	url = https://gitlab.com/dbeniamine/todo.txt-vim.git
+[submodule "pack/submodules/opt/jsonnet"]
+	path = pack/submodules/opt/jsonnet
+	url = https://github.com/google/vim-jsonnet
