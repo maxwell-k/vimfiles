@@ -1,4 +1,4 @@
-" after/syntax/mdx.vim
+" after/syntax/htmlCommentNoSpell.vim
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
