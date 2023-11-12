@@ -45,20 +45,16 @@ call <sid>MapNotHasmapto(']c', 'Markdown_MoveToCurHeader')
 let g:vim_markdown_fenced_languages = ['viml=text', 'vim=text', 'py=python']
 let g:vim_markdown_strikethrough = 1
 
-fun! ChooseModeLine(findstart, base)
-  if a:findstart
-    return 0
-  else
-    let l:choices = [
-      \ 'filetype=markdown.gfm nowrap',
-      \ 'filetype=markdown.markdown-toc',
-    \ ]
-
-    let l:result = []
-    for l:choice in l:choices
-      call add(l:result, '<!-- vim: set '.l:choice.'  : -->')
-    endfor
-    return l:result
+let b:mode_line_choices = [
+\ 'filetype=markdown.gfm nowrap',
+\ 'filetype=markdown.markdown-toc',
+\ ]
+function! ChooseModeLine(findstart, base)
+  if a:findstart | return 0 | else
+    return map(b:mode_line_choices,
+      \ {idx, choice -> '<!-- vim'.': set '.choice.'  : -->'})
+    " the line above contains additional concatenations so that it is not
+    " recognised as a mode line
   endif
-endfun
+endfunction
 set completefunc=ChooseModeLine
