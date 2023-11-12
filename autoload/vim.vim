@@ -96,9 +96,13 @@ print(result)
 EOS
 let @= = "'".py3eval('result')."'"
 endfunction "}}}1
-function! vim#ChooseModeLine(findstart, base) abort "{{{1
+function! vim#ConfigureModelineCompletion(choices) abort "{{{1
+  let b:modeline_choices = a:choices
+  set completefunc=vim#ChooseModeline
+endfunction "}}}1
+function! vim#ChooseModeline(findstart, base) abort "{{{1
   if a:findstart | return 0 | else
-    return map(b:mode_line_choices,
+    return map(b:modeline_choices,
       \ {idx, choice -> '<!-- vim'.': set '.choice.'  : -->'})
     " the line above contains additional concatenations so that it is not
     " recognised as a mode line

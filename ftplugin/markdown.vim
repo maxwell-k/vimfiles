@@ -45,8 +45,7 @@ call <sid>MapNotHasmapto(']c', 'Markdown_MoveToCurHeader')
 let g:vim_markdown_fenced_languages = ['viml=text', 'vim=text', 'py=python']
 let g:vim_markdown_strikethrough = 1
 
-let b:mode_line_choices = [
+call vim#ConfigureModelineCompletion([
 \ 'filetype=markdown.gfm nowrap',
 \ 'filetype=markdown.markdown-toc',
-\ ]
-set completefunc=vim#ChooseModeLine
+\ ])
