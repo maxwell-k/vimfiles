@@ -3,3 +3,7 @@
 " SPDX-License-Identifier: MPL-2.0
 "
 let b:ale_fixers = ['prettier',]
+call vim#ConfigureModelineCompletion([
+\ 'filetype=yaml',
+\ 'filetype=yaml.ansible',
+\ ])
