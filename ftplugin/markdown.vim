@@ -49,12 +49,4 @@ let b:mode_line_choices = [
 \ 'filetype=markdown.gfm nowrap',
 \ 'filetype=markdown.markdown-toc',
 \ ]
-function! ChooseModeLine(findstart, base)
-  if a:findstart | return 0 | else
-    return map(b:mode_line_choices,
-      \ {idx, choice -> '<!-- vim'.': set '.choice.'  : -->'})
-    " the line above contains additional concatenations so that it is not
-    " recognised as a mode line
-  endif
-endfunction
-set completefunc=ChooseModeLine
+set completefunc=vim#ChooseModeLine
