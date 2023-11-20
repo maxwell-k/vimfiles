@@ -78,12 +78,6 @@ execute s:list_settings
 execute "noremap <Leader>l :call toggle#toggle_list('".s:list_settings."')<CR>"
 unlet s:list_settings
 
-noremap <leader>fg
-  \ :normal! o<Esc>gI<!-- vim: set filetype=markdown.gfm nowrap : --><Esc>
-noremap <leader>ft
-  \ :normal! O<Esc>gI<!-- vim: set filetype=markdown.markdown-toc : --><Esc>
-noremap <leader>fa :normal! o<Esc>gI# vim: set filetype=yaml.ansible :<Esc>
-
 " Mappings and commands {{{1
 " ---------------------
 "
@@ -98,7 +92,6 @@ noremap <leader>fa :normal! o<Esc>gI# vim: set filetype=yaml.ansible :<Esc>
  noremap <Leader>b :call toggle#toggle_colors()<CR>
 call opfunc#opfuncmap('c') " straight yank
  noremap <Leader>C :call SendViaOSC52(join(getline(1,'$'),'\n'))<CR>
- noremap <Leader>e :edit %:h<CR>
  noremap <Leader>ff :call SendViaOSC52(@%)<CR>
         "<Leader>g see plugin/mappings.vim
         "<Leader>h see vim/ftplugin/rst.vim
