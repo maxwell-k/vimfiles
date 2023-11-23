@@ -96,16 +96,14 @@ print(result)
 EOS
 let @= = "'".py3eval('result')."'"
 endfunction "}}}1
+function! vim#yank_path_with_tilde() range abort "{{{1
+  call SendViaOSC52(substitute(expand('%:p'), getenv('HOME'), '~', ''))
+endfunction "}}1
 function! vim#ConfigureModelineCompletion(choices) abort "{{{1
   let b:modeline_choices = a:choices
   set completefunc=vim#ChooseModeline
 endfunction "}}}1
 function! vim#ChooseModeline(findstart, base) abort "{{{1
-  if a:findstart | return 0 | else
-    return map(copy(b:modeline_choices),
-      \ {idx, choice -> '<!-- vim'.': set '.choice.'  : -->'})
-    " the line above contains additional concatenations so that it is not
-    " recognised as a mode line
-  endif
+  if a:findstart | return 0 | else | return b:modeline_choices | endif
 endfunction "}}}1
 " vim: set foldmethod=marker foldlevel=0 :
