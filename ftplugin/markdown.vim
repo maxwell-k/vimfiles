@@ -45,8 +45,11 @@ call <sid>MapNotHasmapto(']c', 'Markdown_MoveToCurHeader')
 let g:vim_markdown_fenced_languages = ['viml=text', 'vim=text', 'py=python']
 let g:vim_markdown_strikethrough = 1
 
-call vim#ConfigureModelineCompletion([
+
+call vim#ConfigureModelineCompletion(map([
 \ 'filetype=markdown.gfm nowrap',
 \ 'filetype=markdown.markdown-toc',
 \ 'filetype=markdown.htmlCommentNoSpell',
-\ ])
+\ ], {idx, choice -> '<!-- vim'.': set '.choice.'  : -->'}))
+" the line above contains additional concatenations so that it is not
+" recognised as a mode line
