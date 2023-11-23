@@ -93,6 +93,7 @@ unlet s:list_settings
 call opfunc#opfuncmap('c') " straight yank
  noremap <Leader>C :call SendViaOSC52(join(getline(1,'$'),'\n'))<CR>
  noremap <Leader>ff :call SendViaOSC52(@%)<CR>
+ noremap <Leader>fF :call vim#yank_path_with_tilde()<CR>
         "<Leader>g see plugin/mappings.vim
         "<Leader>h see vim/ftplugin/rst.vim
  noremap <Leader>i :echo synIDattr(synID(line('.'),col('.'),1),'name')<CR>

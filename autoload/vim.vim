@@ -96,6 +96,9 @@ print(result)
 EOS
 let @= = "'".py3eval('result')."'"
 endfunction "}}}1
+function! vim#yank_path_with_tilde() range abort "{{{1
+  call SendViaOSC52(substitute(expand('%:p'), getenv('HOME'), '~', ''))
+endfunction "}}1
 function! vim#ConfigureModelineCompletion(choices) abort "{{{1
   let b:modeline_choices = a:choices
   set completefunc=vim#ChooseModeline
