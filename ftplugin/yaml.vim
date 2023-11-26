@@ -4,6 +4,6 @@
 "
 let b:ale_fixers = ['prettier',]
 call vim#ConfigureModelineCompletion([
-\ 'filetype=yaml',
-\ 'filetype=yaml.ansible',
+\ '# vim'.': set filetype=yaml :',
+\ '# vim'.': set filetype=yaml.ansible :',
 \ ])
