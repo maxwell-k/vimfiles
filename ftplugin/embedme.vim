@@ -4,4 +4,4 @@
 "
 call ale#fix#registry#Add('embedme', 'ale#fixers#embedme#Fix',
   \ ['embedme'], 'Embed snippets with embedme')
-let b:ale_fixers += ['embedme',]
+let b:ale_fixers = get(b:, 'ale_fixers', []) + ['embedme']
