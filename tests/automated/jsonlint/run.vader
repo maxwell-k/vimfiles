@@ -5,7 +5,7 @@
 " see :help ale-development
 Before:
   let g:original_buffer = bufnr('%')
-  let b:ale_linters = ['jsonlint',]  " otherwise jq also reports issues
+  let b:ale_linters = ['jsonlint']  " otherwise jq also reports issues
 
 Given json (Invalid JSON with an extra trailing comma):
   {

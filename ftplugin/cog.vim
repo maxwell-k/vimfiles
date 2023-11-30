@@ -4,4 +4,4 @@
 "
 call ale#fix#registry#Add('cog', 'ale#fixers#cog#Fix', ['cog'],
  \ 'Process with cog')
-let b:ale_fixers = ['cog',]
+let b:ale_fixers = get(b:, 'ale_fixers', []) + ['cog']
