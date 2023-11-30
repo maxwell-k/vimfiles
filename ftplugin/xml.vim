@@ -3,7 +3,7 @@
 " SPDX-License-Identifier: MPL-2.0
 "
 let g:xml_syntax_folding=1
-let b:ale_fixers = ['xmllint',]
+let b:ale_fixers = ['xmllint']
 setlocal nowrap
 setlocal foldmethod=syntax
 setlocal suffixesadd+=.py

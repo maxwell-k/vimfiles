@@ -2,7 +2,7 @@
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
-let b:ale_fixers = ['prettier',]
+let b:ale_fixers = ['prettier']
 call vim#ConfigureModelineCompletion([
 \ '# vim'.': set filetype=yaml :',
 \ '# vim'.': set filetype=yaml.ansible :',
