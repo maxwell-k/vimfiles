@@ -29,6 +29,7 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile */site-packages/*.py setfiletype python
   autocmd BufRead,BufNewFile */src/template.html setfiletype svelte
   autocmd BufRead,BufNewFile */tasks/*.yaml setfiletype yaml.ansible
+  autocmd BufRead,BufNewFile *_requirements.txt setfiletype requirements
   autocmd BufRead,BufNewFile .ansible-lint setfiletype yaml
   autocmd BufRead,BufNewFile .en.utf-8.add setfiletype spellfile
   autocmd BufRead,BufNewFile .env setfiletype dotenv
