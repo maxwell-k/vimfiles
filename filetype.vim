@@ -38,6 +38,8 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile APKBUILD setfiletype sh.apkbuild
   autocmd BufRead,BufNewFile Jenkinsfile setfiletype groovy
   autocmd BufRead,BufNewFile backlog.txt setfiletype todo
+  autocmd BufRead,BufNewFile constraints.txt setfiletype requirements
+  autocmd BufRead,BufNewFile constraints_*.txt setfiletype requirements
   autocmd BufRead,BufNewFile done.txt setfiletype todo
   autocmd BufRead,BufNewFile git-revise-todo setfiletype gitrebase
   autocmd BufRead,BufNewFile hosts setfiletype yaml.ansible.hosts " [1]
