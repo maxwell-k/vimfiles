@@ -29,8 +29,6 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile */site-packages/*.py setfiletype python
   autocmd BufRead,BufNewFile */src/template.html setfiletype svelte
   autocmd BufRead,BufNewFile */tasks/*.yaml setfiletype yaml.ansible
-  autocmd BufRead,BufNewFile *_requirements.in setfiletype requirements
-  autocmd BufRead,BufNewFile *_requirements.txt setfiletype requirements
   autocmd BufRead,BufNewFile .ansible-lint setfiletype yaml
   autocmd BufRead,BufNewFile .en.utf-8.add setfiletype spellfile
   autocmd BufRead,BufNewFile .env setfiletype dotenv
@@ -45,6 +43,8 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile hosts setfiletype yaml.ansible.hosts " [1]
   autocmd BufRead,BufNewFile in-basket.txt setfiletype todo
   autocmd BufRead,BufNewFile known_hosts setfiletype known_hosts
+  autocmd BufRead,BufNewFile requirements_*.in setfiletype requirements
+  autocmd BufRead,BufNewFile requirements_*.txt setfiletype requirements
   autocmd BufRead,BufNewFile secret setfiletype gopass
   autocmd BufRead,BufNewFile someday-maybe.txt setfiletype todo
   autocmd BufRead,BufNewFile tickler.txt setfiletype todo
