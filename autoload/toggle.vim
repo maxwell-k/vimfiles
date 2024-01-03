@@ -59,6 +59,8 @@ function! toggle#toggle_python() abort "{{{1
 endfunction "}}}1
 function! toggle#toggle_python_linters(...) abort "{{{1
   if get(b:, 'ale_linters', []) == ['flake8', 'pyright']
+    let b:ale_linters = ['flake8', 'pyright', 'mypy']
+  elseif get(b:, 'ale_linters', []) == ['flake8', 'pyright', 'mypy']
     let b:ale_linters = ['flake8']
   else
     let b:ale_linters = ['flake8', 'pyright']
