@@ -10,6 +10,9 @@ if &filetype==#'todo'
 elseif exists('g:Todo_txt_prefix_creation_date')
   unlet g:Todo_txt_prefix_creation_date
 endif
+if !exists('g:Todo_fold_char')
+  let g:Todo_fold_char = '+'
+endif
 
 let g:Todo_txt_do_not_map=1
 packadd todo.txt
