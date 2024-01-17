@@ -49,6 +49,7 @@ execute s:prefix . '+ :call todo#Sort("+")<CR>'
 execute s:prefix . 'D :call vim#RemoveCompletedWrapped()<CR>'
 execute s:prefix . 'p :call todo#Sort("")<CR>'
 execute s:prefix . 'u :call todo#SortDue()<CR>'
+execute s:prefix . 'f :call toggle#toggle_todo_fold()<CR>'
 
 " Only prefix <Space>, <CR> and <BS> with \t if another filetype like markdown
 if &filetype==#'todo'
