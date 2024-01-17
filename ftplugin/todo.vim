@@ -10,6 +10,9 @@ if &filetype==#'todo'
 elseif exists('g:Todo_txt_prefix_creation_date')
   unlet g:Todo_txt_prefix_creation_date
 endif
+if !exists('g:Todo_fold_char')
+  let g:Todo_fold_char = '+'
+endif
 
 let g:Todo_txt_do_not_map=1
 packadd todo.txt
@@ -46,6 +49,7 @@ execute s:prefix . '+ :call todo#Sort("+")<CR>'
 execute s:prefix . 'D :call vim#RemoveCompletedWrapped()<CR>'
 execute s:prefix . 'p :call todo#Sort("")<CR>'
 execute s:prefix . 'u :call todo#SortDue()<CR>'
+execute s:prefix . 'f :call toggle#toggle_todo_fold()<CR>'
 
 " Only prefix <Space>, <CR> and <BS> with \t if another filetype like markdown
 if &filetype==#'todo'

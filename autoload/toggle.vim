@@ -70,4 +70,18 @@ function! toggle#toggle_python_linters(...) abort "{{{1
   end
   redraw | echom 'let b:ale_linters = '.string(b:ale_linters)
 endfunction "}}}1
+function! toggle#toggle_todo_fold() abort "{{{1
+  if !exists('g:Todo_fold_char')
+    let g:Todo_fold_char = '+'
+  elseif g:Todo_fold_char == ''
+    let g:Todo_fold_char = '+'
+  elseif g:Todo_fold_char == '+'
+    let g:Todo_fold_char = '@'
+  else
+    let g:Todo_fold_char = ''
+  end
+  edit
+  setlocal foldlevel=0
+  echom g:Todo_fold_char
+endfunction "}}}1
 " vim: set foldmethod=marker foldlevel=0 :
