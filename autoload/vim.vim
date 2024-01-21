@@ -2,6 +2,7 @@
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
+scriptencoding utf8
 function! vim#RemoveCompletedWrapped() abort "{{{1
   "Call todo#RemoveComplete with a specific file set for done
   let l:forced = 0
@@ -105,5 +106,9 @@ function! vim#ConfigureModelineCompletion(choices) abort "{{{1
 endfunction "}}}1
 function! vim#ChooseModeline(findstart, base) abort "{{{1
   if a:findstart | return 0 | else | return b:modeline_choices | endif
+endfunction "}}}1
+function! vim#todo_foldtext() abort "{{{1
+    let l:context = matchstr(getline(v:foldstart), g:Todo_fold_char.'[^ ]\+')
+    return '           ● '.l:context
 endfunction "}}}1
 " vim: set foldmethod=marker foldlevel=0 :
