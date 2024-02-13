@@ -74,7 +74,7 @@
     - name: Install ~/.local/bin/prettier
       ansible.builtin.copy:
         dest: ~/.local/bin/prettier
-        mode: 0o544
+        mode: 0o755
         content: |
           #!/bin/sh
           exec npm exec --offline -- prettier "$@"
@@ -86,7 +86,7 @@
     - name: Install ~/.local/bin/jsonlint
       ansible.builtin.copy:
         dest: ~/.local/bin/jsonlint
-        mode: 0o544
+        mode: 0o755
         content: |
           #!/bin/sh
           exec npm exec --offline -- jsonlint "$@"
@@ -100,7 +100,7 @@
     - name: Install ~/.local/bin/pyright-langserver
       ansible.builtin.copy:
         dest: ~/.local/bin/pyright-langserver
-        mode: 0o544
+        mode: 0o755
         content: |
           #!/bin/sh
           exec npm exec --package pyright --yes -- pyright-langserver "$@"
