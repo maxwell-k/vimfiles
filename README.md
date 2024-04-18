@@ -16,7 +16,7 @@ Install the appropriate system packages and install the latest `npm`
 
 <!-- keep command below up to date with tests/inside-fedora-latest.sh -->
 
-    sudo dnf install --assumeyes vim-enhanced ansible jq pipx nodejs fzf git
+    sudo dnf install --assumeyes vim-enhanced ansible jq nodejs fzf git
 
 Run the playbook:
 
