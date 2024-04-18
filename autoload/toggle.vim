@@ -73,9 +73,9 @@ endfunction "}}}1
 function! toggle#toggle_todo_fold() abort "{{{1
   if !exists('g:Todo_fold_char')
     let g:Todo_fold_char = '+'
-  elseif g:Todo_fold_char == ''
+  elseif g:Todo_fold_char ==# ''
     let g:Todo_fold_char = '+'
-  elseif g:Todo_fold_char == '+'
+  elseif g:Todo_fold_char ==# '+'
     let g:Todo_fold_char = '@'
   else
     let g:Todo_fold_char = ''
