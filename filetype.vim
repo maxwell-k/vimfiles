@@ -18,6 +18,7 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile *.env setfiletype dotenv
   autocmd BufRead,BufNewFile *.gfm setfiletype markdown.gfm
   autocmd BufRead,BufNewFile *.mdx setfiletype markdown.mdx
+  autocmd BufRead,BufNewFile *.pyi setfiletype python.stub
   autocmd BufRead,BufNewFile *.svelte setfiletype svelte
   autocmd BufRead,BufNewFile *.tf setfiletype terraform
   autocmd BufRead,BufNewFile *.tfstate setfiletype json
