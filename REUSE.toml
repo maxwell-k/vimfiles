@@ -1,0 +1,32 @@
+version = 1
+SPDX-PackageName = "vimfiles"
+SPDX-PackageSupplier = "Keith Maxwell <keith.maxwell@gmail.com>"
+SPDX-PackageDownloadLocation = "https://codeberg.org/maxwell-k/vimfiles"
+
+[[annotations]]
+path = [
+  "tests/inside-**.sh",
+  "tests/podman-run-**.sh",
+  "tests/automated/file-type-detection/fixtures/**",
+  "tests/automated/embedme/example.sh",
+  "tests/automated/cog/example.txt",
+  "tests/automated/cog/missing.txt",
+]
+SPDX-FileCopyrightText = "2020-2024 Keith Maxwell"
+SPDX-License-Identifier = "MPL-2.0"
+
+[[annotations]]
+path = [
+  "tests/manual/todo.txt",
+  "tests/automated/embedme/**.md",
+  "tests/automated/markdown-toc/**.md",
+  ".gitignore",
+  ".lintstagedrc.yaml",
+  ".prettierignore",
+  ".en.utf-8.add",
+]
+SPDX-FileCopyrightText = "2020-2024 Keith Maxwell"
+SPDX-License-Identifier = "CC0-1.0"
+
+# SPDX-FileCopyrightText: 2024 Keith Maxwell <keith.maxwell@gmail.com>
+# SPDX-License-Identifier: CC0-1.0
