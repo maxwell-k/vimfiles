@@ -3,13 +3,18 @@
 " SPDX-License-Identifier: MPL-2.0
 "
 function! toggle#toggle_colors() abort "{{{1
+  let s:style = get(g:, 'ayucolor', 'dark')
   if !exists('g:colors_name') " added for compatibility with vim 8.0
+    let g:ayucolor='dark'
     colorscheme mine
-  elseif g:colors_name ==# 'mine'
-    colorscheme solarized8 | set background=light
-  elseif g:colors_name ==# 'solarized8' && &background ==# 'light'
-    colorscheme solarized8 | set background=dark
+  elseif s:style ==# 'light'
+    let g:ayucolor='dark'
+    colorscheme mine
+  elseif s:style ==# 'dark'
+    let g:ayucolor='mirage'
+    colorscheme mine
   else
+    let g:ayucolor='light'
     colorscheme mine
   endif
 endfunction "}}}1

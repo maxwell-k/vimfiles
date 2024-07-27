@@ -18,4 +18,6 @@ highlight ToDoPriorityA cterm=bold
 highlight TodoCancel cterm=strikethrough guifg=#5C6773
 highlight link ToDoPriorityB NONE
 highlight link ToDoPriorityC NONE
+highlight link TodoCode String
+highlight link TodoProject Added
 highlight link TodoURL Underlined
