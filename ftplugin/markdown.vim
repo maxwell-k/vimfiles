@@ -2,6 +2,7 @@
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
+packadd markdown
 
 " sourced early so that we can override settings like textwidth
 runtime ftplugin/todo.vim
