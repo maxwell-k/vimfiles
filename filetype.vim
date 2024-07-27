@@ -13,25 +13,18 @@ augroup filetypedetect
 
   autocmd BufRead,BufNewFile *.bas setfiletype vba
   autocmd BufRead,BufNewFile *.beancount setfiletype beancount
-  autocmd BufRead,BufNewFile *.dart setfiletype dart
   autocmd BufRead,BufNewFile *.docker setfiletype dockerfile
   autocmd BufRead,BufNewFile *.env setfiletype dotenv
   autocmd BufRead,BufNewFile *.gfm setfiletype markdown.gfm
   autocmd BufRead,BufNewFile *.mdx setfiletype markdown.mdx
   autocmd BufRead,BufNewFile *.pyi setfiletype python.stub
   autocmd BufRead,BufNewFile *.svelte setfiletype svelte
-  autocmd BufRead,BufNewFile *.tf setfiletype terraform
-  autocmd BufRead,BufNewFile *.tfstate setfiletype json
-  autocmd BufRead,BufNewFile *.tfvars setfiletype terraform
   autocmd BufRead,BufNewFile *.vader setfiletype vader
   autocmd BufRead,BufNewFile *.yaml.jinja setfiletype yaml.jinja2
-  autocmd BufRead,BufNewFile */handlers/*.yaml setfiletype yaml.ansible
   autocmd BufRead,BufNewFile */playbooks/*.yaml setfiletype yaml.ansible
   autocmd BufRead,BufNewFile */site-packages/*.py setfiletype python
   autocmd BufRead,BufNewFile */src/template.html setfiletype svelte
-  autocmd BufRead,BufNewFile */tasks/*.yaml setfiletype yaml.ansible
   autocmd BufRead,BufNewFile *github/workflows/*.yaml setfiletype yaml.action
-  autocmd BufRead,BufNewFile .ansible-lint setfiletype yaml
   autocmd BufRead,BufNewFile .en.utf-8.add setfiletype spellfile
   autocmd BufRead,BufNewFile .env setfiletype dotenv
   autocmd BufRead,BufNewFile .env.local setfiletype dotenv
@@ -69,3 +62,4 @@ augroup filetypedetect
   runtime filetype.gitignored.vim
 
 augroup END
+runtime pack/submodules/opt/ansible/ftdetect/ansible.vim

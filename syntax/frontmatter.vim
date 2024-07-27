@@ -16,7 +16,4 @@ syntax keyword frontmatterKeyword
   \ cover_image
   \ series
   \ contained
-highlight link frontmatterKeyword Keyword
-
-" Do not leave a blank line after --- or prettier will not recognise the front
-" matter: https://prettier.io/blog/2018/07/29/1.14.0.html
+highlight default link frontmatterKeyword Keyword

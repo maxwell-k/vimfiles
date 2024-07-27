@@ -14,13 +14,13 @@
 	path = pack/submodules/start/surround
 	url = https://github.com/tpope/vim-surround
 [submodule "pack/submodules/start/markdown"]
-	path = pack/submodules/start/markdown
+	path = pack/submodules/opt/markdown
 	url = https://github.com/preservim/vim-markdown
 [submodule "pack/submodules/start/maktaba"]
 	path = pack/submodules/start/maktaba
 	url = https://github.com/google/vim-maktaba
 [submodule "pack/submodules/start/ansible"]
-	path = pack/submodules/start/ansible
+	path = pack/submodules/opt/ansible
 	url = https://github.com/pearofducks/ansible-vim
 [submodule "pack/submodules/start/repeat"]
 	path = pack/submodules/start/repeat
@@ -34,21 +34,9 @@
 [submodule "pack/submodules/opt/beancount"]
 	path = pack/submodules/opt/beancount
 	url = https://github.com/nathangrigg/vim-beancount
-[submodule "pack/submodules/opt/solarized8"]
-	path = pack/submodules/opt/solarized8
-	url = https://github.com/lifepillar/vim-solarized8
-[submodule "pack/submodules/opt/colorizer"]
-	path = pack/submodules/opt/colorizer
-	url = https://github.com/chrisbra/Colorizer
 [submodule "pack/submodules/opt/vinfo"]
 	path = pack/submodules/opt/vinfo
 	url = https://github.com/alx741/vinfo
-[submodule "pack/submodules/opt/terraform"]
-	path = pack/submodules/opt/terraform
-	url = https://github.com/hashivim/vim-terraform
-[submodule "pack/submodules/opt/dart"]
-	path = pack/submodules/opt/dart
-	url = https://github.com/dart-lang/dart-vim-plugin
 [submodule "pack/submodules/opt/todo.txt"]
 	path = pack/submodules/opt/todo.txt
 	url = https://gitlab.com/dbeniamine/todo.txt-vim.git
