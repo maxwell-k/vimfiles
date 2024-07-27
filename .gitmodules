@@ -34,9 +34,6 @@
 [submodule "pack/submodules/opt/beancount"]
 	path = pack/submodules/opt/beancount
 	url = https://github.com/nathangrigg/vim-beancount
-[submodule "pack/submodules/opt/solarized8"]
-	path = pack/submodules/opt/solarized8
-	url = https://github.com/lifepillar/vim-solarized8
 [submodule "pack/submodules/opt/colorizer"]
 	path = pack/submodules/opt/colorizer
 	url = https://github.com/chrisbra/Colorizer
