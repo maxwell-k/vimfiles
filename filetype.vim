@@ -21,11 +21,9 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile *.svelte setfiletype svelte
   autocmd BufRead,BufNewFile *.vader setfiletype vader
   autocmd BufRead,BufNewFile *.yaml.jinja setfiletype yaml.jinja2
-  autocmd BufRead,BufNewFile */handlers/*.yaml setfiletype yaml.ansible
   autocmd BufRead,BufNewFile */playbooks/*.yaml setfiletype yaml.ansible
   autocmd BufRead,BufNewFile */site-packages/*.py setfiletype python
   autocmd BufRead,BufNewFile */src/template.html setfiletype svelte
-  autocmd BufRead,BufNewFile */tasks/*.yaml setfiletype yaml.ansible
   autocmd BufRead,BufNewFile *github/workflows/*.yaml setfiletype yaml.action
   autocmd BufRead,BufNewFile .en.utf-8.add setfiletype spellfile
   autocmd BufRead,BufNewFile .env setfiletype dotenv
@@ -64,3 +62,4 @@ augroup filetypedetect
   runtime filetype.gitignored.vim
 
 augroup END
+runtime pack/submodules/opt/ansible/ftdetect/ansible.vim

@@ -20,7 +20,7 @@
 	path = pack/submodules/start/maktaba
 	url = https://github.com/google/vim-maktaba
 [submodule "pack/submodules/start/ansible"]
-	path = pack/submodules/start/ansible
+	path = pack/submodules/opt/ansible
 	url = https://github.com/pearofducks/ansible-vim
 [submodule "pack/submodules/start/repeat"]
 	path = pack/submodules/start/repeat
