@@ -43,9 +43,6 @@
 [submodule "pack/submodules/opt/vinfo"]
 	path = pack/submodules/opt/vinfo
 	url = https://github.com/alx741/vinfo
-[submodule "pack/submodules/opt/terraform"]
-	path = pack/submodules/opt/terraform
-	url = https://github.com/hashivim/vim-terraform
 [submodule "pack/submodules/opt/todo.txt"]
 	path = pack/submodules/opt/todo.txt
 	url = https://gitlab.com/dbeniamine/todo.txt-vim.git
