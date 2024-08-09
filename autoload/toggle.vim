@@ -63,17 +63,15 @@ function! toggle#toggle_python() abort "{{{1
   setlocal filetype
 endfunction "}}}1
 function! toggle#toggle_python_linters(...) abort "{{{1
-  if get(b:, 'ale_linters', []) == ['flake8', 'pyright']
-    let b:ale_linters = ['flake8', 'pyright', 'mypy']
-  elseif get(b:, 'ale_linters', []) == ['flake8', 'pyright', 'mypy']
-    let b:ale_linters = ['flake8']
+  if get(b:, 'ale_linters_ignore', []) == ['mypy']
+    let b:ale_linters_ignore = []
   else
-    let b:ale_linters = ['flake8', 'pyright']
+    let b:ale_linters_ignore = ['mypy']
   end
   if a:0 > 0
-    let b:ale_linters = ['flake8', 'pyright']
+    let b:ale_linters_ignore = ['mypy']
   end
-  redraw | echom 'let b:ale_linters = '.string(b:ale_linters)
+  redraw | echom 'let b:ale_linters_ignore = '.string(b:ale_linters_ignore)
 endfunction "}}}1
 function! toggle#toggle_todo_fold() abort "{{{1
   if !exists('g:Todo_fold_char')
