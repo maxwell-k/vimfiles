@@ -17,6 +17,14 @@ function! toggle#toggle_colors() abort "{{{1
     let g:ayucolor='light'
     colorscheme mine
   endif
+  redraw
+  echom 'let '
+     \."g:colors_name = '"
+     \.g:colors_name
+     \."' | let "
+     \."g:ayucolor = '"
+     \.g:ayucolor
+     \."'"
 endfunction "}}}1
 function! toggle#toggle_list(default_settings) abort "{{{1
 " Toggle through three states, ``:help digraph-table`` lists symbols

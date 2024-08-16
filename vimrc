@@ -13,6 +13,7 @@ autocmd!
 filetype off | filetype on
 filetype plugin off | filetype plugin on
 syntax enable
+colorscheme mine
 
 " Options {{{1
 " -------
@@ -148,27 +149,12 @@ autocmd BufReadPost /tmp/histedit.* let $PATH .= ':/usr/local/bin'
 autocmd StdInReadPost * setlocal nowrap
 augroup END
 
-" Plugin, syntax and highlighting configuration {{{1
-" ---------------------------------------------
+" Global variables {{{1
+" ----------------
 "
-colorscheme ayu " to search below pack/*/start & avoid calling packloadall
-colorscheme mine
 let g:ale_fix_on_save = 1
 let g:ale_lint_delay = 50
 let g:ale_shell='/bin/sh'
 let g:is_posix = 1  " $() isn't an error in sh
-if has('osxdarwin') | set t_ZH=[3m | set t_ZR=[23m | endif
-
-" Workaround for vim without patch 8.1.0353 {{{1
-" -----------------------------------------
-"
-" https://github.com/vim/vim/issues/3409
-" https://github.com/vim/vim/commit/99396d4cbf78d313a454c7448acc07412d2e45b7
-if v:version < 801
-  packloadall
-  set runtimepath-=~/.vim/after
-  set runtimepath+=~/.vim/after
-endif
-"}}}1
 
 " vim: set foldmethod=marker foldlevel=0 :

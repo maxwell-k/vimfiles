@@ -2,9 +2,11 @@
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
-" hex codes from pack/submodules/start/ayu/colors/ayu.vim
-runtime colors/ayu.vim
+let s:ayu =expand('<sfile>:h').'/../pack/submodules/start/ayu/colors/ayu.vim'
+execute 'source '.resolve(s:ayu)
+
 let g:colors_name='mine'
+" hex codes from pack/submodules/start/ayu/colors/ayu.vim
 highlight NonText guifg=#F29718
 highlight SignColumn guibg=#FFD57F
 highlight Folded guifg=#F07178
@@ -19,5 +21,5 @@ highlight TodoCancel cterm=strikethrough guifg=#5C6773
 highlight link ToDoPriorityB NONE
 highlight link ToDoPriorityC NONE
 highlight link TodoCode String
-highlight link TodoProject Added
+highlight TodoProject guifg=LimeGreen
 highlight link TodoURL Underlined
