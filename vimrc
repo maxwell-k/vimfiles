@@ -149,8 +149,8 @@ autocmd BufReadPost /tmp/histedit.* let $PATH .= ':/usr/local/bin'
 autocmd StdInReadPost * setlocal nowrap
 augroup END
 
-" Plugin, syntax and highlighting configuration {{{1
-" ---------------------------------------------
+" Global variables {{{1
+" ----------------
 "
 let g:ale_fix_on_save = 1
 let g:ale_lint_delay = 50
