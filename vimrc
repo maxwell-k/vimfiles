@@ -13,6 +13,7 @@ autocmd!
 filetype off | filetype on
 filetype plugin off | filetype plugin on
 syntax enable
+colorscheme mine
 
 " Options {{{1
 " -------
@@ -151,8 +152,6 @@ augroup END
 " Plugin, syntax and highlighting configuration {{{1
 " ---------------------------------------------
 "
-colorscheme ayu " to search below pack/*/start & avoid calling packloadall
-colorscheme mine
 let g:ale_fix_on_save = 1
 let g:ale_lint_delay = 50
 let g:ale_shell='/bin/sh'
