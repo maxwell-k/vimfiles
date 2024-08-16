@@ -21,5 +21,5 @@ highlight TodoCancel cterm=strikethrough guifg=#5C6773
 highlight link ToDoPriorityB NONE
 highlight link ToDoPriorityC NONE
 highlight link TodoCode String
-highlight link TodoProject Added
+highlight TodoProject guifg=LimeGreen
 highlight link TodoURL Underlined
