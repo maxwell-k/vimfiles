@@ -52,6 +52,6 @@ call vim#ConfigureModelineCompletion(map([
 \ 'filetype=markdown.markdown-toc',
 \ 'filetype=markdown.htmlCommentNoSpell',
 \ 'filetype=markdown.embedme',
-\ ], {idx, choice -> '<!-- vim'.': set '.choice.'  : -->'}))
+\ ], {idx, choice -> '<!-- vim'.': set '.choice.' : -->'}))
 " the line above contains additional concatenations so that it is not
 " recognised as a mode line
