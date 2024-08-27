@@ -53,6 +53,7 @@ set nrformats-=octal " increment 07 to 08 and not 010
 set omnifunc=ale#completion#OmniFunc
 set path+=** " recursively search, misses hidden files e.g. /.vim/
 set ruler " show position
+set runtimepath-=/usr/share/vim/vimfiles/after  " so `:helptags all` succeeds
 set shell=/bin/zsh\ -l
 set shiftwidth=2
 set shortmess+=I
