@@ -46,3 +46,11 @@
 [submodule "pack/submodules/opt/requirements.txt"]
 	path = pack/submodules/opt/requirements.txt
 	url = https://github.com/raimon49/requirements.txt.vim
+[submodule "pack/submodules/opt/zig"]
+	path = pack/submodules/opt/zig
+	url = https://github.com/ziglang/zig.vim
+[submodule "pack/submodules/opt/sexp"]
+	path = pack/submodules/opt/sexp
+	url = https://github.com/guns/vim-sexp.git
+	# no .gitignore so doc/tags causes a dirty repository
+	ignore = dirty
