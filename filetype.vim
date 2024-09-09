@@ -36,6 +36,7 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile done.txt setfiletype todo
   autocmd BufRead,BufNewFile dprint.json setfiletype json.dprint
   autocmd BufRead,BufNewFile git-revise-todo setfiletype gitrebase
+  autocmd BufRead,BufNewFile goals.txt setfiletype todo
   autocmd BufRead,BufNewFile hosts setfiletype yaml.ansible.hosts " [1]
   autocmd BufRead,BufNewFile in-basket.txt setfiletype todo
   autocmd BufRead,BufNewFile known_hosts setfiletype known_hosts
