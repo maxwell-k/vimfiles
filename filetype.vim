@@ -21,7 +21,9 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile *.svelte setfiletype svelte
   autocmd BufRead,BufNewFile *.vader setfiletype vader
   autocmd BufRead,BufNewFile *.yaml.jinja setfiletype yaml.jinja2
+  autocmd BufRead,BufNewFile */.README.md-files/*.sh setfiletype sh.noeol
   autocmd BufRead,BufNewFile */playbooks/*.yaml setfiletype yaml.ansible
+  autocmd BufRead,BufNewFile */qgridtrusted/**.py setfiletype python.usort
   autocmd BufRead,BufNewFile */site-packages/*.py setfiletype python
   autocmd BufRead,BufNewFile */src/template.html setfiletype svelte
   autocmd BufRead,BufNewFile *github/workflows/*.yaml setfiletype yaml.action
@@ -32,13 +34,14 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile Jenkinsfile setfiletype groovy
   autocmd BufRead,BufNewFile backlog.txt setfiletype todo
   autocmd BufRead,BufNewFile constraints.txt setfiletype requirements
-  autocmd BufRead,BufNewFile constraints_*.txt setfiletype requirements
   autocmd BufRead,BufNewFile done.txt setfiletype todo
   autocmd BufRead,BufNewFile dprint.json setfiletype json.dprint
   autocmd BufRead,BufNewFile git-revise-todo setfiletype gitrebase
+  autocmd BufRead,BufNewFile goals.txt setfiletype todo
   autocmd BufRead,BufNewFile hosts setfiletype yaml.ansible.hosts " [1]
   autocmd BufRead,BufNewFile in-basket.txt setfiletype todo
   autocmd BufRead,BufNewFile known_hosts setfiletype known_hosts
+  autocmd BufRead,BufNewFile reproducibly.py setfiletype python.black.usort.cog
   autocmd BufRead,BufNewFile requirements_*.in setfiletype requirements
   autocmd BufRead,BufNewFile requirements_*.txt setfiletype requirements
   autocmd BufRead,BufNewFile secret setfiletype gopass
@@ -52,10 +55,10 @@ augroup filetypedetect
 
 " Tests described below
 
-  autocmd BufRead,BufNewFile ~/*.py setfiletype python.black.reorder
+  autocmd BufRead,BufNewFile ~/*.py setfiletype python.black.usort
   autocmd BufRead,BufNewFile /tmp/man.* setfiletype man
 
-  " `vim ~/example.py`: python.black.reorder
+  " `vim ~/example.py`: python.black.usort
   " `man man`: man
 
 " No tests, may override above with setlocal filetype= see :help :setfiletype
