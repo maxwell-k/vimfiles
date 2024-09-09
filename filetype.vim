@@ -52,10 +52,10 @@ augroup filetypedetect
 
 " Tests described below
 
-  autocmd BufRead,BufNewFile ~/*.py setfiletype python.black.reorder
+  autocmd BufRead,BufNewFile ~/*.py setfiletype python.black.usort
   autocmd BufRead,BufNewFile /tmp/man.* setfiletype man
 
-  " `vim ~/example.py`: python.black.reorder
+  " `vim ~/example.py`: python.black.usort
   " `man man`: man
 
 " No tests, may override above with setlocal filetype= see :help :setfiletype
