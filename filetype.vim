@@ -32,7 +32,6 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile Jenkinsfile setfiletype groovy
   autocmd BufRead,BufNewFile backlog.txt setfiletype todo
   autocmd BufRead,BufNewFile constraints.txt setfiletype requirements
-  autocmd BufRead,BufNewFile constraints_*.txt setfiletype requirements
   autocmd BufRead,BufNewFile done.txt setfiletype todo
   autocmd BufRead,BufNewFile dprint.json setfiletype json.dprint
   autocmd BufRead,BufNewFile git-revise-todo setfiletype gitrebase
