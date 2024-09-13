@@ -32,10 +32,10 @@ syntax  match  TodoKey        '[^ \t`]\+:[^ \t/]\S*' contains=TodoDate
 " the due dates on the three lines below should be highlighted differently:
 "
 " 2022-10-10 due:2022-10-09 Due yesterday [example link](https://example.org)
-" 2022-10-10 due:2022-10-10 Due today  [example link](https://example.org)
+" 2022-10-10 due:2022-10-10 Due today [example link](https://example.org)
 " 2022-10-10 due:2023-01-01 Due tomorrow [example link](https://example.org)
 "
-" The commands below resotre this functionality:
+" The commands below restore this functionality:
 syntax  clear  TodoDueToday TodoOverDueDate
 execute 'syntax match TodoOverDueDate /\v\c<due:'
   \ . todo#GetDateRegexForPastDates() . '>/'
