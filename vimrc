@@ -130,13 +130,11 @@ command! W ALEFix!|w|silent execute '!git add %'|redraw!
 " Alphanbetical, see http://www.unicode.org/charts/charindex.html for more and
 " use ``:echo 0x2026`` to convert to decimal
 digraphs .. 8230 " ellipsis …
-digraphs bb 9744 " ballot box ☐
 digraphs bu 8226 " bullet •
-digraphs bx 9745 " ballot box with check ☑
 digraphs m- 8212 " em dash –
 digraphs n- 8211 " em dash —
 digraphs %< 9986 " black scissors ✂
-digraphs mi 129704 " rock 129704 🪨
+digraphs fl 9873 " black flag ⚑
 
 " autocommands {{{1
 " ------------
