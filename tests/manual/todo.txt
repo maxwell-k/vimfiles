@@ -4,3 +4,7 @@
 x 2024-09-13 2022-06-19 The following bare URL should be highlighted inside a TodoDone https://example.org
 2024-09-13 The following is code: `echo 1 2 3`
 x 2024-09-13 2024-09-13 The following is code inside a TodoDone: `echo 1 2 3`
+(A) 2022-06-19 The following URL should be highlighted inside a TodoPriorityA https://example.org
+(B) 2022-06-19 The following URL should be highlighted inside a TodoPriorityB https://example.org
+(C) 2022-06-19 The following URL should be highlighted inside a TodoPriorityC https://example.org
+(Z) 2022-06-19 The following URL should be highlighted inside a TodoPriorityZ https://example.org
