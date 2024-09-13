@@ -23,3 +23,4 @@ highlight link ToDoPriorityC NONE
 highlight link TodoCode String
 highlight TodoProject guifg=LimeGreen
 highlight link TodoURL Underlined
+highlight link TodoKey SpellRare
