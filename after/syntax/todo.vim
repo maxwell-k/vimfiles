@@ -12,6 +12,9 @@
 " Adding a restiction that value cannot start with / means that markdown links
 " are not highlighted as key:value pairs.
 "
+" Starting with [^ \t`]  means that TodoCode in syntax/todo.vim starts first
+" and `a:b` is recognised as TodoCode.
+"
 " https://github.com/todotxt/todo.txt#additional-file-format-definitions
 "
 " According to :help \S, \S is equivalent to [^ \t]
@@ -23,7 +26,7 @@
 "
 syntax  clear  TodoKey
 " The original pattern was:   '\S*\S:\S\S*'
-syntax  match  TodoKey        '\S*\S:[^ \t/]\S*' contains=TodoDate
+syntax  match  TodoKey        '[^ \t`]*\S:[^ \t/]\S*' contains=TodoDate
 
 " These changes ruin some of the date highlighting functionality, for example
 " the due dates on the three lines below should be highlighted differently:
