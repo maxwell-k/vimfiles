@@ -1,3 +1,6 @@
 2022-06-19 The following bare URL should be highlighted https://example.org
 2022-06-19 The following URL surrounded in <>s should be highlighted <https://example.org>
 2022-06-19 [The following URL for this Markdown link should be highlighted](https://example.org)
+x 2024-09-13 2022-06-19 The following bare URL should be highlighted inside a TodoDone https://example.org
+2024-09-13 The following is code: `echo 1 2 3`
+x 2024-09-13 2024-09-13 The following is code inside a TodoDone: `echo 1 2 3`
