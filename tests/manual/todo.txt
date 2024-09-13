@@ -11,4 +11,5 @@ x 2024-09-13 2022-06-19 The following bare URL should be highlighted inside a `T
 x 2024-09-13 2024-09-13 The following is code inside a `TodoDone`: `echo 1 2 3`
 (A) 2024-09-13 The following is code inside a `TodoPriorityA`: `echo 1 2 3`
 (Z) 2024-09-13 The following is code inside a `TodoPriorityZ`: `echo 1 2 3`
-2024-09-13 The following is code `a:b`
+2024-09-13 The following is code — `a:b` — then a key/value tag — key:value
+2024-09-13 The following is code `:echo 1`

@@ -26,7 +26,7 @@
 "
 syntax  clear  TodoKey
 " The original pattern was:   '\S*\S:\S\S*'
-syntax  match  TodoKey        '[^ \t`]*\S:[^ \t/]\S*' contains=TodoDate
+syntax  match  TodoKey        '[^ \t`]\+:[^ \t/]\S*' contains=TodoDate
 
 " These changes ruin some of the date highlighting functionality, for example
 " the due dates on the three lines below should be highlighted differently:
