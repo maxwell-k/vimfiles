@@ -66,3 +66,5 @@ execute s:prefix.'<CR>'
 execute s:prefix.'<BS> :call vim#cancel()<CR>'
 
 let b:ale_fixers = ['trim_whitespace']
+
+setlocal spell
