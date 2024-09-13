@@ -1,12 +1,13 @@
-2022-06-19 The following bare URL should be highlighted https://example.org
+2022-06-19 The following bare URL should be highlighted with spelling mistakes ignored https://example.org/no-misspellings-higlighted-asdf
 2022-06-19 The following URL surrounded in <>s should be highlighted <https://example.org>
 2022-06-19 [The following URL for this Markdown link should be highlighted](https://example.org)
-x 2024-09-13 2022-06-19 The following bare URL should be highlighted inside a TodoDone https://example.org
-(A) 2022-06-19 The following URL should be highlighted inside a TodoPriorityA https://example.org
-(B) 2022-06-19 The following URL should be highlighted inside a TodoPriorityB https://example.org
-(C) 2022-06-19 The following URL should be highlighted inside a TodoPriorityC https://example.org
-(Z) 2022-06-19 The following URL should be highlighted inside a TodoPriorityZ https://example.org
+x 2024-09-13 2022-06-19 The following bare URL should be highlighted inside a `TodoDone` https://example.org
+(A) 2022-06-19 The following URL should be highlighted inside a `TodoPriorityA` https://example.org
+(B) 2022-06-19 The following URL should be highlighted inside a `TodoPriorityB` https://example.org
+(C) 2022-06-19 The following URL should be highlighted inside a `TodoPriorityC` https://example.org
+(Z) 2022-06-19 The following URL should be highlighted inside a `TodoPriorityZ` https://example.org
 2024-09-13 The following is code: `echo 1 2 3`
-x 2024-09-13 2024-09-13 The following is code inside a TodoDone: `echo 1 2 3`
-(A) 2024-09-13 The following is code inside a TodoPriorityA: `echo 1 2 3`
-(Z) 2024-09-13 The following is code inside a TodoPriorityZ: `echo 1 2 3`
+2024-09-13 The following is code with a spelling mistake ignored: `echo asdf [sic]`
+x 2024-09-13 2024-09-13 The following is code inside a `TodoDone`: `echo 1 2 3`
+(A) 2024-09-13 The following is code inside a `TodoPriorityA`: `echo 1 2 3`
+(Z) 2024-09-13 The following is code inside a `TodoPriorityZ`: `echo 1 2 3`
