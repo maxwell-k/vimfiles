@@ -12,4 +12,10 @@ syntax match TodoURL =[(<]\?https\?://\S*[)>]\?= containedin=TodoDone,
   \TodoPriorityU,TodoPriorityV,TodoPriorityW,TodoPriorityX,TodoPriorityY,
   \TodoPriorityZ
 syntax region TodoCancel start=/\~\~/ end=/\~\~/
-syntax match TodoCode =`[^`]*`= containedin=TodoDone
+syntax match TodoCode =`[^`]*`= containedin=TodoDone,
+  \TodoPriorityA,TodoPriorityB,TodoPriorityC,TodoPriorityD,TodoPriorityE,
+  \TodoPriorityF,TodoPriorityG,TodoPriorityH,TodoPriorityI,TodoPriorityJ,
+  \TodoPriorityK,TodoPriorityL,TodoPriorityM,TodoPriorityN,TodoPriorityO,
+  \TodoPriorityP,TodoPriorityQ,TodoPriorityR,TodoPriorityS,TodoPriorityT,
+  \TodoPriorityU,TodoPriorityV,TodoPriorityW,TodoPriorityX,TodoPriorityY,
+  \TodoPriorityZ
