@@ -27,7 +27,7 @@ function! toggle#toggle_colors() abort "{{{1
      \."'"
 endfunction "}}}1
 function! toggle#toggle_list(default_settings) abort "{{{1
-" Toggle through three states, ``:help digraph-table`` lists symbols
+" Toggle through three states
   if !&list
     silent setlocal list listchars&vim showbreak&vim
   elseif &listchars==#'eol:$'
