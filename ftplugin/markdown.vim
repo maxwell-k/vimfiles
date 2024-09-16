@@ -4,9 +4,6 @@
 "
 packadd markdown
 
-" sourced early so that we can override settings like textwidth
-runtime ftplugin/todo.vim
-
 scriptencoding utf-8
 setlocal listchars+=conceal:▭
 setlocal spell
