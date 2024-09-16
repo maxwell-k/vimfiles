@@ -27,6 +27,10 @@
 syntax  clear  TodoKey
 " The original pattern was:   '\S*\S:\S\S*'
 syntax  match  TodoKey        '[^ \t`]\+:[^ \t/]\S*' contains=TodoDate
+syntax  match  TodoRec        'rec:[^ \t/]\S*' contains=TodoDate
+highlight default link TodoRec Special
+syntax  match  TodoDue        'due:[^ \t/]\S*' contains=TodoDate
+highlight default link TodoDue Special
 
 " These changes ruin some of the date highlighting functionality, for example
 " the due dates on the three lines below should be highlighted differently:
