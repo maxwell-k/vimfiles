@@ -3,8 +3,10 @@
 " SPDX-License-Identifier: MPL-2.0
 "
 " don't spell check block quotes
-syntax region mkdBlockquote start=/^\s*>/ end=/$/
-  \ contains=mkdLink,mkdInlineURL,mkdLineBreak,@NoSpell
+
+syntax region markdownBlockquote start=/^\s*>/ end=/$/
+  \ contains=@NoSpell,markdownAutomaticLink
+  " \ contains=mkdLink,mkdInlineURL,mkdLineBreak,@NoSpell
 
 " don't spell check modelines
 " see ./html.vim - if html is loaded last its priority - :help syn-priority

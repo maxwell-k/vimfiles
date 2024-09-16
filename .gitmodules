@@ -13,9 +13,6 @@
 [submodule "pack/submodules/start/surround"]
 	path = pack/submodules/start/surround
 	url = https://github.com/tpope/vim-surround
-[submodule "pack/submodules/start/markdown"]
-	path = pack/submodules/opt/markdown
-	url = https://github.com/preservim/vim-markdown
 [submodule "pack/submodules/start/maktaba"]
 	path = pack/submodules/start/maktaba
 	url = https://github.com/google/vim-maktaba
