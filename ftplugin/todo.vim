@@ -36,11 +36,11 @@ for s:i in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 endfor
 
 ":sort
-nnoremap <script> <buffer> <localleader>tD :call vim#RemoveCompleted()<CR>
+nnoremap <script> <buffer> <localleader>tp :call todo#Sort("+")<CR>
+nnoremap <script> <buffer> <localleader>t<BS> :call vim#cancel()<CR>
+nnoremap <script> <buffer> <localleader>t@ :call todo#Sort("@")<CR>
+nnoremap <script> <buffer> <localleader>td :call vim#RemoveCompleted()<CR>
 nnoremap <script> <buffer> <localleader>tf :call toggle#todo_fold()<CR>
-nnoremap <script> <silent> <buffer> <localleader>t+ :call todo#Sort("+")<CR>
-nnoremap <script> <silent> <buffer> <localleader>t<BS> :call vim#cancel()<CR>
-nnoremap <script> <silent> <buffer> <localleader>t@ :call todo#Sort("@")<CR>
-nnoremap <script> <silent> <buffer> <localleader>tp :call todo#Sort("")<CR>
-nnoremap <script> <silent> <buffer> <localleader>tu :call todo#SortDue()<CR>
-nnoremap <silent> <buffer> <localleader>t<Space> <Plug>DoToggleMarkAsDone<CR>
+nnoremap <script> <buffer> <localleader>ta :call todo#Sort("")<CR>
+nnoremap <script> <buffer> <localleader>tu :call todo#SortDue()<CR>
+nnoremap <silent> <buffer> <localleader>tt :call todo#ToggleMarkAsDone('')<CR>
