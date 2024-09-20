@@ -1,6 +1,5 @@
-"*.vim": ["awk '$0 ~ /.{81}/ { exit 1 }'", vint -s]
 "**/*": npm exec --prefer-offline -- prettier --check
-./vimrc: ["awk '$0 ~ /.{81}/ { exit 1 }'", vint -s]
+"vimrc|*.vim": ["awk '$0 ~ /.{81}/ { exit 1 }'", vint -s]
 README.md:
   - npm exec --prefer-offline -- prettier --check --prose-wrap always
   - npm exec --prefer-offline -- embedme --verify
