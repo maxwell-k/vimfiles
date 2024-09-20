@@ -16,3 +16,6 @@ SPDX-License-Identifier: CC0-1.0
 Command to demonstrate `echo`:
 
     echo Example command
+
+[official]:
+  https://example.com/a-really-long-slug-that-causes-the-link-destination-to-be-formatted-on-the-second-line-asdf

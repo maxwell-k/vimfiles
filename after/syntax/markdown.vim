@@ -31,3 +31,8 @@ syntax match mkdWordInQuotes '\v"[^"]*"' contains=@NoSpell
 syntax match mkdWordInQuotes "\v '[^']*'" contains=@NoSpell
 syntax cluster mkdNonListItem add=mkdWordInQuotes
 syntax cluster mkdHeadingContains add=mkdWordInQuotes
+
+syntax clear markdownIdDeclaration
+syntax region markdownIdDeclaration
+  \ matchgroup=markdownLinkDelimiter start="^ \{0,3\}!\=\[" end="\]:"
+  \ oneline keepend nextgroup=markdownUrl skipwhite skipnl
