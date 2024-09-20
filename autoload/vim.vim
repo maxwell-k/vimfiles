@@ -3,8 +3,8 @@
 " SPDX-License-Identifier: MPL-2.0
 "
 scriptencoding utf8
-function! vim#RemoveCompletedWrapped() abort "{{{1
-  "Call todo#RemoveComplete with a specific file set for done
+function! vim#RemoveCompleted() abort "{{{1
+  "Call todo#RemoveCompleted with a specific file set for done
   let l:forced = 0
   if stridx(&filetype, 'markdown') >= 0
     let g:TodoTxtForceDoneName = '../done.txt'

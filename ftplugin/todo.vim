@@ -37,30 +37,20 @@ for s:i in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
   execute substitute(s:cmd, '�', s:i, 'g')
 endfor
 
-" ~/.vim/pack/submodules/opt/todo.txt/ftplugin/todo.vim
-let s:prefix_start = 'nnoremap <script> <silent> <buffer> '
-let s:prefix = s:prefix_start.'<localleader>t'
+":sort
+nnoremap <script> <buffer> <localleader>tD :call vim#RemoveCompleted()<CR>
+nnoremap <script> <buffer> <localleader>tf :call toggle#todo_fold()<CR>
+nnoremap <script> <silent> <buffer> <localleader>t+ :call todo#Sort("+")<CR>
+nnoremap <script> <silent> <buffer> <localleader>t<BS> :call vim#cancel()<CR>
+nnoremap <script> <silent> <buffer> <localleader>t@ :call todo#Sort("@")<CR>
+nnoremap <script> <silent> <buffer> <localleader>tp :call todo#Sort("")<CR>
+nnoremap <script> <silent> <buffer> <localleader>tu :call todo#SortDue()<CR>
+nnoremap <silent> <buffer> <localleader>t<Space> <Plug>DoToggleMarkAsDone<CR>
 
-":sort i
-execute s:prefix . '@ :call todo#Sort("@")<CR>'
-execute s:prefix . '+ :call todo#Sort("+")<CR>'
-execute s:prefix . 'D :call vim#RemoveCompletedWrapped()<CR>'
-execute s:prefix . 'p :call todo#Sort("")<CR>'
-execute s:prefix . 'u :call todo#SortDue()<CR>'
-execute s:prefix . 'f :call toggle#todo_fold()<CR>'
-
-" Only prefix <Space>, <CR> and <BS> with \t if another filetype like markdown
-if &filetype==#'todo'
-  nmap <silent> <buffer> <Space> <Plug>DoToggleMarkAsDone
-  let s:prefix = s:prefix_start
-else
-  nmap <silent> <buffer> <localleader>t<Space> <Plug>DoToggleMarkAsDone
-endif
-
+let s:prefix = 'nnoremap <script> <silent> <buffer> <localleader>t'
 execute s:prefix.'<CR>'
   \ .' :silent .w !pipx run urlscan --no-browser'
   \ .' \| xargs --max-args=1 xdg-open 1>/dev/null 2>/dev/null'
   \ .'<CR>'
-execute s:prefix.'<BS> :call vim#cancel()<CR>'
 
 let b:ale_fixers = ['trim_whitespace']
