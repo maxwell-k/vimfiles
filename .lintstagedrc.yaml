@@ -1,5 +1,6 @@
-"**/*": npm exec --prefer-offline -- prettier --check
 "vimrc|*.vim": ["awk '$0 ~ /.{81}/ { exit 1 }'", vint -s]
-README.md:
+"*.md":
   - npm exec --prefer-offline -- prettier --check --prose-wrap always
+"!(missing).md":
   - npm exec --prefer-offline -- embedme --verify
+"!(vimrc|*.vim|*.md)": npm exec --prefer-offline -- prettier --check
