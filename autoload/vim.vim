@@ -109,6 +109,6 @@ function! vim#ChooseModeline(findstart, base) abort "{{{1
 endfunction "}}}1
 function! vim#todo_foldtext() abort "{{{1
     let l:context = matchstr(getline(v:foldstart), g:Todo_fold_char.'[^ ]\+')
-    return '           ● '.l:context
+    return '           '.l:context
 endfunction "}}}1
 " vim: set foldmethod=marker foldlevel=0 :

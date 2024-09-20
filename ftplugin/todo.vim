@@ -16,6 +16,7 @@ let g:Todo_txt_prefix_creation_date=1
 ":sort
 setlocal colorcolumn=
 setlocal cursorline
+setlocal fillchars+=fold:\ ,
 setlocal foldtext=vim#todo_foldtext()
 setlocal isfname-=+
 setlocal nowrap
