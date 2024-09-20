@@ -23,7 +23,7 @@
 " ./tests/manual/todo.txt
 " ./pack/submodules/opt/todo.txt/syntax/todo.vim
 "
-syntax match TodoURL =[(<]\?https\?://\S*[)>]\?= containedin=TodoDone,
+syntax match TodoURL =[(<]\?https\?://\S*[)>]\?= containedin=
   \TodoPriorityA,TodoPriorityB,TodoPriorityC,TodoPriorityD,TodoPriorityE,
   \TodoPriorityF,TodoPriorityG,TodoPriorityH,TodoPriorityI,TodoPriorityJ,
   \TodoPriorityK,TodoPriorityL,TodoPriorityM,TodoPriorityN,TodoPriorityO,
@@ -82,7 +82,7 @@ syntax match TodoEmail =<[^>]\+@[^>]\+>= containedin=TodoDone,
   \TodoPriorityZ contains=@NoSpell
 
 " Do not spell check code fragments like `ls directory/` {{{1
-syntax match TodoCode =`[^`]*`= containedin=TodoDone,
+syntax match TodoCode =`[^`]*`= containedin=
   \TodoPriorityA,TodoPriorityB,TodoPriorityC,TodoPriorityD,TodoPriorityE,
   \TodoPriorityF,TodoPriorityG,TodoPriorityH,TodoPriorityI,TodoPriorityJ,
   \TodoPriorityK,TodoPriorityL,TodoPriorityM,TodoPriorityN,TodoPriorityO,
