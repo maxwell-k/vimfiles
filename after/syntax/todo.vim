@@ -65,7 +65,7 @@ syntax match TodoDone /^[x]\s.\+$/
   \ contains=@NoSpell,TodoProject,TodoContext,TodoCancel
 
 " Strike through cancelled items {{{1
-syntax region TodoCancel start=/\~\~/ end=/\~\~/
+syntax region TodoCancel start=/\~\~/ end=/\~\~/ contains=@NoSpell
 highlight default TodoCancel cterm=strikethrough guifg=#5C6773
 
 " Highlight markers for recurring tasks like rec:1d
