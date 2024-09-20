@@ -43,9 +43,3 @@ nnoremap <script> <silent> <buffer> <localleader>t@ :call todo#Sort("@")<CR>
 nnoremap <script> <silent> <buffer> <localleader>tp :call todo#Sort("")<CR>
 nnoremap <script> <silent> <buffer> <localleader>tu :call todo#SortDue()<CR>
 nnoremap <silent> <buffer> <localleader>t<Space> <Plug>DoToggleMarkAsDone<CR>
-
-let s:prefix = 'nnoremap <script> <silent> <buffer> <localleader>t'
-execute s:prefix.'<CR>'
-  \ .' :silent .w !pipx run urlscan --no-browser'
-  \ .' \| xargs --max-args=1 xdg-open 1>/dev/null 2>/dev/null'
-  \ .'<CR>'
