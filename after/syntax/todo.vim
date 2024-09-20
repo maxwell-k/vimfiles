@@ -98,4 +98,7 @@ execute 'syntax  match  TodoDoneYesterday / ' .
   \strftime('%Y\-%m\-%d', localtime()- 24*60*60) . ' / containedin=TodoDone'
 highlight default TodoDoneYesterday guifg=SeaGreen
 
+" Projects are all lowercase and not spell checked {{{1
+syntax clear TodoProject
+syntax match TodoProject /+[a-z0-9\-]\+\C/  contains=@NoSpell
 " vim: set foldmethod=marker foldlevel=0 : {{{1
