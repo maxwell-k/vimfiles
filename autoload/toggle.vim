@@ -82,6 +82,11 @@ function! toggle#python_linters(...) abort "{{{1
   redraw | echom 'let b:ale_linters_ignore = '.string(b:ale_linters_ignore)
 endfunction "}}}1
 function! toggle#todo_fold() abort "{{{1
+  if getbufinfo('%')[0].changed
+    echom 'Changes detected, aborting toggle#todo_fold.'
+    return
+  end
+
   if !exists('g:Todo_fold_char')
     let g:Todo_fold_char = '+'
   elseif g:Todo_fold_char ==# ''
