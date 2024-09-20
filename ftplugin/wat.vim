@@ -6,7 +6,7 @@
 let b:ale_linters = ['wat2wasm']
 packadd sexp
 let g:sexp_filetypes = ''
-function! s:vim_sexp_mappings()
+function! s:VimSexpMappings()
   xmap <silent><buffer> af              <Plug>(sexp_outer_list)
   omap <silent><buffer> af              <Plug>(sexp_outer_list)
   xmap <silent><buffer> if              <Plug>(sexp_inner_list)
@@ -71,4 +71,4 @@ function! s:vim_sexp_mappings()
   imap <silent><buffer> {               <Plug>(sexp_insert_opening_curly)
   imap <silent><buffer> }               <Plug>(sexp_insert_closing_curly)
 endfunction
-call s:vim_sexp_mappings()
+call s:VimSexpMappings()

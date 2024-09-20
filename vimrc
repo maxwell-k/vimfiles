@@ -77,7 +77,7 @@ let s:list_settings = 'setlocal list showbreak=→ '
 let s:list_settings .= 'listchars='
 let s:list_settings .= 'trail:←,tab:→—,extends:▓,precedes:▓'
 execute s:list_settings
-execute "noremap <Leader>l :call toggle#toggle_list('".s:list_settings."')<CR>"
+execute "noremap <Leader>l :call toggle#List('".s:list_settings."')<CR>"
 unlet s:list_settings
 
 " Mappings and commands {{{1
@@ -85,39 +85,38 @@ unlet s:list_settings
 "
 " Using <Leader>, alphabetically:
  noremap <Leader>aq :call ale#quit#Mapping()<CR>
- noremap <Leader>aD :call toggle#toggle_ale()<CR>
+ noremap <Leader>aD :call toggle#Ale()<CR>
      map <Leader>af <Plug>(ale_find_references)
      map <Leader>ad <Plug>(ale_go_to_definition)
      map <Leader>ah <Plug>(ale_hover)
      map <Leader>ar <Plug>(ale_rename)
      map <Leader>at <Plug>(ale_go_to_type_definition)
- noremap <Leader>b :call toggle#toggle_colors()<CR>
+ noremap <Leader>b :call toggle#Colors()<CR>
 call opfunc#opfuncmap('c') " straight yank
  noremap <Leader>C :call SendViaOSC52(join(getline(1,'$'),'\n'))<CR>
  noremap <Leader>ff :call SendViaOSC52(@%)<CR>
- noremap <Leader>fF :call vim#yank_path_with_tilde()<CR>
+ noremap <Leader>fF :call vim#YankPathWithTilde()<CR>
         "<Leader>g see plugin/mappings.vim
         "<Leader>h see vim/ftplugin/rst.vim
  noremap <Leader>i :echo synIDattr(synID(line('.'),col('.'),1),'name')<CR>
-vnoremap <Leader>k <ESC>:call vim#keep()<CR>
+vnoremap <Leader>k <ESC>:call vim#Keep()<CR>
         "<Leader>j see ftplugin/python.vim for Jedi mappings or
         "<Leader>j see plugin/jupyter.vim in the jupyter package
         "<Leader>J see plugin/jupyter.vim in the jupyter package
         "<Leader>l see above
  noremap <Leader>m :/<<<<<<<\\|=======\\|>>>>>>><CR>
- noremap <Leader>n :call vim#new()<CR>
         "<Leader>p? see ftplugin/python.vim
- noremap <Leader>s :call toggle#toggle_shiftwidth()<CR>
- noremap <Leader>S :call vim#scriptnames()<CR>
+ noremap <Leader>s :call toggle#Shiftwidth()<CR>
+ noremap <Leader>S :call vim#Scriptnames()<CR>
  noremap <Leader>v :set paste! paste?<CR>
 call opfunc#opfuncmap('y')
  noremap <Leader>w <C-w>
  noremap <Leader>zg :call fzf#run(fzf#wrap({'source': 'git ls-files'}))<CR>
- noremap <Leader>zs :call fzf#custom_git_status()<CR>
-vnoremap <Leader>= :<C-U>call vim#sum()<CR>
+ noremap <Leader>zs :call fzf#CustomGitStatus()<CR>
+vnoremap <Leader>= :<C-U>call vim#Sum()<CR>
  noremap <Leader>\ :s,\\,/,g<CR>
  noremap <Leader>/ :s,/,\\,g<CR>
- noremap <Leader><CR> :call vim#browser()<CR>
+ noremap <Leader><CR> :call vim#Browser()<CR>
 " Other:
  noremap <C-L> :noh<CR><C-L>
  noremap Y y$
@@ -130,13 +129,11 @@ command! W ALEFix!|w|silent execute '!git add %'|redraw!
 " Alphanbetical, see http://www.unicode.org/charts/charindex.html for more and
 " use ``:echo 0x2026`` to convert to decimal
 digraphs .. 8230 " ellipsis …
-digraphs bb 9744 " ballot box ☐
 digraphs bu 8226 " bullet •
-digraphs bx 9745 " ballot box with check ☑
 digraphs m- 8212 " em dash –
 digraphs n- 8211 " em dash —
 digraphs %< 9986 " black scissors ✂
-digraphs mi 129704 " rock 129704 🪨
+digraphs fl 9873 " black flag ⚑
 
 " autocommands {{{1
 " ------------
@@ -145,7 +142,7 @@ digraphs mi 129704 " rock 129704 🪨
 augroup vimrc
 autocmd BufReadCmd *.tbz2 call tar#Browse(expand("<amatch>")) "Gentoo binaries
 autocmd BufNewFile,BufReadPost COMMIT_EDITMSG setlocal nomodeline spell
-autocmd BufNewFile,BufReadPost * call vim#spellfile()
+autocmd BufNewFile,BufReadPost * call vim#Spellfile()
 autocmd BufReadPost /tmp/histedit.* let $PATH .= ':/usr/local/bin'
 autocmd StdInReadPost * setlocal nowrap
 augroup END

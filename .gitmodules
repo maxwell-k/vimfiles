@@ -13,9 +13,6 @@
 [submodule "pack/submodules/start/surround"]
 	path = pack/submodules/start/surround
 	url = https://github.com/tpope/vim-surround
-[submodule "pack/submodules/start/markdown"]
-	path = pack/submodules/opt/markdown
-	url = https://github.com/preservim/vim-markdown
 [submodule "pack/submodules/start/maktaba"]
 	path = pack/submodules/start/maktaba
 	url = https://github.com/google/vim-maktaba
@@ -34,6 +31,9 @@
 [submodule "pack/submodules/opt/beancount"]
 	path = pack/submodules/opt/beancount
 	url = https://github.com/nathangrigg/vim-beancount
+[submodule "pack/submodules/opt/colorizer"]
+	path = pack/submodules/opt/colorizer
+	url = https://github.com/chrisbra/Colorizer
 [submodule "pack/submodules/opt/vinfo"]
 	path = pack/submodules/opt/vinfo
 	url = https://github.com/alx741/vinfo
@@ -52,3 +52,9 @@
 [submodule "pack/submodules/opt/sexp"]
 	path = pack/submodules/opt/sexp
 	url = https://github.com/guns/vim-sexp.git
+[submodule "pack/submodules/opt/goyo"]
+	path = pack/submodules/opt/goyo
+	url = git@github.com:junegunn/goyo.vim.git
+[submodule "pack/submodules/opt/limelight"]
+	path = pack/submodules/opt/limelight
+	url = git@github.com:junegunn/limelight.vim.git

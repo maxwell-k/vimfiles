@@ -1,70 +1,47 @@
+scriptencoding utf-8
 " ftplugin/todo.vim
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
 " https://github.com/todotxt/todo.txt
-if &filetype==#'todo'
-  let g:Todo_txt_prefix_creation_date=1
-  setlocal cursorline
-  setlocal nowrap
-elseif exists('g:Todo_txt_prefix_creation_date')
-  unlet g:Todo_txt_prefix_creation_date
-endif
 if !exists('g:Todo_fold_char')
-  let g:Todo_fold_char = '+'
+  let g:Todo_fold_char = ''
 endif
 
-let g:Todo_txt_do_not_map=1
-packadd todo.txt
-runtime OPT ftplugin/todo.vim
-setlocal omnifunc=todo#Complete
-setlocal isfname-=+
-setlocal path+=./Projects
-setlocal suffixesadd+=.md
-setlocal colorcolumn=
-setlocal shiftwidth=4
-
-noremap <script> <silent> <buffer>
-  \ <Plug>PriorityA :call todo#PrioritizeAdd("A")<CR>
-  \ :silent! call repeat#set("\<Plug>PriorityA")<CR>
-nmap <silent> <buffer> <localleader>tA <Plug>PriorityA
-
-noremap <script> <silent> <buffer>
-  \ <Plug>PriorityB :call todo#PrioritizeAdd("B")<CR>
-  \ :silent! call repeat#set("\<Plug>PriorityB")<CR>
-nmap <silent> <buffer> <localleader>tB <Plug>PriorityB
-
-noremap <script> <silent> <buffer>
-  \ <Plug>PriorityC :call todo#PrioritizeAdd("C")<CR>
-  \ :silent! call repeat#set("\<Plug>PriorityC")<CR>
-nmap <silent> <buffer> <localleader>tC <Plug>PriorityC
-
-" ~/.vim/pack/submodules/opt/todo.txt/ftplugin/todo.vim
-let s:prefix_start = 'nnoremap <script> <silent> <buffer> '
-let s:prefix = s:prefix_start.'<localleader>t'
-
-":sort i
-execute s:prefix . '@ :call todo#Sort("@")<CR>'
-execute s:prefix . '+ :call todo#Sort("+")<CR>'
-execute s:prefix . 'D :call vim#RemoveCompletedWrapped()<CR>'
-execute s:prefix . 'p :call todo#Sort("")<CR>'
-execute s:prefix . 'u :call todo#SortDue()<CR>'
-execute s:prefix . 'f :call toggle#toggle_todo_fold()<CR>'
-
-" Only prefix <Space>, <CR> and <BS> with \t if another filetype like markdown
-if &filetype==#'todo'
-  nmap <silent> <buffer> <Space> <Plug>DoToggleMarkAsDone
-  let s:prefix = s:prefix_start
-else
-  nmap <silent> <buffer> <localleader>t<Space> <Plug>DoToggleMarkAsDone
-endif
-
-execute s:prefix.'<CR>'
-  \ .' :silent .w !pipx run urlscan --no-browser'
-  \ .' \| xargs --max-args=1 xdg-open 1>/dev/null 2>/dev/null'
-  \ .'<CR>'
-execute s:prefix.'<BS> :call vim#cancel()<CR>'
-
+":sort
 let b:ale_fixers = ['trim_whitespace']
+let g:Todo_txt_do_not_map = 1
+let g:Todo_txt_prefix_creation_date = 1
+let g:Todo_update_fold_on_sort = 1
 
+":sort
+setlocal colorcolumn=
+setlocal cursorline
+setlocal fillchars+=fold:\ ,
+setlocal foldtext=vim#TodoFoldtext()
+setlocal isfname-=+
+setlocal nowrap
+setlocal omnifunc=todo#Complete
+setlocal path+=./Projects
+setlocal shiftwidth=4
 setlocal spell
+setlocal suffixesadd+=.md
+
+for s:i in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  let s:cmd = 'noremap <script> <silent> <buffer>'
+  let s:cmd .= ' <Plug>Priority� :call todo#PrioritizeAdd("�")<CR>'
+  let s:cmd .= ' :silent! call repeat#set("\<Plug>Priority�")<CR>'
+  execute substitute(s:cmd, '�', s:i, 'g')
+  let s:cmd = 'nmap <silent> <buffer> <localleader>t� <Plug>Priority�'
+  execute substitute(s:cmd, '�', s:i, 'g')
+endfor
+
+":sort
+nnoremap <script> <buffer> <localleader>tp :call todo#Sort("+")<CR>
+nnoremap <script> <buffer> <localleader>t<BS> :call vim#Cancel()<CR>
+nnoremap <script> <buffer> <localleader>t@ :echo 'Context sort disabled.'<CR>
+nnoremap <script> <buffer> <localleader>td :call vim#RemoveCompleted()<CR>
+nnoremap <script> <buffer> <localleader>tf :call toggle#TodoFold()<CR>
+nnoremap <script> <buffer> <localleader>ta :call todo#Sort("")<CR>
+nnoremap <script> <buffer> <localleader>tu :call todo#SortDue()<CR>
+nnoremap <silent> <buffer> <localleader>tt :call todo#ToggleMarkAsDone('')<CR>

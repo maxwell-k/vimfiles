@@ -18,7 +18,7 @@
       ansible.builtin.file:
         state: directory
         path: "{{ item }}"
-        mode: 0o755
+        mode: "0o755"
       loop: [~/.local, ~/.local/bin]
     - name: Install pipx to ~/.local/bin
       ansible.builtin.get_url:
