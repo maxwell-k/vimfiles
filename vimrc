@@ -77,7 +77,7 @@ let s:list_settings = 'setlocal list showbreak=→ '
 let s:list_settings .= 'listchars='
 let s:list_settings .= 'trail:←,tab:→—,extends:▓,precedes:▓'
 execute s:list_settings
-execute "noremap <Leader>l :call toggle#toggle_list('".s:list_settings."')<CR>"
+execute "noremap <Leader>l :call toggle#list('".s:list_settings."')<CR>"
 unlet s:list_settings
 
 " Mappings and commands {{{1
@@ -85,13 +85,13 @@ unlet s:list_settings
 "
 " Using <Leader>, alphabetically:
  noremap <Leader>aq :call ale#quit#Mapping()<CR>
- noremap <Leader>aD :call toggle#toggle_ale()<CR>
+ noremap <Leader>aD :call toggle#ale()<CR>
      map <Leader>af <Plug>(ale_find_references)
      map <Leader>ad <Plug>(ale_go_to_definition)
      map <Leader>ah <Plug>(ale_hover)
      map <Leader>ar <Plug>(ale_rename)
      map <Leader>at <Plug>(ale_go_to_type_definition)
- noremap <Leader>b :call toggle#toggle_colors()<CR>
+ noremap <Leader>b :call toggle#colors()<CR>
 call opfunc#opfuncmap('c') " straight yank
  noremap <Leader>C :call SendViaOSC52(join(getline(1,'$'),'\n'))<CR>
  noremap <Leader>ff :call SendViaOSC52(@%)<CR>
@@ -107,7 +107,7 @@ vnoremap <Leader>k <ESC>:call vim#keep()<CR>
  noremap <Leader>m :/<<<<<<<\\|=======\\|>>>>>>><CR>
  noremap <Leader>n :call vim#new()<CR>
         "<Leader>p? see ftplugin/python.vim
- noremap <Leader>s :call toggle#toggle_shiftwidth()<CR>
+ noremap <Leader>s :call toggle#shiftwidth()<CR>
  noremap <Leader>S :call vim#scriptnames()<CR>
  noremap <Leader>v :set paste! paste?<CR>
 call opfunc#opfuncmap('y')
