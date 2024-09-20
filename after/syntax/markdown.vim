@@ -6,7 +6,6 @@
 
 syntax region markdownBlockquote start=/^\s*>/ end=/$/
   \ contains=@NoSpell,markdownAutomaticLink
-  " \ contains=mkdLink,mkdInlineURL,mkdLineBreak,@NoSpell
 
 " don't spell check modelines
 " see ./html.vim - if html is loaded last its priority - :help syn-priority
