@@ -39,7 +39,7 @@ endfor
 ":sort
 nnoremap <script> <buffer> <localleader>tp :call todo#Sort("+")<CR>
 nnoremap <script> <buffer> <localleader>t<BS> :call vim#cancel()<CR>
-nnoremap <script> <buffer> <localleader>t@ :call todo#Sort("@")<CR>
+nnoremap <script> <buffer> <localleader>t@ :echo 'Context sort disabled.'<CR>
 nnoremap <script> <buffer> <localleader>td :call vim#RemoveCompleted()<CR>
 nnoremap <script> <buffer> <localleader>tf :call toggle#todo_fold()<CR>
 nnoremap <script> <buffer> <localleader>ta :call todo#Sort("")<CR>

@@ -91,8 +91,9 @@ function! toggle#todo_fold() abort "{{{1
     let g:Todo_fold_char = '+'
   elseif g:Todo_fold_char ==# ''
     let g:Todo_fold_char = '+'
-  elseif g:Todo_fold_char ==# '+'
-    let g:Todo_fold_char = '@'
+  " sorting on context fails on email addresses and urls
+  " elseif g:Todo_fold_char ==# '+'
+  "   let g:Todo_fold_char = '@'
   else
     let g:Todo_fold_char = ''
   end
