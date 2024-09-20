@@ -96,8 +96,9 @@ function! toggle#todo_fold() abort "{{{1
   else
     let g:Todo_fold_char = ''
   end
-  edit
+  silent edit
   setlocal foldlevel=0
+  setlocal foldtext=vim#todo_foldtext()
   echom g:Todo_fold_char
 endfunction "}}}1
 " vim: set foldmethod=marker foldlevel=0 :
