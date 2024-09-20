@@ -17,12 +17,15 @@ endif
 let g:Todo_txt_do_not_map=1
 packadd todo.txt
 runtime OPT ftplugin/todo.vim
-setlocal omnifunc=todo#Complete
-setlocal isfname-=+
-setlocal path+=./Projects
-setlocal suffixesadd+=.md
+
 setlocal colorcolumn=
+setlocal foldtext=vim#todo_foldtext()
+setlocal isfname-=+
+setlocal omnifunc=todo#Complete
+setlocal path+=./Projects
 setlocal shiftwidth=4
+setlocal spell
+setlocal suffixesadd+=.md
 
 noremap <script> <silent> <buffer>
   \ <Plug>PriorityA :call todo#PrioritizeAdd("A")<CR>
@@ -66,6 +69,3 @@ execute s:prefix.'<CR>'
 execute s:prefix.'<BS> :call vim#cancel()<CR>'
 
 let b:ale_fixers = ['trim_whitespace']
-
-setlocal spell
-setlocal foldtext=vim#todo_foldtext()
