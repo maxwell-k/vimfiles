@@ -47,9 +47,6 @@ function! vim#keep() abort "{{{1
   endif
   normal! 0gg
 endfunction "}}}1
-function! vim#new() abort "{{{1
- silent! 5new +setlocal\ buftype=nofile\ bufhidden=hide\ noswapfile<CR>
-endfunction "}}}1
 function! vim#scriptnames() abort "{{{1
   "Open the output of :scriptnames for searching
   let l:file=tempname()

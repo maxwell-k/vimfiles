@@ -105,7 +105,6 @@ vnoremap <Leader>k <ESC>:call vim#keep()<CR>
         "<Leader>J see plugin/jupyter.vim in the jupyter package
         "<Leader>l see above
  noremap <Leader>m :/<<<<<<<\\|=======\\|>>>>>>><CR>
- noremap <Leader>n :call vim#new()<CR>
         "<Leader>p? see ftplugin/python.vim
  noremap <Leader>s :call toggle#shiftwidth()<CR>
  noremap <Leader>S :call vim#scriptnames()<CR>
