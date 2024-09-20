@@ -4,13 +4,7 @@ scriptencoding utf-8
 " SPDX-License-Identifier: MPL-2.0
 "
 " https://github.com/todotxt/todo.txt
-if &filetype==#'todo'
-  let g:Todo_txt_prefix_creation_date=1
-  setlocal cursorline
-  setlocal nowrap
-elseif exists('g:Todo_txt_prefix_creation_date')
-  unlet g:Todo_txt_prefix_creation_date
-endif
+let g:Todo_txt_prefix_creation_date=1
 if !exists('g:Todo_fold_char')
   let g:Todo_fold_char = '+'
 endif
@@ -19,9 +13,12 @@ let g:Todo_txt_do_not_map=1
 packadd todo.txt
 runtime OPT ftplugin/todo.vim
 
+":sort
 setlocal colorcolumn=
+setlocal cursorline
 setlocal foldtext=vim#todo_foldtext()
 setlocal isfname-=+
+setlocal nowrap
 setlocal omnifunc=todo#Complete
 setlocal path+=./Projects
 setlocal shiftwidth=4
