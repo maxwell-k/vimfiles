@@ -17,7 +17,6 @@ highlight StatusLine guibg=#828C99 guifg=#14191F
 highlight StatusLineNC guibg=#3E4B59 guifg=#000000
 highlight ToDoOverDueDate cterm=bold guifg=#F07178
 highlight ToDoPriorityA cterm=bold
-highlight TodoCancel cterm=strikethrough guifg=#5C6773
 highlight TodoProject guifg=LimeGreen
 
 highlight link ToDoPriorityB NONE

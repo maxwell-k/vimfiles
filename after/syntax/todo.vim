@@ -1,8 +1,7 @@
 " after/syntax/todo.vim
 " Copyright 2022 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
-"
-" Avoid key:value syntax clashing with links like https://...
+" Avoid key:value syntax clashing with links like https://... {{{1
 "
 " The original syntax pattern for this syntax matches markdown link syntax
 " like the example below:
@@ -31,33 +30,11 @@ syntax match TodoURL =[(<]\?https\?://\S*[)>]\?= containedin=TodoDone,
   \TodoPriorityP,TodoPriorityQ,TodoPriorityR,TodoPriorityS,TodoPriorityT,
   \TodoPriorityU,TodoPriorityV,TodoPriorityW,TodoPriorityX,TodoPriorityY,
   \TodoPriorityZ contains=@NoSpell
-
-syntax region TodoCancel start=/\~\~/ end=/\~\~/
-
-syntax match TodoCode =`[^`]*`= containedin=TodoDone,
-  \TodoPriorityA,TodoPriorityB,TodoPriorityC,TodoPriorityD,TodoPriorityE,
-  \TodoPriorityF,TodoPriorityG,TodoPriorityH,TodoPriorityI,TodoPriorityJ,
-  \TodoPriorityK,TodoPriorityL,TodoPriorityM,TodoPriorityN,TodoPriorityO,
-  \TodoPriorityP,TodoPriorityQ,TodoPriorityR,TodoPriorityS,TodoPriorityT,
-  \TodoPriorityU,TodoPriorityV,TodoPriorityW,TodoPriorityX,TodoPriorityY,
-  \TodoPriorityZ contains=@NoSpell
-
-syntax match TodoEmail =<[^>]\+@[^>]\+>= containedin=TodoDone,
-  \TodoPriorityA,TodoPriorityB,TodoPriorityC,TodoPriorityD,TodoPriorityE,
-  \TodoPriorityF,TodoPriorityG,TodoPriorityH,TodoPriorityI,TodoPriorityJ,
-  \TodoPriorityK,TodoPriorityL,TodoPriorityM,TodoPriorityN,TodoPriorityO,
-  \TodoPriorityP,TodoPriorityQ,TodoPriorityR,TodoPriorityS,TodoPriorityT,
-  \TodoPriorityU,TodoPriorityV,TodoPriorityW,TodoPriorityX,TodoPriorityY,
-  \TodoPriorityZ contains=@NoSpell
-
 syntax  clear  TodoKey
 " The original pattern was:   '\S*\S:\S\S*'
 syntax  match  TodoKey        '[^ \t`]\+:[^ \t/]\S*' contains=TodoDate
-syntax  match  TodoRec        'rec:[^ \t/]\S*' contains=TodoDate
-highlight default link TodoRec Special
 syntax  match  TodoDue        'due:[^ \t/]\S*' contains=TodoDate
 highlight default link TodoDue Special
-
 " These changes ruin some of the date highlighting functionality, for example
 " the due dates on the three lines below should be highlighted differently:
 "
@@ -71,3 +48,46 @@ execute 'syntax match TodoOverDueDate /\v\c<due:'
   \ . todo#GetDateRegexForPastDates() . '>/'
 execute 'syntax match TodoDueToday    /\v\c<due:' . strftime('%Y\-%m\-%d')
   \ . '>/ contains=NONE'
+
+" Handle start dates similarly to due dates {{{1
+syntax  match  TodoStart        'start:[^ \t/]\S*' contains=TodoDate
+highlight default link TodoStart Special
+execute 'syntax match TodoOverStartDate /\v\c<start:'
+  \ . todo#GetDateRegexForPastDates() . '>/'
+highlight default link TodoOverStartDate TodoOverDueDate
+execute 'syntax match TodoStartToday    /\v\c<start:' . strftime('%Y\-%m\-%d')
+  \ . '>/ contains=NONE'
+highlight default link TodoStartToday Todo
+
+" Do not check spelling or highlight dates in done items {{{1
+syntax clear TodoDone
+syntax match TodoDone /^[x]\s.\+$/
+  \ contains=@NoSpell,TodoProject,TodoContext,TodoCancel
+
+" Strike through cancelled items {{{1
+syntax region TodoCancel start=/\~\~/ end=/\~\~/
+highlight default TodoCancel cterm=strikethrough guifg=#5C6773
+
+" Highlight markers for recurring tasks like rec:1d
+syntax  match  TodoRec        'rec:[^ \t/]\S*' contains=TodoDate
+highlight default link TodoRec Special
+
+" Do not spell check email address like: <mail@example.org> {{{1
+syntax match TodoEmail =<[^>]\+@[^>]\+>= containedin=TodoDone,
+  \TodoPriorityA,TodoPriorityB,TodoPriorityC,TodoPriorityD,TodoPriorityE,
+  \TodoPriorityF,TodoPriorityG,TodoPriorityH,TodoPriorityI,TodoPriorityJ,
+  \TodoPriorityK,TodoPriorityL,TodoPriorityM,TodoPriorityN,TodoPriorityO,
+  \TodoPriorityP,TodoPriorityQ,TodoPriorityR,TodoPriorityS,TodoPriorityT,
+  \TodoPriorityU,TodoPriorityV,TodoPriorityW,TodoPriorityX,TodoPriorityY,
+  \TodoPriorityZ contains=@NoSpell
+
+" Do not spell check code fragments like `ls directory/` {{{1
+syntax match TodoCode =`[^`]*`= containedin=TodoDone,
+  \TodoPriorityA,TodoPriorityB,TodoPriorityC,TodoPriorityD,TodoPriorityE,
+  \TodoPriorityF,TodoPriorityG,TodoPriorityH,TodoPriorityI,TodoPriorityJ,
+  \TodoPriorityK,TodoPriorityL,TodoPriorityM,TodoPriorityN,TodoPriorityO,
+  \TodoPriorityP,TodoPriorityQ,TodoPriorityR,TodoPriorityS,TodoPriorityT,
+  \TodoPriorityU,TodoPriorityV,TodoPriorityW,TodoPriorityX,TodoPriorityY,
+  \TodoPriorityZ contains=@NoSpell
+
+" vim: set foldmethod=marker foldlevel=0 : {{{1
