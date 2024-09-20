@@ -90,4 +90,12 @@ syntax match TodoCode =`[^`]*`= containedin=
   \TodoPriorityU,TodoPriorityV,TodoPriorityW,TodoPriorityX,TodoPriorityY,
   \TodoPriorityZ contains=@NoSpell
 
+" Highlight finished today and yesterday {{{1
+execute 'syntax  match  TodoDoneToday / ' .
+  \strftime('%Y\-%m\-%d') . ' / containedin=TodoDone'
+highlight default TodoDoneToday guifg=SeaGreen cterm=bold
+execute 'syntax  match  TodoDoneYesterday / ' .
+  \strftime('%Y\-%m\-%d', localtime()- 24*60*60) . ' / containedin=TodoDone'
+highlight default TodoDoneYesterday guifg=SeaGreen
+
 " vim: set foldmethod=marker foldlevel=0 : {{{1
