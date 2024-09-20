@@ -2,7 +2,7 @@
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
-function! fzf#custom_git_status() abort
+function! fzf#CustomGitStatus() abort
   " manually tested only
   " neither vader nor runVimTests can pass keys to FZF
   let l:spec = {}

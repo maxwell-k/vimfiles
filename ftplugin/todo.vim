@@ -18,7 +18,7 @@ let g:Todo_update_fold_on_sort = 1
 setlocal colorcolumn=
 setlocal cursorline
 setlocal fillchars+=fold:\ ,
-setlocal foldtext=vim#todo_foldtext()
+setlocal foldtext=vim#TodoFoldtext()
 setlocal isfname-=+
 setlocal nowrap
 setlocal omnifunc=todo#Complete
@@ -38,10 +38,10 @@ endfor
 
 ":sort
 nnoremap <script> <buffer> <localleader>tp :call todo#Sort("+")<CR>
-nnoremap <script> <buffer> <localleader>t<BS> :call vim#cancel()<CR>
+nnoremap <script> <buffer> <localleader>t<BS> :call vim#Cancel()<CR>
 nnoremap <script> <buffer> <localleader>t@ :echo 'Context sort disabled.'<CR>
 nnoremap <script> <buffer> <localleader>td :call vim#RemoveCompleted()<CR>
-nnoremap <script> <buffer> <localleader>tf :call toggle#todo_fold()<CR>
+nnoremap <script> <buffer> <localleader>tf :call toggle#TodoFold()<CR>
 nnoremap <script> <buffer> <localleader>ta :call todo#Sort("")<CR>
 nnoremap <script> <buffer> <localleader>tu :call todo#SortDue()<CR>
 nnoremap <silent> <buffer> <localleader>tt :call todo#ToggleMarkAsDone('')<CR>
