@@ -4,14 +4,14 @@ scriptencoding utf-8
 " SPDX-License-Identifier: MPL-2.0
 "
 " https://github.com/todotxt/todo.txt
-let g:Todo_txt_prefix_creation_date=1
 if !exists('g:Todo_fold_char')
   let g:Todo_fold_char = '+'
 endif
 
+":sort
+let b:ale_fixers = ['trim_whitespace']
 let g:Todo_txt_do_not_map=1
-packadd todo.txt
-runtime OPT ftplugin/todo.vim
+let g:Todo_txt_prefix_creation_date=1
 
 ":sort
 setlocal colorcolumn=
@@ -49,5 +49,3 @@ execute s:prefix.'<CR>'
   \ .' :silent .w !pipx run urlscan --no-browser'
   \ .' \| xargs --max-args=1 xdg-open 1>/dev/null 2>/dev/null'
   \ .'<CR>'
-
-let b:ale_fixers = ['trim_whitespace']
