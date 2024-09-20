@@ -1,3 +1,4 @@
+scriptencoding utf-8
 " ftplugin/todo.vim
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
@@ -27,20 +28,14 @@ setlocal shiftwidth=4
 setlocal spell
 setlocal suffixesadd+=.md
 
-noremap <script> <silent> <buffer>
-  \ <Plug>PriorityA :call todo#PrioritizeAdd("A")<CR>
-  \ :silent! call repeat#set("\<Plug>PriorityA")<CR>
-nmap <silent> <buffer> <localleader>tA <Plug>PriorityA
-
-noremap <script> <silent> <buffer>
-  \ <Plug>PriorityB :call todo#PrioritizeAdd("B")<CR>
-  \ :silent! call repeat#set("\<Plug>PriorityB")<CR>
-nmap <silent> <buffer> <localleader>tB <Plug>PriorityB
-
-noremap <script> <silent> <buffer>
-  \ <Plug>PriorityC :call todo#PrioritizeAdd("C")<CR>
-  \ :silent! call repeat#set("\<Plug>PriorityC")<CR>
-nmap <silent> <buffer> <localleader>tC <Plug>PriorityC
+for s:i in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  let s:cmd = 'noremap <script> <silent> <buffer>'
+  let s:cmd .= ' <Plug>Priority� :call todo#PrioritizeAdd("�")<CR>'
+  let s:cmd .= ' :silent! call repeat#set("\<Plug>Priority�")<CR>'
+  execute substitute(s:cmd, '�', s:i, 'g')
+  let s:cmd = 'nmap <silent> <buffer> <localleader>t� <Plug>Priority�'
+  execute substitute(s:cmd, '�', s:i, 'g')
+endfor
 
 " ~/.vim/pack/submodules/opt/todo.txt/ftplugin/todo.vim
 let s:prefix_start = 'nnoremap <script> <silent> <buffer> '
