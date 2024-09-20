@@ -24,6 +24,32 @@
 " ./tests/manual/todo.txt
 " ./pack/submodules/opt/todo.txt/syntax/todo.vim
 "
+syntax match TodoURL =[(<]\?https\?://\S*[)>]\?= containedin=TodoDone,
+  \TodoPriorityA,TodoPriorityB,TodoPriorityC,TodoPriorityD,TodoPriorityE,
+  \TodoPriorityF,TodoPriorityG,TodoPriorityH,TodoPriorityI,TodoPriorityJ,
+  \TodoPriorityK,TodoPriorityL,TodoPriorityM,TodoPriorityN,TodoPriorityO,
+  \TodoPriorityP,TodoPriorityQ,TodoPriorityR,TodoPriorityS,TodoPriorityT,
+  \TodoPriorityU,TodoPriorityV,TodoPriorityW,TodoPriorityX,TodoPriorityY,
+  \TodoPriorityZ contains=@NoSpell
+
+syntax region TodoCancel start=/\~\~/ end=/\~\~/
+
+syntax match TodoCode =`[^`]*`= containedin=TodoDone,
+  \TodoPriorityA,TodoPriorityB,TodoPriorityC,TodoPriorityD,TodoPriorityE,
+  \TodoPriorityF,TodoPriorityG,TodoPriorityH,TodoPriorityI,TodoPriorityJ,
+  \TodoPriorityK,TodoPriorityL,TodoPriorityM,TodoPriorityN,TodoPriorityO,
+  \TodoPriorityP,TodoPriorityQ,TodoPriorityR,TodoPriorityS,TodoPriorityT,
+  \TodoPriorityU,TodoPriorityV,TodoPriorityW,TodoPriorityX,TodoPriorityY,
+  \TodoPriorityZ contains=@NoSpell
+
+syntax match TodoEmail =<[^>]\+@[^>]\+>= containedin=TodoDone,
+  \TodoPriorityA,TodoPriorityB,TodoPriorityC,TodoPriorityD,TodoPriorityE,
+  \TodoPriorityF,TodoPriorityG,TodoPriorityH,TodoPriorityI,TodoPriorityJ,
+  \TodoPriorityK,TodoPriorityL,TodoPriorityM,TodoPriorityN,TodoPriorityO,
+  \TodoPriorityP,TodoPriorityQ,TodoPriorityR,TodoPriorityS,TodoPriorityT,
+  \TodoPriorityU,TodoPriorityV,TodoPriorityW,TodoPriorityX,TodoPriorityY,
+  \TodoPriorityZ contains=@NoSpell
+
 syntax  clear  TodoKey
 " The original pattern was:   '\S*\S:\S\S*'
 syntax  match  TodoKey        '[^ \t`]\+:[^ \t/]\S*' contains=TodoDate
