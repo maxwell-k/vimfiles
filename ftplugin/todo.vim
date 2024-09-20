@@ -5,7 +5,7 @@ scriptencoding utf-8
 "
 " https://github.com/todotxt/todo.txt
 if !exists('g:Todo_fold_char')
-  let g:Todo_fold_char = '+'
+  let g:Todo_fold_char = ''
 endif
 
 ":sort
