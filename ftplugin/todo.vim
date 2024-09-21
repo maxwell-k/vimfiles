@@ -11,7 +11,6 @@ endif
 ":sort
 let b:ale_fixers = ['trim_whitespace']
 let g:Todo_txt_do_not_map = 1
-let g:Todo_txt_prefix_creation_date = 1
 let g:Todo_update_fold_on_sort = 1
 
 ":sort
@@ -45,3 +44,4 @@ nnoremap <script> <buffer> <localleader>tf :call toggle#TodoFold()<CR>
 nnoremap <script> <buffer> <localleader>ta :call todo#Sort("")<CR>
 nnoremap <script> <buffer> <localleader>tu :call todo#SortDue()<CR>
 nnoremap <silent> <buffer> <localleader>tt :call todo#ToggleMarkAsDone('')<CR>
+nnoremap <script> <buffer> o o<C-R>=strftime("%Y-%m-%d")<CR>
