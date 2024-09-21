@@ -134,6 +134,7 @@ digraphs m- 8212 " em dash –
 digraphs n- 8211 " em dash —
 digraphs %< 9986 " black scissors ✂
 digraphs fl 9873 " black flag ⚑
+digraphs am 128126 " alien monster 👾
 
 " autocommands {{{1
 " ------------
