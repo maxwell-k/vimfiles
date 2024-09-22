@@ -33,7 +33,13 @@ syntax match TodoURL =[(<]\?https\?://\S*[)>]\?= containedin=
 syntax  clear  TodoKey
 " The original pattern was:   '\S*\S:\S\S*'
 syntax  match  TodoKey        '[^ \t`]\+:[^ \t/]\S*' contains=TodoDate
-syntax  match  TodoDue        'due:[^ \t/]\S*' contains=TodoDate
+syntax  match  TodoDue        'due:[^ \t/]\S*' containedin=
+  \TodoPriorityA,TodoPriorityB,TodoPriorityC,TodoPriorityD,TodoPriorityE,
+  \TodoPriorityF,TodoPriorityG,TodoPriorityH,TodoPriorityI,TodoPriorityJ,
+  \TodoPriorityK,TodoPriorityL,TodoPriorityM,TodoPriorityN,TodoPriorityO,
+  \TodoPriorityP,TodoPriorityQ,TodoPriorityR,TodoPriorityS,TodoPriorityT,
+  \TodoPriorityU,TodoPriorityV,TodoPriorityW,TodoPriorityX,TodoPriorityY,
+  \TodoPriorityZ contains=TodoDate
 highlight default link TodoDue Special
 " These changes ruin some of the date highlighting functionality, for example
 " the due dates on the three lines below should be highlighted differently:
@@ -50,13 +56,32 @@ execute 'syntax match TodoDueToday    /\v\c<due:' . strftime('%Y\-%m\-%d')
   \ . '>/ contains=NONE'
 
 " Handle start dates similarly to due dates {{{1
-syntax  match  TodoStart        'start:[^ \t/]\S*' contains=TodoDate
+syntax  match  TodoStart        'start:[^ \t/]\S*' containedin=
+  \TodoPriorityA,TodoPriorityB,TodoPriorityC,TodoPriorityD,TodoPriorityE,
+  \TodoPriorityF,TodoPriorityG,TodoPriorityH,TodoPriorityI,TodoPriorityJ,
+  \TodoPriorityK,TodoPriorityL,TodoPriorityM,TodoPriorityN,TodoPriorityO,
+  \TodoPriorityP,TodoPriorityQ,TodoPriorityR,TodoPriorityS,TodoPriorityT,
+  \TodoPriorityU,TodoPriorityV,TodoPriorityW,TodoPriorityX,TodoPriorityY,
+  \TodoPriorityZ contains=TodoDate
+highlight default link TodoDue Special
 highlight default link TodoStart Special
 execute 'syntax match TodoOverStartDate /\v\c<start:'
-  \ . todo#GetDateRegexForPastDates() . '>/'
+  \ . todo#GetDateRegexForPastDates() . '>/ contains=NONE containedin='
+  \.'TodoPriorityA,TodoPriorityB,TodoPriorityC,TodoPriorityD,TodoPriorityE,'
+  \.'TodoPriorityF,TodoPriorityG,TodoPriorityH,TodoPriorityI,TodoPriorityJ,'
+  \.'TodoPriorityK,TodoPriorityL,TodoPriorityM,TodoPriorityN,TodoPriorityO,'
+  \.'TodoPriorityP,TodoPriorityQ,TodoPriorityR,TodoPriorityS,TodoPriorityT,'
+  \.'TodoPriorityU,TodoPriorityV,TodoPriorityW,TodoPriorityX,TodoPriorityY,'
+  \.'TodoPriorityZ'
 highlight default link TodoOverStartDate TodoOverDueDate
 execute 'syntax match TodoStartToday    /\v\c<start:' . strftime('%Y\-%m\-%d')
-  \ . '>/ contains=NONE'
+  \ . '>/ contains=NONE containedin='
+  \.'TodoPriorityA,TodoPriorityB,TodoPriorityC,TodoPriorityD,TodoPriorityE,'
+  \.'TodoPriorityF,TodoPriorityG,TodoPriorityH,TodoPriorityI,TodoPriorityJ,'
+  \.'TodoPriorityK,TodoPriorityL,TodoPriorityM,TodoPriorityN,TodoPriorityO,'
+  \.'TodoPriorityP,TodoPriorityQ,TodoPriorityR,TodoPriorityS,TodoPriorityT,'
+  \.'TodoPriorityU,TodoPriorityV,TodoPriorityW,TodoPriorityX,TodoPriorityY,'
+  \.'TodoPriorityZ'
 highlight default link TodoStartToday Todo
 
 " Do not check spelling or highlight dates in done items {{{1
