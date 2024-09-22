@@ -13,3 +13,9 @@ x 2024-09-13 2024-09-13 The following is code inside a `TodoDone`: `echo 1 2 3`
 (Z) 2024-09-13 The following is code inside a `TodoPriorityZ`: `echo 1 2 3`
 2024-09-13 The following is code — `a:b` — then a key/value tag — key:value
 2024-09-13 The following is code `:echo 1`
+(Z) 2024-09-22 The following is a due date in the future inside a Z priority task due:2124-01-01
+(Z) 2024-09-22 The following is a start date in the future inside a Z priority task start:2124-01-01
+(Z) 2024-09-22 The following is a due date in the past inside a Z priority task due:1924-01-01
+(Z) 2024-09-22 The following is a due date in the past inside a Z priority task due:2024-09-22
+(Z) 2024-09-22 The following is a start date in the future inside a Z priority task start:1924-01-01
+(Z) 2024-09-22 The following is a start date today inside a Z priority task start:2024-09-22
