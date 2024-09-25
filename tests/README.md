@@ -10,7 +10,7 @@
 This folder contains tests for vim. Some are written using `vader`. `vader` is
 installed as a git sub-module. To run all of these use `./run.sh`.
 
-Some tests will require `pipx` or `npm` to pass. Isolation between tests is
+Some tests will require `uv` or `npm` to pass. Isolation between tests is
 achieved by re-starting vim.
 
 The layout uses a directory for `automated` tests so that it is easy to add a

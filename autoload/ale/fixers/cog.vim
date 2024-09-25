@@ -5,6 +5,7 @@
 " SPDX-License-Identifier: MPL-2.0
 "
 function! ale#fixers#cog#Fix(buffer) abort
-  let l:command = 'pipx run --python=3.11 --spec=cogapp cog -'
+  let l:command = 'uv tool run --python=/usr/bin/python3.11'
+  let l:command .= ' --from=cogapp cog -'
   return { 'command': l:command }
 endfunction

@@ -17,8 +17,49 @@
         path: ~/.backupdir
         mode: "0o700"
 
-- name: Ensure that pipx is installed
-  import_playbook: pipx.yaml
+- name: Ensure that uv is installed
+  hosts: all
+  vars:
+    site_uv_url: |-
+      https://github.com/astral-sh/uv/releases/download/0.4.16/uv-x86_64-unknown-linux-gnu.tar.gz
+    site_uv_checksum: |-
+      f4f4de434206fb610ecb2dbc3fc44c62adb6b61e8d1237d858a10b407a2737c4
+  tasks:
+    - name: Try running uv version
+      ansible.builtin.command: uv version
+      failed_when: false
+      changed_when: false
+      register: site_uv_version_command
+    - name: Stop this play if version command succeeded
+      ansible.builtin.meta: end_host
+      when: site_uv_version_command.rc == 0
+    - name: Make sure ~/.local/bin exists
+      ansible.builtin.file:
+        state: directory
+        path: ~/.local/bin
+        mode: "0o755"
+    - name: Create temporary download directory
+      ansible.builtin.tempfile:
+        state: directory
+        suffix: -uv
+      register: site_download
+    - name: Download uv .tar.gz
+      ansible.builtin.get_url:
+        dest: "{{ site_download.path }}"
+        url: "{{ site_uv_url }}"
+        checksum: "sha256:{{ site_uv_checksum }}"
+        mode: "0600"
+    - name: Extract
+      ansible.builtin.unarchive:
+        src: "{{ site_download.path }}/uv-x86_64-unknown-linux-gnu.tar.gz"
+        dest: "{{ site_download.path }}"
+        remote_src: true
+    - name: Install binaries
+      ansible.builtin.copy:
+        src: "{{ site_download.path }}/uv-x86_64-unknown-linux-gnu/{{ item }}"
+        dest: ~/.local/bin/
+        mode: "0o755"
+      loop: [uv, uvx]
 
 - name: Download scripts to the plugin/ directory
   hosts: all
@@ -105,8 +146,8 @@
           #!/bin/sh
           exec npm exec --package pyright --yes -- pyright-langserver "$@"
       when: "'.local/bin' in lookup('env', 'PATH')"
-    - name: Add reuse to pipx cache so that tests can pass offline
-      ansible.builtin.command: pipx run reuse --help
+    - name: Add reuse to the cache so that tests can pass offline
+      ansible.builtin.command: uv tool run reuse --help
       changed_when: false
 
 - name:
