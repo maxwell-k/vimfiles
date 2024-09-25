@@ -15,7 +15,7 @@
       ansible.builtin.file:
         state: directory
         path: ~/.backupdir
-        mode: 0o700
+        mode: "0o700"
 
 - name: Ensure that pipx is installed
   import_playbook: pipx.yaml
@@ -24,7 +24,7 @@
   hosts: all
   tasks:
     - name: Create the plugin folder
-      ansible.builtin.file: { state: directory, path: ./plugin/, mode: 0o755 }
+      ansible.builtin.file: { state: directory, path: ./plugin/, mode: "0o755" }
     - name: Download osc52.vim
       ansible.builtin.get_url:
         dest: ./plugin/osc52.vim
@@ -69,12 +69,12 @@
       ansible.builtin.file:
         state: directory
         path: "{{ item }}"
-        mode: 0o755
+        mode: "0o755"
       loop: [~/.local, ~/.local/bin]
     - name: Install ~/.local/bin/prettier
       ansible.builtin.copy:
         dest: ~/.local/bin/prettier
-        mode: 0o755
+        mode: "0o755"
         content: |
           #!/bin/sh
           exec npm exec --offline -- prettier "$@"
@@ -86,7 +86,7 @@
     - name: Install ~/.local/bin/jsonlint
       ansible.builtin.copy:
         dest: ~/.local/bin/jsonlint
-        mode: 0o755
+        mode: "0o755"
         content: |
           #!/bin/sh
           exec npm exec --offline -- jsonlint "$@"
@@ -100,7 +100,7 @@
     - name: Install ~/.local/bin/pyright-langserver
       ansible.builtin.copy:
         dest: ~/.local/bin/pyright-langserver
-        mode: 0o755
+        mode: "0o755"
         content: |
           #!/bin/sh
           exec npm exec --package pyright --yes -- pyright-langserver "$@"
@@ -133,7 +133,7 @@
           {% endfor %}
           helptags ALL
           quit
-        mode: 0o700
+        mode: "0o700"
       changed_when: false
     - name: Generate help tags with vim and the script( {{ site_script.path }} )
       ansible.builtin.command: vim -S {{ site_script.path }}
