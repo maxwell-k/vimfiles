@@ -20,10 +20,18 @@
 - name: Ensure that uv is installed
   hosts: all
   vars:
-    site_uv_url: |-
-      https://github.com/astral-sh/uv/releases/download/0.4.16/uv-x86_64-unknown-linux-gnu.tar.gz
-    site_uv_checksum: |-
-      f4f4de434206fb610ecb2dbc3fc44c62adb6b61e8d1237d858a10b407a2737c4
+    site_uv_version: 0.4.16
+    site_uv_checksums:
+      uv-x86_64-unknown-linux-gnu.tar.gz: |-
+        f4f4de434206fb610ecb2dbc3fc44c62adb6b61e8d1237d858a10b407a2737c4
+      uv-x86_64-unknown-linux-musl.tar.gz: |-
+        aab3a3ef8e4ffa641210b1ed374eebd08b5e612b1a928c291a543d3b624d46d1
+    site_uv_libc: "{{ 'musl' if ansible_distribution == 'Alpine' else 'gnu' }}"
+    site_uv_filename: uv-x86_64-unknown-linux-{{ site_uv_libc }}.tar.gz
+    site_uv_url: >-
+      https://github.com/astral-sh/uv/releases/download/{{
+        site_uv_version ~ '/' ~ site_uv_filename }}
+    site_uv_head: "{{ site_uv_filename.split('.') | first }}"
   tasks:
     - name: Try running uv version
       ansible.builtin.command: uv version
@@ -47,16 +55,16 @@
       ansible.builtin.get_url:
         dest: "{{ site_download.path }}"
         url: "{{ site_uv_url }}"
-        checksum: "sha256:{{ site_uv_checksum }}"
+        checksum: "sha256:{{ site_uv_checksums[site_uv_filename] }}"
         mode: "0600"
     - name: Extract
       ansible.builtin.unarchive:
-        src: "{{ site_download.path }}/uv-x86_64-unknown-linux-gnu.tar.gz"
+        src: "{{ site_download.path }}/{{ site_uv_filename }}"
         dest: "{{ site_download.path }}"
         remote_src: true
     - name: Install binaries
       ansible.builtin.copy:
-        src: "{{ site_download.path }}/uv-x86_64-unknown-linux-gnu/{{ item }}"
+        src: "{{ site_download.path }}/{{ site_uv_head }}/{{ item }}"
         dest: ~/.local/bin/
         mode: "0o755"
       loop: [uv, uvx]
