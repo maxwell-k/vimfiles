@@ -68,6 +68,10 @@
         dest: ~/.local/bin/
         mode: "0o755"
       loop: [uv, uvx]
+    - name: Clean up temporary directory
+      ansible.builtin.file:
+        state: absent
+        path: "{{ site_download }}"
 
 - name: Download scripts to the plugin/ directory
   hosts: all
