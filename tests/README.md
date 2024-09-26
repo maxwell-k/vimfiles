@@ -41,11 +41,11 @@ Each set of automated tests is laid out in a directory under `./automated`.
 
 All commands in this section are run from the root of this repository.
 
-    . tests/podman-run-alpine-edge.sh
+    . tests/podman-run-alpine-latest.sh
 
-`podman-run-alpine-edge.sh` and `alpine-edge.sh` in full:
+`podman-run-alpine-latest.sh` and `alpine-latest.sh` in full:
 
-<!-- embedme podman-run-alpine-edge.sh -->
+<!-- embedme podman-run-alpine-latest.sh -->
 
 ```sh
 #!/bin/sh
@@ -55,12 +55,12 @@ podman run \
   --volume="$PWD":/root/.vim:Z \
   --workdir=/root/.vim \
   --env=PATH=/usr/sbin:/usr/bin:/sbin:/bin:/root/.local/bin \
-  alpine:edge \
-  tests/inside-alpine-edge.sh
+  alpine:latest \
+  tests/inside-alpine-latest.sh
 
 ```
 
-<!-- embedme inside-alpine-edge.sh -->
+<!-- embedme inside-alpine-latest.sh -->
 
 ```sh
 #!/bin/sh
