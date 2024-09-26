@@ -143,3 +143,9 @@
         path: "{{ site_script.path }}"
         state: absent
       changed_when: false
+    - name: Ignore tag files that are not included in .gitignore
+      ansible.builtin.lineinfile:
+        line: doc/tags
+        state: present
+        path: ~/.vim/.git/modules/pack/submodules/opt/{{ item }}/info/exclude
+      loop: [sexp, limelight]
