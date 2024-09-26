@@ -30,8 +30,9 @@
 # history for the netrw plugin
 /.netrwhist
 
-# spell file rendered from work list at .en.utf-8.add
+# spell files rendered from word lists at .en.utf-8.add tests/.en.utf-8.add
 /.en.utf-8.add.spl
+/tests/.en.utf-8.add.spl
 
 # latest version from https://github.com/vim/vim/blob/master/runtime/syntax/yaml.vim
 # to include https://github.com/vim/vim/commit/aa495124f80812b9c8c1942e6c4f9ce2242ea01f

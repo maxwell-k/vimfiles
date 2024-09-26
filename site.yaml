@@ -15,16 +15,69 @@
       ansible.builtin.file:
         state: directory
         path: ~/.backupdir
-        mode: 0o700
+        mode: "0o700"
 
-- name: Ensure that pipx is installed
-  import_playbook: pipx.yaml
+- name: Ensure that uv is installed
+  hosts: all
+  vars:
+    site_uv_version: 0.4.16
+    site_uv_checksums:
+      uv-x86_64-unknown-linux-gnu.tar.gz: |-
+        f4f4de434206fb610ecb2dbc3fc44c62adb6b61e8d1237d858a10b407a2737c4
+      uv-x86_64-unknown-linux-musl.tar.gz: |-
+        aab3a3ef8e4ffa641210b1ed374eebd08b5e612b1a928c291a543d3b624d46d1
+    site_uv_libc: "{{ 'musl' if ansible_distribution == 'Alpine' else 'gnu' }}"
+    site_uv_filename: uv-x86_64-unknown-linux-{{ site_uv_libc }}.tar.gz
+    site_uv_url: >-
+      https://github.com/astral-sh/uv/releases/download/{{
+        site_uv_version ~ '/' ~ site_uv_filename }}
+    site_uv_head: "{{ site_uv_filename.split('.') | first }}"
+  tasks:
+    - name: Try running uv version
+      ansible.builtin.command: uv version
+      failed_when: false
+      changed_when: false
+      register: site_uv_version_command
+    - name: Stop this play if version command succeeded
+      ansible.builtin.meta: end_host
+      when: site_uv_version_command.rc == 0
+    - name: Make sure ~/.local/bin exists
+      ansible.builtin.file:
+        state: directory
+        path: ~/.local/bin
+        mode: "0o755"
+    - name: Create temporary download directory
+      ansible.builtin.tempfile:
+        state: directory
+        suffix: -uv
+      register: site_download
+    - name: Download uv .tar.gz
+      ansible.builtin.get_url:
+        dest: "{{ site_download.path }}"
+        url: "{{ site_uv_url }}"
+        checksum: "sha256:{{ site_uv_checksums[site_uv_filename] }}"
+        mode: "0600"
+    - name: Extract
+      ansible.builtin.unarchive:
+        src: "{{ site_download.path }}/{{ site_uv_filename }}"
+        dest: "{{ site_download.path }}"
+        remote_src: true
+    - name: Install binaries
+      ansible.builtin.copy:
+        src: "{{ site_download.path }}/{{ site_uv_head }}/{{ item }}"
+        dest: ~/.local/bin/
+        mode: "0o755"
+      loop: [uv, uvx]
+    - name: Clean up temporary directory
+      ansible.builtin.file:
+        state: absent
+        path: "{{ site_download }}"
 
 - name: Download scripts to the plugin/ directory
   hosts: all
   tasks:
     - name: Create the plugin folder
-      ansible.builtin.file: { state: directory, path: ./plugin/, mode: 0o755 }
+      ansible.builtin.file: { state: directory, path: ./plugin/, mode: "0o755" }
     - name: Download osc52.vim
       ansible.builtin.get_url:
         dest: ./plugin/osc52.vim
@@ -69,12 +122,12 @@
       ansible.builtin.file:
         state: directory
         path: "{{ item }}"
-        mode: 0o755
+        mode: "0o755"
       loop: [~/.local, ~/.local/bin]
     - name: Install ~/.local/bin/prettier
       ansible.builtin.copy:
         dest: ~/.local/bin/prettier
-        mode: 0o755
+        mode: "0o755"
         content: |
           #!/bin/sh
           exec npm exec --offline -- prettier "$@"
@@ -86,7 +139,7 @@
     - name: Install ~/.local/bin/jsonlint
       ansible.builtin.copy:
         dest: ~/.local/bin/jsonlint
-        mode: 0o755
+        mode: "0o755"
         content: |
           #!/bin/sh
           exec npm exec --offline -- jsonlint "$@"
@@ -100,13 +153,13 @@
     - name: Install ~/.local/bin/pyright-langserver
       ansible.builtin.copy:
         dest: ~/.local/bin/pyright-langserver
-        mode: 0o755
+        mode: "0o755"
         content: |
           #!/bin/sh
           exec npm exec --package pyright --yes -- pyright-langserver "$@"
       when: "'.local/bin' in lookup('env', 'PATH')"
-    - name: Add reuse to pipx cache so that tests can pass offline
-      ansible.builtin.command: pipx run reuse --help
+    - name: Add reuse to the cache so that tests can pass offline
+      ansible.builtin.command: uv tool run reuse --help
       changed_when: false
 
 - name:
@@ -133,7 +186,7 @@
           {% endfor %}
           helptags ALL
           quit
-        mode: 0o700
+        mode: "0o700"
       changed_when: false
     - name: Generate help tags with vim and the script( {{ site_script.path }} )
       ansible.builtin.command: vim -S {{ site_script.path }}
@@ -143,3 +196,9 @@
         path: "{{ site_script.path }}"
         state: absent
       changed_when: false
+    - name: Ignore tag files that are not included in .gitignore
+      ansible.builtin.lineinfile:
+        line: doc/tags
+        state: present
+        path: ~/.vim/.git/modules/pack/submodules/opt/{{ item }}/info/exclude
+      loop: [sexp, limelight]

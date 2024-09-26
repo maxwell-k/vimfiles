@@ -12,7 +12,7 @@
 # artifacts for beancount are therefore not available on PyPI. One option is to
 # install beancount as:
 #
-#   dnf install -y gcc python-devel && pipx install beancount
+#   dnf install -y gcc python-devel && uv tool install beancount
 #
 # Subjectively these are a "heavy" set of dependencies. To avoid install these,
 # instead the beancount tests are not run if Beancount — `bean-format`
