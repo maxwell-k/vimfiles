@@ -16,8 +16,6 @@ let g:Todo_update_fold_on_sort = 1
 ":sort
 setlocal colorcolumn=
 setlocal cursorline
-setlocal fillchars+=fold:\ ,
-setlocal foldtext=vim#TodoFoldtext()
 setlocal isfname-=+
 setlocal nowrap
 setlocal omnifunc=todo#Complete
@@ -40,8 +38,21 @@ nnoremap <script> <buffer> <localleader>tp :call todo#Sort("+")<CR>
 nnoremap <script> <buffer> <localleader>t<BS> :call vim#Cancel()<CR>
 nnoremap <script> <buffer> <localleader>t@ :echo 'Context sort disabled.'<CR>
 nnoremap <script> <buffer> <localleader>td :call vim#RemoveCompleted()<CR>
-nnoremap <script> <buffer> <localleader>tf :call toggle#TodoFold()<CR>
 nnoremap <script> <buffer> <localleader>ta :call todo#Sort("")<CR>
 nnoremap <script> <buffer> <localleader>tu :call todo#SortDue()<CR>
 nnoremap <silent> <buffer> <localleader>tt :call todo#ToggleMarkAsDone('')<CR>
 nnoremap <script> <buffer> o o<C-R>=strftime("%Y-%m-%d")<CR>
+
+if expand('%:p') =~# '/todo.txt$'
+  " use specific folding in todo.txt, adding a marker like {{{ effectively
+  " hides the rest of the file
+  setlocal foldmethod=marker
+  setlocal foldlevel=0
+  setlocal foldtext=''
+  highlight clear Folded
+  highlight link Folded Comment
+else
+  setlocal fillchars+=fold:\ ,
+  setlocal foldtext=vim#TodoFoldtext()
+  nnoremap <script> <buffer> <localleader>tf :call toggle#TodoFold()<CR>
+endif
