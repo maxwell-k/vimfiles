@@ -1,5 +1,5 @@
 scriptencoding utf-8
-" ftplugin/todo.vim
+" after/ftplugin/todo.vim
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
