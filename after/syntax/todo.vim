@@ -126,4 +126,7 @@ highlight default TodoDoneYesterday guifg=SeaGreen
 " Projects are all lowercase and not spell checked {{{1
 syntax clear TodoProject
 syntax match TodoProject /+[a-z0-9\-]\+\C/  contains=@NoSpell
+" Folding marker {{{1
+syntax match TodoFoldMarker /^{{{$/
+highlight default link TodoFoldMarker Comment
 " vim: set foldmethod=marker foldlevel=0 : {{{1
