@@ -10,7 +10,6 @@ endif
 
 ":sort
 let b:ale_fixers = ['trim_whitespace']
-let g:Todo_txt_do_not_map = 1
 let g:Todo_update_fold_on_sort = 1
 
 ":sort
