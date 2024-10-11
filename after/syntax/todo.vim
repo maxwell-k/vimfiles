@@ -93,8 +93,14 @@ syntax match TodoDone /^[x]\s.\+$/
 syntax region TodoCancel start=/\~\~/ end=/\~\~/ contains=@NoSpell
 highlight default TodoCancel cterm=strikethrough guifg=#5C6773
 
-" Highlight markers for recurring tasks like rec:1d
-syntax  match  TodoRec        'rec:[^ \t/]\S*' contains=TodoDate
+" Highlight markers for recurring tasks like rec:1d {{{1
+syntax  match  TodoRec        'rec:[^ \t/]\S*' containedin=
+  \TodoPriorityA,TodoPriorityB,TodoPriorityC,TodoPriorityD,TodoPriorityE,
+  \TodoPriorityF,TodoPriorityG,TodoPriorityH,TodoPriorityI,TodoPriorityJ,
+  \TodoPriorityK,TodoPriorityL,TodoPriorityM,TodoPriorityN,TodoPriorityO,
+  \TodoPriorityP,TodoPriorityQ,TodoPriorityR,TodoPriorityS,TodoPriorityT,
+  \TodoPriorityU,TodoPriorityV,TodoPriorityW,TodoPriorityX,TodoPriorityY,
+  \TodoPriorityZ contains=@NoSpell
 highlight default link TodoRec Special
 
 " Do not spell check email address like: <mail@example.org> {{{1

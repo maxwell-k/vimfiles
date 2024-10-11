@@ -26,7 +26,7 @@ setlocal suffixesadd+=.md
 
 for s:i in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
   let s:cmd = 'noremap <script> <silent> <buffer>'
-  let s:cmd .= ' <Plug>Priority� :call todo#PrioritizeAdd("�")<CR>'
+  let s:cmd .= ' <Plug>Priority� :call vim#SetTodoPriority("�")<CR>'
   let s:cmd .= ' :silent! call repeat#set("\<Plug>Priority�")<CR>'
   execute substitute(s:cmd, '�', s:i, 'g')
   let s:cmd = 'nmap <silent> <buffer> <localleader>t� <Plug>Priority�'

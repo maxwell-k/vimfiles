@@ -54,6 +54,19 @@ function! vim#RemoveCompleted() abort "{{{1
     unlet g:TodoTxtForceDoneName
   endif
 endfunction
+function! vim#SetTodoPriority(priority) abort "{{{1
+  " The implementation in autoload/todo.vim in
+  " https://gitlab.com/dbeniamine/todo.txt-vim only supports A-F, this
+  " implementation supports A-Z
+  let l:pattern =  '^([A-Z]) '
+  let l:replacement = '('.a:priority.') '
+  let l:line = line('.')
+  if getline('.') !~# l:pattern
+    let l:pattern = '^'
+  endif
+  call maktaba#buffer#Substitute(
+    \l:pattern, l:replacement, '', l:line, l:line, 1)
+endfunction
 function! vim#Scriptnames() abort "{{{1
   "Open the output of :scriptnames for searching
   let l:file=tempname()
