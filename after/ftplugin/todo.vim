@@ -10,7 +10,6 @@ endif
 
 ":sort
 let b:ale_fixers = ['trim_whitespace']
-let g:Todo_txt_do_not_map = 1
 let g:Todo_update_fold_on_sort = 1
 
 ":sort
@@ -33,14 +32,16 @@ for s:i in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
   execute substitute(s:cmd, '�', s:i, 'g')
 endfor
 
+" \td and \tt are duplicates
 ":sort
-nnoremap <script> <buffer> <localleader>tp :call todo#Sort("+")<CR>
 nnoremap <script> <buffer> <localleader>t<BS> :call vim#Cancel()<CR>
 nnoremap <script> <buffer> <localleader>t@ :echo 'Context sort disabled.'<CR>
-nnoremap <script> <buffer> <localleader>td :call vim#RemoveCompleted()<CR>
 nnoremap <script> <buffer> <localleader>ta :call todo#Sort("")<CR>
+nnoremap <script> <buffer> <localleader>td :call todo#ToggleMarkAsDone('')<CR>
+nnoremap <script> <buffer> <localleader>tp :call todo#Sort("+")<CR>
+nnoremap <script> <buffer> <localleader>tr :call vim#RemoveCompleted()<CR>
+nnoremap <script> <buffer> <localleader>tt :call todo#ToggleMarkAsDone('')<CR>
 nnoremap <script> <buffer> <localleader>tu :call todo#SortDue()<CR>
-nnoremap <silent> <buffer> <localleader>tt :call todo#ToggleMarkAsDone('')<CR>
 nnoremap <script> <buffer> o o<C-R>=strftime("%Y-%m-%d")<CR>
 
 if expand('%:p') =~# '/todo.txt$'
