@@ -37,12 +37,11 @@ endfor
 nnoremap <script> <buffer> <localleader>t<BS> :call vim#Cancel()<CR>
 nnoremap <script> <buffer> <localleader>t@ :echo 'Context sort disabled.'<CR>
 nnoremap <script> <buffer> <localleader>ta :call todo#Sort("")<CR>
-nnoremap <script> <buffer> <localleader>td :call todo#ToggleMarkAsDone('')<CR>
 nnoremap <script> <buffer> <localleader>tp :call todo#Sort("+")<CR>
-nnoremap <script> <buffer> <localleader>tr :call vim#RemoveCompleted()<CR>
+nnoremap <script> <buffer> <localleader>td :call vim#RemoveCompleted()<CR>
 nnoremap <script> <buffer> <localleader>tt :call todo#ToggleMarkAsDone('')<CR>
 nnoremap <script> <buffer> <localleader>tu :call todo#SortDue()<CR>
-nnoremap <script> <buffer> o o<C-R>=strftime("%Y-%m-%d")<CR>
+nnoremap <script> <buffer> <localleader>to o<C-R>=strftime("%Y-%m-%d")<CR>
 
 if expand('%:p') =~# '/todo.txt$'
   " use specific folding in todo.txt, adding a marker like {{{ effectively
