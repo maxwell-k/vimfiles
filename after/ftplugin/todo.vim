@@ -42,6 +42,7 @@ nnoremap <script> <buffer> <localleader>td :call vim#RemoveCompleted()<CR>
 nnoremap <script> <buffer> <localleader>tt :call todo#ToggleMarkAsDone('')<CR>
 nnoremap <script> <buffer> <localleader>tu :call todo#SortDue()<CR>
 nnoremap <script> <buffer> <localleader>to o<C-R>=strftime("%Y-%m-%d")<CR>
+nnoremap <script> <buffer> <localleader>tO O<C-R>=strftime("%Y-%m-%d")<CR>
 
 if expand('%:p') =~# '/todo.txt$'
   " use specific folding in todo.txt, adding a marker like {{{ effectively
