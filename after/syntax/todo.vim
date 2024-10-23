@@ -27,14 +27,8 @@ syntax match TodoURL =[(<]\?https\?://\S*[)>]\?= containedin=ALL
   \ contains=@NoSpell
 syntax clear TodoKey
 " The original pattern was: '\S*\S:\S\S*'
-syntax match TodoDue '\Cdue:[^ \t/]\+' containedin=
-  \TodoPriorityA,TodoPriorityB,TodoPriorityC,TodoPriorityD,TodoPriorityE,
-  \TodoPriorityF,TodoPriorityG,TodoPriorityH,TodoPriorityI,TodoPriorityJ,
-  \TodoPriorityK,TodoPriorityL,TodoPriorityM,TodoPriorityN,TodoPriorityO,
-  \TodoPriorityP,TodoPriorityQ,TodoPriorityR,TodoPriorityS,TodoPriorityT,
-  \TodoPriorityU,TodoPriorityV,TodoPriorityW,TodoPriorityX,TodoPriorityY,
-  \TodoPriorityZ
 syntax match TodoKey '[^ \t`]\+:[^ \t/]\+'
+syntax match TodoDue '\Cdue:[^ \t/]\+' containedin=ALL
 highlight default link TodoDue Special
 " These changes ruin some of the date highlighting functionality, for example
 " the due dates on the three lines below should be highlighted differently:
@@ -44,32 +38,24 @@ highlight default link TodoDue Special
 " 2022-10-10 due:2023-01-01 Due tomorrow [example link](https://example.org)
 "
 " The commands below restore this functionality:
-" Use different group names to avoid confusion contains= in definitions like
-" TodoPriorityZ
 syntax clear TodoDueToday TodoOverDueDate
+" Use different group names, with an After suffix, to avoid confusion
+" contains= in definitions like TodoPriorityZ
+" Handle start dates similarly to due dates {{{1
 execute 'syntax match TodoOverDueDateAfter /'
   \ . todo#GetDateRegexForPastDates() . '/ contained containedin=TodoDue'
+execute 'syntax match TodoOverStartDate /'
+  \ . todo#GetDateRegexForPastDates() . '>/ contained containedin=TodoStart'
 execute 'syntax match TodoDueTodayAfter /' . strftime('%Y\-%m\-%d')
   \ . '/ contained containedin=TodoDue'
+execute 'syntax match TodoStartToday /' . strftime('%Y\-%m\-%d')
+  \ . '/ contained containedin=TodoStart'
 
-" Handle start dates similarly to due dates {{{1
-syntax match TodoStart '\Cstart:[^ \t/]\+' containedin=
-  \TodoPriorityA,TodoPriorityB,TodoPriorityC,TodoPriorityD,TodoPriorityE,
-  \TodoPriorityF,TodoPriorityG,TodoPriorityH,TodoPriorityI,TodoPriorityJ,
-  \TodoPriorityK,TodoPriorityL,TodoPriorityM,TodoPriorityN,TodoPriorityO,
-  \TodoPriorityP,TodoPriorityQ,TodoPriorityR,TodoPriorityS,TodoPriorityT,
-  \TodoPriorityU,TodoPriorityV,TodoPriorityW,TodoPriorityX,TodoPriorityY,
-  \TodoPriorityZ
-  \ contains=TodoOverStartDate,TodoStartToday
+syntax match TodoStart '\Cstart:[^ \t/]\+' containedin=ALL
+highlight default TodoOverStartDate cterm=bold guifg=#F07178
 highlight default link TodoDue Special
 highlight default link TodoStart Special
-execute 'syntax match TodoOverStartDate /'
-  \ . todo#GetDateRegexForPastDates()
-  \ . '>/ contained'
-highlight default TodoOverStartDate cterm=bold guifg=#F07178
 highlight default link TodoOverDueDateAfter TodoOverStartDate
-execute 'syntax match TodoStartToday /' . strftime('%Y\-%m\-%d')
-  \ . '/ contained'
 highlight default link TodoStartToday Todo
 highlight default link TodoDueTodayAfter Todo
 
