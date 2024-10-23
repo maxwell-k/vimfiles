@@ -22,3 +22,4 @@ x 2024-09-13 2024-09-13 The following is code inside a `TodoDone`: `echo 1 2 3`
 (Z) 2024-09-22 The following is a start date today inside a Z priority task start:2024-10-23
 2022-06-19 The following is a marker for a recurring task rec:1d
 2024-10-23 The following is an email address <mail@example.org>
+2024-10-23 Dates are only recognised in start: and due: tags example:2024-10-12

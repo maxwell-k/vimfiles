@@ -27,7 +27,6 @@ syntax match TodoURL =[(<]\?https\?://\S*[)>]\?= containedin=ALL
   \ contains=@NoSpell
 syntax clear TodoKey
 " The original pattern was: '\S*\S:\S\S*'
-syntax match TodoKey '[^ \t`]\+:[^ \t/]\+' contains=TodoDate
 syntax match TodoDue '\Cdue:[^ \t/]\+' containedin=
   \TodoPriorityA,TodoPriorityB,TodoPriorityC,TodoPriorityD,TodoPriorityE,
   \TodoPriorityF,TodoPriorityG,TodoPriorityH,TodoPriorityI,TodoPriorityJ,
@@ -35,6 +34,7 @@ syntax match TodoDue '\Cdue:[^ \t/]\+' containedin=
   \TodoPriorityP,TodoPriorityQ,TodoPriorityR,TodoPriorityS,TodoPriorityT,
   \TodoPriorityU,TodoPriorityV,TodoPriorityW,TodoPriorityX,TodoPriorityY,
   \TodoPriorityZ
+syntax match TodoKey '[^ \t`]\+:[^ \t/]\+'
 highlight default link TodoDue Special
 " These changes ruin some of the date highlighting functionality, for example
 " the due dates on the three lines below should be highlighted differently:
