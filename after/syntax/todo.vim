@@ -27,8 +27,8 @@ syntax match TodoURL =[(<]\?https\?://\S*[)>]\?= containedin=ALL
   \ contains=@NoSpell
 syntax clear TodoKey
 " The original pattern was: '\S*\S:\S\S*'
-syntax match TodoKey '[^ \t`]\+:[^ \t/]\S*' contains=TodoDate
-syntax match TodoDue '\Cdue:[^ \t/]\S*' containedin=
+syntax match TodoKey '[^ \t`]\+:[^ \t/]\+' contains=TodoDate
+syntax match TodoDue '\Cdue:[^ \t/]\+' containedin=
   \TodoPriorityA,TodoPriorityB,TodoPriorityC,TodoPriorityD,TodoPriorityE,
   \TodoPriorityF,TodoPriorityG,TodoPriorityH,TodoPriorityI,TodoPriorityJ,
   \TodoPriorityK,TodoPriorityL,TodoPriorityM,TodoPriorityN,TodoPriorityO,
@@ -44,28 +44,34 @@ highlight default link TodoDue Special
 " 2022-10-10 due:2023-01-01 Due tomorrow [example link](https://example.org)
 "
 " The commands below restore this functionality:
+" Use different group names to avoid confusion contains= in definitions like
+" TodoPriorityZ
 syntax clear TodoDueToday TodoOverDueDate
-execute 'syntax match TodoOverDueDate /\C\v<due:'
-  \ . todo#GetDateRegexForPastDates() . '>/'
-execute 'syntax match TodoDueToday /\C\v<due:' . strftime('%Y\-%m\-%d')
-  \ . '>/ contains=NONE'
+execute 'syntax match TodoOverDueDateAfter /'
+  \ . todo#GetDateRegexForPastDates() . '/ contained containedin=TodoDue'
+execute 'syntax match TodoDueTodayAfter /' . strftime('%Y\-%m\-%d')
+  \ . '/ contained containedin=TodoDue'
 
 " Handle start dates similarly to due dates {{{1
-syntax match TodoStart '\Cstart:[^ \t/]\S*' containedin=
+syntax match TodoStart '\Cstart:[^ \t/]\+' containedin=
   \TodoPriorityA,TodoPriorityB,TodoPriorityC,TodoPriorityD,TodoPriorityE,
   \TodoPriorityF,TodoPriorityG,TodoPriorityH,TodoPriorityI,TodoPriorityJ,
   \TodoPriorityK,TodoPriorityL,TodoPriorityM,TodoPriorityN,TodoPriorityO,
   \TodoPriorityP,TodoPriorityQ,TodoPriorityR,TodoPriorityS,TodoPriorityT,
   \TodoPriorityU,TodoPriorityV,TodoPriorityW,TodoPriorityX,TodoPriorityY,
   \TodoPriorityZ
+  \ contains=TodoOverStartDate,TodoStartToday
 highlight default link TodoDue Special
 highlight default link TodoStart Special
-execute 'syntax match TodoOverStartDate /\C\v<start:'
-  \ . todo#GetDateRegexForPastDates() . '>/ contains=NONE containedin=ALL'
-highlight default link TodoOverStartDate TodoOverDueDate
-execute 'syntax match TodoStartToday /\C\v<start:' . strftime('%Y\-%m\-%d')
-  \ . '>/ contains=NONE containedin=ALL'
+execute 'syntax match TodoOverStartDate /'
+  \ . todo#GetDateRegexForPastDates()
+  \ . '>/ contained'
+highlight default TodoOverStartDate cterm=bold guifg=#F07178
+highlight default link TodoOverDueDateAfter TodoOverStartDate
+execute 'syntax match TodoStartToday /' . strftime('%Y\-%m\-%d')
+  \ . '/ contained'
 highlight default link TodoStartToday Todo
+highlight default link TodoDueTodayAfter Todo
 
 " Do not check spelling or highlight dates in done items {{{1
 syntax clear TodoDone
