@@ -11,7 +11,7 @@
 " Adding a restiction that value cannot start with / means that markdown links
 " are not highlighted as key:value pairs.
 "
-" Starting with [^ \t`]  means that TodoCode in syntax/todo.vim starts first
+" Starting with [^ \t`] means that TodoCode in syntax/todo.vim starts first
 " and `a:b` is recognised as TodoCode.
 "
 " https://github.com/todotxt/todo.txt#additional-file-format-definitions
@@ -25,16 +25,16 @@
 "
 syntax match TodoURL =[(<]\?https\?://\S*[)>]\?= containedin=ALL
   \ contains=@NoSpell
-syntax  clear  TodoKey
-" The original pattern was:   '\S*\S:\S\S*'
-syntax  match  TodoKey        '[^ \t`]\+:[^ \t/]\S*' contains=TodoDate
-syntax  match  TodoDue        'due:[^ \t/]\S*' containedin=
+syntax clear TodoKey
+" The original pattern was: '\S*\S:\S\S*'
+syntax match TodoKey '[^ \t`]\+:[^ \t/]\S*' contains=TodoDate
+syntax match TodoDue 'due:[^ \t/]\S*' contains=TodoDate containedin=
   \TodoPriorityA,TodoPriorityB,TodoPriorityC,TodoPriorityD,TodoPriorityE,
   \TodoPriorityF,TodoPriorityG,TodoPriorityH,TodoPriorityI,TodoPriorityJ,
   \TodoPriorityK,TodoPriorityL,TodoPriorityM,TodoPriorityN,TodoPriorityO,
   \TodoPriorityP,TodoPriorityQ,TodoPriorityR,TodoPriorityS,TodoPriorityT,
   \TodoPriorityU,TodoPriorityV,TodoPriorityW,TodoPriorityX,TodoPriorityY,
-  \TodoPriorityZ contains=TodoDate
+  \TodoPriorityZ
 highlight default link TodoDue Special
 " These changes ruin some of the date highlighting functionality, for example
 " the due dates on the three lines below should be highlighted differently:
@@ -44,26 +44,26 @@ highlight default link TodoDue Special
 " 2022-10-10 due:2023-01-01 Due tomorrow [example link](https://example.org)
 "
 " The commands below restore this functionality:
-syntax  clear  TodoDueToday TodoOverDueDate
+syntax clear TodoDueToday TodoOverDueDate
 execute 'syntax match TodoOverDueDate /\v\c<due:'
   \ . todo#GetDateRegexForPastDates() . '>/'
-execute 'syntax match TodoDueToday    /\v\c<due:' . strftime('%Y\-%m\-%d')
+execute 'syntax match TodoDueToday /\v\c<due:' . strftime('%Y\-%m\-%d')
   \ . '>/ contains=NONE'
 
 " Handle start dates similarly to due dates {{{1
-syntax  match  TodoStart        'start:[^ \t/]\S*' containedin=
+syntax match TodoStart 'start:[^ \t/]\S*' contains=TodoDate containedin=
   \TodoPriorityA,TodoPriorityB,TodoPriorityC,TodoPriorityD,TodoPriorityE,
   \TodoPriorityF,TodoPriorityG,TodoPriorityH,TodoPriorityI,TodoPriorityJ,
   \TodoPriorityK,TodoPriorityL,TodoPriorityM,TodoPriorityN,TodoPriorityO,
   \TodoPriorityP,TodoPriorityQ,TodoPriorityR,TodoPriorityS,TodoPriorityT,
   \TodoPriorityU,TodoPriorityV,TodoPriorityW,TodoPriorityX,TodoPriorityY,
-  \TodoPriorityZ contains=TodoDate
+  \TodoPriorityZ
 highlight default link TodoDue Special
 highlight default link TodoStart Special
 execute 'syntax match TodoOverStartDate /\v\c<start:'
   \ . todo#GetDateRegexForPastDates() . '>/ contains=NONE containedin=ALL'
 highlight default link TodoOverStartDate TodoOverDueDate
-execute 'syntax match TodoStartToday    /\v\c<start:' . strftime('%Y\-%m\-%d')
+execute 'syntax match TodoStartToday /\v\c<start:' . strftime('%Y\-%m\-%d')
   \ . '>/ contains=NONE containedin=ALL'
 highlight default link TodoStartToday Todo
 
@@ -77,7 +77,7 @@ syntax region TodoCancel start=/\~\~/ end=/\~\~/ contains=@NoSpell
 highlight default TodoCancel cterm=strikethrough guifg=#5C6773
 
 " Highlight markers for recurring tasks like rec:1d {{{1
-syntax  match  TodoRec 'rec:[^ \t/]\S*' containedin=ALL contains=@NoSpell
+syntax match TodoRec 'rec:[^ \t/]\S*' containedin=ALL contains=@NoSpell
 highlight default link TodoRec Special
 
 " Do not spell check email address like: <mail@example.org> {{{1
@@ -87,16 +87,16 @@ syntax match TodoEmail =<[^>]\+@[^>]\+>= containedin=ALL contains=@NoSpell
 syntax match TodoCode =`[^`]*`= containedin=ALL contains=@NoSpell
 
 " Highlight finished today and yesterday {{{1
-execute 'syntax  match  TodoDoneToday / ' .
+execute 'syntax match TodoDoneToday / ' .
   \strftime('%Y\-%m\-%d') . ' / containedin=TodoDone'
 highlight default TodoDoneToday guifg=SeaGreen cterm=bold
-execute 'syntax  match  TodoDoneYesterday / ' .
+execute 'syntax match TodoDoneYesterday / ' .
   \strftime('%Y\-%m\-%d', localtime()- 24*60*60) . ' / containedin=TodoDone'
 highlight default TodoDoneYesterday guifg=SeaGreen
 
 " Projects are all lowercase and not spell checked {{{1
 syntax clear TodoProject
-syntax match TodoProject /+[a-z0-9\-]\+\C/  contains=@NoSpell
+syntax match TodoProject /+[a-z0-9\-]\+\C/ contains=@NoSpell
 " Folding marker {{{1
 syntax match TodoFoldMarker /^{{{$/
 highlight default link TodoFoldMarker Comment
