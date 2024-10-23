@@ -28,7 +28,7 @@ syntax match TodoURL =[(<]\?https\?://\S*[)>]\?= containedin=ALL
 syntax clear TodoKey
 " The original pattern was: '\S*\S:\S\S*'
 syntax match TodoKey '[^ \t`]\+:[^ \t/]\S*' contains=TodoDate
-syntax match TodoDue 'due:[^ \t/]\S*' contains=TodoDate containedin=
+syntax match TodoDue '\Cdue:[^ \t/]\S*' contains=TodoDate containedin=
   \TodoPriorityA,TodoPriorityB,TodoPriorityC,TodoPriorityD,TodoPriorityE,
   \TodoPriorityF,TodoPriorityG,TodoPriorityH,TodoPriorityI,TodoPriorityJ,
   \TodoPriorityK,TodoPriorityL,TodoPriorityM,TodoPriorityN,TodoPriorityO,
@@ -45,13 +45,13 @@ highlight default link TodoDue Special
 "
 " The commands below restore this functionality:
 syntax clear TodoDueToday TodoOverDueDate
-execute 'syntax match TodoOverDueDate /\v\c<due:'
+execute 'syntax match TodoOverDueDate /\C\v<due:'
   \ . todo#GetDateRegexForPastDates() . '>/'
-execute 'syntax match TodoDueToday /\v\c<due:' . strftime('%Y\-%m\-%d')
+execute 'syntax match TodoDueToday /\C\v<due:' . strftime('%Y\-%m\-%d')
   \ . '>/ contains=NONE'
 
 " Handle start dates similarly to due dates {{{1
-syntax match TodoStart 'start:[^ \t/]\S*' contains=TodoDate containedin=
+syntax match TodoStart '\Cstart:[^ \t/]\S*' contains=TodoDate containedin=
   \TodoPriorityA,TodoPriorityB,TodoPriorityC,TodoPriorityD,TodoPriorityE,
   \TodoPriorityF,TodoPriorityG,TodoPriorityH,TodoPriorityI,TodoPriorityJ,
   \TodoPriorityK,TodoPriorityL,TodoPriorityM,TodoPriorityN,TodoPriorityO,
@@ -60,10 +60,10 @@ syntax match TodoStart 'start:[^ \t/]\S*' contains=TodoDate containedin=
   \TodoPriorityZ
 highlight default link TodoDue Special
 highlight default link TodoStart Special
-execute 'syntax match TodoOverStartDate /\v\c<start:'
+execute 'syntax match TodoOverStartDate /\C\v<start:'
   \ . todo#GetDateRegexForPastDates() . '>/ contains=NONE containedin=ALL'
 highlight default link TodoOverStartDate TodoOverDueDate
-execute 'syntax match TodoStartToday /\v\c<start:' . strftime('%Y\-%m\-%d')
+execute 'syntax match TodoStartToday /\C\v<start:' . strftime('%Y\-%m\-%d')
   \ . '>/ contains=NONE containedin=ALL'
 highlight default link TodoStartToday Todo
 
