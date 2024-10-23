@@ -28,7 +28,7 @@ syntax match TodoURL =[(<]\?https\?://\S*[)>]\?= containedin=ALL
 syntax clear TodoKey
 " The original pattern was: '\S*\S:\S\S*'
 syntax match TodoKey '[^ \t`]\+:[^ \t/]\S*' contains=TodoDate
-syntax match TodoDue '\Cdue:[^ \t/]\S*' contains=TodoDate containedin=
+syntax match TodoDue '\Cdue:[^ \t/]\S*' containedin=
   \TodoPriorityA,TodoPriorityB,TodoPriorityC,TodoPriorityD,TodoPriorityE,
   \TodoPriorityF,TodoPriorityG,TodoPriorityH,TodoPriorityI,TodoPriorityJ,
   \TodoPriorityK,TodoPriorityL,TodoPriorityM,TodoPriorityN,TodoPriorityO,
@@ -51,7 +51,7 @@ execute 'syntax match TodoDueToday /\C\v<due:' . strftime('%Y\-%m\-%d')
   \ . '>/ contains=NONE'
 
 " Handle start dates similarly to due dates {{{1
-syntax match TodoStart '\Cstart:[^ \t/]\S*' contains=TodoDate containedin=
+syntax match TodoStart '\Cstart:[^ \t/]\S*' containedin=
   \TodoPriorityA,TodoPriorityB,TodoPriorityC,TodoPriorityD,TodoPriorityE,
   \TodoPriorityF,TodoPriorityG,TodoPriorityH,TodoPriorityI,TodoPriorityJ,
   \TodoPriorityK,TodoPriorityL,TodoPriorityM,TodoPriorityN,TodoPriorityO,
