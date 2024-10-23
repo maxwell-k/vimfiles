@@ -11,6 +11,7 @@ x 2024-09-13 2022-06-19 The following bare URL should be highlighted inside a `T
 x 2024-09-13 2024-09-13 The following is code inside a `TodoDone`: `echo 1 2 3`
 (A) 2024-09-13 The following is code inside a `TodoPriorityA`: `echo 1 2 3`
 (Z) 2024-09-13 The following is code inside a `TodoPriorityZ`: `echo 1 2 3`
+(Z) 2024-09-13 The following is a spelling mistake inside code `asdf`
 2024-09-13 The following is code — `a:b` — then a key/value tag — key:value
 2024-09-13 The following is code `:echo 1`
 (Z) 2024-09-22 The following is a due date in the future inside a Z priority task due:2124-01-01
@@ -20,3 +21,4 @@ x 2024-09-13 2024-09-13 The following is code inside a `TodoDone`: `echo 1 2 3`
 (Z) 2024-09-22 The following is a start date in the future inside a Z priority task start:1924-01-01
 (Z) 2024-09-22 The following is a start date today inside a Z priority task start:2024-09-22
 2022-06-19 The following is a marker for a recurring task rec:1d
+2022-06-19 The following is an email address <mail@example.org>

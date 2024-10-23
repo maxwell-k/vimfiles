@@ -23,13 +23,8 @@
 " ./tests/manual/todo.txt
 " ./pack/submodules/opt/todo.txt/syntax/todo.vim
 "
-syntax match TodoURL =[(<]\?https\?://\S*[)>]\?= containedin=
-  \TodoPriorityA,TodoPriorityB,TodoPriorityC,TodoPriorityD,TodoPriorityE,
-  \TodoPriorityF,TodoPriorityG,TodoPriorityH,TodoPriorityI,TodoPriorityJ,
-  \TodoPriorityK,TodoPriorityL,TodoPriorityM,TodoPriorityN,TodoPriorityO,
-  \TodoPriorityP,TodoPriorityQ,TodoPriorityR,TodoPriorityS,TodoPriorityT,
-  \TodoPriorityU,TodoPriorityV,TodoPriorityW,TodoPriorityX,TodoPriorityY,
-  \TodoPriorityZ contains=@NoSpell
+syntax match TodoURL =[(<]\?https\?://\S*[)>]\?= containedin=ALL
+  \ contains=@NoSpell
 syntax  clear  TodoKey
 " The original pattern was:   '\S*\S:\S\S*'
 syntax  match  TodoKey        '[^ \t`]\+:[^ \t/]\S*' contains=TodoDate
@@ -66,22 +61,10 @@ syntax  match  TodoStart        'start:[^ \t/]\S*' containedin=
 highlight default link TodoDue Special
 highlight default link TodoStart Special
 execute 'syntax match TodoOverStartDate /\v\c<start:'
-  \ . todo#GetDateRegexForPastDates() . '>/ contains=NONE containedin='
-  \.'TodoPriorityA,TodoPriorityB,TodoPriorityC,TodoPriorityD,TodoPriorityE,'
-  \.'TodoPriorityF,TodoPriorityG,TodoPriorityH,TodoPriorityI,TodoPriorityJ,'
-  \.'TodoPriorityK,TodoPriorityL,TodoPriorityM,TodoPriorityN,TodoPriorityO,'
-  \.'TodoPriorityP,TodoPriorityQ,TodoPriorityR,TodoPriorityS,TodoPriorityT,'
-  \.'TodoPriorityU,TodoPriorityV,TodoPriorityW,TodoPriorityX,TodoPriorityY,'
-  \.'TodoPriorityZ'
+  \ . todo#GetDateRegexForPastDates() . '>/ contains=NONE containedin=ALL'
 highlight default link TodoOverStartDate TodoOverDueDate
 execute 'syntax match TodoStartToday    /\v\c<start:' . strftime('%Y\-%m\-%d')
-  \ . '>/ contains=NONE containedin='
-  \.'TodoPriorityA,TodoPriorityB,TodoPriorityC,TodoPriorityD,TodoPriorityE,'
-  \.'TodoPriorityF,TodoPriorityG,TodoPriorityH,TodoPriorityI,TodoPriorityJ,'
-  \.'TodoPriorityK,TodoPriorityL,TodoPriorityM,TodoPriorityN,TodoPriorityO,'
-  \.'TodoPriorityP,TodoPriorityQ,TodoPriorityR,TodoPriorityS,TodoPriorityT,'
-  \.'TodoPriorityU,TodoPriorityV,TodoPriorityW,TodoPriorityX,TodoPriorityY,'
-  \.'TodoPriorityZ'
+  \ . '>/ contains=NONE containedin=ALL'
 highlight default link TodoStartToday Todo
 
 " Do not check spelling or highlight dates in done items {{{1
@@ -94,32 +77,14 @@ syntax region TodoCancel start=/\~\~/ end=/\~\~/ contains=@NoSpell
 highlight default TodoCancel cterm=strikethrough guifg=#5C6773
 
 " Highlight markers for recurring tasks like rec:1d {{{1
-syntax  match  TodoRec        'rec:[^ \t/]\S*' containedin=
-  \TodoPriorityA,TodoPriorityB,TodoPriorityC,TodoPriorityD,TodoPriorityE,
-  \TodoPriorityF,TodoPriorityG,TodoPriorityH,TodoPriorityI,TodoPriorityJ,
-  \TodoPriorityK,TodoPriorityL,TodoPriorityM,TodoPriorityN,TodoPriorityO,
-  \TodoPriorityP,TodoPriorityQ,TodoPriorityR,TodoPriorityS,TodoPriorityT,
-  \TodoPriorityU,TodoPriorityV,TodoPriorityW,TodoPriorityX,TodoPriorityY,
-  \TodoPriorityZ contains=@NoSpell
+syntax  match  TodoRec 'rec:[^ \t/]\S*' containedin=ALL contains=@NoSpell
 highlight default link TodoRec Special
 
 " Do not spell check email address like: <mail@example.org> {{{1
-syntax match TodoEmail =<[^>]\+@[^>]\+>= containedin=TodoDone,
-  \TodoPriorityA,TodoPriorityB,TodoPriorityC,TodoPriorityD,TodoPriorityE,
-  \TodoPriorityF,TodoPriorityG,TodoPriorityH,TodoPriorityI,TodoPriorityJ,
-  \TodoPriorityK,TodoPriorityL,TodoPriorityM,TodoPriorityN,TodoPriorityO,
-  \TodoPriorityP,TodoPriorityQ,TodoPriorityR,TodoPriorityS,TodoPriorityT,
-  \TodoPriorityU,TodoPriorityV,TodoPriorityW,TodoPriorityX,TodoPriorityY,
-  \TodoPriorityZ contains=@NoSpell
+syntax match TodoEmail =<[^>]\+@[^>]\+>= containedin=ALL contains=@NoSpell
 
 " Do not spell check code fragments like `ls directory/` {{{1
-syntax match TodoCode =`[^`]*`= containedin=
-  \TodoPriorityA,TodoPriorityB,TodoPriorityC,TodoPriorityD,TodoPriorityE,
-  \TodoPriorityF,TodoPriorityG,TodoPriorityH,TodoPriorityI,TodoPriorityJ,
-  \TodoPriorityK,TodoPriorityL,TodoPriorityM,TodoPriorityN,TodoPriorityO,
-  \TodoPriorityP,TodoPriorityQ,TodoPriorityR,TodoPriorityS,TodoPriorityT,
-  \TodoPriorityU,TodoPriorityV,TodoPriorityW,TodoPriorityX,TodoPriorityY,
-  \TodoPriorityZ contains=@NoSpell
+syntax match TodoCode =`[^`]*`= containedin=ALL contains=@NoSpell
 
 " Highlight finished today and yesterday {{{1
 execute 'syntax  match  TodoDoneToday / ' .
