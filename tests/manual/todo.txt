@@ -2,6 +2,7 @@
 2000-01-01 Dates that must be in the past should be input as `1900-01-01`
 2000-01-01 Dates that must be in the future should be input as `2100-01-01`
 2000-01-01 Dates that must be today should be input as `2024-10-27`
+2000-01-01 Dates that must be today should be input as `2024-10-26`
 2000-01-01 The following bare URL should be highlighted with spelling mistakes ignored https://example.org/no-misspellings-higlighted-asdf
 2000-01-01 The following URL surrounded in <>s should be highlighted <https://example.org>
 2000-01-01 [The following URL for this Markdown link should be highlighted](https://example.org)
@@ -28,3 +29,5 @@ x 2000-01-01 2000-01-01 The following is code inside a `TodoDone`: `echo 1 2 3`
 2000-01-01 The following is an email address <mail@example.org>
 2000-01-01 Dates are only recognised in start: and due: tags example:2000-01-01
 x 2000-01-01 2000-01-01 Dates are not highlighted in completed tasks recognised in start:2000-01-01 and due:2000-01-01
+x 2024-10-26 2000-01-01 Tasks that are completed yesterday are highlighted
+x 2024-10-27 2000-01-01 Tasks that are completed today are strongly highlighted
