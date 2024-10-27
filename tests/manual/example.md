@@ -19,3 +19,10 @@ Command to demonstrate `echo`:
 
 [official]:
   https://example.com/a-really-long-slug-that-causes-the-link-destination-to-be-formatted-on-the-second-line-asdf
+
+A misspelled word in a paragraph both single and double quotes: "asdf" 'asdf'.
+
+# A misspelled word in a heading both single and double quotes: "asdf" 'asdf'
+
+~~A misspelled word in a strike through both single and double quotes: "asdf"
+'asdf'.~~
