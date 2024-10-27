@@ -79,7 +79,7 @@ syntax match TodoEmail =<[^>]\+@[^>]\+>=hs=s+1,he=e-1 containedin=ALL
   \ contains=@NoSpell
 
 " Do not spell check code fragments like `ls directory/` {{{1
-syntax match TodoCode =`[^`]*`= containedin=ALL contains=@NoSpell
+syntax match TodoCode =`[^`]\+`= containedin=ALLBUT,TodoCode contains=@NoSpell
 
 " Highlight finished today and yesterday {{{1
 execute 'syntax match TodoDoneToday / ' .
