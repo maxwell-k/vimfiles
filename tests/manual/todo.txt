@@ -1,8 +1,8 @@
-2000-01-01 Dates that don't matter should be input as `2000-01-01`
-2000-01-01 Dates that must be in the past should be input as `1900-01-01`
-2000-01-01 Dates that must be in the future should be input as `2100-01-01`
-2000-01-01 Dates that must be today should be input as `2024-10-27`
-2000-01-01 Dates that must be today should be input as `2024-10-26`
+2000-01-01 Dates that should be in the past are input as `1900-01-01`
+2000-01-01 Dates that should be in the future are input as `2100-01-01`
+2000-01-01 Dates that should be today are input as `2024-10-27`
+2000-01-01 Dates that should be yesterday are input as `2024-10-26`
+2000-01-01 Otherwise dates are input as `2000-01-01`
 2000-01-01 The following bare URL should be highlighted with spelling mistakes ignored https://example.org/no-misspellings-higlighted-asdf
 2000-01-01 The following URL surrounded in <>s should be highlighted <https://example.org>
 2000-01-01 [The following URL for this Markdown link should be highlighted](https://example.org)
