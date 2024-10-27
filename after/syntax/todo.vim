@@ -75,7 +75,8 @@ syntax match TodoRec 'rec:[^ \t/]\S*' containedin=ALL contains=@NoSpell
 highlight default link TodoRec Special
 
 " Do not spell check email address like: <mail@example.org> {{{1
-syntax match TodoEmail =<[^>]\+@[^>]\+>= containedin=ALL contains=@NoSpell
+syntax match TodoEmail =<[^>]\+@[^>]\+>=hs=s+1,he=e-1 containedin=ALL
+  \ contains=@NoSpell
 
 " Do not spell check code fragments like `ls directory/` {{{1
 syntax match TodoCode =`[^`]*`= containedin=ALL contains=@NoSpell
