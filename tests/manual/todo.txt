@@ -1,25 +1,29 @@
-2022-06-19 The following bare URL should be highlighted with spelling mistakes ignored https://example.org/no-misspellings-higlighted-asdf
-2022-06-19 The following URL surrounded in <>s should be highlighted <https://example.org>
-2022-06-19 [The following URL for this Markdown link should be highlighted](https://example.org)
-x 2024-09-13 2022-06-19 The following bare URL should be highlighted inside a `TodoDone` https://example.org
-(A) 2022-06-19 The following URL should be highlighted inside a `TodoPriorityA` https://example.org
-(B) 2022-06-19 The following URL should be highlighted inside a `TodoPriorityB` https://example.org
-(C) 2022-06-19 The following URL should be highlighted inside a `TodoPriorityC` https://example.org
-(Z) 2022-06-19 The following URL should be highlighted inside a `TodoPriorityZ` https://example.org
-2024-09-13 The following is code: `echo 1 2 3`
-2024-09-13 The following is code with a spelling mistake ignored: `echo asdf [sic]`
-x 2024-09-13 2024-09-13 The following is code inside a `TodoDone`: `echo 1 2 3`
-(A) 2024-09-13 The following is code inside a `TodoPriorityA`: `echo 1 2 3`
-(Z) 2024-09-13 The following is code inside a `TodoPriorityZ`: `echo 1 2 3`
-(Z) 2024-09-13 The following is a spelling mistake inside code `asdf`
-2024-09-13 The following is code — `a:b` — then a key/value tag — key:value
-2024-09-13 The following is code `:echo 1`
-(Z) 2024-09-22 The following is a due date in the future inside a Z priority task due:2124-01-01
-(Z) 2024-09-22 The following is a start date in the future inside a Z priority task start:2124-01-01
-(Z) 2024-09-22 The following is a due date in the past inside a Z priority task due:1924-01-01
-(Z) 2024-09-23 The following is a due date in the past inside a Z priority task due:2024-10-23
-(Z) 2024-09-22 The following is a start date in the future inside a Z priority task start:1924-01-01
-(Z) 2024-09-22 The following is a start date today inside a Z priority task start:2024-10-23
-2022-06-19 The following is a marker for a recurring task rec:1d
-2024-10-23 The following is an email address <mail@example.org>
-2024-10-23 Dates are only recognised in start: and due: tags example:2024-10-12
+2000-01-01 Dates that don't matter should be input as `2000-01-01`
+2000-01-01 Dates that must be in the past should be input as `1900-01-01`
+2000-01-01 Dates that must be in the future should be input as `2100-01-01`
+2000-01-01 Dates that must be today should be input as `2024-10-27`
+2000-01-01 The following bare URL should be highlighted with spelling mistakes ignored https://example.org/no-misspellings-higlighted-asdf
+2000-01-01 The following URL surrounded in <>s should be highlighted <https://example.org>
+2000-01-01 [The following URL for this Markdown link should be highlighted](https://example.org)
+x 2000-01-01 2000-01-01 The following bare URL should be highlighted inside a `TodoDone` https://example.org
+(A) 2000-01-01 The following URL should be highlighted inside a `TodoPriorityA` https://example.org
+(B) 2000-01-01 The following URL should be highlighted inside a `TodoPriorityB` https://example.org
+(C) 2000-01-01 The following URL should be highlighted inside a `TodoPriorityC` https://example.org
+(Z) 2000-01-01 The following URL should be highlighted inside a `TodoPriorityZ` https://example.org
+2000-01-01 The following is code: `echo 1 2 3`
+2000-01-01 The following is code with a spelling mistake ignored: `echo asdf [sic]`
+x 2000-01-01 2000-01-01 The following is code inside a `TodoDone`: `echo 1 2 3`
+(A) 2000-01-01 The following is code inside a `TodoPriorityA`: `echo 1 2 3`
+(Z) 2000-01-01 The following is code inside a `TodoPriorityZ`: `echo 1 2 3`
+(Z) 2000-01-01 The following is a spelling mistake inside code `asdf`
+2000-01-01 The following is code — `a:b` — then a key/value tag — key:value
+2000-01-01 The following is code `:echo 1`
+(Z) 2000-01-01 Past start date inside Z priority task start:1900-01-01
+(Z) 2000-01-01 Past due date inside Z priority task due:1900-01-01
+(Z) 2000-01-01 Today start date inside Z priority task start:2024-10-27
+(Z) 2000-01-01 Today due date inside Z priority task due:2024-10-27
+(Z) 2000-01-01 Future start date inside Z priority task start:2100-01-01
+(Z) 2000-01-01 Future due date inside Z priority task due:2100-01-01
+2000-01-01 The following is a marker for a recurring task rec:1d
+2000-01-01 The following is an email address <mail@example.org>
+2000-01-01 Dates are only recognised in start: and due: tags example:2000-01-01
