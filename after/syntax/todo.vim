@@ -23,7 +23,9 @@
 " ./tests/manual/todo.txt
 " ./pack/submodules/opt/todo.txt/syntax/todo.vim
 "
-syntax match TodoURL =[(<]\?https\?://\S*[)>]\?= containedin=ALL
+syntax match TodoURL = https\?://\S*=ms=s+1 containedin=ALL
+  \ contains=@NoSpell
+syntax match TodoURL =[<(]\?https\?://\S*[>)]=hs=s+1,he=e-1 containedin=ALL
   \ contains=@NoSpell
 syntax clear TodoKey
 " The original pattern was: '\S*\S:\S\S*'
