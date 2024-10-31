@@ -71,7 +71,8 @@ syntax region TodoCancel start=/\~\~/ end=/\~\~/ contains=@NoSpell
 highlight default TodoCancel cterm=strikethrough guifg=#5C6773
 
 " Highlight markers for recurring tasks like rec:1d {{{1
-syntax match TodoRec 'rec:[^ \t/]\S*' containedin=ALL contains=@NoSpell
+syntax match TodoRec 'rec:[^ \t/]\S*' containedin=ALLBUT,TodoCode
+  \ contains=@NoSpell
 highlight default link TodoRec Special
 
 " Do not spell check email address like: <mail@example.org> {{{1
