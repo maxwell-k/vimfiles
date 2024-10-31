@@ -84,10 +84,12 @@ syntax match TodoCode =`[^`]\+`= containedin=ALLBUT,TodoCode contains=@NoSpell
 
 " Highlight finished today and yesterday {{{1
 execute 'syntax match TodoDoneToday / ' .
-  \strftime('%Y\-%m\-%d') . ' / containedin=TodoDone'
+  \strftime('%Y\-%m\-%d')
+  \. ' / contained containedin=TodoDone'
 highlight default TodoDoneToday guifg=SeaGreen cterm=bold
 execute 'syntax match TodoDoneYesterday / ' .
-  \strftime('%Y\-%m\-%d', localtime()- 24*60*60) . ' / containedin=TodoDone'
+  \strftime('%Y\-%m\-%d', localtime()- 24*60*60)
+  \. ' / contained containedin=TodoDone'
 highlight default TodoDoneYesterday guifg=SeaGreen
 
 " Projects are all lowercase and not spell checked {{{1
