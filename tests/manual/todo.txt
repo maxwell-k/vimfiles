@@ -1,7 +1,7 @@
 2000-01-01 Dates that should be in the past are input as `1900-01-01`
 2000-01-01 Dates that should be in the future are input as `2100-01-01`
-2000-01-01 Dates that should be today are input as `2024-10-27`
-2000-01-01 Dates that should be yesterday are input as `2024-10-26`
+2000-01-01 Dates that should be today are input as `2024-10-31`
+2000-01-01 Dates that should be yesterday are input as `2024-10-30`
 2000-01-01 Otherwise dates are input as `2000-01-01`
 2000-01-01 The following bare URL should be highlighted with spelling mistakes ignored https://example.org/no-misspellings-higlighted-asdf
 2000-01-01 The following URL surrounded in <>s should be highlighted <https://example.org>
@@ -21,14 +21,14 @@ x 2000-01-01 2000-01-01 The following is code inside a `TodoDone`: `echo 1 2 3`
 2000-01-01 The following is code `:echo 1`
 (Z) 2000-01-01 Past start date inside Z priority task start:1900-01-01
 (Z) 2000-01-01 Past due date inside Z priority task due:1900-01-01
-(Z) 2000-01-01 Today start date inside Z priority task start:2024-10-27
-(Z) 2000-01-01 Today due date inside Z priority task due:2024-10-27
+(Z) 2000-01-01 Today start date inside Z priority task start:2024-10-31
+(Z) 2000-01-01 Today due date inside Z priority task due:2024-10-31
 (Z) 2000-01-01 Future start date inside Z priority task start:2100-01-01
 (Z) 2000-01-01 Future due date inside Z priority task due:2100-01-01
 2000-01-01 The following is a marker for a recurring task rec:1d
 2000-01-01 The following is an email address <mail@example.org>
 2000-01-01 Dates are only recognised in start: and due: tags example:2000-01-01
 x 2000-01-01 2000-01-01 Dates are not highlighted in completed tasks recognised in start:2000-01-01 and due:2000-01-01
-x 2024-10-26 2000-01-01 Tasks that are completed yesterday are highlighted
-x 2024-10-27 2000-01-01 Tasks that are completed today are strongly highlighted
+x 2024-10-30 2000-01-01 Tasks that are completed yesterday are highlighted
+x 2024-10-31 2000-01-01 Tasks that are completed today are strongly highlighted
 2000-01-01 The following is code `:echo 1`, the text in between is not and the following is also code: `:echo 2`
