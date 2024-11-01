@@ -30,7 +30,8 @@ syntax match TodoURL =[<(]\?https\?://\S*[>)]=hs=s+1,he=e-1 containedin=ALL
 syntax clear TodoKey
 " The original pattern was: '\S*\S:\S\S*'
 syntax match TodoKey '[^ \t`]\+:[^ \t/]\+'
-syntax match TodoDue '\Cdue:[^ \t/]\+' containedin=ALLBUT,TodoDone
+syntax match TodoDue '\Cdue:[^ \t/]\+'
+  \ containedin=ALLBUT,TodoDone,TodoCancel
 highlight default link TodoDue Special
 " These changes ruin some of the date highlighting functionality, for example
 " the due dates on the three lines below should be highlighted differently:
@@ -53,7 +54,8 @@ execute 'syntax match TodoDueTodayAfter /' . strftime('%Y\-%m\-%d')
 execute 'syntax match TodoStartToday /' . strftime('%Y\-%m\-%d')
   \ . '/ contained containedin=TodoStart'
 
-syntax match TodoStart '\Cstart:[^ \t/]\+' containedin=ALLBUT,TodoDone
+syntax match TodoStart '\Cstart:[^ \t/]\+'
+  \ containedin=ALLBUT,TodoDone,TodoCancel
 highlight default TodoOverStartDate cterm=bold guifg=#F07178
 highlight default link TodoDue Special
 highlight default link TodoStart Special
