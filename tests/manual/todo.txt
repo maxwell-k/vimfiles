@@ -28,7 +28,8 @@ x 2000-01-01 2000-01-01 The following is code inside a `TodoDone`: `echo 1 2 3`
 2000-01-01 The following is a marker for a recurring task rec:1d
 2000-01-01 The following is an email address <mail@example.org>
 2000-01-01 Dates are only recognised in start: and due: tags example:2000-01-01
-x 2000-01-01 2000-01-01 Dates are not highlighted in completed tasks recognised in start:2000-01-01 and due:2000-01-01
+x 2000-01-01 2000-01-01 Dates are not highlighted in completed tasks start:2000-01-01 and due:2000-01-01 trailing text
+x 2000-01-01 2000-01-01 ~~Dates are not highlighted in cancelled tasks due:2000-01-01 start:2000-01-01 trailing text ~~
 x 2024-10-30 2000-01-01 Tasks that are completed yesterday are highlighted
 x 2024-10-31 2000-01-01 Tasks that are completed today are strongly highlighted
 2000-01-01 The following is code `:echo 1`, the text in between is not and the following is also code: `:echo 2`
