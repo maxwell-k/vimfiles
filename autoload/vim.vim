@@ -45,7 +45,7 @@ function! vim#RemoveCompleted() abort "{{{1
     let g:TodoTxtForceDoneName = '../done.txt'
     let l:forced = 1
   endif
-  if expand('%') =~# 'someday-maybe.txt$\|in-basket.txt$\|backlog.txt$'
+  if expand('%') =~# '\%(someday-maybe\|in-basket\|backlog\|routine\).txt$'
     let g:TodoTxtForceDoneName = 'done.txt'
     let l:forced = 1
   endif
