@@ -136,6 +136,7 @@ digraphs %< 9986 " black scissors ✂
 digraphs fl 9873 " black flag ⚑
 digraphs am 128126 " alien monster 👾
 digraphs bb 128499 " ballot box with ballot 🗳
+" other digraphs I use: ·
 
 " autocommands {{{1
 " ------------
