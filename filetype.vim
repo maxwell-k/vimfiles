@@ -44,6 +44,7 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile reproducibly.py setfiletype python.black.usort.cog
   autocmd BufRead,BufNewFile requirements_*.in setfiletype requirements
   autocmd BufRead,BufNewFile requirements_*.txt setfiletype requirements
+  autocmd BufRead,BufNewFile routine.txt setfiletype todo
   autocmd BufRead,BufNewFile secret setfiletype gopass
   autocmd BufRead,BufNewFile setup.cfg setfiletype dosini
   autocmd BufRead,BufNewFile todo.txt setfiletype todo
