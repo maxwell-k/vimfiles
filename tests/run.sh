@@ -16,3 +16,4 @@ for i in automated/* ; do
 done
 
 git branch --show-current > .success
+printf 'tests/run.sh: All tests succeeded.\n'
