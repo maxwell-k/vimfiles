@@ -57,3 +57,8 @@ else
   setlocal foldtext=vim#TodoFoldtext()
   nnoremap <script> <buffer> <localleader>tf :call toggle#TodoFold()<CR>
 endif
+
+iabbrev pm\ prioritisation:must
+iabbrev ps\ prioritisation:should
+iabbrev pc\ prioritisation:could
+iabbrev pw\ prioritisation:will-not
