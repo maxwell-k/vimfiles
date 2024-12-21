@@ -46,6 +46,8 @@ nnoremap <script> <buffer> <localleader>tO O<C-R>=strftime("%Y-%m-%d")<CR>
 
 if expand('%:p') =~# '/todo.txt$'
   call vim#ConfigureSimpleFolding()
+elseif expand('%:p') =~# '/routine.txt$'
+  call vim#ConfigureSimpleFolding()
 else
   setlocal fillchars+=fold:\ ,
   setlocal foldtext=vim#TodoFoldtext()
