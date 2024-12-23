@@ -58,3 +58,8 @@ iabbrev pm\ prioritisation:must
 iabbrev ps\ prioritisation:should
 iabbrev pc\ prioritisation:could
 iabbrev pw\ prioritisation:will-not
+
+iabbrev wt\ when:tomorrow
+iabbrev ws\ when:soon
+iabbrev wl\ when:later
+iabbrev wm\ when:someday-maybe
