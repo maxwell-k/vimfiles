@@ -3,3 +3,4 @@
 " SPDX-License-Identifier: MPL-2.0
 "
 let g:Todo_txt_do_not_map = 1
+" See also after/ftplugin/todo.vim

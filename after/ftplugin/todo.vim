@@ -45,13 +45,9 @@ nnoremap <script> <buffer> <localleader>to o<C-R>=strftime("%Y-%m-%d")<CR>
 nnoremap <script> <buffer> <localleader>tO O<C-R>=strftime("%Y-%m-%d")<CR>
 
 if expand('%:p') =~# '/todo.txt$'
-  " use specific folding in todo.txt, adding a marker like {{{ effectively
-  " hides the rest of the file
-  setlocal foldmethod=marker
-  setlocal foldlevel=0
-  setlocal foldtext=''
-  highlight clear Folded
-  highlight link Folded Comment
+  call vim#ConfigureSimpleFolding()
+elseif expand('%:p') =~# '/routine.txt$'
+  call vim#ConfigureSimpleFolding()
 else
   setlocal fillchars+=fold:\ ,
   setlocal foldtext=vim#TodoFoldtext()
@@ -62,3 +58,8 @@ iabbrev pm\ prioritisation:must
 iabbrev ps\ prioritisation:should
 iabbrev pc\ prioritisation:could
 iabbrev pw\ prioritisation:will-not
+
+iabbrev wt\ when:tomorrow
+iabbrev ws\ when:soon
+iabbrev wl\ when:later
+iabbrev wm\ when:someday-maybe
