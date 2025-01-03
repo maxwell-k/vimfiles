@@ -10,7 +10,7 @@ let g:colors_name='mine'
 " hex codes from pack/submodules/start/ayu/colors/ayu.vim
 " `:sort` everything below
 highlight CursorLine guibg=#3E4B59
-highlight Folded guifg=sienna
+highlight Folded guibg=NONE ctermbg=NONE guifg=sienna
 highlight NonText guifg=#F29718
 highlight Normal guibg=NONE ctermbg=NONE
 highlight SignColumn guibg=#FFD57F
