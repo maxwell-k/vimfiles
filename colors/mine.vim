@@ -12,6 +12,7 @@ let g:colors_name='mine'
 highlight CursorLine guibg=#3E4B59
 highlight Folded guifg=sienna
 highlight NonText guifg=#F29718
+highlight Normal guibg=NONE ctermbg=NONE
 highlight SignColumn guibg=#FFD57F
 highlight SpecialKey gui=bold guifg=#cb4b16
 highlight Statement guifg=#E6B673
