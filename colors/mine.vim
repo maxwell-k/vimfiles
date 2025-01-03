@@ -1,3 +1,4 @@
+scriptencoding utf-8
 " colors/mine.vim
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
@@ -7,6 +8,7 @@ execute 'source '.resolve(s:ayu)
 
 let g:colors_name='mine'
 " hex codes from pack/submodules/start/ayu/colors/ayu.vim
+" `:sort` everything below
 highlight CursorLine guibg=#3E4B59
 highlight Folded guifg=sienna
 highlight NonText guifg=#F29718
@@ -18,7 +20,6 @@ highlight StatusLineNC guibg=#3E4B59 guifg=#000000
 highlight ToDoOverDueDate cterm=bold guifg=#F07178
 highlight ToDoPriorityA cterm=bold
 highlight TodoProject guifg=sienna
-
 highlight link ToDoPriorityB NONE
 highlight link ToDoPriorityC NONE
 highlight link TodoCode String
