@@ -118,7 +118,7 @@ vnoremap <Leader>= :<C-U>call vim#Sum()<CR>
  noremap <Leader>/ :s,/,\\,g<CR>
  noremap <Leader><CR> :call vim#Browser()<CR>
 " Other:
- noremap <C-L> :noh<CR><C-L>
+ noremap <C-L> :nohlsearch<CR><C-L>
  noremap Y y$
 
 command! W ALEFix!|w|silent execute '!git add %'|redraw!
