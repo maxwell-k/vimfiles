@@ -1,4 +1,4 @@
 # hosts
 # Copyright 2023 Keith Maxwell
 # SPDX-License-Identifier: CC0-1.0
-::1 ansible_connection=local ansible_python_interpreter=auto
+::1 ansible_connection=local
