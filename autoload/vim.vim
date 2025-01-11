@@ -6,10 +6,10 @@ scriptencoding utf8
 function! vim#Browser() abort "{{{1
   " relies upon https://gitlab.com/maxwell-k/linkscan
   if stridx(&filetype, 'markdown') == -1
-    silent .w !uv tool run urlscan --no-browser | xargs
+    silent .w !uv --offline tool run urlscan --no-browser | xargs
       \ xdg-open 1>/dev/null 2>/dev/null
   else
-    execute 'w !linkscan - '.line('.')
+    execute 'w !uv --offline tool run linkscan - '.line('.')
       \ .' | xargs xdg-open 1>/dev/null 2>/dev/null'
   endif
 endfunction

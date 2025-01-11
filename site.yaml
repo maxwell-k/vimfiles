@@ -160,11 +160,13 @@
           #!/bin/sh
           exec npm exec --package pyright --yes -- pyright-langserver "$@"
       when: "'.local/bin' in lookup('env', 'PATH')"
-    - name: Add to the uv cache so that tests can pass offline
+    - name: Add to the uv cache so that features and tests can run offline
       ansible.builtin.command: "uv tool run {{ item }}"
       changed_when: false
       loop:
         - reuse --version
+        - --from=cogapp cog -v
+        - linkscan --version
 
 - name:
     Tag vim help files, these tasks always report a change so they are run last
