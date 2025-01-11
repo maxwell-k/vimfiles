@@ -5,5 +5,5 @@
 " SPDX-License-Identifier: MPL-2.0
 "
 function! ale#fixers#cog#Fix(buffer) abort
-  return { 'command':  'uv tool run --from=cogapp cog -' }
+  return { 'command':  'uv --offline tool run --from=cogapp cog -' }
 endfunction
