@@ -160,9 +160,11 @@
           #!/bin/sh
           exec npm exec --package pyright --yes -- pyright-langserver "$@"
       when: "'.local/bin' in lookup('env', 'PATH')"
-    - name: Add reuse to the cache so that tests can pass offline
-      ansible.builtin.command: uv tool run reuse --help
+    - name: Add to the uv cache so that tests can pass offline
+      ansible.builtin.command: "uv tool run {{ item }}"
       changed_when: false
+      loop:
+        - reuse --version
 
 - name:
     Tag vim help files, these tasks always report a change so they are run last
