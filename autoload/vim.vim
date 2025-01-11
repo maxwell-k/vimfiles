@@ -9,8 +9,9 @@ function! vim#Browser() abort "{{{1
     silent .w !uv --offline tool run urlscan --no-browser | xargs
       \ xdg-open 1>/dev/null 2>/dev/null
   else
-    execute 'w !uv --offline tool run linkscan - '.line('.')
-      \ .' | xargs xdg-open 1>/dev/null 2>/dev/null'
+    execute 'w !uv --offline tool run --index-url='
+      \ .'https://gitlab.com/api/v4/projects/43703506/packages/pypi/simple'
+      \ .' linkscan - '.line('.').' | xargs xdg-open 1>/dev/null 2>/dev/null'
   endif
 endfunction
 function! vim#Cancel() abort "{{{1
