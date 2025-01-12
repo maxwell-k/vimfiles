@@ -162,7 +162,7 @@
       when: "'.local/bin' in lookup('env', 'PATH')"
     - name: Add to the uv cache so that features and tests can run offline
       ansible.builtin.command: "uv tool run {{ item }}"
-      changed_when: false
+      changed_when: true
       loop:
         - reuse --version
         - --from=cogapp cog -v
