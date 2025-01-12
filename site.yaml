@@ -66,10 +66,9 @@
         remote_src: true
     - name: Install binaries
       ansible.builtin.copy:
-        src: "{{ site_download.path }}/{{ site_uv_head }}/{{ item }}"
+        src: "{{ site_download.path }}/{{ site_uv_head }}/uv"
         dest: ~/.local/bin/
         mode: "0o755"
-      loop: [uv, uvx]
     - name: Clean up temporary directory
       ansible.builtin.file:
         state: absent
