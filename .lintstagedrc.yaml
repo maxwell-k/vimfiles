@@ -6,4 +6,4 @@
 "!(missing).md":
   - npm exec --prefer-offline -- embedme --verify
 "!(vimrc|*.vim|*.md)":
-  - npm exec --prefer-offline -- prettier --check
+  - npm exec --prefer-offline -- prettier --ignore-unknown --check

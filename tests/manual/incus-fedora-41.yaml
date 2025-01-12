@@ -1,4 +1,4 @@
-description: Incus profile for testing with Ubuntu 24.05 Noble and homebrew
+description: Incus profile for testing with Fedora 41
 config:
   user.vendor-data: |
     #cloud-config
@@ -7,11 +7,13 @@ config:
     packages:
       - openssh-server
       - zsh
-      # https://docs.brew.sh/Homebrew-on-Linux
-      - build-essential
-      - procps
-      - curl
-      - file
+      - ncurses # for tic for the ghostty terminfo
+      # taken from tests/inside-fedora-latest.sh
+      - vim-enhanced
+      - ansible
+      - jq
+      - nodejs
+      - fzf
       - git
     runcmd:
       - [mkdir, --parents, /home/maxwell-k/.local/bin]
@@ -27,7 +29,7 @@ config:
     write_files:
       - path: /etc/ansible/hosts
         content: |
-          ::1 ansible_connection=local ansible_python_interpreter=auto_silent
+          ::1 ansible_connection=local ansible_python_interpreter=auto
       - path: /home/maxwell-k/.zshrc
         content: |
           bindkey -v
@@ -38,6 +40,8 @@ config:
       - name: maxwell-k
         sudo: ALL=(ALL) NOPASSWD:ALL
         shell: /usr/bin/zsh
+        hashed_passwd: "*"
+        lock_passwd: false
         ssh_authorized_keys:
           - >
             ssh-ed25519
@@ -45,6 +49,6 @@ config:
             codeberg.org/maxwell-k
 
 #
-# tests/manual/incus-ubuntu-24.04-homebrew.yaml
+# tests/manual/incus-fedora-41.yaml
 # Copyright 2025 Keith Maxwell
 # SPDX-License-Identifier: CC0-1.0
