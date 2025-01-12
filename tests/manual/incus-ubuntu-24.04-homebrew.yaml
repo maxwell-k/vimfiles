@@ -1,0 +1,93 @@
+description: |-
+  Incus profile for testing with Ubuntu 24.05 Noble and homebrew
+
+  Command to launch container:
+
+    incus launch images:ubuntu/24.04/cloud c1 < \
+      tests/manual/incus-ubuntu-24.04-homebrew.yaml
+
+  Command to mount this directory:
+
+    incus config device add c1 vimfiles disk source=$PWD path=$PWD shift=true
+
+  Commands to clear stored SSH host keys and then watch for SSH to start, use
+  Ctrl-C to interrupt:
+
+    ssh-keygen -R c1.incus \
+    && watch ssh-keyscan c1.incus
+
+  Command to set up terminfo for ghostty on c1.incus — see also:
+  https://ghostty.org/docs/help/terminfo#copy-ghostty's-terminfo-to-a-remote-machine
+
+    infocmp -x | ssh c1.incus -- tic -x -
+
+  Commands to fetch ~/.zshenv and create ~/.local/bin so that PATH is set
+  appropriately:
+
+    ssh c1.incus -- "mkdir --parents ~/.local/bin" \
+    && ssh c1.incus -- curl --output ~/.zshenv \
+      https://raw.githubusercontent.com/maxwell-k/dotfiles/refs/heads/main/dotfiles/zshenv
+
+  Command to connect:
+
+    ssh c1.incus
+
+  Install homebrew following <https://brew.sh/>
+
+  Command to install required prerequisites:
+
+    brew install ansible uv node@22
+
+  Command to symlink `node` and `npm` to Node JS 22:
+
+    cd /home/linuxbrew/.linuxbrew/opt/node@22/bin \
+    && ln -s $PWD/node $PWD/npm ~/.local/bin \
+    && node --version
+
+  Commands to run Ansible:
+
+    cd ~/.vim \
+    && ANSIBLE_PYTHON_INTERPRETER=auto_silent ansible-playbook site.yaml
+
+config:
+  user.vendor-data: |
+    #cloud-config
+    package_upgrade: true
+    package_update: true
+    packages:
+      - openssh-server
+      - zsh
+      # https://docs.brew.sh/Homebrew-on-Linux
+      - build-essential
+      - procps
+      - curl
+      - file
+      - git
+    write_files:
+      - content: |
+          bindkey -v
+        owner: maxwell-k:maxwell-k
+        path: /home/maxwell-k/.zshrc
+        permissions: "0644"
+        defer: true
+    users:
+      - name: maxwell-k
+        sudo: ALL=(ALL) NOPASSWD:ALL
+        shell: /usr/bin/zsh
+        ssh_authorized_keys:
+          - >
+            ssh-ed25519
+            AAAAC3NzaC1lZDI1NTE5AAAAIOnexLmfscxCK5QsBTR8adsxcmXJcu0BnEQzx68B7UgL
+            codeberg.org/maxwell-k
+devices:
+  eth0:
+    name: eth0
+    network: incusbr0
+    type: nic
+  root:
+    path: /
+    pool: default
+    type: disk
+#
+# Copyright 2025 Keith Maxwell
+# SPDX-License-Identifier: CC0-1.0

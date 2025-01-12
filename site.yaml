@@ -20,12 +20,14 @@
 - name: Ensure that uv is installed
   hosts: all
   vars:
-    site_uv_version: 0.4.16
+    site_uv_version: 0.5.13
     site_uv_checksums:
+      # https://github.com/astral-sh/uv/releases/download/0.5.13/uv-x86_64-unknown-linux-gnu.tar.gz.sha256
       uv-x86_64-unknown-linux-gnu.tar.gz: |-
-        f4f4de434206fb610ecb2dbc3fc44c62adb6b61e8d1237d858a10b407a2737c4
+        0127da50d3c361d094545aab32921bbce856b3fcc24f1d10436a6426b3f16330
+      # https://github.com/astral-sh/uv/releases/download/0.5.13/uv-x86_64-unknown-linux-musl.tar.gz.sha256
       uv-x86_64-unknown-linux-musl.tar.gz: |-
-        aab3a3ef8e4ffa641210b1ed374eebd08b5e612b1a928c291a543d3b624d46d1
+        1afaef0180a6b9fe43fa6658443796b8e235fc41382a451634515890cf3aca06
     site_uv_libc: "{{ 'musl' if ansible_distribution == 'Alpine' else 'gnu' }}"
     site_uv_filename: uv-x86_64-unknown-linux-{{ site_uv_libc }}.tar.gz
     site_uv_url: >-
@@ -158,9 +160,16 @@
           #!/bin/sh
           exec npm exec --package pyright --yes -- pyright-langserver "$@"
       when: "'.local/bin' in lookup('env', 'PATH')"
-    - name: Add reuse to the cache so that tests can pass offline
-      ansible.builtin.command: uv tool run reuse --help
+    - name: Add to the uv cache so that features and tests can run offline
+      ansible.builtin.command: "uv tool run {{ item }}"
       changed_when: false
+      loop:
+        - reuse --version
+        - --from=cogapp cog -v
+        - urlscan --version
+        - >
+          --index-url=https://gitlab.com/api/v4/projects/43703506/packages/pypi/simple
+          linkscan --version
 
 - name:
     Tag vim help files, these tasks always report a change so they are run last
@@ -196,9 +205,3 @@
         path: "{{ site_script.path }}"
         state: absent
       changed_when: false
-    - name: Ignore tag files that are not included in .gitignore
-      ansible.builtin.lineinfile:
-        line: doc/tags
-        state: present
-        path: ~/.vim/.git/modules/pack/submodules/opt/{{ item }}/info/exclude
-      loop: [sexp, limelight]
