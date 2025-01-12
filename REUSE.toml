@@ -22,6 +22,7 @@ path = [
   ".lintstagedrc.yaml",
   ".prettierignore",
   "tests/.en.utf-8.add",
+  "tests/manual/.en.utf-8.add",
   "tests/automated/embedme/**.md",
   "tests/automated/markdown-toc/**.md",
   "tests/manual/todo.txt",
