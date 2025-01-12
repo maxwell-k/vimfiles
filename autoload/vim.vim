@@ -4,15 +4,19 @@
 "
 scriptencoding utf8
 function! vim#Browser() abort "{{{1
-  " relies upon https://gitlab.com/maxwell-k/linkscan
+  " Relies upon https://gitlab.com/maxwell-k/linkscan for markdown.
   if stridx(&filetype, 'markdown') == -1
-    silent .w !uv --offline tool run urlscan --no-browser | xargs
-      \ xdg-open 1>/dev/null 2>/dev/null
+    " This branch does not require indirection with :execute however the
+    " function frequently requires debugging which this simplifies (see below).
+    let l:cmd = 'silent .w !uv --offline tool run urlscan --no-browser | xargs'
+      \ .' xdg-open 1>/dev/null 2>/dev/null'
   else
-    execute 'w !uv --offline tool run --index-url='
+    let l:cmd = 'w !uv --offline tool run --index-url='
       \ .'https://gitlab.com/api/v4/projects/43703506/packages/pypi/simple'
       \ .' linkscan - '.line('.').' | xargs xdg-open 1>/dev/null 2>/dev/null'
   endif
+  " For debugging add a line like `:echom l:cmd` below.
+  execute l:cmd
 endfunction
 function! vim#Cancel() abort "{{{1
   let l:out = getline('.').' ~~'

@@ -166,6 +166,7 @@
       loop:
         - reuse --version
         - --from=cogapp cog -v
+        - urlscan --version
         - >
           --index-url=https://gitlab.com/api/v4/projects/43703506/packages/pypi/simple
           linkscan --version
