@@ -4,7 +4,12 @@
 "
 scriptencoding utf8
 function! vim#Browser() abort "{{{1
-  let l:open = 'xdg-open'
+  if executable('xdg-open')
+    let l:open = 'xdg-open'
+  else
+    echom 'vim#Browser(): no suitable command found'
+    return
+  endif
   let l:cmd = ''
   let l:cmd .= 'silent '
   if stridx(&filetype, 'markdown') == -1
