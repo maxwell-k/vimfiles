@@ -4,6 +4,7 @@
 "
 scriptencoding utf8
 function! vim#Browser() abort "{{{1
+  let l:open = 'xdg-open'
   let l:cmd = ''
   let l:cmd .= 'silent '
   if stridx(&filetype, 'markdown') == -1
@@ -16,7 +17,7 @@ function! vim#Browser() abort "{{{1
       \ .'https://gitlab.com/api/v4/projects/43703506/packages/pypi/simple'
     let l:cmd .= ' linkscan - '.line('.')
   endif
-  let l:cmd .= ' | xargs xdg-open 1>/dev/null 2>/dev/null'
+  let l:cmd .= ' | xargs '.l:open.' 1>/dev/null 2>/dev/null'
   " For debugging add a line like `:echom l:cmd` below.
   execute l:cmd
 endfunction
