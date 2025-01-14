@@ -4,8 +4,10 @@
 "
 scriptencoding utf8
 function! vim#Browser() abort "{{{1
-  if executable('xdg-open')
+  if executable('xdg-open') " Linux
     let l:open = 'xdg-open'
+  elseif executable('open') " MacOS
+    let l:open = 'open'
   else
     echom 'vim#Browser(): no suitable command found'
     return
