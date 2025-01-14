@@ -4,17 +4,27 @@
 "
 scriptencoding utf8
 function! vim#Browser() abort "{{{1
-  " Relies upon https://gitlab.com/maxwell-k/linkscan for markdown.
-  if stridx(&filetype, 'markdown') == -1
-    " This branch does not require indirection with :execute however the
-    " function frequently requires debugging which this simplifies (see below).
-    let l:cmd = 'silent .w !uv --offline tool run urlscan --no-browser | xargs'
-      \ .' xdg-open 1>/dev/null 2>/dev/null'
+  if executable('xdg-open') " Linux
+    let l:open = 'xdg-open'
+  elseif executable('open') " MacOS
+    let l:open = 'open'
   else
-    let l:cmd = 'w !uv --offline tool run --index-url='
-      \ .'https://gitlab.com/api/v4/projects/43703506/packages/pypi/simple'
-      \ .' linkscan - '.line('.').' | xargs xdg-open 1>/dev/null 2>/dev/null'
+    echom 'vim#Browser(): no suitable command found'
+    return
   endif
+  let l:cmd = ''
+  let l:cmd .= 'silent '
+  if stridx(&filetype, 'markdown') == -1
+    let l:cmd .= '.w !uv --offline tool run'
+    let l:cmd .= ' urlscan --no-browser'
+  else
+    " Relies upon https://gitlab.com/maxwell-k/linkscan for markdown.
+    let l:cmd .= 'w !uv --offline tool run'
+    let l:cmd .= ' --index-url='
+      \ .'https://gitlab.com/api/v4/projects/43703506/packages/pypi/simple'
+    let l:cmd .= ' linkscan - '.line('.')
+  endif
+  let l:cmd .= ' | xargs '.l:open.' 1>/dev/null 2>/dev/null'
   " For debugging add a line like `:echom l:cmd` below.
   execute l:cmd
 endfunction
