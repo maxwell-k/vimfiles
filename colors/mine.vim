@@ -15,10 +15,10 @@ highlight NonText guifg=#F29718
 highlight Normal guibg=NONE
 highlight SignColumn guibg=#FFD57F
 highlight SpecialKey cterm=bold guifg=#cb4b16
+highlight SpellRare cterm=NONE
 highlight Statement guifg=#E6B673
 highlight StatusLine guibg=#828C99 guifg=#14191F
 highlight StatusLineNC guibg=#3E4B59 guifg=#000000
-highlight SpellRare cterm=NONE
 highlight ToDoOverDueDate cterm=bold guifg=#F07178
 highlight ToDoPriorityA cterm=bold
 highlight TodoProject guifg=sienna
