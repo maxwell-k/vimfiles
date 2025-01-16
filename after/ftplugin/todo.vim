@@ -37,7 +37,7 @@ endfor
 nnoremap <script> <buffer> <localleader>t<BS> :call vim#Cancel()<CR>
 nnoremap <script> <buffer> <localleader>t@ :echo 'Context sort disabled.'<CR>
 nnoremap <script> <buffer> <localleader>ta :call todo#Sort("")<CR>
-nnoremap <script> <buffer> <localleader>tp :call todo#Sort("+")<CR>
+nnoremap <script> <buffer> <localleader>tp :call backlog#Sort("+")<CR>
 nnoremap <script> <buffer> <localleader>td :call vim#RemoveCompleted()<CR>
 nnoremap <script> <buffer> <localleader>tt :call todo#ToggleMarkAsDone('')<CR>
 nnoremap <script> <buffer> <localleader>tu :call todo#SortDue()<CR>

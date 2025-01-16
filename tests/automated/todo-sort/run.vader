@@ -1,0 +1,18 @@
+" tests/automated/todo-sort/run.vader
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
+Given todo (Four tasks from different projects):
+  +z Text
+  +b Text
+  +a Text
+  +c Text
+
+Execute (Sort by project using the mapping):
+  normal \tp
+
+Expect (Four tasks sorted by project):
+  +a Text
+  +b Text
+  +c Text
+  +z Text
