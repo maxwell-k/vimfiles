@@ -44,14 +44,6 @@ function! vim#ConfigureModelineCompletion(choices) abort "{{{1
   let b:modeline_choices = a:choices
   set completefunc=vim#ChooseModeline
 endfunction "}}}1
-function! vim#ConfigureSimpleFolding() abort "{{{1
-  " adding a marker like {{{ effectively " hides the rest of the file
-  setlocal foldmethod=marker
-  setlocal foldlevel=0
-  setlocal foldtext=''
-  highlight clear Folded
-  highlight link Folded Comment
-endfunction "}}}1
 function! vim#Keep() abort "{{{1
   " keep only the selected lines, delete all of the others
   if line("'<") > 1

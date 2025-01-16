@@ -44,7 +44,12 @@ nnoremap <script> <buffer> <localleader>tu :call todo#SortDue()<CR>
 nnoremap <script> <buffer> <localleader>to o<C-R>=strftime("%Y-%m-%d")<CR>
 nnoremap <script> <buffer> <localleader>tO O<C-R>=strftime("%Y-%m-%d")<CR>
 
-call vim#ConfigureSimpleFolding()
+" adding a marker like {{{ effectively " hides the rest of the file
+setlocal foldmethod=marker
+setlocal foldlevel=0
+setlocal foldtext=''
+highlight clear Folded
+highlight link Folded Comment
 
 iabbrev pm\ prioritisation:must
 iabbrev ps\ prioritisation:should
