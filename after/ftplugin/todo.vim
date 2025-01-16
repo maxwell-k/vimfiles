@@ -44,15 +44,7 @@ nnoremap <script> <buffer> <localleader>tu :call todo#SortDue()<CR>
 nnoremap <script> <buffer> <localleader>to o<C-R>=strftime("%Y-%m-%d")<CR>
 nnoremap <script> <buffer> <localleader>tO O<C-R>=strftime("%Y-%m-%d")<CR>
 
-if expand('%:p') =~# '/todo.txt$'
-  call vim#ConfigureSimpleFolding()
-elseif expand('%:p') =~# '/routine.txt$'
-  call vim#ConfigureSimpleFolding()
-else
-  setlocal fillchars+=fold:\ ,
-  setlocal foldtext=vim#TodoFoldtext()
-  nnoremap <script> <buffer> <localleader>tf :call toggle#TodoFold()<CR>
-endif
+call vim#ConfigureSimpleFolding()
 
 iabbrev pm\ prioritisation:must
 iabbrev ps\ prioritisation:should
