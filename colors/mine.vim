@@ -9,6 +9,7 @@ execute 'source '.resolve(s:ayu)
 let g:colors_name='mine'
 " hex codes from pack/submodules/start/ayu/colors/ayu.vim
 " `:sort` everything below
+highlight ColorColumn guibg=#253340
 highlight CursorLine guibg=#3E4B59
 highlight Folded guibg=NONE guifg=sienna
 highlight NonText guifg=#F29718
