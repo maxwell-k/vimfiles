@@ -2,6 +2,10 @@
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
+Before (Disable folding):
+  " the buffer content is truncated if folding is enabled during tests
+  set nofoldenable
+
 Given todo (Four tasks from different projects):
   +z Text
   +b Text
@@ -16,3 +20,20 @@ Expect (Four tasks sorted by project):
   +b Text
   +c Text
   +z Text
+
+Given todo (Four tasks from different projects and a fold marker):
+  +z Text
+  {{{
+  +b Text
+  +a Text
+  +c Text
+
+Do (Sort by project using the mapping):
+  \tp
+
+Expect (No change as far as the fold marker, then three tasks sorted by project):
+  +z Text
+  {{{
+  +a Text
+  +b Text
+  +c Text
