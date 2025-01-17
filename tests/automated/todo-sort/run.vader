@@ -37,3 +37,20 @@ Expect (No change as far as the fold marker, then three tasks sorted by project)
   +a Text
   +b Text
   +c Text
+
+Given todo (Four tasks with different contexts and a fold marker):
+  +z Text @z
+  {{{
+  +b Text @y
+  +a Text @x
+  +c Text @w
+
+Do (Sort by project using the mapping):
+  \t@
+
+Expect (No change as far as the fold marker, then three tasks sorted by context):
+  +z Text @z
+  {{{
+  +c Text @w
+  +a Text @x
+  +b Text @y

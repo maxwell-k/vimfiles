@@ -35,7 +35,7 @@ endfor
 " \td and \tt are duplicates
 ":sort
 nnoremap <script> <buffer> <localleader>t<BS> :call vim#Cancel()<CR>
-nnoremap <script> <buffer> <localleader>t@ :echo 'Context sort disabled.'<CR>
+nnoremap <script> <buffer> <localleader>t@ :call backlog#Sort("@")<CR>
 nnoremap <script> <buffer> <localleader>ta :call todo#Sort("")<CR>
 nnoremap <script> <buffer> <localleader>tp :call backlog#Sort("+")<CR>
 nnoremap <script> <buffer> <localleader>td :call vim#RemoveCompleted()<CR>
