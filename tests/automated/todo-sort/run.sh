@@ -1,5 +1,5 @@
 #!/bin/sh
-# tests/automated/python/run.sh
+# tests/automated/todo-sort/run.sh
 # Copyright 2021 Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
 # For debugging use `:Vader` instead of `:Vader!`

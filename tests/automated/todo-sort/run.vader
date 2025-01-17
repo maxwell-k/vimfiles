@@ -1,0 +1,56 @@
+" tests/automated/todo-sort/run.vader
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
+Before (Disable folding):
+  " the buffer content is truncated if folding is enabled during tests
+  set nofoldenable
+
+Given todo (Four tasks from different projects):
+  +z Text
+  +b Text
+  +a Text
+  +c Text
+
+Execute (Sort by project using the mapping):
+  normal \tp
+
+Expect (Four tasks sorted by project):
+  +a Text
+  +b Text
+  +c Text
+  +z Text
+
+Given todo (Four tasks from different projects and a fold marker):
+  +z Text
+  {{{
+  +b Text
+  +a Text
+  +c Text
+
+Do (Sort by project using the mapping):
+  \tp
+
+Expect (No change as far as the fold marker, then three tasks sorted by project):
+  +z Text
+  {{{
+  +a Text
+  +b Text
+  +c Text
+
+Given todo (Four tasks with different contexts and a fold marker):
+  +z Text @z
+  {{{
+  +b Text @y
+  +a Text @x
+  +c Text @w
+
+Do (Sort by project using the mapping):
+  \t@
+
+Expect (No change as far as the fold marker, then three tasks sorted by context):
+  +z Text @z
+  {{{
+  +c Text @w
+  +a Text @x
+  +b Text @y
