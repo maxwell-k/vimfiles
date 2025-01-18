@@ -4,7 +4,7 @@
 "
 function! backlog#Sort(type = '+') abort
   let l:marker = '{{{'
-  let l:oldcursor=todo#GetCurpos()
+  let l:oldcursor = getcurpos()
   let l:lines = getline(0, line('$'))
   let l:count = count(l:lines, l:marker)
   if l:count == 0
