@@ -2,7 +2,7 @@
 " Copyright Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
-Before (Disable folding):
+Execute (Disable folding):
   " the buffer content is truncated if folding is enabled during tests
   set nofoldenable
 
