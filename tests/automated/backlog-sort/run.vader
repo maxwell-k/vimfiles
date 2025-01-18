@@ -15,7 +15,7 @@ Given todo (Four tasks from different projects):
 Execute (Sort by project using the mapping):
   normal \tp
 
-Expect (Four tasks sorted by project):
+Expect todo (Four tasks sorted by project):
   +a Text
   +b Text
   +c Text
@@ -31,7 +31,7 @@ Given todo (Four tasks from different projects and a fold marker):
 Do (Sort by project using the mapping):
   \tp
 
-Expect (No change as far as the fold marker, then three tasks sorted by project):
+Expect todo (No change as far as the fold marker, then three tasks sorted by project):
   +z Text
   {{{
   +a Text
@@ -48,7 +48,7 @@ Given todo (Four tasks with different contexts and a fold marker):
 Do (Sort by context using the mapping):
   \t@
 
-Expect (No change as far as the fold marker, then three tasks sorted by context):
+Expect todo (No change as far as the fold marker, then three tasks sorted by context):
   +z Text @z
   {{{
   +c Text @w
@@ -66,7 +66,7 @@ Given todo (Four tasks with different contexts and a two fold markers):
 Execute (Sort by project):
   call backlog#Sort('+')
 
-Expect (No change below the last fold marker, then two tasks sorted by project):
+Expect todo (No change below the last fold marker, then two tasks sorted by project):
   +z Text
   {{{
   +b Text
