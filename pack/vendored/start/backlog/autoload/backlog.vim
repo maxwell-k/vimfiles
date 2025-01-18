@@ -26,3 +26,14 @@ function! backlog#Later() abort
   call setpos('.', l:starting_position)
   let &foldenable = l:starting_foldenable
 endfunction
+
+function! backlog#Immediately() abort
+  let l:starting_position = getcurpos()
+  if count(getline(0, '$'), s:marker) == 0
+    normal! ggO{{{
+    let l:starting_position[1] += 1
+    call setpos('.', l:starting_position)
+  endif
+  move 0
+  call setpos('.', l:starting_position)
+endfunction

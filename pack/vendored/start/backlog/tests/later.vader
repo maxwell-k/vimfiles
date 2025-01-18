@@ -16,7 +16,7 @@ Given todo (Two tasks, fold marker, then three sorted tasks):
 Execute (Move task later):
   AssertEqual getcurpos(), [0, 1, 1, 0, 1], 'Starting cursor position'
   call backlog#Later()
-  Assert getcurpos() == [0, 1, 1, 0, 1], 'Unchanged cursor position'
+  AssertEqual getcurpos(), [0, 1, 1, 0, 1], 'Unchanged cursor position'
 
 Expect todo (One task, fold marker, then four sorted tasks):
   +x Text

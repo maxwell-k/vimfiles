@@ -39,3 +39,17 @@ Expect todo (Marker then two sorted tasks):
   {{{
   +a Text
   +b Text
+
+Given todo (A marker and two tasks):
+  {{{
+  +a Text
+  +b Text
+
+Do (Move the last task immediately):
+  G
+  \bi
+
+Expect todo (Marker then two sorted tasks):
+  +b Text
+  {{{
+  +a Text

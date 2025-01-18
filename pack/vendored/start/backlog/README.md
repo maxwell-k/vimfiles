@@ -19,6 +19,7 @@ Features:
 
 1. Sort the later tasks by project (default) or by context
 1. Make an immediate task "later" and sort
+1. Make a later task immediate and add any necessary marker
 
 Inspired by:
 

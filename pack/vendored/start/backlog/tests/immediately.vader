@@ -1,0 +1,23 @@
+" pack/vendored/start/backlog/tests/immediately.vader
+" Copyright Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
+Execute (Disable folding so that the buffer content is not truncated):
+  set nofoldenable
+
+Given todo (Three tasks):
+  +a Sorted
+  +b Sorted
+  +c Move
+
+Execute (Move the bottom task to the top):
+  normal G
+  AssertEqual getcurpos(), [0, 3, 1, 0, 1], 'Starting cursor position'
+  call backlog#Immediately()
+  AssertEqual getcurpos(), [0, 4, 1, 0, 1], 'Cursor position reflects new marker'
+
+Expect todo (The task is first then a marker the others):
+  +c Move
+  {{{
+  +a Sorted
+  +b Sorted

@@ -4,5 +4,6 @@
 "
 Include: sort.vader
 Include: later.vader
+Include: immediately.vader
 
 Include (Features from above via default mapping): mappings.vader
