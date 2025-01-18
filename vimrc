@@ -107,6 +107,7 @@ vnoremap <Leader>k <ESC>:call vim#Keep()<CR>
         "<Leader>p? see ftplugin/python.vim
  noremap <Leader>s :call toggle#Shiftwidth()<CR>
  noremap <Leader>S :call vim#Scriptnames()<CR>
+        "        t see ftplugin/todo.vim
  noremap <Leader>v :set paste! paste?<CR>
 call opfunc#opfuncmap('y')
  noremap <Leader>w <C-w>
