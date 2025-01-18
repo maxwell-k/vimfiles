@@ -91,8 +91,8 @@ unlet s:list_settings
      map <Leader>ah <Plug>(ale_hover)
      map <Leader>ar <Plug>(ale_rename)
      map <Leader>at <Plug>(ale_go_to_type_definition)
- noremap <Leader>b :call toggle#Colors()<CR>
 call opfunc#opfuncmap('c') " straight yank
+ noremap <Leader>C :call toggle#Colors()<CR>
  noremap <Leader>ff :call SendViaOSC52(@%)<CR>
  noremap <Leader>fF :call vim#YankPathWithTilde()<CR>
         "<Leader>g see plugin/mappings.vim
