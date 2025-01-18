@@ -26,3 +26,16 @@ Execute (Sort by project using the mapping):
 Given todo (Two tasks sorted by context):
   +a Text @a
   +a Text @z
+
+Given todo (Two tasks and a marker):
+  +a Text
+  {{{
+  +b Text
+
+Execute (Move the first task later):
+  normal \bl
+
+Expect todo (Marker then two sorted tasks):
+  {{{
+  +a Text
+  +b Text
