@@ -1,0 +1,28 @@
+" tests/automated/backlog/mappings.vader
+" Copyright Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
+Execute (Disable folding so that the buffer content is not truncated):
+  set nofoldenable
+
+Given todo (Two tasks from different projects):
+  +z Text
+  +a Text
+
+Execute (Sort by project using the mapping):
+  normal \tp
+
+Expect todo (Four tasks sorted by project):
+  +a Text
+  +z Text
+
+Given todo (Two tasks from different contexts):
+  +a Text @z
+  +a Text @a
+
+Execute (Sort by project using the mapping):
+  normal \t@
+
+Given todo (Two tasks sorted by context):
+  +a Text @a
+  +a Text @z
