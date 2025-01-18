@@ -1,5 +1,5 @@
-" tests/automated/todo-sort/run.vader
-" Copyright 2020 Keith Maxwell
+" tests/automated/backlog-sort/run.vader
+" Copyright Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
 Before (Disable folding):

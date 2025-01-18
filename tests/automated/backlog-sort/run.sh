@@ -1,6 +1,6 @@
 #!/bin/sh
-# tests/automated/todo-sort/run.sh
-# Copyright 2021 Keith Maxwell
+# tests/automated/backlog-sort/run.sh
+# Copyright Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
 # For debugging use `:Vader` instead of `:Vader!`
 vim "+packadd vader | Vader! run.vader"
