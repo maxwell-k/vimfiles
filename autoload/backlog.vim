@@ -2,7 +2,7 @@
 " Copyright Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
-function! backlog#Sort(type) abort
+function! backlog#Sort(type = '+') abort
   let l:marker = '{{{'
   let l:oldcursor=todo#GetCurpos()
   let l:lines = getline(0, line('$'))
@@ -19,5 +19,5 @@ endfunction
 
 function! backlog#Later() abort
   move $
-  call backlog#Sort('+')
+  call backlog#Sort()
 endfunction
