@@ -54,3 +54,22 @@ Expect (No change as far as the fold marker, then three tasks sorted by context)
   +c Text @w
   +a Text @x
   +b Text @y
+
+Given todo (Four tasks with different contexts and a two fold markers):
+  +z Text
+  {{{
+  +b Text
+  {{{
+  +c Text
+  +a Text
+
+Execute (Sort by project):
+  call backlog#Sort('+')
+
+Expect (No change below the last fold marker, then two tasks sorted by project):
+  +z Text
+  {{{
+  +b Text
+  {{{
+  +a Text
+  +c Text
