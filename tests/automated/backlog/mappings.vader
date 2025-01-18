@@ -9,8 +9,8 @@ Given todo (Two tasks from different projects):
   +z Text
   +a Text
 
-Execute (Sort by project using the mapping):
-  normal \bp
+Do (Sort by project using the mapping):
+  \bp
 
 Expect todo (Four tasks sorted by project):
   +a Text
@@ -20,8 +20,8 @@ Given todo (Two tasks from different contexts):
   +a Text @z
   +a Text @a
 
-Execute (Sort by project using the mapping):
-  normal \b@
+Do (Sort by project using the mapping):
+  \b@
 
 Given todo (Two tasks sorted by context):
   +a Text @a
@@ -32,8 +32,8 @@ Given todo (Two tasks and a marker):
   {{{
   +b Text
 
-Execute (Move the first task later):
-  normal \bl
+Do (Move the first task later):
+  \bl
 
 Expect todo (Marker then two sorted tasks):
   {{{
