@@ -45,7 +45,7 @@ Given todo (Four tasks with different contexts and a fold marker):
   +a Text @x
   +c Text @w
 
-Do (Sort by project using the mapping):
+Do (Sort by context using the mapping):
   \t@
 
 Expect (No change as far as the fold marker, then three tasks sorted by context):
