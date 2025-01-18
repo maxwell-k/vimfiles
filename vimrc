@@ -91,9 +91,9 @@ unlet s:list_settings
      map <Leader>ah <Plug>(ale_hover)
      map <Leader>ar <Plug>(ale_rename)
      map <Leader>at <Plug>(ale_go_to_type_definition)
- noremap <Leader>b :call toggle#Colors()<CR>
+        "<Leader>b see pack/vendored/start/backlog/plugin/mappings.vim
 call opfunc#opfuncmap('c') " straight yank
- noremap <Leader>C :call SendViaOSC52(join(getline(1,'$'),'\n'))<CR>
+ noremap <Leader>C :call toggle#Colors()<CR>
  noremap <Leader>ff :call SendViaOSC52(@%)<CR>
  noremap <Leader>fF :call vim#YankPathWithTilde()<CR>
         "<Leader>g see plugin/mappings.vim
@@ -108,6 +108,7 @@ vnoremap <Leader>k <ESC>:call vim#Keep()<CR>
         "<Leader>p? see ftplugin/python.vim
  noremap <Leader>s :call toggle#Shiftwidth()<CR>
  noremap <Leader>S :call vim#Scriptnames()<CR>
+        "        t see ftplugin/todo.vim
  noremap <Leader>v :set paste! paste?<CR>
 call opfunc#opfuncmap('y')
  noremap <Leader>w <C-w>
@@ -122,6 +123,7 @@ vnoremap <Leader>= :<C-U>call vim#Sum()<CR>
  noremap Y y$
 
 command! W ALEFix!|w|silent execute '!git add %'|redraw!
+command! C call SendViaOSC52(join(getline(1,'$'),"\n"))
 
 " Digraphs {{{1
 " --------

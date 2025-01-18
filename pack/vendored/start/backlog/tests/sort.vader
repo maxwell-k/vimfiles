@@ -1,0 +1,74 @@
+" pack/vendored/start/backlog/tests/sort.vader
+" Copyright Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
+Execute (Disable folding so that the buffer content is not truncated):
+  set nofoldenable
+
+Given todo (Four tasks from different projects):
+  +z Text
+  +b Text
+  +a Text
+  +c Text
+
+Execute (Sort with a function call using the default):
+  call backlog#Sort()
+
+Expect todo (Four tasks sorted by project):
+  +a Text
+  +b Text
+  +c Text
+  +z Text
+
+Given todo (Four tasks from different projects and a fold marker):
+  +z Text
+  {{{
+  +b Text
+  +a Text
+  +c Text
+
+Execute (Sort with a function call by project):
+  call backlog#Sort('+')
+
+Expect todo (No change as far as the fold marker, then three tasks sorted by project):
+  +z Text
+  {{{
+  +a Text
+  +b Text
+  +c Text
+
+Given todo (Four tasks with different contexts and a fold marker):
+  +z Text @z
+  {{{
+  +b Text @y
+  +a Text @x
+  +c Text @w
+
+Execute (Sort with a function call by context):
+  call backlog#Sort('@')
+
+Expect todo (No change as far as the fold marker, then three tasks sorted by context):
+  +z Text @z
+  {{{
+  +c Text @w
+  +a Text @x
+  +b Text @y
+
+Given todo (Four tasks with different contexts and two fold markers):
+  +z Text
+  {{{
+  +b Text
+  {{{
+  +c Text
+  +a Text
+
+Execute (Sort with a function call by project):
+  call backlog#Sort('+')
+
+Expect todo (No change below the last fold marker, then two tasks sorted by project):
+  +z Text
+  {{{
+  +b Text
+  {{{
+  +a Text
+  +c Text

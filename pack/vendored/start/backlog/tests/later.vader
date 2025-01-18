@@ -1,0 +1,51 @@
+" pack/vendored/start/backlog/tests/later.vader
+" Copyright Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
+Execute (Disable folding so that the buffer content is not truncated):
+  set nofoldenable
+
+Given todo (Two tasks, fold marker, then three sorted tasks):
+  +c Move
+  +x Text
+  {{{
+  +a Sorted
+  +b Sorted
+  +z Sorted
+
+Execute (Move task later):
+  AssertEqual getcurpos(), [0, 1, 1, 0, 1], 'Starting cursor position'
+  call backlog#Later()
+  AssertEqual getcurpos(), [0, 1, 1, 0, 1], 'Unchanged cursor position'
+
+Expect todo (One task, fold marker, then four sorted tasks):
+  +x Text
+  {{{
+  +a Sorted
+  +b Sorted
+  +c Move
+  +z Sorted
+
+Given todo (A task, a fold marker, twice, then three sorted tasks):
+  +c Move
+  {{{
+  +x Text
+  {{{
+  +a Sorted
+  +b Sorted
+  +z Sorted
+
+Execute (Move task later):
+  " The bug under test only appears with foldenable set
+  set foldenable
+  call backlog#Later()
+  set nofoldenable
+
+Expect todo (Fold marke, a task, fold marker, then four sorted tasks):
+  {{{
+  +x Text
+  {{{
+  +a Sorted
+  +b Sorted
+  +c Move
+  +z Sorted

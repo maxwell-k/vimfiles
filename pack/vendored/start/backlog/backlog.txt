@@ -1,0 +1,7 @@
+2025-01-01 +project Immediate task
+{{{
+2025-01-01 +project Task
+{{{
+2025-01-01 +project-1 Later task
+2025-01-01 +project-2 Later task @context-2
+2025-01-01 +project-3 Later task @context-1
