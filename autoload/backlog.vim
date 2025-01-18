@@ -18,6 +18,8 @@ function! backlog#Sort(type = '+') abort
 endfunction
 
 function! backlog#Later() abort
+  let l:starting_position = getcurpos()
   move $
   call backlog#Sort()
+  call setpos('.', l:starting_position)
 endfunction
