@@ -1,4 +1,4 @@
-" autoload/backlog.vim
+" pack/vendored/start/backlog/autoload/backlog.vim
 " Copyright Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "

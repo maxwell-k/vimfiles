@@ -1,4 +1,4 @@
-" tests/automated/backlog-sort/run.vader
+" tests/automated/backlog/sort.vader
 " Copyright Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "

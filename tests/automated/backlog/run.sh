@@ -1,5 +1,5 @@
 #!/bin/sh
-# tests/automated/backlog-sort/run.sh
+# tests/automated/backlog/run.sh
 # Copyright Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
 # For debugging use `:Vader` instead of `:Vader!`
