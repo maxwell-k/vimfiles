@@ -10,7 +10,7 @@ Given todo (Two tasks from different projects):
   +a Text
 
 Execute (Sort by project using the mapping):
-  normal \tp
+  normal \bp
 
 Expect todo (Four tasks sorted by project):
   +a Text
@@ -21,7 +21,7 @@ Given todo (Two tasks from different contexts):
   +a Text @a
 
 Execute (Sort by project using the mapping):
-  normal \t@
+  normal \b@
 
 Given todo (Two tasks sorted by context):
   +a Text @a
