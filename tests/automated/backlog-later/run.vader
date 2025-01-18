@@ -1,0 +1,26 @@
+" tests/automated/backlog-sort/run.vader
+" Copyright Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
+Execute (Disable folding):
+  " the buffer content is truncated if folding is enabled during tests
+  set nofoldenable
+
+Given todo (Two tasks, fold marker, then three sorted tasks):
+  +c Move
+  +x Text
+  {{{
+  +a Sorted
+  +b Sorted
+  +z Sorted
+
+Execute (Move task later):
+  call backlog#Later()
+
+Expect todo (One task, fold marker, then four sorted tasks):
+  +x Text
+  {{{
+  +a Sorted
+  +b Sorted
+  +c Move
+  +z Sorted

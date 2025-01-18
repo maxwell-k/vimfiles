@@ -16,3 +16,8 @@ function! backlog#Sort(type) abort
   execute ':' . (l:index + 1) . ',$sort /.\{-}\ze' . a:type . '/'
   call setpos('.', l:oldcursor)
 endfunction
+
+function! backlog#Later() abort
+  move $
+  call backlog#Sort('+')
+endfunction
