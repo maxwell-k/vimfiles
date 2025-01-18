@@ -25,3 +25,27 @@ Expect todo (One task, fold marker, then four sorted tasks):
   +b Sorted
   +c Move
   +z Sorted
+
+Given todo (A task, a fold marker, twice, then three sorted tasks):
+  +c Move
+  {{{
+  +x Text
+  {{{
+  +a Sorted
+  +b Sorted
+  +z Sorted
+
+Execute (Move task later):
+  " The bug under test only appears with foldenable set
+  set foldenable
+  call backlog#Later()
+  set nofoldenable
+
+Expect todo (Fold marke, a task, fold marker, then four sorted tasks):
+  {{{
+  +x Text
+  {{{
+  +a Sorted
+  +b Sorted
+  +c Move
+  +z Sorted

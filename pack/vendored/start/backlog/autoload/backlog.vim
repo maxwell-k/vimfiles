@@ -18,8 +18,11 @@ function! backlog#Sort(type = '+') abort
 endfunction
 
 function! backlog#Later() abort
+  let l:starting_foldenable = &foldenable
   let l:starting_position = getcurpos()
+  set nofoldenable
   move $
   call backlog#Sort()
   call setpos('.', l:starting_position)
+  let &foldenable = l:starting_foldenable
 endfunction
