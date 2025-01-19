@@ -48,7 +48,7 @@ Command to connect:
 
 Install Homebrew following <https://brew.sh/>; including adding to `~/.zshrc`
 
-Commands to install required prerequisites and to symlink `node` and `npm` to
+Commands to install necessary prerequisites and to symlink `node` and `npm` to
 Node JS 22:
 
     brew install ansible uv node@22 \
