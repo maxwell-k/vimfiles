@@ -17,16 +17,15 @@ config:
       - git
     runcmd:
       - [mkdir, --parents, /home/maxwell-k/.local/bin]
-      - - curl
-        - --output
-        - /home/maxwell-k/.zshenv
-        - https://raw.githubusercontent.com/maxwell-k/dotfiles/refs/heads/main/dotfiles/zshenv
       - - chown
         - maxwell-k:maxwell-k
         - /home/maxwell-k/.local
         - /home/maxwell-k/.local/bin
-        - /home/maxwell-k/.zshenv
     write_files:
+      - path: /etc/zshenv
+        # the origin on Fedora 31 has only comments
+        content: |
+          export PATH="$HOME/.local/bin:$PATH"
       - path: /etc/ansible/hosts
         content: |
           ::1 ansible_connection=local ansible_python_interpreter=auto

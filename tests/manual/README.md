@@ -48,7 +48,7 @@ Command to connect:
 
 Install Homebrew following <https://brew.sh/>; including adding to `~/.zshrc`
 
-Commands to install required prerequisites and to symlink `node` and `npm` to
+Commands to install necessary prerequisites and to symlink `node` and `npm` to
 Node JS 22:
 
     brew install ansible uv node@22 \
@@ -67,8 +67,8 @@ Commands to run the automated test suite:
 ## Testing using Incus and Fedora 41
 
 Commands to launch a container, wait for it to start, start the SSH daemon,
-mount this directory, clear any stored SSH host keys, mount this directory and
-clear any stored SSH host keys:
+mount this directory, clear any stored SSH host keys, and configure the terminal
+description:
 
     incus launch images:fedora/41/cloud c1 < \
       tests/manual/incus-fedora-41.yaml \
@@ -76,11 +76,8 @@ clear any stored SSH host keys:
         sh -c "until systemctl is-system-running >/dev/null 2>&1 ; do : ; done" \
     && incus exec c1 -- systemctl start sshd.service
     && incus config device add c1 vimfiles disk source=$PWD path=$PWD shift=true \
-    && ssh-keygen -R c1.incus
-
-Command to set up `~/.terminfo` — see also [this Ghostty documentation]:
-
-    infocmp -x | ssh c1.incus -- tic -x -
+    && ssh-keygen -R c1.incus \
+    && infocmp -x | ssh c1.incus -- tic -x -
 
 Command to connect:
 
