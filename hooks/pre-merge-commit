@@ -33,7 +33,7 @@ if __name__ == "__main__":
     # don't run the pre-commit hook, as it prevents committing to main
     # instead run a script that is installed via
     # <https://github.com/maxwell-k/dotfiles/>, specifically
-    # <https://github.com/maxwell-k/dotfiles/blob/main/dotdrop/local/bin/lint-all>
+    # <https://github.com/maxwell-k/dotfiles/blob/main/dotfiles/local/bin/lint-all>
     executable = which('lint-all')
     if executable:
         execvp(executable, (executable,))
