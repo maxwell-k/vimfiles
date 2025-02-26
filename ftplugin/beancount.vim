@@ -16,3 +16,6 @@ let b:ale_fixers = ['beanformat', 'trim_whitespace']
 " bean_check ale_linter is from https://github.com/nathangrigg/vim-beancount
 let b:ale_linters=['bean_check']
 let g:beancount_account_completion = 'chunks'
+
+" optionally load a file called abbreviations in the same directory
+execute ':silent! source '.expand('%:p:h').'/abbreviations.vim'

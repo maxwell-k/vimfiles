@@ -1,3 +1,6 @@
+# autoload functions stored outside this version control repository
+/autoload/gitignored.vim
+
 # filetype settings stored outside this version control repository
 /filetype.gitignored.vim
 
