@@ -3,6 +3,9 @@ scriptencoding utf-8
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
+" All custom colours for todo.txt are in after/syntax/todo.vim so there is a
+" single level of priority
+"
 let s:ayu =expand('<sfile>:h').'/../pack/submodules/start/ayu/colors/ayu.vim'
 execute 'source '.resolve(s:ayu)
 
@@ -20,12 +23,3 @@ highlight SpellRare cterm=NONE
 highlight Statement guifg=#E6B673
 highlight StatusLine guibg=#828C99 guifg=#14191F
 highlight StatusLineNC guibg=#3E4B59 guifg=#000000
-highlight ToDoOverDueDate cterm=bold guifg=#F07178
-highlight ToDoPriorityA cterm=bold
-highlight TodoProject guifg=sienna
-highlight link ToDoPriorityB NONE
-highlight link ToDoPriorityC NONE
-highlight link TodoCode String
-highlight link TodoEmail Underlined
-highlight link TodoKey SpellRare
-highlight link TodoURL Underlined
