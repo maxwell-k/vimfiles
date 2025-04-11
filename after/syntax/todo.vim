@@ -1,7 +1,8 @@
 " after/syntax/todo.vim
-" Copyright 2022 Keith Maxwell
+" Copyright 2025 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
-" Avoid key:value syntax clashing with links like https://... {{{1
+" Custom syntax rules {{{1
+" Avoid key:value syntax clashing with links like https://... {{{2
 "
 " The original syntax pattern for this syntax matches markdown link syntax
 " like the example below:
@@ -44,7 +45,7 @@ highlight default link TodoDue Special
 syntax clear TodoDueToday TodoOverDueDate
 " Use different group names, with an After suffix, to avoid confusion
 " contains= in definitions like TodoPriorityZ
-" Handle start dates similarly to due dates {{{1
+" Handle start dates similarly to due dates {{{2
 execute 'syntax match TodoOverDueDateAfter /'
   \ . todo#GetDateRegexForPastDates() . '/ contained containedin=TodoDue'
 execute 'syntax match TodoOverStartDate /'
@@ -53,53 +54,87 @@ execute 'syntax match TodoDueTodayAfter /' . strftime('%Y\-%m\-%d')
   \ . '/ contained containedin=TodoDue'
 execute 'syntax match TodoStartToday /' . strftime('%Y\-%m\-%d')
   \ . '/ contained containedin=TodoStart'
+highlight default ToDoOverDueDateAfter cterm=bold
+highlight default TodoOverDueDateAfter cterm=bold
+highlight default link TodoStartToday TodoDueTodayAfter
 
 syntax match TodoStart '\Cstart:[^ \t/]\+'
   \ containedin=ALLBUT,TodoDone,TodoCancel
-highlight default TodoOverStartDate cterm=bold guifg=#F07178
-highlight default link TodoDue Special
 highlight default link TodoStart Special
-highlight default link TodoOverDueDateAfter TodoOverStartDate
-highlight default link TodoStartToday Todo
-highlight default link TodoDueTodayAfter Todo
 
-" Do not check spelling or highlight dates in done items {{{1
+" Do not check spelling or highlight dates in done items {{{2
 syntax clear TodoDone
 syntax match TodoDone /^[x]\s.\+$/
-  \ contains=@NoSpell,TodoProject,TodoContext,TodoCancel
+  \ contains=@NoSpell,TodoCancel
 
-" Strike through cancelled items {{{1
+" Strike through cancelled items {{{2
 syntax region TodoCancel start=/\~\~/ end=/\~\~/ contains=@NoSpell
-highlight default TodoCancel cterm=strikethrough guifg=#5C6773
+highlight default TodoCancel cterm=strikethrough
 
-" Highlight markers for recurring tasks like rec:1d {{{1
+" Markers for recurring tasks like rec:1d {{{2
 syntax match TodoRec 'rec:[^ \t/]\S*' containedin=ALLBUT,TodoCode
   \ contains=@NoSpell
-highlight default link TodoRec Special
 
-" Do not spell check email address like: <mail@example.org> {{{1
+" Do not spell check email address like: <mail@example.org> {{{2
 syntax match TodoEmail =<[^>]\+@[^>]\+>=hs=s+1,he=e-1 containedin=ALL
   \ contains=@NoSpell
 
-" Do not spell check code fragments like `ls directory/` {{{1
+" Do not spell check code fragments like `ls directory/` {{{2
 syntax match TodoCode =`[^`]\+`=
   \ containedin=ALLBUT,TodoCode,TodoCancel,TodoDone
   \ contains=@NoSpell
 
-" Highlight finished today and yesterday {{{1
+" Highlight finished today and yesterday {{{2
 execute 'syntax match TodoDoneToday / ' .
   \strftime('%Y\-%m\-%d')
   \. ' / contained containedin=TodoDone'
-highlight default TodoDoneToday guifg=SeaGreen cterm=bold
 execute 'syntax match TodoDoneYesterday / ' .
   \strftime('%Y\-%m\-%d', localtime()- 24*60*60)
   \. ' / contained containedin=TodoDone'
-highlight default TodoDoneYesterday guifg=SeaGreen
+highlight default TodoDoneToday cterm=bold
 
-" Projects are all lowercase and not spell checked {{{1
+" Projects are all lowercase and not spell checked {{{2
 syntax clear TodoProject
 syntax match TodoProject /+[a-z0-9\-]\+\C/ contains=@NoSpell
-" Folding marker {{{1
+
+" Folding marker {{{2
 syntax match TodoFoldMarker /^{{{$/
 highlight default link TodoFoldMarker Comment
+
+" Bespoke formatting {{{1
+" hex codes from pack/submodules/start/ayu/colors/ayu.vim
+highlight clear TodoDate
+highlight link TodoDate NONE
+highlight TodoDate cterm=italic
+
+highlight clear TodoCode
+
+highlight TodoPriorityA cterm=bold
+highlight link ToDoPriorityB NONE
+highlight link ToDoPriorityC NONE
+
+highlight link TodoEmail NONE
+highlight TodoEmail cterm=underline
+
+highlight link TodoURL NONE
+highlight TodoURL cterm=underline
+
+highlight link TodoKey SpellRare
+
+highlight TodoProject guifg=NONE cterm=bold
+
+highlight TodoCancel guifg=#5C6773
+
+highlight link TodoRec Comment " recurring tasks e.g. rec:1d
+
+highlight link TodoContext NONE
+highlight TodoContext guifg=#95E6CB
+
+" Dates {{{2
+highlight ToDoOverDueDateAfter cterm=bold guifg=#F07178
+highlight TodoDoneToday guifg=SeaGreen cterm=bold
+highlight TodoDoneYesterday guifg=SeaGreen
+highlight TodoDueTodayAfter guifg=lightgreen
+highlight TodoOverStartDate guifg=#F07178
+
 " vim: set foldmethod=marker foldlevel=0 : {{{1
