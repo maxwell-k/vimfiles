@@ -37,7 +37,7 @@ syntax clear TodoKey
 syntax match TodoKey '[^ \t`]\+:[^ \t/]\+'
 syntax match TodoDue '\Cdue:[^ \t/]\+'
   \ containedin=ALLBUT,TodoDone,TodoCancel
-highlight default link TodoDue Special
+highlight default link TodoDue SpellRare
 " These changes ruin some of the date highlighting functionality, for example
 " the due dates on the three lines below should be highlighted differently:
 "
@@ -63,7 +63,7 @@ highlight default link TodoStartToday TodoDueTodayAfter
 
 syntax match TodoStart '\Cstart:[^ \t/]\+'
   \ containedin=ALLBUT,TodoDone,TodoCancel
-highlight default link TodoStart Special
+highlight default link TodoStart SpellRare
 
 " Do not check spelling or highlight dates in done items {{{2
 syntax clear TodoDone
@@ -123,7 +123,7 @@ highlight link ToDoPriorityC NONE
 highlight link TodoURL NONE
 highlight TodoURL cterm=underline
 
-highlight link TodoKey SpellRare
+highlight link TodoKey Special
 
 highlight TodoProject guifg=NONE cterm=bold
 
