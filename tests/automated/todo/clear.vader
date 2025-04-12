@@ -1,0 +1,14 @@
+" tests/automated/todo/clear.vader
+" Copyright 2025 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
+Given todo (A single task in todo.txt format):
+  Task one
+
+Do (no-op):
+
+Then (Assertions):
+  AssertEqual 'todo', &filetype
+  AssertEqual
+    \ '--- Syntax items ---',
+    \ maktaba#string#Strip(execute('syntax list TodoThresholdDate'))

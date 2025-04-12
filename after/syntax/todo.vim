@@ -2,6 +2,10 @@
 " Copyright 2025 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 " Custom syntax rules {{{1
+" Remove unused TodoThresholdDate syntax group {{{2
+syntax clear TodoThresholdDate
+highlight clear TodoThresholdDate
+highlight link TodoThresholdDate NONE
 " Avoid key:value syntax clashing with links like https://... {{{2
 "
 " The original syntax pattern for this syntax matches markdown link syntax
@@ -54,7 +58,6 @@ execute 'syntax match TodoDueTodayAfter /' . strftime('%Y\-%m\-%d')
   \ . '/ contained containedin=TodoDue'
 execute 'syntax match TodoStartToday /' . strftime('%Y\-%m\-%d')
   \ . '/ contained containedin=TodoStart'
-highlight default ToDoOverDueDateAfter cterm=bold
 highlight default TodoOverDueDateAfter cterm=bold
 highlight default link TodoStartToday TodoDueTodayAfter
 
@@ -75,8 +78,9 @@ highlight default TodoCancel cterm=strikethrough
 syntax match TodoRec 'rec:[^ \t/]\S*' containedin=ALLBUT,TodoCode
   \ contains=@NoSpell
 
-" Do not spell check email address like: <mail@example.org> {{{2
-syntax match TodoEmail =<[^>]\+@[^>]\+>=hs=s+1,he=e-1 containedin=ALL
+" Email address highlighted like URLS without spell check {{{2
+" e.g. <mail@example.org>
+syntax match TodoURL =<[^>]\+@[^>]\+>=hs=s+1,he=e-1 containedin=ALL
   \ contains=@NoSpell
 
 " Do not spell check code fragments like `ls directory/` {{{2
@@ -112,9 +116,6 @@ highlight clear TodoCode
 highlight TodoPriorityA cterm=bold
 highlight link ToDoPriorityB NONE
 highlight link ToDoPriorityC NONE
-
-highlight link TodoEmail NONE
-highlight TodoEmail cterm=underline
 
 highlight link TodoURL NONE
 highlight TodoURL cterm=underline
