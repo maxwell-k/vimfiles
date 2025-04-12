@@ -78,8 +78,9 @@ highlight default TodoCancel cterm=strikethrough
 syntax match TodoRec 'rec:[^ \t/]\S*' containedin=ALLBUT,TodoCode
   \ contains=@NoSpell
 
-" Do not spell check email address like: <mail@example.org> {{{2
-syntax match TodoEmail =<[^>]\+@[^>]\+>=hs=s+1,he=e-1 containedin=ALL
+" Email address highlighted like URLS without spell check {{{2
+" e.g. <mail@example.org>
+syntax match TodoURL =<[^>]\+@[^>]\+>=hs=s+1,he=e-1 containedin=ALL
   \ contains=@NoSpell
 
 " Do not spell check code fragments like `ls directory/` {{{2
@@ -115,9 +116,6 @@ highlight clear TodoCode
 highlight TodoPriorityA cterm=bold
 highlight link ToDoPriorityB NONE
 highlight link ToDoPriorityC NONE
-
-highlight link TodoEmail NONE
-highlight TodoEmail cterm=underline
 
 highlight link TodoURL NONE
 highlight TodoURL cterm=underline
