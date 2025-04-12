@@ -28,10 +28,13 @@ highlight link TodoThresholdDate NONE
 " ./tests/manual/todo.txt
 " ./pack/submodules/opt/todo.txt/syntax/todo.vim
 "
-syntax match TodoURL = https\?://\S*=ms=s+1 containedin=ALL
+syntax match TodoURL = https\?://\S*=ms=s+1
+  \ containedin=ALLBUT,TodoDone,TodoCancel
   \ contains=@NoSpell
-syntax match TodoURL =[<(]\?https\?://\S*[>)]=hs=s+1,he=e-1 containedin=ALL
+syntax match TodoURL =[<(]\?https\?://\S*[>)]=hs=s+1,he=e-1
+  \ containedin=ALLBUT,TodoDone,TodoCancel
   \ contains=@NoSpell
+
 syntax clear TodoKey
 " The original pattern was: '\S*\S:\S\S*'
 syntax match TodoKey '[^ \t`]\+:[^ \t/]\+'
