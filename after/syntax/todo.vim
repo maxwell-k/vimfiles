@@ -2,6 +2,10 @@
 " Copyright 2025 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 " Custom syntax rules {{{1
+" Remove unused TodoThresholdDate syntax group {{{2
+syntax clear TodoThresholdDate
+highlight clear TodoThresholdDate
+highlight link TodoThresholdDate NONE
 " Avoid key:value syntax clashing with links like https://... {{{2
 "
 " The original syntax pattern for this syntax matches markdown link syntax
