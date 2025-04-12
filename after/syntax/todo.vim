@@ -54,7 +54,6 @@ execute 'syntax match TodoDueTodayAfter /' . strftime('%Y\-%m\-%d')
   \ . '/ contained containedin=TodoDue'
 execute 'syntax match TodoStartToday /' . strftime('%Y\-%m\-%d')
   \ . '/ contained containedin=TodoStart'
-highlight default ToDoOverDueDateAfter cterm=bold
 highlight default TodoOverDueDateAfter cterm=bold
 highlight default link TodoStartToday TodoDueTodayAfter
 
