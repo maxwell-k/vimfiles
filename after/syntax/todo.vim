@@ -101,6 +101,9 @@ highlight default TodoDoneToday cterm=bold
 syntax clear TodoProject
 syntax match TodoProject /+[a-z0-9\-]\+\C/ contains=@NoSpell
 
+" Fix TodoContext, do not include a space before the @ {{{2
+syntax clear TodoContext
+syntax match TodoContext '@[^[:blank:]]\+' contains=NONE
 " Folding marker {{{2
 syntax match TodoFoldMarker /^{{{$/
 highlight default link TodoFoldMarker Comment
