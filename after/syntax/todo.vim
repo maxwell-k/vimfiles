@@ -50,15 +50,25 @@ syntax clear TodoDueToday TodoOverDueDate
 " Use different group names, with an After suffix, to avoid confusion
 " contains= in definitions like TodoPriorityZ
 " Handle start dates similarly to due dates {{{2
+syntax clear TodoOverDueDate
+highlight clear TodoOverDueDate
+highlight link TodoOverDueDate NONE
 execute 'syntax match TodoOverDueDateAfter /'
   \ . todo#GetDateRegexForPastDates() . '/ contained containedin=TodoDue'
-execute 'syntax match TodoOverStartDate /'
-  \ . todo#GetDateRegexForPastDates() . '>/ contained containedin=TodoStart'
+highlight default TodoOverDueDateAfter cterm=bold
+
+syntax clear TodoDueToday
+highlight clear TodoDueToday
+highlight link TodoDueToday NONE
 execute 'syntax match TodoDueTodayAfter /' . strftime('%Y\-%m\-%d')
   \ . '/ contained containedin=TodoDue'
+
+execute 'syntax match TodoOverStartDate /'
+  \ . todo#GetDateRegexForPastDates() . '>/ contained containedin=TodoStart'
+highlight default link TodoOverStartDate Todo
+
 execute 'syntax match TodoStartToday /' . strftime('%Y\-%m\-%d')
   \ . '/ contained containedin=TodoStart'
-highlight default TodoOverDueDateAfter cterm=bold
 highlight default link TodoStartToday TodoDueTodayAfter
 
 syntax match TodoStart '\Cstart:[^ \t/]\+'
@@ -139,6 +149,5 @@ highlight ToDoOverDueDateAfter cterm=bold guifg=#F07178
 highlight TodoDoneToday guifg=SeaGreen cterm=bold
 highlight TodoDoneYesterday guifg=SeaGreen
 highlight TodoDueTodayAfter guifg=lightgreen
-highlight TodoOverStartDate guifg=#F07178
 
 " vim: set foldmethod=marker foldlevel=0 : {{{1
