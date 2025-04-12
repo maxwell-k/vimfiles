@@ -32,7 +32,6 @@ for s:i in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
   execute substitute(s:cmd, '�', s:i, 'g')
 endfor
 
-" \td and \tt are duplicates
 ":sort
 nnoremap <script> <buffer> <localleader>t<BS> :call vim#Cancel()<CR>
 nnoremap <script> <buffer> <localleader>ta :call todo#Sort("")<CR>
