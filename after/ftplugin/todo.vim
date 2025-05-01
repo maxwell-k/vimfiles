@@ -34,12 +34,13 @@ endfor
 
 ":sort
 nnoremap <script> <buffer> <localleader>t<BS> :call vim#Cancel()<CR>
+nnoremap <script> <buffer> <localleader>tD :call vim#RemoveCompleted()<CR>
+nnoremap <script> <buffer> <localleader>tO O<C-R>=strftime("%Y-%m-%d")<CR>
 nnoremap <script> <buffer> <localleader>ta :call todo#Sort("")<CR>
-nnoremap <script> <buffer> <localleader>td :call vim#RemoveCompleted()<CR>
+nnoremap <script> <buffer> <localleader>td :call todo#ToggleMarkAsDone('')<CR>j
+nnoremap <script> <buffer> <localleader>to o<C-R>=strftime("%Y-%m-%d")<CR>
 nnoremap <script> <buffer> <localleader>tt :call todo#ToggleMarkAsDone('')<CR>j
 nnoremap <script> <buffer> <localleader>tu :call todo#SortDue()<CR>
-nnoremap <script> <buffer> <localleader>to o<C-R>=strftime("%Y-%m-%d")<CR>
-nnoremap <script> <buffer> <localleader>tO O<C-R>=strftime("%Y-%m-%d")<CR>
 " See also pack/vendored/start/backlog/plugin/mappings.vim
 
 " adding a marker like {{{ effectively " hides the rest of the file
@@ -48,13 +49,3 @@ setlocal foldlevel=0
 setlocal foldtext=''
 highlight clear Folded
 highlight link Folded Comment
-
-iabbrev pm\ prioritisation:must
-iabbrev ps\ prioritisation:should
-iabbrev pc\ prioritisation:could
-iabbrev pw\ prioritisation:will-not
-
-iabbrev wt\ when:tomorrow
-iabbrev ws\ when:soon
-iabbrev wl\ when:later
-iabbrev wm\ when:someday-maybe
