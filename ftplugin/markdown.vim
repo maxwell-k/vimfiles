@@ -8,7 +8,11 @@ setlocal spell
 setlocal suffixesadd+=.md
 setlocal textwidth=80
 
-let b:ale_fixers = get(b:, 'ale_fixers', []) + ['prettier']
+let b:ale_fixers = get(b:, 'ale_fixers', [])
+if index(b:ale_fixers, 'prettier') == -1
+  let b:ale_fixers += ['prettier']
+endif
+
 let b:ale_javascript_prettier_options = '--prose-wrap always'
 
 
