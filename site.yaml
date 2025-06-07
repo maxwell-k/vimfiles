@@ -164,6 +164,7 @@
       changed_when: true
       loop:
         - reuse --version
+        - usort --version
         - --from=cogapp cog -v
         - urlscan --version
         - >
