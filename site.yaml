@@ -165,6 +165,7 @@
       loop:
         - reuse --version
         - usort --version
+        - ruff --version
         - --from=cogapp cog -v
         - urlscan --version
         - >
