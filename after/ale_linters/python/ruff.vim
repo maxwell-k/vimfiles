@@ -4,23 +4,8 @@
 " after/ale_linters/python/ruff.vim
 " See also pack/submodules/start/ale/ale_linters/python/ruff.vim
 
-" These changes mean that ruff will be run:
-" 1. From a virtual environment or
-" 2. via $PATH or
-" 3. via `uv tool run`.
-
 function! ale_linters#python#ruff#GetExecutable(buffer) abort
-
-    " See also:
-    " pack/submodules/start/ale/ale_linters/python/ruff.vim
-    " pack/submodules/start/ale/autoload/ale/python.vim
-    let l:result = ale#python#FindExecutable(a:buffer, 'python_ruff', ['ruff'])
-
-    if l:result ==# 'ruff' && !executable('ruff')
-        let l:result = 'uv'
-    endif
-
-    return l:result
+    return python#ExecutableOrUv(a:buffer, 'ruff')
 endfunction
 
 function! ale_linters#python#ruff#GetCommand(buffer, version) abort
