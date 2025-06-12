@@ -33,3 +33,26 @@ function! python#documentation() abort
   let l:name = input(l:head, l:tail)
   execute ':!'.l:head.l:name
 endfunction
+function! python#ExecutableOrUv(buffer, tool) abort
+" Facilitate running a tool like ruff:
+" 1. From a virtual environment or
+" 2. via $PATH or
+" 3. via `uv tool run`.
+
+" See also:
+" after/ale_linters/python/ruff.vim
+" pack/submodules/start/ale/ale_linters/python/ruff.vim
+" pack/submodules/start/ale/autoload/ale/python.vim
+
+    let l:result = ale#python#FindExecutable(
+    \ a:buffer,
+    \ 'python_' . a:tool,
+    \ [a:tool]
+    \ )
+
+    if l:result ==# a:tool && !executable(a:tool)
+        let l:result = 'uv'
+    endif
+
+    return l:result
+endfunction

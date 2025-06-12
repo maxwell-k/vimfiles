@@ -4,9 +4,6 @@
 # filetype settings stored outside this version control repository
 /filetype.gitignored.vim
 
-# ftplugin settings stored outside this version control repository
-/reorder.gitignored.vim
-
 # script to source mappings from outside this repository
 /plugin/mappings.vim
 
@@ -42,3 +39,6 @@
 # latest version from https://github.com/vim/vim/blob/master/runtime/syntax/yaml.vim
 # to include https://github.com/vim/vim/commit/aa495124f80812b9c8c1942e6c4f9ce2242ea01f
 /syntax/yaml.vim
+
+# created by ansible-lint
+/.ansible/
