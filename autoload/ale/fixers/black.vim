@@ -3,7 +3,7 @@
 " SPDX-License-Identifier: MPL-2.0
 " autoload/ale/fixers/black.vim
 
-source pack/submodules/start/ale/autoload/ale/fixers/black.vim
+runtime pack/submodules/start/ale/autoload/ale/fixers/black.vim
 
 " See also after/ale_linters/python/ruff.vim and autoload/python.vim
 function! ale#fixers#black#GetExecutable(buffer) abort
