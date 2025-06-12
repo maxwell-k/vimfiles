@@ -1,11 +1,11 @@
-" Changes to use `uv --offline tool run ruff`
+" Changes to sometimes use `uv --offline tool run ruff`
 " Copyright 2025 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 " after/ale_linters/python/ruff.vim
 " See also pack/submodules/start/ale/ale_linters/python/ruff.vim
 
 function! ale_linters#python#ruff#GetExecutable(buffer) abort
-    return python#ExecutableOrUv(a:buffer, 'ruff')
+    return python#ExecutableOrUv(a:buffer, 'ruff') " See autoload/python.vim
 endfunction
 
 function! ale_linters#python#ruff#GetCommand(buffer, version) abort

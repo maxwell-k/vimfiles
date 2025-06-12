@@ -166,6 +166,7 @@
         - reuse --version
         - usort --version
         - ruff --version
+        - black --version
         - --from=cogapp cog -v
         - urlscan --version
         - >
