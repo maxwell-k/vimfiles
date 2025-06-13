@@ -11,7 +11,7 @@ setlocal softtabstop=4
 setlocal suffixesadd+=.py
 unlet! b:ale_fixers  " reset for use in autoload/toggle.vim
 call toggle#PythonLinters('default')
-noremap <Leader>pp :call toggle#Python()<CR>
+noremap <Leader>pp :call toggle#PythonFiletype()<CR>
 noremap <Leader>pl :call toggle#PythonLinters()<CR>
 noremap <Leader>pt
   \ :exec 'new '. substitute(expand('%'), '.py$', '_test.py', '')<CR>

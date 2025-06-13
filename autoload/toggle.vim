@@ -50,7 +50,7 @@ function! toggle#List(default_settings) abort "{{{1
   end
   redraw
 endfunction "}}}1
-function! toggle#Python() abort "{{{1
+function! toggle#PythonFiletype() abort "{{{1
   if &filetype ==# 'python'
     setlocal filetype=python.black
   elseif &filetype ==# 'python.black'
