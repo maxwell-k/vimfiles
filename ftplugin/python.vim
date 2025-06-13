@@ -2,11 +2,10 @@
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
-" Python filetype settings for working on any Python code
-"
 setlocal commentstring=#\ %s
 setlocal foldmethod=indent
 setlocal foldtext=python#foldtext()
+setlocal nowrap
 setlocal shiftwidth=4
 setlocal softtabstop=4
 setlocal suffixesadd+=.py
