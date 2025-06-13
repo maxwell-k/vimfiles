@@ -5,7 +5,8 @@
 " Python filetype settings for working on any Python code
 "
 setlocal commentstring=#\ %s
-setlocal foldtext=PythonFoldText()
+setlocal foldmethod=indent
+setlocal foldtext=python#foldtext()
 setlocal shiftwidth=4
 setlocal softtabstop=4
 setlocal suffixesadd+=.py
