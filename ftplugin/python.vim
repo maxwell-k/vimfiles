@@ -19,26 +19,28 @@ noremap <Leader>pT
   \ :exec 'above new '. substitute(expand('%'), '_test.py$', '.py', '')<CR>
 noremap K :call python#documentation()<CR>
 
-" Settings for https://github.com/vim-test/vim-test
-packadd test-vim
-let g:test#python#runner = 'pyunit'
-let g:test#python#pyunit#executable = 'py -m unittest'
-let g:test#python#pyunit#file_pattern = '\v^.*_test.py$'
-"let g:test#python#runner = 'pytest'
-"let g:test#python#pytest#executable = 'py -m pytest'
-let g:shtuff_receiver = 'test'
-let g:test#strategy = 'shtuff'
-let g:test#preserve_screen = 1
+if executable('shtuff')
+  " Pre-requisites:
+  " uv tool install shtuff
+  " mkdir --parents pack/gitignored/opt
+  " git -C pack/gitignored/opt clone https://github.com/vim-test/vim-test.git
+  packadd vim-test
+  let g:test#strategy = 'shtuff'
+  let g:shtuff_receiver = 'test'
+  let g:test#preserve_screen = 1
+  let g:test#python#runner = 'pyunit'
+  let g:test#python#pyunit#executable = 'py -m unittest'
+  let g:test#python#pyunit#file_pattern = '\v^.*_test.py$'
+  "let g:test#python#runner = 'pytest'
+  "let g:test#python#pytest#executable = 'py -m pytest'
 
-
-nmap <silent> <leader>t :TestNearest<CR>
-nmap <silent> <leader>T :TestFile<CR>
-
-function! TestOnWrite() range abort "{{{1
-  augroup test
-    autocmd!
-    autocmd BufWrite * if test#exists() |
-      \   TestFile |
-      \ endif
-  augroup END
-endfunction "}}}1
+  function! TestOnWrite() range abort "{{{1
+    " Configure an autogroup to test on write
+    augroup test
+      autocmd!
+      autocmd BufWrite * if test#exists() |
+        \   TestFile |
+        \ endif
+    augroup END
+  endfunction "}}}1
+endif
