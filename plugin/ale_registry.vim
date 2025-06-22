@@ -4,9 +4,15 @@
 let s:entries = {}
 " autoload/ale/fixers/sort.vim
 let s:entries['sort'] = {
-\   'function': 'ale#fixers#sort#Fix',
-\   'suggested_filetypes': ['gitignore'],
-\   'description': 'Sort with `sort` from PATH and LC_ALL=C',
+\ 'function': 'ale#fixers#sort#Fix',
+\ 'suggested_filetypes': ['gitignore'],
+\ 'description': 'Sort with `sort` from PATH and LC_ALL=C',
+\ }
+" autoload/ale/fixers/beanformat.vim
+let s:entries['beanformat'] = {
+\ 'function': 'ale#fixers#beanformat#Fix',
+\ 'suggested_filetypes': ['beancount'],
+\ 'description': 'Format with bean-format',
 \ }
 for [s:key, s:entry] in items(s:entries)
   call ale#fix#registry#Add(
