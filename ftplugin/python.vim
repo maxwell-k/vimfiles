@@ -18,6 +18,10 @@ noremap <Leader>pT
   \ :exec 'above new '. substitute(expand('%'), '_test.py$', '.py', '')<CR>
 noremap K :call python#documentation()<CR>
 
+if &filetype =~# 'black' " for example filetype=python.black
+  let b:ale_fixers = get(b:, 'ale_fixers', []) + ['black']
+endif
+
 if &filetype =~# 'usort' " for example filetype=python.usort
   " See also autoload/ale/fixers/usort.vim
   execute ale#fix#registry#Add(
