@@ -32,6 +32,12 @@ let s:entries['markdown-toc'] = {
 \ 'suggested_filetypes': ['markdown'],
 \ 'description': 'Add a table of contents with markdown-toc',
 \ }
+" autoload/ale/fixers/usort.vim
+let s:entries['usort'] = {
+\ 'function': 'ale#fixers#usort#Fix',
+\ 'suggested_filetypes': ['python'],
+\ 'description': 'Sort Python imports with usort via uv',
+\ }
 " let s:entries[''] = {
 " \ 'function': '',
 " \ 'suggested_filetypes': [''],

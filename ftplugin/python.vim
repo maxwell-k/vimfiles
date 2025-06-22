@@ -23,13 +23,6 @@ if &filetype =~# 'black' " for example filetype=python.black
 endif
 
 if &filetype =~# 'usort' " for example filetype=python.usort
-  " See also autoload/ale/fixers/usort.vim
-  execute ale#fix#registry#Add(
-    \ 'usort',
-    \ 'ale#fixers#usort#Fix',
-    \ ['python'],
-    \ 'sort Python imports with usort via uv'
-    \ )
   let b:ale_fixers = get(b:, 'ale_fixers', []) + ['usort']
 endif
 
