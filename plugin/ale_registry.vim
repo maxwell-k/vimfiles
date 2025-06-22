@@ -5,7 +5,7 @@ let s:entries = {}
 " autoload/ale/fixers/sort.vim
 let s:entries['sort'] = {
 \ 'function': 'ale#fixers#sort#Fix',
-\ 'suggested_filetypes': ['gitignore'],
+\ 'suggested_filetypes': ['gitignore', 'spellfile'],
 \ 'description': 'Sort with `sort` from PATH and LC_ALL=C',
 \ }
 " autoload/ale/fixers/beanformat.vim
