@@ -37,6 +37,10 @@ function! vim#Cancel() abort "{{{1
     call todo#MarkAsDone('')
   endif
 endfunction
+function! vim#Cdup() abort "{{{1
+  let l:path = system('git rev-parse --show-cdup')
+  return substitute(l:path, '\n$', '', '')
+endfunction
 function! vim#ChooseModeline(findstart, base) abort "{{{1
   if a:findstart | return 0 | else | return b:modeline_choices | endif
 endfunction "}}}1
