@@ -11,7 +11,6 @@ else
   let b:ale_beancount_beanformat_options = '-w 64'
 endif
 " See pack/submodules/opt/beancount/ale_linters/beancount/bean_check.vim
-let b:ale_linters = ['bean_check']
 let g:beancount_account_completion = 'chunks'
 
 " optionally load a file called abbreviations in the same directory
