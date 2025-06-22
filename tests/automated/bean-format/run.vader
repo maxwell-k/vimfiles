@@ -4,7 +4,6 @@
 "
 " Based upon :help ale-development
 Before:
-  set filetype=beancount " without this line exits on function not found error
   call ale#assert#SetUpFixerTest('beancount', 'beanformat')
 
 After:
