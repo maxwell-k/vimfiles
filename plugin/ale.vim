@@ -51,3 +51,29 @@ for [s:key, s:entry] in items(s:entries)
     \ s:entry['description']
     \ )
 endfor
+
+let g:ale_fixers = {
+\ 'apkbuild': ['remove_trailing_lines', 'trim_whitespace'],
+\ 'beancount': ['beanformat', 'trim_whitespace'],
+\ 'bzl': ['buildifier'],
+\ 'css': ['prettier'],
+\ 'embedme': ['embedme', 'prettier'],
+\ 'gitignore': ['sort'],
+\ 'go': ['gofmt'],
+\ 'javascript': ['prettier'],
+\ 'json': ['jq'],
+\ 'jsonnet': ['jsonnetfmt'],
+\ 'markdown': ['prettier'],
+\ 'markdown-toc': ['markdown-toc', 'prettier'],
+\ 'python': ['black', 'usort'],
+\ 'rst': ['remove_trailing_lines', 'trim_whitespace'],
+\ 'spellfile': ['sort'],
+\ 'svelte': ['prettier'],
+\ 'todo': ['trim_whitespace'],
+\ 'toml': ['dprint'],
+\ 'typescript': ['deno'],
+\ 'vim': ['remove_trailing_lines', 'trim_whitespace'],
+\ 'xml': ['xmllint'],
+\ 'yaml': ['prettier'],
+\ 'zig': ['zigfmt'],
+\ }

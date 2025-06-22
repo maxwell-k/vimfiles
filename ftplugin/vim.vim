@@ -5,4 +5,3 @@
 if expand('%:p') =~# '/filetype.gitignored.vim'
     let b:ale_linters_ignore=['sed']
 endif
-let b:ale_fixers = ['remove_trailing_lines', 'trim_whitespace']

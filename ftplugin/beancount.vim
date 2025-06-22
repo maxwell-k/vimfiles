@@ -10,7 +10,6 @@ if maktaba#string#EndsWith(&filetype, 'defaultwidth')
 else
   let b:ale_beancount_beanformat_options = '-w 64'
 endif
-let b:ale_fixers = ['beanformat', 'trim_whitespace']
 " See pack/submodules/opt/beancount/ale_linters/beancount/bean_check.vim
 let b:ale_linters = ['bean_check']
 let g:beancount_account_completion = 'chunks'
