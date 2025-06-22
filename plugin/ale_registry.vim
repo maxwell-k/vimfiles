@@ -20,6 +20,12 @@ let s:entries['cog'] = {
 \ 'suggested_filetypes': ['cog'],
 \ 'description': 'Process with cog',
 \ }
+"
+let s:entries['embedme'] = {
+\ 'function': 'ale#fixers#embedme#Fix',
+\ 'suggested_filetypes': ['embedme'],
+\ 'description': 'Embed snippets with embedme',
+\ }
 for [s:key, s:entry] in items(s:entries)
   call ale#fix#registry#Add(
     \ s:key,
