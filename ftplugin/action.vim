@@ -3,6 +3,7 @@
 " SPDX-License-Identifier: MPL-2.0
 "
 " load an actionlint config at .github/actionlint.yaml
+" example contents: labels for custom on-prem runners
 let s:path = vim#Cdup() . '/.github/actionlint.yaml'
 if filereadable(s:path)
   let b:ale_yaml_actionlint_options = '-config-file '.s:path
