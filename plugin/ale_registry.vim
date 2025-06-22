@@ -14,6 +14,12 @@ let s:entries['beanformat'] = {
 \ 'suggested_filetypes': ['beancount'],
 \ 'description': 'Format with bean-format',
 \ }
+" autoload/ale/fixers/cog.vim
+let s:entries['cog'] = {
+\ 'function': 'ale#fixers#cog#Fix',
+\ 'suggested_filetypes': ['cog'],
+\ 'description': 'Process with cog',
+\ }
 for [s:key, s:entry] in items(s:entries)
   call ale#fix#registry#Add(
     \ s:key,
