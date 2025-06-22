@@ -20,12 +20,23 @@ let s:entries['cog'] = {
 \ 'suggested_filetypes': ['cog'],
 \ 'description': 'Process with cog',
 \ }
-"
+" autoload/ale/fixers/embedme.vim
 let s:entries['embedme'] = {
 \ 'function': 'ale#fixers#embedme#Fix',
 \ 'suggested_filetypes': ['embedme'],
 \ 'description': 'Embed snippets with embedme',
 \ }
+" autoload/ale/fixers/markdown_toc.vim
+let s:entries['markdown-toc'] = {
+\ 'function': 'ale#fixers#markdown_toc#Fix',
+\ 'suggested_filetypes': ['markdown'],
+\ 'description': 'Add a table of contents with markdown-toc',
+\ }
+" let s:entries[''] = {
+" \ 'function': '',
+" \ 'suggested_filetypes': [''],
+" \ 'description': '',
+" \ }
 for [s:key, s:entry] in items(s:entries)
   call ale#fix#registry#Add(
     \ s:key,
