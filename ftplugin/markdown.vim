@@ -26,5 +26,9 @@ call vim#ConfigureModelineCompletion(map([
 " the line above contains additional concatenations so that it is not
 " recognised as a mode line
 
+if &filetype =~# 'embedme' " for example filetype=markdown.embedme
+  let b:ale_fixers =  ['embedme'] + get(b:, 'ale_fixers', [])
+endif
+
 " /usr/share/vim/vim91/ftplugin/markdown.vim
 let g:markdown_folding = 1
