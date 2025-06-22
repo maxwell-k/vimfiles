@@ -101,6 +101,11 @@ syntax match TodoCode =`[^`]\+`=
   \ containedin=ALLBUT,TodoCode,TodoCancel,TodoDone
   \ contains=@NoSpell
 
+" Do not spell check text in double quotes like "example" {{{2
+syntax match TodoDoubleQuoted ="[^"]\+"=
+  \ containedin=ALLBUT,TodoCode,TodoCancel,TodoDone
+  \ contains=@NoSpell
+
 " Highlight finished today and yesterday {{{2
 execute 'syntax match TodoDoneToday / ' .
   \strftime('%Y\-%m\-%d')

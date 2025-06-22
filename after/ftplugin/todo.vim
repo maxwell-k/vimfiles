@@ -9,7 +9,6 @@ if !exists('g:Todo_fold_char')
 endif
 
 ":sort
-let b:ale_fixers = ['trim_whitespace']
 let g:Todo_update_fold_on_sort = 1
 
 ":sort
