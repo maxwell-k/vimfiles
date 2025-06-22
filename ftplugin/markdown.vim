@@ -30,5 +30,9 @@ if &filetype =~# 'embedme' " for example filetype=markdown.embedme
   let b:ale_fixers =  ['embedme'] + get(b:, 'ale_fixers', [])
 endif
 
+if &filetype =~# 'markdown-toc' " for example filetype=markdown.markdown-toc
+  let b:ale_fixers = ['markdown-toc'] + get(b:, 'ale_fixers', [])
+endif
+
 " /usr/share/vim/vim91/ftplugin/markdown.vim
 let g:markdown_folding = 1
