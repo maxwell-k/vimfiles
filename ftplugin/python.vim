@@ -9,8 +9,8 @@ setlocal nowrap
 setlocal shiftwidth=4
 setlocal softtabstop=4
 setlocal suffixesadd+=.py
+noremap <Leader>pp :call toggle#PythonFixers()<CR>
 call toggle#PythonLinters('default')
-noremap <Leader>pp :call toggle#PythonFiletype()<CR>
 noremap <Leader>pl :call toggle#PythonLinters()<CR>
 noremap <Leader>pt
   \ :exec 'new '. substitute(expand('%'), '.py$', '_test.py', '')<CR>
