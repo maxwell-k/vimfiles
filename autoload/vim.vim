@@ -38,8 +38,9 @@ function! vim#Cancel() abort "{{{1
   endif
 endfunction
 function! vim#Cdup() abort "{{{1
-  let l:path = system('git rev-parse --show-cdup')
-  return substitute(l:path, '\n$', '', '')
+  let l:output = system('git rev-parse --show-cdup')
+  let l:path = substitute(l:output, '\n$', '', '')
+  return len(l:path) ? l:path : '.'
 endfunction
 function! vim#ChooseModeline(findstart, base) abort "{{{1
   if a:findstart | return 0 | else | return b:modeline_choices | endif
