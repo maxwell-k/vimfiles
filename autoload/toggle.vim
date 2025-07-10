@@ -50,15 +50,16 @@ function! toggle#List(default_settings) abort "{{{1
   end
   redraw
 endfunction "}}}1
-function! toggle#PythonFiletype() abort "{{{1
-  if &filetype ==# 'python'
-    setlocal filetype=python.black
-  elseif &filetype ==# 'python.black'
-    setlocal filetype=python.black.usort
+function! toggle#PythonFixers() abort "{{{1
+  let l:before = get(b:, 'ale_fixers', [])
+  if l:before == []
+    let b:ale_fixers = ['black']
+  elseif l:before == ['black']
+    let b:ale_fixers = ['black', 'usort']
   else
-    setlocal filetype=python
+    let b:ale_fixers =[]
   end
-  setlocal filetype
+  let b:ale_fixers
 endfunction "}}}1
 function! toggle#PythonLinters(...) abort "{{{1
   if get(b:, 'ale_linters_ignore', []) == ['mypy']
