@@ -161,5 +161,6 @@ let g:ale_echo_msg_format = '%linter% says `%s`'
 let g:ale_lint_delay = 50
 let g:ale_shell='/bin/sh'
 let g:is_posix = 1  " $() isn't an error in sh
+let g:netrw_http_cmd = 'curl --verbose --location --output'
 
 " vim: set foldmethod=marker foldlevel=0 :
