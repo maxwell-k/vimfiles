@@ -50,12 +50,6 @@ augroup filetypedetect
   " [1] also need to clear augroup ansible_vim_fthosts see
   " ./after/ftplugin/ansible.vim
 
-" Tests described below
-
-  autocmd BufRead,BufNewFile /tmp/man.* setfiletype man
-
-  " `man man`: man
-
 " No tests, may override above with setlocal filetype= see :help :setfiletype
   runtime filetype.gitignored.vim
 
