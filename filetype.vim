@@ -25,6 +25,7 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile */playbooks/*.yaml setfiletype yaml.ansible
   autocmd BufRead,BufNewFile */site-packages/*.py setfiletype python
   autocmd BufRead,BufNewFile */src/template.html setfiletype svelte
+  autocmd BufRead,BufNewFile .dprint.json setfiletype json.dprint
   autocmd BufRead,BufNewFile .en.utf-8.add setfiletype spellfile
   autocmd BufRead,BufNewFile .env setfiletype dotenv
   autocmd BufRead,BufNewFile .env.local setfiletype dotenv
