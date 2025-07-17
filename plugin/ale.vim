@@ -61,7 +61,7 @@ let g:ale_fixers = {
 \ 'gitignore': ['sort'],
 \ 'go': ['gofmt'],
 \ 'javascript': ['prettier'],
-\ 'json': ['jq'],
+\ 'json': ['prettier'],
 \ 'jsonnet': ['jsonnetfmt'],
 \ 'markdown': ['prettier'],
 \ 'markdown-toc': ['markdown-toc', 'prettier'],
