@@ -5,7 +5,7 @@ let s:entries = {}
 " autoload/ale/fixers/sort.vim
 let s:entries['sort'] = {
 \ 'function': 'ale#fixers#sort#Fix',
-\ 'suggested_filetypes': ['gitignore', 'spellfile'],
+\ 'suggested_filetypes': ['gitignore', 'newsboat', 'spellfile'],
 \ 'description': 'Sort with `sort` from PATH and LC_ALL=C',
 \ }
 " autoload/ale/fixers/beanformat.vim
@@ -72,6 +72,7 @@ let g:ale_fixers = {
 \ 'todo': ['trim_whitespace'],
 \ 'toml': ['dprint'],
 \ 'typescript': ['deno'],
+\ 'newsboat': ['sort'],
 \ 'vim': ['remove_trailing_lines', 'trim_whitespace'],
 \ 'xml': ['xmllint'],
 \ 'yaml': ['prettier'],
