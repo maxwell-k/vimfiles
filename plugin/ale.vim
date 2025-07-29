@@ -56,6 +56,7 @@ let g:ale_fixers = {
 \ 'apkbuild': ['remove_trailing_lines', 'trim_whitespace'],
 \ 'beancount': ['beanformat', 'trim_whitespace'],
 \ 'bzl': ['buildifier'],
+\ 'cog': ['cog'],
 \ 'css': ['prettier'],
 \ 'embedme': ['embedme', 'prettier'],
 \ 'gitignore': ['sort'],
