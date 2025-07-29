@@ -63,7 +63,6 @@ let g:ale_fixers = {
 \ 'go': ['gofmt'],
 \ 'javascript': ['prettier'],
 \ 'json': ['prettier'],
-\ 'jsonnet': ['jsonnetfmt'],
 \ 'markdown': ['prettier'],
 \ 'markdown-toc': ['markdown-toc', 'prettier'],
 \ 'python': ['black', 'usort'],
