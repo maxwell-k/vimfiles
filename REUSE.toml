@@ -12,7 +12,7 @@ path = [
   "tests/inside-**.sh",
   "tests/podman-run-**.sh",
 ]
-SPDX-FileCopyrightText = "2020-2024 Keith Maxwell"
+SPDX-FileCopyrightText = "2020-2025 Keith Maxwell"
 SPDX-License-Identifier = "MPL-2.0"
 
 [[annotations]]
@@ -28,7 +28,7 @@ path = [
   "tests/automated/markdown-toc/**.md",
   "tests/manual/todo.txt",
 ]
-SPDX-FileCopyrightText = "2020-2024 Keith Maxwell"
+SPDX-FileCopyrightText = "2020-2025 Keith Maxwell"
 SPDX-License-Identifier = "CC0-1.0"
 
 # SPDX-FileCopyrightText: 2024 Keith Maxwell <keith.maxwell@gmail.com>
