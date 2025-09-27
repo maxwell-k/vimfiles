@@ -32,6 +32,7 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile .env.local setfiletype dotenv
   autocmd BufRead,BufNewFile APKBUILD setfiletype sh.apkbuild
   autocmd BufRead,BufNewFile Jenkinsfile setfiletype groovy
+  autocmd BufRead,BufNewFile Kyuafile setfiletype lua
   autocmd BufRead,BufNewFile backlog.txt setfiletype todo
   autocmd BufRead,BufNewFile constraints.txt setfiletype requirements
   autocmd BufRead,BufNewFile done.txt setfiletype todo

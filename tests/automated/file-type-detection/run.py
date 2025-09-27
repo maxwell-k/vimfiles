@@ -51,6 +51,7 @@ def clean_expected(before: str) -> str:
         after = before.strip()
         after = after.removeprefix("# ")
         after = after.removeprefix("// ")
+        after = after.removeprefix("-- ")
     return after
 
 
