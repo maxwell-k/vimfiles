@@ -20,14 +20,14 @@
 - name: Ensure that uv is installed
   hosts: all
   vars:
-    site_uv_version: 0.5.13
+    site_uv_version: 0.8.17
     site_uv_checksums:
-      # https://github.com/astral-sh/uv/releases/download/0.5.13/uv-x86_64-unknown-linux-gnu.tar.gz.sha256
+      # https://github.com/astral-sh/uv/releases/download/0.8.17/uv-x86_64-unknown-linux-gnu.tar.gz.sha256
       uv-x86_64-unknown-linux-gnu.tar.gz: |-
-        0127da50d3c361d094545aab32921bbce856b3fcc24f1d10436a6426b3f16330
-      # https://github.com/astral-sh/uv/releases/download/0.5.13/uv-x86_64-unknown-linux-musl.tar.gz.sha256
+        920cbcaad514cc185634f6f0dcd71df5e8f4ee4456d440a22e0f8c0f142a8203
+      # https://github.com/astral-sh/uv/releases/download/0.8.17/uv-x86_64-unknown-linux-musl.tar.gz.sha256
       uv-x86_64-unknown-linux-musl.tar.gz: |-
-        1afaef0180a6b9fe43fa6658443796b8e235fc41382a451634515890cf3aca06
+        4057052999a210fe78d93599d2165da9e24c8bbb23370cdd26b66a98ab479203
     site_uv_libc: "{{ 'musl' if ansible_distribution == 'Alpine' else 'gnu' }}"
     site_uv_filename: uv-x86_64-unknown-linux-{{ site_uv_libc }}.tar.gz
     site_uv_url: >-
@@ -36,7 +36,7 @@
     site_uv_head: "{{ site_uv_filename.split('.') | first }}"
   tasks:
     - name: Try running uv version
-      ansible.builtin.command: uv version
+      ansible.builtin.command: uv self version
       failed_when: false
       changed_when: false
       register: site_uv_version_command
