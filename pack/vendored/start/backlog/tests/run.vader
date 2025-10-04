@@ -1,3 +1,4 @@
+#!/usr/bin/env -S vim '+packadd vader | Vader!'
 " pack/vendored/start/backlog/tests/run.vader
 " Copyright Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
