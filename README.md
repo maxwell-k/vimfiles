@@ -25,7 +25,7 @@ Command to run the playbook:
 
 Command to set up pre-commit hooks:
 
-    git -C ~/.vim config core.hooksPath ~/.vim/hooks
+    git -C ~/.vim config core.hooksPath ~/.vim/.hooks
 
 Command to check everything is working:
 

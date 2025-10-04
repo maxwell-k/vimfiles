@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #
-# hooks/pre-merge-commit
+# .hooks/pre-merge-commit
 # Copyright 2021 Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
 from os import execvp
@@ -14,7 +14,7 @@ COMMAND = ("git", "config", "core.hooksPath")
 LIMIT = 1  # hour(s)
 
 if __name__ == "__main__":
-    directory = Path(check_output(COMMAND).decode('utf8').strip())
+    directory = Path(check_output(COMMAND).decode("utf8").strip())
 
     marker = directory / ".." / "tests" / ".success"
     try:
@@ -34,6 +34,6 @@ if __name__ == "__main__":
     # instead run a script that is installed via
     # <https://github.com/maxwell-k/dotfiles/>, specifically
     # <https://github.com/maxwell-k/dotfiles/blob/main/dotfiles/local/bin/lint-all>
-    executable = which('lint-all')
+    executable = which("lint-all")
     if executable:
         execvp(executable, (executable,))
