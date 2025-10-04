@@ -29,7 +29,7 @@ Set up pre-commit hooks:
 
 Check everything is working:
 
-    sh tests/run.sh
+    sh tests/run
 
 Further details about testing are in [`tests/README.md`](tests/README.md).
 

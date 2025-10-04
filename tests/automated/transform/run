@@ -1,5 +1,5 @@
 #!/bin/sh
-# tests/automated/file-type-detection/run.sh
+# tests/automated/transform/run
 # Copyright 2021 Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
-python3 run.py
+vim "+source run.vim"

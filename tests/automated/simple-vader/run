@@ -1,5 +1,5 @@
 #!/bin/sh
-# tests/automated/simple-vader/run.sh
+# tests/automated/simple-vader/run
 # Copyright 2025 Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
 # For debugging use `:Vader` instead of `:Vader!`

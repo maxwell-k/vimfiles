@@ -62,7 +62,7 @@ Command to run the Ansible playbook:
 
 Commands to run the automated test suite:
 
-    cd ~/.vim && sh tests/run.sh
+    cd ~/.vim && sh tests/run
 
 ## Testing using Incus and Fedora 41
 
@@ -89,7 +89,7 @@ Command to run the Ansible playbook:
 
 Commands to run the automated test suite:
 
-    cd ~/.vim && sh tests/run.sh
+    cd ~/.vim && sh tests/run
 
 [todo]: http://todotxt.org/
 [this Ghostty documentation]:

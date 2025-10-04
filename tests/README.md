@@ -8,7 +8,7 @@
 # Introduction
 
 This folder contains tests for vim. Some are written using `vader`. `vader` is
-installed as a git sub-module. To run all of these use `./run.sh`.
+installed as a git sub-module. To run all of these use `./run`.
 
 Some tests will require `uv` or `npm` to pass. Isolation between tests is
 achieved by re-starting vim.
@@ -22,7 +22,7 @@ manual test separately. It is better to have a manual test than no test.
 
 - Run inside vim: `:packadd vader | Vader %`
 - Run from command line: `vim '+packadd vader | Vader! run.vader'`
-- Run all tests: `sh run.sh`
+- Run all tests: `sh run`
 
 Examples are in `pack/submodules/opt/vader/test/vader.vader`
 
@@ -35,7 +35,7 @@ Examples are in `pack/submodules/opt/vader/test/vader.vader`
 
 Each set of automated tests is laid out in a directory under `./automated`.
 
-`run.sh` in each directory will run the tests.
+`run` in each directory will run the tests.
 
 # Test in a container
 
@@ -67,7 +67,7 @@ podman run \
 #!/bin/sh
 apk add vim npm ansible git beancount tar \
 && ansible-playbook site.yaml \
-&& tests/run.sh
+&& tests/run
 
 ```
 

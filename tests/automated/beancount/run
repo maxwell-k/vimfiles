@@ -1,5 +1,5 @@
 #!/bin/sh
-# tests/automated/beancount/run.sh
+# tests/automated/beancount/run
 # Copyright 2021 Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
 
