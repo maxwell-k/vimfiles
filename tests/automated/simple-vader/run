@@ -2,5 +2,7 @@
 # tests/automated/simple-vader/run
 # Copyright 2025 Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
+# The vim command below is duplicated here from the shebang line of each script
+# as Busybox env (Alpine Linux) does not support `env -S`.
 # For debugging use `:Vader` instead of `:Vader!`
-for i in ./*.vader ; do $i ; done
+for i in ./*.vader ; do vim '+packadd vader | Vader!' "$i" ; done
