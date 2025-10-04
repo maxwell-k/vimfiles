@@ -5,7 +5,6 @@ config:
     package_upgrade: true
     package_update: true
     packages:
-      - openssh-server
       - zsh
       # https://docs.brew.sh/Homebrew-on-Linux
       - build-essential
@@ -13,36 +12,14 @@ config:
       - curl
       - file
       - git
-    runcmd:
-      - [mkdir, --parents, /home/maxwell-k/.local/bin]
-      - - chown
-        - maxwell-k:maxwell-k
-        - /home/maxwell-k/.local
-        - /home/maxwell-k/.local/bin
+    users:
+      - name: maxwell-k
+        sudo: ALL=(ALL) NOPASSWD:ALL
+        shell: /usr/bin/zsh
     write_files:
       - path: /etc/zsh/zshenv
+        append: true
         content: |
-          # /etc/zsh/zshenv: system-wide .zshenv file for zsh(1).
-          #
-          # This file is sourced on all invocations of the shell.
-          # If the -f flag is present or if the NO_RCS option is
-          # set within this file, all other initialization files
-          # are skipped.
-          #
-          # This file should contain commands to set the command
-          # search path, plus other important environment variables.
-          # This file should not contain commands that produce
-          # output or assume the shell is attached to a tty.
-          #
-          # Global Order: zshenv, zprofile, zshrc, zlogin
-
-          if [[ -z "$PATH" || "$PATH" == "/bin:/usr/bin" ]]
-          then
-                  export PATH="/usr/local/bin:/usr/bin:/bin:/usr/games"
-          fi
-
-          # Above is the default taken from Ubuntu 24.04.1 LTS
-          # Below is a customisation to add ~/.local/bin to PATH
           export PATH="$HOME/.local/bin:$PATH"
       - path: /etc/ansible/hosts
         content: |
@@ -51,17 +28,10 @@ config:
         content: |
           bindkey -v
         owner: maxwell-k:maxwell-k
-        permissions: "0644"
         defer: true
-    users:
-      - name: maxwell-k
-        sudo: ALL=(ALL) NOPASSWD:ALL
-        shell: /usr/bin/zsh
-        ssh_authorized_keys:
-          - >
-            ssh-ed25519
-            AAAAC3NzaC1lZDI1NTE5AAAAIOnexLmfscxCK5QsBTR8adsxcmXJcu0BnEQzx68B7UgL
-            codeberg.org/maxwell-k
+    runcmd:
+      - mkdir --parents /home/maxwell-k/.local/bin
+      - chown -R maxwell-k:maxwell-k /home/maxwell-k/.local
 
 #
 # tests/manual/incus-ubuntu-24.04-homebrew.yaml
