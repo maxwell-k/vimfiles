@@ -46,7 +46,7 @@ Ghostty documentation].
 Commands to launch a container, wait for it to start, mount `~/.vim`, configure
 the terminal description and run the Ansible playbook:
 
-    incus launch images:fedora/42/cloud c1 < incus-fedora-42.yaml \
+    incus launch images:fedora/42/cloud c1 < config.yaml \
     && incus exec c1 -- \
         sh -c "until systemctl is-system-running >/dev/null 2>&1 ; do : ; done" \
     && incus config device add \

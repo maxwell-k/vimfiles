@@ -38,6 +38,6 @@ config:
       - chown -R maxwell-k:maxwell-k /home/maxwell-k/.local
 
 #
-# tests/manual/incus-fedora-42.yaml
+# tests/manual/config.yaml
 # Copyright 2025 Keith Maxwell
 # SPDX-License-Identifier: CC0-1.0
