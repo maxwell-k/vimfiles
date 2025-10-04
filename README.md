@@ -16,7 +16,7 @@ Command to install the appropriate system packages:
 
 <!-- keep command below up to date with tests/manual/config.yaml -->
 
-    sudo dnf install --assumeyes vim-enhanced ansible jq nodejs fzf git uv
+    sudo dnf install --assumeyes vim-enhanced ansible nodejs fzf git uv
 
 Command to run the playbook:
 

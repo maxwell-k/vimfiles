@@ -10,7 +10,6 @@ config:
       # taken from tests/run-using-podman-and-fedora-linux.sh
       - vim-enhanced
       - ansible
-      - jq
       - nodejs
       - fzf
       - git
