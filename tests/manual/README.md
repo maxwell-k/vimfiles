@@ -13,7 +13,6 @@ SPDX-License-Identifier: CC-BY-SA-4.0
 - [Example todo file](#example-todo-file)
 - [Testing using Incus](#testing-using-incus)
   - [Fedora 42](#fedora-42)
-  - [Ubuntu 24.04 and Homebrew](#ubuntu-2404-and-homebrew)
 
 <!-- tocstop -->
 
@@ -58,44 +57,6 @@ the terminal description and run the Ansible playbook:
 Command to connect:
 
     incus exec c1 -- su --login maxwell-k
-
-Commands to run the automated test suite:
-
-    cd ~/.vim && tests/run
-
-Commands to clean up:
-
-    incus stop c1 && incus delete c1
-
-### Ubuntu 24.04 and Homebrew
-
-Commands to launch a container, wait for it to start, keys, mount `~/.vim` and
-configure the terminal description:
-
-    incus launch images:ubuntu/24.04/cloud c1 < incus-ubuntu-24.04-homebrew.yaml \
-    && incus exec c1 -- \
-        sh -c "until systemctl is-system-running >/dev/null 2>&1 ; do : ; done" \
-    && incus config device add \
-        c1 vimfiles disk source=$HOME/.vim path=$HOME/.vim shift=true \
-    && infocmp -x xterm-ghostty | incus exec c1 -- tic -x -
-
-Command to connect:
-
-    incus exec c1 -- su --login maxwell-k
-
-Install Homebrew following <https://brew.sh/>; including adding to `~/.zshrc`.
-
-Commands to install necessary prerequisites and to symlink `node` and `npm` to
-NodeJS 22:
-
-    brew install ansible uv node@22 \
-    && cd /home/linuxbrew/.linuxbrew/opt/node@22/bin \
-    && ln -s $PWD/node $PWD/npm ~/.local/bin \
-    && node --version
-
-Command to run the Ansible playbook:
-
-    ansible-playbook ~/.vim/site.yaml
 
 Commands to run the automated test suite:
 
