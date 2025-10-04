@@ -5,4 +5,5 @@
 # For debugging use `:Vader` instead of `:Vader!`
 ./spellcheck.vader \
 && echo "Text with no spelling mistakes." \
-| vim '+call spellcheck#Exit()' -
+| vim '+call spellcheck#Exit()' - \
+&& ! vim '+normal iA single spelling mistake: asdf' '+call spellcheck#Exit()'
