@@ -100,4 +100,43 @@ Command to push changes:
 
     git push git@codeberg.org:maxwell-k/vimfiles.git
 
+# Running the test suite with Linux containers
+
+## Podman and Alpine Linux latest
+
+Command to run the test suite using Podman and the `alpine:latest` image:
+
+    tests/podman
+
+### Incus and Fedora Linux 42
+
+Commands to launch a container, wait for it to start, mount `~/.vim`, configure
+the terminal description and run the Ansible playbook:
+
+    incus init images:fedora/42/cloud c1 < config.yaml \
+    && incus config device add \
+        c1 vimfiles disk source=$PWD path=$PWD shift=true \
+    && incust start c1 \
+    && incus exec c1 -- \
+        sh -c "until systemctl is-system-running >/dev/null 2>&1 ; do : ; done" \
+    && infocmp -x xterm-ghostty | incus exec c1 -- tic -x -
+
+Command to connect:
+
+    incus exec c1 -- su --login maxwell-k
+
+Commands to run the automated test suite:
+
+    cd ~/.vim && tests/run
+
+Commands to clean up:
+
+    incus stop c1 && incus delete c1
+
+For further details about configuring the terminal description see also [this
+Ghostty documentation].
+
+[this Ghostty documentation]:
+  https://ghostty.org/docs/help/terminfo#copy-ghostty's-terminfo-to-a-remote-machine
+
 <!-- vim: set filetype=markdown.htmlCommentNoSpell : -->
