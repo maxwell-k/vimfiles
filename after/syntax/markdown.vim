@@ -38,6 +38,6 @@ syntax region markdownIdDeclaration
   \ matchgroup=markdownLinkDelimiter start="^ \{0,3\}!\=\[" end="\]:"
   \ oneline keepend nextgroup=markdownUrl skipwhite skipnl
 
-syntax keyword embedme embedme
+syntax keyword embedme contained embedme
 highlight default link embedme Keyword
 syn region htmlComment start=/<!-- embedme/ end=/>/ contains=@NoSpell,embedme
