@@ -7,4 +7,9 @@ podman run \
   --env=PATH=/usr/sbin:/usr/bin:/sbin:/bin:/root/.local/bin \
   --env=ANSIBLE_PYTHON_INTERPRETER=auto_silent \
   alpine:latest \
-  tests/inside-alpine-latest.sh
+  sh -c "apk add vim npm ansible git beancount tar \
+    && ansible-playbook site.yaml \
+    && tests/run"
+# tests/run-on-alpine-linux-latest-with-podman.sh
+# Copyright 2025 Keith Maxwell
+# SPDX-License-Identifier: MPL-2.0

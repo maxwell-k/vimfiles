@@ -14,4 +14,10 @@ podman run \
   --workdir=/root/.vim \
   --env=PATH=/usr/sbin:/usr/bin:/sbin:/bin:/root/.local/bin \
   fedora:latest \
-  tests/inside-fedora-latest.sh
+  sh -c "dnf upgrade --assumeyes \
+    && dnf install --assumeyes vim-enhanced ansible jq nodejs fzf git \
+    && ansible-playbook site.yaml \
+    && tests/run"
+# tests/run-on-fedora-linux-latest-with-podman.sh
+# Copyright 2025 Keith Maxwell
+# SPDX-License-Identifier: MPL-2.0
