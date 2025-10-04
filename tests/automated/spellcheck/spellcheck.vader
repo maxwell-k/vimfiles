@@ -8,13 +8,13 @@ Given (One word spelt correctly):
   Correctly
 
 Execute:
-  AssertEqual spellcheck#ExitStatus(), 0
+  AssertEqual spellcheck#StatusCode(), 0
 
 Given (One word spelt incorrectly):
   asdf
 
 Execute:
-  AssertEqual spellcheck#ExitStatus(), 1
+  AssertEqual spellcheck#StatusCode(), 1
 
 Given (Text with a single spelling mistake):
   2001/01/01-accounts.pdf
@@ -23,4 +23,4 @@ Given (Text with a single spelling mistake):
   2001/01/01-other.pdf
 
 Execute:
-  AssertEqual spellcheck#ExitStatus(), 1
+  AssertEqual spellcheck#StatusCode(), 1

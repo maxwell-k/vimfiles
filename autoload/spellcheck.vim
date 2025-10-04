@@ -2,8 +2,8 @@
 " Copyright 2024 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
-function! spellcheck#ExitStatus() abort "{{{1
-  " return zero if zero spelling mistakes found, one otherwise
+function! spellcheck#StatusCode() abort "{{{1
+  " zero if zero spelling mistakes found, one otherwise
 
   set spell
 
@@ -29,5 +29,5 @@ endfunction
 
 function! spellcheck#Exit() abort "{{{1
   " WARNING: discards any changes that haven't been written to disk!
-  execute 'cquit ' . spellcheck#ExitStatus()
+  execute 'cquit ' . spellcheck#StatusCode()
 endfunction
