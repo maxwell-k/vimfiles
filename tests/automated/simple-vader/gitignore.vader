@@ -1,0 +1,18 @@
+#!/usr/bin/env -S vim "+packadd vader | Vader!"
+" tests/automated/simple-vader/gitignore.vader
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
+" Based upon :help ale-development
+Before:
+  set filetype=gitignore
+  call ale#assert#SetUpFixerTest('gitignore', 'sort')
+
+After:
+  call ale#assert#TearDownFixerTest()
+
+Execute(The default command should be correct):
+  AssertFixer
+  \ {
+  \   'command': "LC_ALL='C' sort --unique"
+  \ }

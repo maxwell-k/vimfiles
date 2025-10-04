@@ -1,0 +1,13 @@
+#!/usr/bin/env -S vim '+packadd vader | Vader!'
+" tests/automated/html/run.vader
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
+Given html (Mode line in HTML comment):
+  <!-- vim: set spell filetype=html : -->
+
+Execute (Check for badly spelled words):
+  let result = spellbadword()
+
+Then (None found):
+  Assert ['', ''] ==# result

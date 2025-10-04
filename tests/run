@@ -1,0 +1,19 @@
+#!/bin/sh
+# tests/run
+# Copyright 2020 Keith Maxwell
+# SPDX-License-Identifier: MPL-2.0
+
+# If run as tests/run from the root of the repository
+test -d automated || cd tests || exit
+
+for i in automated/* ; do
+  cd "$i" || exit 1
+  if ! ./run ; then
+    printf '%s tests failed\n' "$i"
+    exit 1
+  fi
+  cd ../.. || exit 1
+done
+
+git branch --show-current > .success
+printf 'tests/run: All tests succeeded.\n'

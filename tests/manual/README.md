@@ -11,8 +11,8 @@ SPDX-License-Identifier: CC-BY-SA-4.0
 
 - [Example Markdown file](#example-markdown-file)
 - [Example todo file](#example-todo-file)
-- [Profile for testing using Incus, Ubuntu 24.04 and Homebrew](#profile-for-testing-using-incus-ubuntu-2404-and-homebrew)
-- [Testing using Incus and Fedora 41](#testing-using-incus-and-fedora-41)
+- [Testing using Incus](#testing-using-incus)
+  - [Fedora 42](#fedora-42)
 
 <!-- tocstop -->
 
@@ -28,69 +28,40 @@ Command to view example [todo] file:
 
     vim tests/manual/todo.txt
 
-## Profile for testing using Incus, Ubuntu 24.04 and Homebrew
-
-Commands to launch a container, wait for it to start, clear any stored SSH host
-keys, mount this directory and set up `~/.terminfo` — see also [this Ghostty
-documentation]:
-
-    incus launch images:ubuntu/24.04/cloud c1 < \
-      tests/manual/incus-ubuntu-24.04-homebrew.yaml \
-    && incus exec c1 -- \
-        sh -c "until systemctl is-system-running >/dev/null 2>&1 ; do : ; done" \
-    && ssh-keygen -R c1.incus \
-    && incus config device add c1 vimfiles disk source=$PWD path=$PWD shift=true \
-    && infocmp -x | ssh c1.incus -- tic -x -
-
-Command to connect:
-
-    ssh c1.incus
-
-Install Homebrew following <https://brew.sh/>; including adding to `~/.zshrc`
-
-Commands to install necessary prerequisites and to symlink `node` and `npm` to
-Node JS 22:
-
-    brew install ansible uv node@22 \
-    && cd /home/linuxbrew/.linuxbrew/opt/node@22/bin \
-    && ln -s $PWD/node $PWD/npm ~/.local/bin \
-    && node --version
-
-Command to run the Ansible playbook:
-
-    ansible-playbook ~/.vim/site.yaml
-
-Commands to run the automated test suite:
-
-    cd ~/.vim && sh tests/run.sh
-
-## Testing using Incus and Fedora 41
-
-Commands to launch a container, wait for it to start, start the SSH daemon,
-mount this directory, clear any stored SSH host keys, and configure the terminal
-description:
-
-    incus launch images:fedora/41/cloud c1 < \
-      tests/manual/incus-fedora-41.yaml \
-    && incus exec c1 -- \
-        sh -c "until systemctl is-system-running >/dev/null 2>&1 ; do : ; done" \
-    && incus exec c1 -- systemctl start sshd.service
-    && incus config device add c1 vimfiles disk source=$PWD path=$PWD shift=true \
-    && ssh-keygen -R c1.incus \
-    && infocmp -x | ssh c1.incus -- tic -x -
-
-Command to connect:
-
-    ssh c1.incus
-
-Command to run the Ansible playbook:
-
-    ansible-playbook ~/.vim/site.yaml
-
-Commands to run the automated test suite:
-
-    cd ~/.vim && sh tests/run.sh
-
 [todo]: http://todotxt.org/
+
+## Testing using Incus
+
+_The commands below assume that the working directory is `tests/manual` inside
+this repository._
+
+For further details about configuring the terminal description see also [this
+Ghostty documentation].
+
 [this Ghostty documentation]:
   https://ghostty.org/docs/help/terminfo#copy-ghostty's-terminfo-to-a-remote-machine
+
+### Fedora 42
+
+Commands to launch a container, wait for it to start, mount `~/.vim`, configure
+the terminal description and run the Ansible playbook:
+
+    incus launch images:fedora/42/cloud c1 < incus-fedora-42.yaml \
+    && incus exec c1 -- \
+        sh -c "until systemctl is-system-running >/dev/null 2>&1 ; do : ; done" \
+    && incus config device add \
+        c1 vimfiles disk source=$HOME/.vim path=$HOME/.vim shift=true \
+    && infocmp -x xterm-ghostty | incus exec c1 -- tic -x - \
+    && incus exec c1 -- su maxwell-k --command 'ansible-playbook ~/.vim/site.yaml'
+
+Command to connect:
+
+    incus exec c1 -- su --login maxwell-k
+
+Commands to run the automated test suite:
+
+    cd ~/.vim && tests/run
+
+Commands to clean up:
+
+    incus stop c1 && incus delete c1

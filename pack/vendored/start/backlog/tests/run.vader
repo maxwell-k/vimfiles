@@ -1,9 +1,0 @@
-" pack/vendored/start/backlog/tests/run.vader
-" Copyright Keith Maxwell
-" SPDX-License-Identifier: MPL-2.0
-"
-Include: sort.vader
-Include: later.vader
-Include: immediately.vader
-
-Include (Features from above via default mapping): mappings.vader

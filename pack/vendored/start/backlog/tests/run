@@ -1,0 +1,10 @@
+#!/usr/bin/env -S vim '+packadd vader | Vader!'
+" pack/vendored/start/backlog/tests/run
+" Copyright Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
+Include: sort.vader
+Include: later.vader
+Include: immediately.vader
+
+Include (Features from above via default mapping): mappings.vader

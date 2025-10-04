@@ -1,0 +1,8 @@
+#!/bin/sh
+# tests/automated/backlog/run
+# Copyright 2025 Keith Maxwell
+# SPDX-License-Identifier: MPL-2.0
+# The vim command below is duplicated here from the shebang line of the script
+# as Busybox env (Alpine Linux) does not support `env -S`.
+# For debugging use `:Vader` instead of `:Vader!`
+vim '+packadd vader | Vader!' ../../../pack/vendored/start/backlog/tests/run

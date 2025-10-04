@@ -101,8 +101,6 @@ call opfunc#opfuncmap('c') " straight yank
  noremap <Leader>i :echo synIDattr(synID(line('.'),col('.'),1),'name')<CR>
 vnoremap <Leader>k <ESC>:call vim#Keep()<CR>
         "<Leader>j see ftplugin/python.vim for Jedi mappings or
-        "<Leader>j see plugin/jupyter.vim in the jupyter package
-        "<Leader>J see plugin/jupyter.vim in the jupyter package
         "<Leader>l see above
  noremap <Leader>m :/<<<<<<<\\|=======\\|>>>>>>><CR>
         "<Leader>p? see ftplugin/python.vim
@@ -160,7 +158,6 @@ let g:ale_fix_on_save = 1
 let g:ale_echo_msg_format = '%linter% says `%s`'
 let g:ale_lint_delay = 50
 let g:ale_shell='/bin/sh'
-let g:is_posix = 1  " $() isn't an error in sh
 let g:netrw_http_cmd = 'curl --verbose --location --output'
 
 " vim: set foldmethod=marker foldlevel=0 :

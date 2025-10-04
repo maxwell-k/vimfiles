@@ -1,0 +1,43 @@
+description: Incus profile for testing maxwell-k/vimfiles with Fedora Linux
+config:
+  user.vendor-data: |
+    #cloud-config
+    package_upgrade: true
+    package_update: true
+    packages:
+      - zsh
+      - ncurses # for tic for the ghostty terminfo
+      # taken from tests/run-using-podman-and-fedora-linux.sh
+      - vim-enhanced
+      - ansible
+      - jq
+      - nodejs
+      - fzf
+      - git
+      - uv
+    users:
+      - name: maxwell-k
+        sudo: ALL=(ALL) NOPASSWD:ALL
+        shell: /usr/bin/zsh
+    write_files:
+      - path: /etc/zshenv
+        defer: true
+        append: true
+        content: |
+          export PATH="$HOME/.local/bin:$PATH"
+      - path: /etc/ansible/hosts
+        content: |
+          ::1 ansible_connection=local ansible_python_interpreter=auto_silent
+      - path: /home/maxwell-k/.zshrc
+        content: |
+          bindkey -v
+        owner: maxwell-k:maxwell-k
+        defer: true
+    runcmd:
+      - mkdir --parents /home/maxwell-k/.local/bin
+      - chown -R maxwell-k:maxwell-k /home/maxwell-k/.local
+
+#
+# tests/manual/incus-fedora-42.yaml
+# Copyright 2025 Keith Maxwell
+# SPDX-License-Identifier: CC0-1.0

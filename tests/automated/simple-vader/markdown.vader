@@ -1,0 +1,13 @@
+#!/usr/bin/env -S vim '+packadd vader | Vader!'
+" tests/automated/simple-vader/markdown.vader
+" Copyright 2025 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
+Given markdown (Heading with a spellbadword in both URL and code):
+  ## Example <https://asdf.com/> `asdf`
+
+Execute (Check for badly spelled words):
+  let result = spellbadword()
+
+Then (None found):
+  Assert ['', ''] ==# result

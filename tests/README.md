@@ -1,14 +1,13 @@
-<!-- vim: set filetype=markdown.embedme : -->
 <!--
-   tests/README
-   Copyright 2020 Keith Maxwell
-   SPDX-License-Identifier: CC-BY-SA-4.0
+tests/README.md
+Copyright 2020 Keith Maxwell
+SPDX-License-Identifier: CC-BY-SA-4.0
 -->
 
 # Introduction
 
 This folder contains tests for vim. Some are written using `vader`. `vader` is
-installed as a git sub-module. To run all of these use `./run.sh`.
+installed as a git sub-module. To run all of these use `./run`.
 
 Some tests will require `uv` or `npm` to pass. Isolation between tests is
 achieved by re-starting vim.
@@ -20,11 +19,12 @@ manual test separately. It is better to have a manual test than no test.
 
 ### Usage
 
-- Run inside vim: `:packadd vader | Vader %`
-- Run from command line: `vim '+packadd vader | Vader! run.vader'`
-- Run all tests: `sh run.sh`
+- Run inside vim when editing tests using Vader: `:packadd vader | Vader %`
+- Run from command line: `vim '+packadd vader | Vader!' file.vader`
+- Run all tests: `sh run`
 
-Examples are in `pack/submodules/opt/vader/test/vader.vader`
+For examples from the Vader package itself see:
+`pack/submodules/opt/vader/test/vader.vader`
 
 ### Authoring notes
 
@@ -35,41 +35,14 @@ Examples are in `pack/submodules/opt/vader/test/vader.vader`
 
 Each set of automated tests is laid out in a directory under `./automated`.
 
-`run.sh` in each directory will run the tests.
+`run` in each directory will run the tests.
 
-# Test in a container
+# Testing with Linux containers
 
-All commands in this section are run from the root of this repository.
+Command to run the test suite using Podman and the `alpine:latest` image:
 
-    . tests/podman-run-alpine-latest.sh
+    tests/run-using-podman-and-alpine-linux.sh
 
-`podman-run-alpine-latest.sh` and `alpine-latest.sh` in full:
+Command to run the test suite using Podman and the `fedora:latest` image:
 
-<!-- embedme podman-run-alpine-latest.sh -->
-
-```sh
-#!/bin/sh
-podman run \
-  --rm \
-  --tty \
-  --volume="$PWD":/root/.vim:Z \
-  --workdir=/root/.vim \
-  --env=PATH=/usr/sbin:/usr/bin:/sbin:/bin:/root/.local/bin \
-  --env=ANSIBLE_PYTHON_INTERPRETER=auto_silent \
-  alpine:latest \
-  tests/inside-alpine-latest.sh
-
-```
-
-<!-- embedme inside-alpine-latest.sh -->
-
-```sh
-#!/bin/sh
-apk add vim npm ansible git beancount tar \
-&& ansible-playbook site.yaml \
-&& tests/run.sh
-
-```
-
-A similar pair of files tests on the latest stable release of Fedora
-`podman-run-fedora-latest.sh` and `inside-fedora-latest.sh`.
+    tests/run-using-podman-and-fedora-linux.sh

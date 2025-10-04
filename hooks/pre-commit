@@ -7,6 +7,6 @@ npm exec --prefer-offline -- lint-staged \
   printf 'Avoid committing to the main branch directly\n' \
   && exit 1
 fi
-# For some reason in certain environments tests/run.sh takes over a minute to
+# For some reason in certain environments tests/run takes over a minute to
 # execute if run as a pre-commit hook. A typical execution is less than ten
 # seconds.

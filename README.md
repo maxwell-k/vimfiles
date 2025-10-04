@@ -8,28 +8,29 @@ SPDX-License-Identifier: CC-BY-SA-4.0
 
 ## Quick start on Fedora latest
 
-Clone this repository and its sub-modules as `~/.vim`:
+Command to clone this repository and its sub-modules as `~/.vim`:
 
     git clone --recurse-submodules https://codeberg.org/maxwell-k/vimfiles.git ~/.vim
 
-Install the appropriate system packages and install the latest `npm`
+Command to install the appropriate system packages:
 
-<!-- keep command below up to date with tests/inside-fedora-latest.sh -->
+<!-- keep command below up to date with
+tests/run-using-podman-and-fedora-linux.sh -->
 
     sudo dnf install --assumeyes vim-enhanced ansible jq nodejs fzf git
 
-Run the playbook:
+Command to run the playbook:
 
     cd ~/.vim \
     && ansible-playbook site.yaml
 
-Set up pre-commit hooks:
+Command to set up pre-commit hooks:
 
     git -C ~/.vim config core.hooksPath ~/.vim/hooks
 
-Check everything is working:
+Command to check everything is working:
 
-    sh tests/run.sh
+    tests/run
 
 Further details about testing are in [`tests/README.md`](tests/README.md).
 
@@ -46,8 +47,6 @@ Much of it will not be of interest to anyone but the original author; a few
 
 - Complete syntax files for SQLite and Visual Basic for Applications (VBA)
   written from scratch.
-- A plugin for interacting with a <https://jupyter.org> kernel inspired by
-  <https://github.com/ivanov/vim-ipython>
 - A file type plugin for automatically committing to Git
 - A few extra linters and fixers for <https://github.com/dense-analysis/ale>
 
