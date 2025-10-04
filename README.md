@@ -44,8 +44,6 @@ This repository contains about 1,300 lines of vim script accumulated since 2012.
 Much of it will not be of interest to anyone but the original author; a few
 "features" may be:
 
-- Complete syntax files for SQLite and Visual Basic for Applications (VBA)
-  written from scratch.
 - A file type plugin for automatically committing to Git
 - A few extra linters and fixers for <https://github.com/dense-analysis/ale>
 
