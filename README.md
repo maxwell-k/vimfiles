@@ -14,10 +14,9 @@ Command to clone this repository and its sub-modules as `~/.vim`:
 
 Command to install the appropriate system packages:
 
-<!-- keep command below up to date with
-tests/run-using-podman-and-fedora-linux.sh -->
+<!-- keep command below up to date with tests/manual/config.yaml -->
 
-    sudo dnf install --assumeyes vim-enhanced ansible jq nodejs fzf git
+    sudo dnf install --assumeyes vim-enhanced ansible jq nodejs fzf git uv
 
 Command to run the playbook:
 

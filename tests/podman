@@ -10,6 +10,6 @@ podman run \
   sh -c "apk add vim npm ansible git beancount tar uv \
     && ansible-playbook site.yaml \
     && tests/run"
-# tests/run-on-alpine-linux-latest-with-podman.sh
+# tests/podman
 # Copyright 2025 Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
