@@ -42,7 +42,3 @@ Each set of automated tests is laid out in a directory under `./automated`.
 Command to run the test suite using Podman and the `alpine:latest` image:
 
     tests/run-using-podman-and-alpine-linux.sh
-
-Command to run the test suite using Podman and the `fedora:latest` image:
-
-    tests/run-using-podman-and-fedora-linux.sh
