@@ -1,4 +1,5 @@
-" tests/automated/jsonlint/run.vader
+#!/usr/bin/env -S vim '+packadd vader | Vader!'
+" tests/automated/simple-vader/jsonlint.vader
 " Copyright 2021 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
