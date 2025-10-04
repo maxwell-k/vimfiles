@@ -64,14 +64,14 @@ Commands to run the automated test suite:
 
     cd ~/.vim && tests/run
 
-## Testing using Incus and Fedora 41
+## Testing using Incus and Fedora 42
 
 Commands to launch a container, wait for it to start, start the SSH daemon,
 mount this directory, clear any stored SSH host keys, and configure the terminal
 description:
 
-    incus launch images:fedora/41/cloud c1 < \
-      tests/manual/incus-fedora-41.yaml \
+    incus launch images:fedora/42/cloud c1 < \
+      tests/manual/incus-fedora-42.yaml \
     && incus exec c1 -- \
         sh -c "until systemctl is-system-running >/dev/null 2>&1 ; do : ; done" \
     && incus exec c1 -- systemctl start sshd.service
