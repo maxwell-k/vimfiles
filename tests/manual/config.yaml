@@ -33,8 +33,8 @@ config:
         owner: maxwell-k:maxwell-k
         defer: true
     runcmd:
-      - mkdir --parents /home/maxwell-k/.local/bin
-      - chown -R maxwell-k:maxwell-k /home/maxwell-k/.local
+      - su maxwell-k --command mkdir --parents /home/maxwell-k/.local/bin
+      - su maxwell-k --command 'ansible-playbook ~/.vim/site.yaml'
 
 #
 # tests/manual/config.yaml
