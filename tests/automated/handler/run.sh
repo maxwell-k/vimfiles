@@ -1,6 +1,0 @@
-#!/bin/sh
-# tests/automated/vader/run.sh
-# Copyright 2021 Keith Maxwell
-# SPDX-License-Identifier: MPL-2.0
-# For debugging use `:Vader` instead of `:Vader!`
-vim "+packadd vader | Vader! test_wat2wasm_handler.vader"
