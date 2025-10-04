@@ -21,6 +21,7 @@ config:
         shell: /usr/bin/zsh
     write_files:
       - path: /etc/zshenv
+        defer: true
         append: true
         content: |
           export PATH="$HOME/.local/bin:$PATH"

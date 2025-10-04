@@ -19,6 +19,7 @@ config:
     write_files:
       - path: /etc/zsh/zshenv
         append: true
+        defer: true
         content: |
           export PATH="$HOME/.local/bin:$PATH"
       - path: /etc/ansible/hosts
