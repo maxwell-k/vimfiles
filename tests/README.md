@@ -20,11 +20,12 @@ manual test separately. It is better to have a manual test than no test.
 
 ### Usage
 
-- Run inside vim: `:packadd vader | Vader %`
-- Run from command line: `vim '+packadd vader | Vader! run.vader'`
+- Run inside vim when editing tests using Vader: `:packadd vader | Vader %`
+- Run from command line: `vim '+packadd vader | Vader!' file.vader`
 - Run all tests: `sh run`
 
-Examples are in `pack/submodules/opt/vader/test/vader.vader`
+For examples from the Vader package itself see:
+`pack/submodules/opt/vader/test/vader.vader`
 
 ### Authoring notes
 
