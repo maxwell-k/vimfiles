@@ -46,7 +46,7 @@ Command to connect:
 
     ssh c1.incus
 
-Install Homebrew following <https://brew.sh/>; including adding to `~/.zshrc`
+Install Homebrew following <https://brew.sh/>; including adding to `~/.zshrc`.
 
 Commands to install necessary prerequisites and to symlink `node` and `npm` to
 Node JS 22:

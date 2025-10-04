@@ -17,63 +17,6 @@
         path: ~/.backupdir
         mode: "0o700"
 
-- name: Ensure that uv is installed
-  hosts: all
-  vars:
-    site_uv_version: 0.8.17
-    site_uv_checksums:
-      # https://github.com/astral-sh/uv/releases/download/0.8.17/uv-x86_64-unknown-linux-gnu.tar.gz.sha256
-      uv-x86_64-unknown-linux-gnu.tar.gz: |-
-        920cbcaad514cc185634f6f0dcd71df5e8f4ee4456d440a22e0f8c0f142a8203
-      # https://github.com/astral-sh/uv/releases/download/0.8.17/uv-x86_64-unknown-linux-musl.tar.gz.sha256
-      uv-x86_64-unknown-linux-musl.tar.gz: |-
-        4057052999a210fe78d93599d2165da9e24c8bbb23370cdd26b66a98ab479203
-    site_uv_libc: "{{ 'musl' if ansible_distribution == 'Alpine' else 'gnu' }}"
-    site_uv_filename: uv-x86_64-unknown-linux-{{ site_uv_libc }}.tar.gz
-    site_uv_url: >-
-      https://github.com/astral-sh/uv/releases/download/{{
-        site_uv_version ~ '/' ~ site_uv_filename }}
-    site_uv_head: "{{ site_uv_filename.split('.') | first }}"
-  tasks:
-    - name: Try running uv version
-      ansible.builtin.command: uv self version
-      failed_when: false
-      changed_when: false
-      register: site_uv_version_command
-    - name: Stop this play if version command succeeded
-      ansible.builtin.meta: end_host
-      when: site_uv_version_command.rc == 0
-    - name: Make sure ~/.local/bin exists
-      ansible.builtin.file:
-        state: directory
-        path: ~/.local/bin
-        mode: "0o755"
-    - name: Create temporary download directory
-      ansible.builtin.tempfile:
-        state: directory
-        suffix: -uv
-      register: site_download
-    - name: Download uv .tar.gz
-      ansible.builtin.get_url:
-        dest: "{{ site_download.path }}"
-        url: "{{ site_uv_url }}"
-        checksum: "sha256:{{ site_uv_checksums[site_uv_filename] }}"
-        mode: "0600"
-    - name: Extract
-      ansible.builtin.unarchive:
-        src: "{{ site_download.path }}/{{ site_uv_filename }}"
-        dest: "{{ site_download.path }}"
-        remote_src: true
-    - name: Install binaries
-      ansible.builtin.copy:
-        src: "{{ site_download.path }}/{{ site_uv_head }}/uv"
-        dest: ~/.local/bin/
-        mode: "0o755"
-    - name: Clean up temporary directory
-      ansible.builtin.file:
-        state: absent
-        path: "{{ site_download }}"
-
 - name: Download scripts to the plugin/ directory
   hosts: all
   tasks:
@@ -95,14 +38,14 @@
       # prefer to install that package manually
       when: ansible_distribution not in ('Alpine')
 
-- name: Make sure packages are available through npx
+- name: Make sure packages are available through npx and uv
   hosts: all
   tasks:
     - name: Check if npm is available
       ansible.builtin.command: npm --version
       changed_when: false
       register: npm_check
-    - name: Stop this play if npm isnt't available
+    - name: Stop this play if npm isn't available
       ansible.builtin.meta: end_host
       when: npm_check.rc != 0
     - name: Make sure tools are available in the npm cache
@@ -159,6 +102,13 @@
           #!/bin/sh
           exec npm exec --package pyright --yes -- pyright-langserver "$@"
       when: "'.local/bin' in lookup('env', 'PATH')"
+    - name: Try running uv self version
+      ansible.builtin.command: uv self version
+      changed_when: false
+      register: uv_check
+    - name: Stop this play if uv isn't available
+      ansible.builtin.meta: end_host
+      when: uv_check.rc != 0
     - name: Add to the uv cache so that features and tests can run offline
       ansible.builtin.command: "uv tool run {{ item }}"
       changed_when: true

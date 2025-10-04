@@ -8,13 +8,14 @@ config:
       - openssh-server
       - zsh
       - ncurses # for tic for the ghostty terminfo
-      # taken from tests/inside-fedora-latest.sh
+      # taken from tests/run-using-podman-and-fedora-linux.sh
       - vim-enhanced
       - ansible
       - jq
       - nodejs
       - fzf
       - git
+      - uv
     runcmd:
       - [mkdir, --parents, /home/maxwell-k/.local/bin]
       - - chown
