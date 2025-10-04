@@ -46,8 +46,6 @@ Much of it will not be of interest to anyone but the original author; a few
 
 - Complete syntax files for SQLite and Visual Basic for Applications (VBA)
   written from scratch.
-- A plugin for interacting with a <https://jupyter.org> kernel inspired by
-  <https://github.com/ivanov/vim-ipython>
 - A file type plugin for automatically committing to Git
 - A few extra linters and fixers for <https://github.com/dense-analysis/ale>
 

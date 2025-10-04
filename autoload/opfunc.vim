@@ -7,7 +7,6 @@ function! opfunc#All() abort "{{{
     " yank below means yank to system clipboard
     call opfunc#opfuncmap('c') " straight yank
     call opfunc#opfuncmap('C') " dedent then yank
-    "call opfunc#opfuncmap('j', 'jupyter') " run in jupyter
     call opfunc#opfuncmap('y') " transform then yank
 endfunction "}}}
 function! opfunc#opfuncInput(type, count) abort " {{{
