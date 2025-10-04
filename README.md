@@ -108,33 +108,17 @@ Command to run the test suite using Podman and the `alpine:latest` image:
 
 ### Incus and Fedora Linux 42
 
-Commands to launch a container, wait for it to start, mount `~/.vim`, configure
-the terminal description and run the Ansible playbook:
+Command to run the test suite using Incus and the `images:fedora/42/cloud`
+image:
 
-    incus init images:fedora/42/cloud c1 < config.yaml \
-    && incus config device add \
-        c1 vimfiles disk source=$PWD path=$PWD shift=true \
-    && incust start c1 \
-    && incus exec c1 -- \
-        sh -c "until systemctl is-system-running >/dev/null 2>&1 ; do : ; done" \
-    && infocmp -x xterm-ghostty | incus exec c1 -- tic -x -
+    tests/incus
 
-Command to connect:
+The script above will use Cloud-init to configure an Incus container before
+running the tests. The Cloud-init steps include installing packages and running
+the Ansible playbook `site.yaml`.
 
-    incus exec c1 -- su --login maxwell-k
+Command to follow Cloud-init output:
 
-Commands to run the automated test suite:
-
-    cd ~/.vim && tests/run
-
-Commands to clean up:
-
-    incus stop c1 && incus delete c1
-
-For further details about configuring the terminal description see also [this
-Ghostty documentation].
-
-[this Ghostty documentation]:
-  https://ghostty.org/docs/help/terminfo#copy-ghostty's-terminfo-to-a-remote-machine
+    incus exec c1 -- tail -f /var/log/cloud-init-output.log
 
 <!-- vim: set filetype=markdown.htmlCommentNoSpell : -->
