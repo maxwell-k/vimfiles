@@ -1,4 +1,4 @@
-# Use the active LTS Node JS on Homebrew
+# 001 Use the active LTS Node JS on Homebrew
 
 <!--
 doc/decisions/001-use-the-active-lts-node-js-on-homebrew.md
