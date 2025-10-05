@@ -1,0 +1,16 @@
+#!/usr/bin/sh
+incus init images:fedora/42/cloud c1 < tests/config.yaml \
+&& incus config device add \
+  c1 vimfiles disk "source=$PWD" "path=$PWD" shift=true \
+&& incus start c1 \
+&& incus exec c1 -- \
+  sh -c "until systemctl is-system-running >/dev/null 2>&1 ; do : ; done" \
+&& infocmp -x xterm-ghostty | incus exec c1 -- tic -x - \
+&& incus exec c1 -- su --login "$LOGNAME"  --command 'cd ~/.vim && tests/run' \
+&& if [ -z "$KEEP_C1" ] ; then incus stop c1 && incus delete c1 ; fi
+# For further details about configuring the terminal description see also:
+# https://ghostty.org/docs/help/terminfo#copy-ghostty's-terminfo-to-a-remote-machine
+#
+# tests/incus
+# Copyright 2025 Keith Maxwell
+# SPDX-License-Identifier: MPL-2.0

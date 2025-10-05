@@ -60,7 +60,6 @@ set shortmess+=I
 set showcmd
 set smartcase
 set softtabstop=2
-set spellfile=~/.vim/spell/en.utf-8.add " second file in autocommand below
 set splitbelow
 set termguicolors
 set wildmenu

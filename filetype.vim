@@ -11,7 +11,6 @@ endif
 augroup filetypedetect
 " Tests in ./tests/file-type-detection/
 
-  autocmd BufRead,BufNewFile *.bas setfiletype vba
   autocmd BufRead,BufNewFile *.beancount setfiletype beancount
   autocmd BufRead,BufNewFile *.docker setfiletype dockerfile
   autocmd BufRead,BufNewFile *.env setfiletype dotenv

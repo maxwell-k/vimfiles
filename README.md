@@ -14,10 +14,9 @@ Command to clone this repository and its sub-modules as `~/.vim`:
 
 Command to install the appropriate system packages:
 
-<!-- keep command below up to date with
-tests/run-using-podman-and-fedora-linux.sh -->
+<!-- keep command below up to date with tests/manual/config.yaml -->
 
-    sudo dnf install --assumeyes vim-enhanced ansible jq nodejs fzf git
+    sudo dnf install --assumeyes vim-enhanced ansible nodejs fzf git uv
 
 Command to run the playbook:
 
@@ -26,7 +25,7 @@ Command to run the playbook:
 
 Command to set up pre-commit hooks:
 
-    git -C ~/.vim config core.hooksPath ~/.vim/hooks
+    git -C ~/.vim config core.hooksPath ~/.vim/.hooks
 
 Command to check everything is working:
 
@@ -45,8 +44,6 @@ This repository contains about 1,300 lines of vim script accumulated since 2012.
 Much of it will not be of interest to anyone but the original author; a few
 "features" may be:
 
-- Complete syntax files for SQLite and Visual Basic for Applications (VBA)
-  written from scratch.
 - A file type plugin for automatically committing to Git
 - A few extra linters and fixers for <https://github.com/dense-analysis/ale>
 
@@ -100,5 +97,28 @@ quickly.
 Command to push changes:
 
     git push git@codeberg.org:maxwell-k/vimfiles.git
+
+# Running the test suite with Linux containers
+
+## Podman and Alpine Linux latest
+
+Command to run the test suite using Podman and the `alpine:latest` image:
+
+    tests/podman
+
+### Incus and Fedora Linux 42
+
+Command to run the test suite using Incus and the `images:fedora/42/cloud`
+image:
+
+    tests/incus
+
+The script above will use Cloud-init to configure an Incus container before
+running the tests. The Cloud-init steps include installing packages and running
+the Ansible playbook `site.yaml`.
+
+Command to follow Cloud-init output:
+
+    incus exec c1 -- tail -f /var/log/cloud-init-output.log
 
 <!-- vim: set filetype=markdown.htmlCommentNoSpell : -->

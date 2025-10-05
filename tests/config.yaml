@@ -10,7 +10,6 @@ config:
       # taken from tests/run-using-podman-and-fedora-linux.sh
       - vim-enhanced
       - ansible
-      - jq
       - nodejs
       - fzf
       - git
@@ -34,10 +33,11 @@ config:
         owner: maxwell-k:maxwell-k
         defer: true
     runcmd:
-      - mkdir --parents /home/maxwell-k/.local/bin
-      - chown -R maxwell-k:maxwell-k /home/maxwell-k/.local
+      - chown -R maxwell-k:maxwell-k /home/maxwell-k/
+      - su maxwell-k --command 'mkdir --parents /home/maxwell-k/.local/bin'
+      - su maxwell-k --command 'ansible-playbook ~/.vim/site.yaml'
 
 #
-# tests/manual/incus-fedora-42.yaml
+# tests/manual/config.yaml
 # Copyright 2025 Keith Maxwell
 # SPDX-License-Identifier: CC0-1.0

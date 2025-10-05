@@ -36,13 +36,3 @@ For examples from the Vader package itself see:
 Each set of automated tests is laid out in a directory under `./automated`.
 
 `run` in each directory will run the tests.
-
-# Testing with Linux containers
-
-Command to run the test suite using Podman and the `alpine:latest` image:
-
-    tests/run-using-podman-and-alpine-linux.sh
-
-Command to run the test suite using Podman and the `fedora:latest` image:
-
-    tests/run-using-podman-and-fedora-linux.sh

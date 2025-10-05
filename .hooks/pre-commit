@@ -1,5 +1,5 @@
 #!/bin/sh
-# hooks/pre-commit
+# .hooks/pre-commit
 # Copyright 2021 Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
 npm exec --prefer-offline -- lint-staged \
