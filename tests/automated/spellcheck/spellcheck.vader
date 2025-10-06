@@ -3,7 +3,6 @@
 " Copyright 2024 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
-" Based upon :help ale-development
 Given (One word spelt correctly):
   Correctly
 

@@ -6,7 +6,8 @@
 " Modification: Added `--report warning` as a separate linter because the
 " original doesn't support passing options
 " Copyright 2020 Keith Maxwell
-
+" pack/vendored/start/ale-personal/ale_linters/rst/rstcheckwarn.vim
+"
 function! ale_linters#rst#rstcheckwarn#Handle(buffer, lines) abort
     " matches: 'bad_rst.rst:1: (SEVERE/4) Title overline & underline
     " mismatch.'

@@ -1,6 +1,6 @@
-" ale_linters/vim/sed.vim
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
+" pack/vendored/start/ale-personal/ale_linters/vim/sed.vim
 "
 call ale#linter#Define(fnamemodify(expand('<sfile>:p:h'), ':t'), {
 \   'name': 'sed',

@@ -1,8 +1,8 @@
-" Changes to sometimes use `uv --offline tool run black`
 " Copyright 2025 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
-" autoload/ale/fixers/black.vim
-
+" pack/vendored/start/ale-personal/autoload/ale/fixers/black.vim
+"
+" Changes to sometimes use `uv --offline tool run black`
 runtime pack/submodules/start/ale/autoload/ale/fixers/black.vim
 
 " See also after/ale_linters/python/ruff.vim and autoload/python.vim

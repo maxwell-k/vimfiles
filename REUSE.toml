@@ -5,9 +5,9 @@ SPDX-PackageDownloadLocation = "https://codeberg.org/maxwell-k/vimfiles"
 
 [[annotations]]
 path = [
+  "pack/vendored/start/ale-personal/tests/embedme/example.sh",
   "tests/automated/cog/example.txt",
   "tests/automated/cog/missing.txt",
-  "tests/automated/embedme/example.sh",
   "tests/automated/file-type-detection/fixtures/**",
 ]
 SPDX-FileCopyrightText = "2020-2025 Keith Maxwell"
@@ -20,10 +20,10 @@ path = [
   ".lintstagedrc.yaml",
   ".prettierignore",
   "doc/decisions/.en.utf-8.add",
+  "pack/vendored/start/ale-personal/tests/embedme/**.md",
   "tests/.en.utf-8.add",
-  "tests/manual/.en.utf-8.add",
-  "tests/automated/embedme/**.md",
   "tests/automated/markdown-toc/**.md",
+  "tests/manual/.en.utf-8.add",
   "tests/manual/todo.txt",
 ]
 SPDX-FileCopyrightText = "2020-2025 Keith Maxwell"

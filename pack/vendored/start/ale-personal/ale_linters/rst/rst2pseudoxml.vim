@@ -1,6 +1,6 @@
-" ale_linters/rst/rst2pseudoxml.vim
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
+" pack/vendored/start/ale-personal/ale_linters/rst/rst2pseudoxml.vim
 "
 " ALE Linter for ReStructuredText (rst)
 call ale#Set('rst_rst2pseudoxml_executable', 'rst2pseudoxml')

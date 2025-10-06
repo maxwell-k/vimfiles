@@ -1,0 +1,12 @@
+#!/bin/sh
+# Copyright 2025 Keith Maxwell
+# SPDX-License-Identifier: MPL-2.0
+# pack/vendored/start/ale-personal/tests/run
+# The vim command below is duplicated here from the shebang line of each script
+# as Busybox env (Alpine Linux) does not support `env -S`.
+# For debugging use `:Vader` instead of `:Vader!`
+REPO="$(git rev-parse --show-toplevel)"
+cd "$REPO/pack/vendored/start/ale-personal/tests/embedme" \
+&& ./run \
+&& cd "$REPO/pack/vendored/start/ale-personal/tests/" \
+&& for i in ./*.vader ; do vim '+packadd vader | Vader!' "$i" || exit 1 ; done

@@ -1,6 +1,6 @@
-" plugin/ale_registry.vim
 " SPDX-License-Identifier: MPL-2.0
 " Copyright 2025 Keith Maxwell
+" pack/vendored/start/ale-personal/plugin/ale.vim
 let s:entries = {}
 " autoload/ale/fixers/sort.vim
 let s:entries['sort'] = {

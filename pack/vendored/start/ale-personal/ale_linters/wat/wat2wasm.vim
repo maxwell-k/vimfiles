@@ -1,9 +1,8 @@
-" ale_linters/wat/wat2wasm.vim
 " Copyright 2024 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
+" pack/vendored/start/ale-personal/ale_linters/wat/wat2wasm.vim
 "
 " ALE Linter for Web Assembly Text
-
 function! ale_linters#wat#wat2wasm#Handle(buffer, lines) abort
     " len('<stdin>:') = 8
     let l:output = []
