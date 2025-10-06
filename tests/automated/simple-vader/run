@@ -5,4 +5,4 @@
 # The vim command below is duplicated here from the shebang line of each script
 # as Busybox env (Alpine Linux) does not support `env -S`.
 # For debugging use `:Vader` instead of `:Vader!`
-for i in ./*.vader ; do vim '+packadd vader | Vader!' "$i" ; done
+for i in ./*.vader ; do vim '+packadd vader | Vader!' "$i" || exit 1 ; done
