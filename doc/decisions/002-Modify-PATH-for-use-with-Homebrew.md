@@ -1,4 +1,4 @@
-# Modify PATH for use with Homebrew
+# 002 Modify PATH for use with Homebrew
 
 <!--
 doc/decisions/002-modify-PATH-for-use-with-homebrew.md
