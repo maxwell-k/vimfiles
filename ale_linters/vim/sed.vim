@@ -7,6 +7,8 @@ call ale#linter#Define(fnamemodify(expand('<sfile>:p:h'), ':t'), {
 \   'executable': 'sed',
 \   'cwd': '%s:h',
 \   'command': 'sed -n -e "/.\{80\}/=" %t',
-\   'callback': 'sed#Handle',
+\   'callback': {_, lines -> map(lines,
+\     {_, lnum -> {
+\       'lnum': lnum, 'col': 80, 'type': 'W', 'text': 'Line too long'}})},
 \   'output_stream': 'stdout',
 \})
