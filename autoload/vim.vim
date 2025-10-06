@@ -3,6 +3,14 @@
 " SPDX-License-Identifier: MPL-2.0
 "
 scriptencoding utf8
+function! vim#AleQuit() abort "{{{1
+  " For use with:
+  " noremap <Leader>a :call vim#AleQuit()<CR>
+  augroup ale_quit
+  autocmd User ALEFixPost wq
+  augroup END
+  ALEFix
+endfunction
 function! vim#Browser() abort "{{{1
   let l:cmd = ''
   let l:cmd .= 'silent '

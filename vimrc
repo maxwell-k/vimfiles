@@ -83,7 +83,7 @@ unlet s:list_settings
 " ---------------------
 "
 " Using <Leader>, alphabetically:
- noremap <Leader>aq :call ale#quit#Mapping()<CR>
+ noremap <Leader>aq :call vim#AleQuit()<CR>
  noremap <Leader>aD :call toggle#Ale()<CR>
      map <Leader>af <Plug>(ale_find_references)
      map <Leader>ad <Plug>(ale_go_to_definition)
