@@ -6,7 +6,8 @@ scriptencoding utf-8
 " All custom colours for todo.txt are in after/syntax/todo.vim so there is a
 " single level of priority
 "
-runtime colors/ayu.vim
+let s:ayu =expand('<sfile>:h').'/../pack/submodules/start/ayu/colors/ayu.vim'
+execute 'source '.resolve(s:ayu)
 
 let g:colors_name='mine'
 " hex codes from pack/submodules/start/ayu/colors/ayu.vim
