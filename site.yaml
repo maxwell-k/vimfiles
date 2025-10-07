@@ -79,14 +79,6 @@
       changed_when: false
       register: npm_exec_jsonlint_cmd
       failed_when: npm_exec_jsonlint_cmd.rc != 1
-    - name: Install ~/.local/bin/pyright-langserver
-      ansible.builtin.copy:
-        dest: ~/.local/bin/pyright-langserver
-        mode: "0o755"
-        content: |
-          #!/bin/sh
-          exec npm exec --package pyright --yes -- pyright-langserver "$@"
-      when: "'.local/bin' in lookup('env', 'PATH')"
     - name: Try running uv self version
       ansible.builtin.command: uv self version
       changed_when: false
