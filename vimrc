@@ -176,4 +176,7 @@ let g:ale_lint_delay = 50
 let g:ale_shell='/bin/sh'
 let g:netrw_http_cmd = 'curl --verbose --location --output'
 
+" Add ~/.vim/bin to PATH, for ALE executables
+call setenv('PATH', expand('~/.vim/bin') . ':' . getenv('PATH'))
+
 " vim: set foldmethod=marker foldlevel=0 :

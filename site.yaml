@@ -81,14 +81,6 @@
       ansible.builtin.command: npm exec --yes -- prettier --version
       when: "'.local/bin' in lookup('env', 'PATH')"
       changed_when: false
-    - name: Install ~/.local/bin/jsonlint
-      ansible.builtin.copy:
-        dest: ~/.local/bin/jsonlint
-        mode: "0o755"
-        content: |
-          #!/bin/sh
-          exec npm exec --offline -- jsonlint "$@"
-      when: "'.local/bin' in lookup('env', 'PATH')"
     - name: Add jsonlint to npm cache
       ansible.builtin.command: npm exec --yes -- jsonlint --version
       when: "'.local/bin' in lookup('env', 'PATH')"
