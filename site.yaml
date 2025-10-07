@@ -51,12 +51,15 @@
       when: npm_check.rc != 0
     - name: Make sure tools are available in the npm cache
       ansible.builtin.command:
-        cmd: npm exec --yes -- {{ item }} --help
-        creates: ~/.npm/_npx/*/node_modules/.bin/{{ item }}
+        cmd: npm exec --yes -- {{ item[0] }} --help
+        creates: ~/.npm/_npx/*/node_modules/.bin/{{ item[0] }}
+      register: site_npm_exec
+      failed_when: site_npm_exec.rc not in item[1]
+      # if file in creates: exists the site_npm_exec.rc is 0
       loop:
-        - embedme
-        - pyright
-        - lint-staged
+        - [embedme, [0]]
+        - [pyright, [0]]
+        - [lint-staged, [0]]
     - name: Make sure markdown-toc is available in the npm cache
       ansible.builtin.command:
         cmd: npm exec --yes -- markdown-toc --help
