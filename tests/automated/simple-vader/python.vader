@@ -7,10 +7,8 @@ Given (Some string):
   Hello
 
 Execute python3 (Python code):
-  import os
-  import vim
-  from vim import current, vars
-  vim.command('normal! yy2p')
+  from vim import command, current
+  command('normal! yy2p')
   current.buffer.append('Python.vader')
 
 Expect (3 copies of some string with Python.vader appended):
