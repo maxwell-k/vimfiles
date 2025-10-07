@@ -174,6 +174,7 @@ let g:ale_echo_msg_format = '%linter% says `%s`'
 let g:ale_fix_on_save = 1
 let g:ale_lint_delay = 50
 let g:ale_shell = '/bin/sh'
+let g:ale_max_buffer_history_size = 40
 let g:netrw_http_cmd = 'curl --verbose --location --output'
 
 " ALE {{{1
