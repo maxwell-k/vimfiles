@@ -3,4 +3,3 @@
 " SPDX-License-Identifier: MPL-2.0
 "
 setlocal conceallevel=1
-syntax enable
