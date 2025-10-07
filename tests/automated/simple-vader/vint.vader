@@ -6,7 +6,7 @@
 Execute(Integration tests on executable):
   Assert executable('vint'),
     \ 'vint executable not found'
-  " Assert exepath('vint') ==# expand('~/.vim/bin/vint'),
+  Assert exepath('vint') ==# expand('~/.vim/bin/vint'),
     \ 'unexpected vint executable found'
   Assert system('vint --version') =~# '^\d',
     \ 'unexpected output from vint --version'
