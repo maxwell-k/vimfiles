@@ -1,5 +1,5 @@
 " Author: Keith Maxwell <keith.maxwell@gmail.com
-" Description: Formatting files with bean-format, part of beeancount
+" Description: Formatting files with bean-format, part of beancount
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 " pack/vendored/start/ale-personal/autoload/ale/fixers/beanformat.vim
