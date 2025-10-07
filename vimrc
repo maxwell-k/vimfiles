@@ -167,19 +167,15 @@ digraphs bb 128499 " ballot box with ballot 🗳
 digraphs mi 129704 " rock 129704 🪨
 " other digraphs I use: ·
 
-" Global variables {{{1
-" ----------------
+" ALE {{{1
+" ---
 "
 let g:ale_echo_msg_format = '%linter% says `%s`'
 let g:ale_fix_on_save = 1
 let g:ale_lint_delay = 50
 let g:ale_shell = '/bin/sh'
 let g:ale_max_buffer_history_size = 40
-let g:netrw_http_cmd = 'curl --verbose --location --output'
 
-" ALE {{{1
-" ---
-"
 " Add ~/.vim/bin to PATH, for ALE executables
 call setenv('PATH', expand('~/.vim/bin') . ':' . getenv('PATH'))
 
@@ -259,4 +255,10 @@ let g:ale_fixers = {
 \ 'yaml': ['prettier'],
 \ 'zig': ['zigfmt'],
 \ } "}}}
+" Global variables {{{1
+" ----------------
+"
+let g:netrw_http_cmd = 'curl --verbose --location --output'
+
+" }}}1
 " vim: set foldmethod=marker foldlevel=0 :
