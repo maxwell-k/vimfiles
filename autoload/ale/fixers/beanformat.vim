@@ -2,7 +2,7 @@
 " Description: Formatting files with bean-format, part of beancount
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
-" pack/vendored/start/ale-personal/autoload/ale/fixers/beanformat.vim
+" autoload/ale/fixers/beanformat.vim
 "
 call ale#Set('beancount_beanformat_executable', 'bean-format')
 call ale#Set('beancount_beanformat_options', '')
