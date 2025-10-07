@@ -47,16 +47,16 @@
       # prefer to install that package manually
       when: ansible_distribution not in ('Alpine')
 
-- name: Make sure packages are available through npx and uv
+- name: Populate the npm cache
   hosts: all
   tasks:
     - name: Check if npm is available
       ansible.builtin.command: npm --version
       changed_when: false
-      register: npm_check
+      register: site_npm_check
     - name: Stop this play if npm isn't available
       ansible.builtin.meta: end_host
-      when: npm_check.rc != 0
+      when: site_npm_check.rc != 0
     - name: Make sure tools are available in the npm cache
       ansible.builtin.command:
         cmd: npm exec --yes -- {{ item[0] }} --help
@@ -71,13 +71,17 @@
         - [jsonlint, [0, 1]] # ~/.vim/bin/jsonlint
         - [prettier, [0]] # ~/.vim/bin/prettier
         - [markdown-toc, [0, 1]]
+
+- name: Populate the uv cache
+  hosts: all
+  tasks:
     - name: Try running uv self version
       ansible.builtin.command: uv self version
       changed_when: false
-      register: uv_check
+      register: site_uv_check
     - name: Stop this play if uv isn't available
       ansible.builtin.meta: end_host
-      when: uv_check.rc != 0
+      when: site_uv_check.rc != 0
     - name: Add to the uv cache so that features and tests can run offline
       ansible.builtin.command: "uv tool run {{ item }}"
       changed_when: true
