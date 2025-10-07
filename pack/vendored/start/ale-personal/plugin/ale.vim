@@ -66,7 +66,6 @@ let g:ale_fixers = {
 \ 'markdown': ['prettier'],
 \ 'markdown-toc': ['markdown-toc', 'prettier'],
 \ 'python': ['black', 'usort'],
-\ 'rst': ['remove_trailing_lines', 'trim_whitespace'],
 \ 'spellfile': ['sort'],
 \ 'svelte': ['prettier'],
 \ 'todo': ['trim_whitespace'],

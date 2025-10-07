@@ -96,7 +96,6 @@ call opfunc#opfuncmap('c') " straight yank
  noremap <Leader>fF :call SendViaOSC52(@%)<CR>
  noremap <Leader>ff :call vim#YankPathWithTilde()<CR>
         "<Leader>g see plugin/mappings.vim
-        "<Leader>h see vim/ftplugin/rst.vim
  noremap <Leader>i :echo synIDattr(synID(line('.'),col('.'),1),'name')<CR>
 vnoremap <Leader>k <ESC>:call vim#Keep()<CR>
         "<Leader>j see ftplugin/python.vim for Jedi mappings or
