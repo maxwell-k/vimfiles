@@ -132,7 +132,7 @@
         state: absent
       changed_when: false
 
-- name: Populate the uv cache
+- name: Install CLI utilities based on vim to ~/.local/bin
   hosts: all
   tasks:
     - name: Create ~/.local/bin
@@ -141,6 +141,11 @@
         mode: "0o755"
         path: ~/.local/bin
     - name: Run ~/.vim/bin/path.toml
-      ansible.builtin.command:
-        cmd: uv tool run dotdrop install --profile default --cfg bin/path.toml
-        creates: ~/.local/bin/vimf
+      ansible.builtin.file:
+        state: link
+        src: ~/.vim/bin/{{ item[0] }}
+        dest: ~/.local/bin/{{ item[1] }}
+      loop:
+        - [pager, pager]
+        - [vimf, vimf]
+        - [vimj.py, vimj]
