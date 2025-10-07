@@ -131,3 +131,16 @@
         path: "{{ site_script.path }}"
         state: absent
       changed_when: false
+
+- name: Populate the uv cache
+  hosts: all
+  tasks:
+    - name: Create ~/.local/bin
+      ansible.builtin.file:
+        state: directory
+        mode: "0o755"
+        path: ~/.local/bin
+    - name: Run ~/.vim/bin/path.toml
+      ansible.builtin.command:
+        cmd: uv tool run dotdrop install --profile default --cfg bin/path.toml
+        creates: ~/.local/bin/vimf
