@@ -1,0 +1,5 @@
+#!/bin/sh
+exec uv --offline tool run urlscan --no-browser "$@"
+# Copyright 2025 Keith Maxwell
+# SPDX-License-Identifier: MPL-2.0
+# bin/urlscan
