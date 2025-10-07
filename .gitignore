@@ -7,13 +7,7 @@
 # script to source mappings from outside this repository
 /plugin/mappings.vim
 
-# clipboard integration installed via site.yaml
-/plugin/osc52.vim
-
-# integration with fzf, installed via site.yaml:
-/plugin/fzf.vim
-
-# links to runtimepath directories in other repositories
+# runtime files that are not tracked in this git repository
 /pack/gitignored/
 
 # "timestamp" for last successful test run

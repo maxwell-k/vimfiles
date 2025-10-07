@@ -22,16 +22,24 @@
   hosts: all
   tasks:
     - name: Create the plugin folder
-      ansible.builtin.file: { state: directory, path: ./plugin/, mode: "0o755" }
+      ansible.builtin.file:
+        state: directory
+        path: "{{ item }}"
+        mode: "0o755"
+      loop:
+        - pack/gitignored
+        - pack/gitignored/start
+        - pack/gitignored/start/site
+        - pack/gitignored/start/site/plugin
     - name: Download osc52.vim
       ansible.builtin.get_url:
-        dest: ./plugin/osc52.vim
+        dest: pack/gitignored/start/site/plugin/osc52.vim
         url: |-
           https://raw.githubusercontent.com/libapps/libapps-mirror/main/hterm/etc/osc52.vim
         mode: "0640"
     - name: Download fzf.vim
       ansible.builtin.get_url:
-        dest: ./plugin/fzf.vim
+        dest: pack/gitignored/start/site/plugin/fzf.vim
         url: |-
           https://raw.githubusercontent.com/junegunn/fzf/master/plugin/fzf.vim
         mode: "0640"
