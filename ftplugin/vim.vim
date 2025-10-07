@@ -1,12 +1,12 @@
-" Copyright 2020 Keith Maxwell
+" Copyright 2025 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
-" pack/vendored/start/ale-personal/ale_linters/vim/sed.vim
+" ftplugin/vim.vim
 "
-call ale#linter#Define(fnamemodify(expand('<sfile>:p:h'), ':t'), {
+call ale#linter#Define('vim', {
 \   'name': 'sed',
 \   'executable': 'sed',
 \   'cwd': '%s:h',
-\   'command': 'sed -n -e "/.\{80\}/=" %t',
+\   'command': '%e -n -e "/.\{80\}/=" %t',
 \   'callback': {_, lines -> map(lines,
 \     {_, lnum -> {
 \       'lnum': lnum, 'col': 80, 'type': 'W', 'text': 'Line too long'}})},
