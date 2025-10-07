@@ -1,0 +1,12 @@
+#!/usr/bin/env -S vim '+packadd vader | Vader!'
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+" tests/automated/simple-vader/vint.vader
+
+Execute(Integration tests on executable):
+  Assert executable('vint'),
+    \ 'vint executable not found'
+  " Assert exepath('vint') ==# expand('~/.vim/bin/vint'),
+    \ 'unexpected vint executable found'
+  Assert system('vint --version') =~# '^\d',
+    \ 'unexpected output from vint --version'
