@@ -5,6 +5,5 @@
 " pack/vendored/start/ale-personal/autoload/ale/fixers/embedme.vim
 "
 function! ale#fixers#embedme#Fix(buffer) abort
-  let s:npx = 'npm exec --prefer-offline -- '
-  return {'command': s:npx . 'embedme --silent --source-root %s:h --stdout %t'}
+  return {'command': 'embedme --silent --source-root %s:h --stdout %t'}
 endfunction
