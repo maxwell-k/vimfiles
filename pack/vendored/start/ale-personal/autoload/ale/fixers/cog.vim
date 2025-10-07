@@ -5,5 +5,5 @@
 " pack/vendored/start/ale-personal/autoload/ale/fixers/cog.vim
 "
 function! ale#fixers#cog#Fix(buffer) abort
-  return { 'command':  'uv --offline tool run --from=cogapp cog -' }
+  return { 'command':  'cog -' }
 endfunction
