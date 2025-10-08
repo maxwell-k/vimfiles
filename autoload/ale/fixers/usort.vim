@@ -5,5 +5,5 @@
 " SPDX-License-Identifier: MPL-2.0
 "
 function! ale#fixers#usort#Fix(buffer) abort
-  return { 'executable': 'usort', 'command': '%e format -' }
+  return { 'command': 'usort format -' }
 endfunction
