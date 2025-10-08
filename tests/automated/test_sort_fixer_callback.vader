@@ -1,5 +1,5 @@
 #!/usr/bin/env vader
-" tests/automated/gitignore.vader
+" tests/automated/test_sort_fixer_callback.vader
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
