@@ -2,28 +2,30 @@
 # tests/run
 # Copyright 2020 Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
-
-# If run as tests/run from the root of the repository
-test -d automated || cd tests || exit
-
-for i in automated/* ; do
+#
+# Run the tests from this repository.
+#
+# This script can be run from anywhere inside the repository.
+repository="$(git rev-parse --show-toplevel)"
+cd "$repository" || exit 1
+for i in tests/automated/* ; do
   if [ -d "$i" ] ; then
     cd "$i" || exit 1
     if ! ./run ; then
-      printf 'tests/%s failed\n' "$i"
+      printf '%s failed\n' "$i"
       exit 1
     fi
-    cd ../.. || exit 1
+    cd "$repository" || exit 1
   elif [ -f "$i" ] ; then
     if ! "$i" ; then
-      printf 'tests/%s failed\n' "$i"
+      printf '%s failed\n' "$i"
       exit 1
     fi
   else
-    printf 'tests/%s not recognised\n' "$i"
+    printf '%s not recognised\n' "$i"
     exit 1
   fi
 done
 
-git branch --show-current > .success
+git branch --show-current > tests/.success
 printf 'tests/run: All tests succeeded.\n'
