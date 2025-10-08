@@ -1,9 +1,7 @@
 #!/bin/sh
-# tests/automated/spellcheck/run
+# tests/automated/spellcheck.sh
 # Copyright 2024 Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
-# For debugging use `:Vader` instead of `:Vader!`
-vader spellcheck.vader \
-&& echo "Text with no spelling mistakes." \
+echo "Text with no spelling mistakes." \
 | vim '+call spellcheck#Exit()' - \
 && ! vim '+normal iA single spelling mistake: asdf' '+call spellcheck#Exit()'
