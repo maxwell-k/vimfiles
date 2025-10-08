@@ -1,5 +1,5 @@
 #!/bin/sh
-exec uv --offline tool run black "$@"
+# bin/black
 # Copyright 2025 Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
-# bin/black
+exec uv --offline tool run black "$@"

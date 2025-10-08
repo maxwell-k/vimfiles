@@ -1,6 +1,6 @@
+" ftplugin/vim.vim
 " Copyright 2025 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
-" ftplugin/vim.vim
 "
 call ale#linter#Define('vim', {
 \   'name': 'sed',

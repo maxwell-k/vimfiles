@@ -1,8 +1,8 @@
 " Author: Keith Maxwell <keith.maxwell@gmail.com
 " Description: Add a table of contents with markdown-toc
+" autoload/ale/fixers/markdown_toc.vim
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
-" autoload/ale/fixers/markdown_toc.vim
 "
 function! ale#fixers#markdown_toc#Fix(buffer) abort
   " Use --bullets=- to be compatible with prettier, see also

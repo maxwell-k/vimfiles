@@ -1,7 +1,7 @@
 #!/bin/sh
+# bin/linkscan
+# Copyright 2025 Keith Maxwell
+# SPDX-License-Identifier: MPL-2.0
 exec uv --offline tool run \
   --index-url=https://gitlab.com/api/v4/projects/43703506/packages/pypi/simple \
   linkscan "$@"
-# Copyright 2025 Keith Maxwell
-# SPDX-License-Identifier: MPL-2.0
-# bin/linkscan

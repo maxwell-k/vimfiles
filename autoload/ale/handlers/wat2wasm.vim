@@ -1,6 +1,6 @@
+" autoload/ale/handlers/wat2wasm.vim
 " Copyright 2025 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
-" autoload/ale/handlers/wat2wasm.vim
 
 function! ale#handlers#wat2wasm#Handle(buffer, lines) abort
     " len('<stdin>:') = 8

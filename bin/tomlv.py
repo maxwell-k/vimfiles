@@ -94,6 +94,6 @@ def _main(argv: list[str] | None = None) -> int:
 if __name__ == "__main__":
     raise SystemExit(_main())
 
+# bin/tomlv.py
 # Copyright 2025 Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
-# bin/tomlv.py

@@ -1,5 +1,5 @@
 #!/bin/sh
-exec npm exec --offline -- jsonlint "$@"
+# bin/jsonlint
 # Copyright 2025 Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
-# bin/jsonlint
+exec npm exec --offline -- jsonlint "$@"

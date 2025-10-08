@@ -1,7 +1,7 @@
 #!/bin/sh
+# bin/vimf
 # Copyright 2025 Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
-# bin/vimf
 for i in "$@"; do
     cmd="vim \"+call vim#AleQuit()\" \"$i\""
     # Backticks are intentionally used inside single quotes below, knowing that

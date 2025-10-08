@@ -1,6 +1,6 @@
 #!/bin/sh
-# Required because env -S is not portable to Alpine Linux / BusyBox
-exec vim '+packadd vader | Vader!' "$@"
+# bin/vader
 # Copyright 2025 Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
-# bin/vader
+# Required because env -S is not portable to Alpine Linux / BusyBox
+exec vim '+packadd vader | Vader!' "$@"

@@ -1,6 +1,6 @@
+" ftplugin/wat.vim
 " Copyright 2024 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
-" ftplugin/wat.vim
 "
 " ALE Linter for Web Assembly Text
 " See alse autoload/ale/handlers/wat2wasm.vim.

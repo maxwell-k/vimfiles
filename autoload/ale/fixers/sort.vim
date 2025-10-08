@@ -1,8 +1,8 @@
 " Author: Keith Maxwell <keith.maxwell@gmail.com>
 " Description: Sort a file that contains no comments
+" autoload/ale/fixers/sort.vim
 " Copyright 2022 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
-" autoload/ale/fixers/sort.vim
 "
 function! ale#fixers#sort#Fix(buffer) abort
   if search('^#', 'n') == 0

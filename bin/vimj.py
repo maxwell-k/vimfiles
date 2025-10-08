@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+
+# bin/vimj.py
+# Copyright 2024 Keith Maxwell
+# SPDX-License-Identifier: MPL-2.0
+
 """Open vim at the specified file, line and column.
 
 Command to run tests:
@@ -65,7 +70,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
-# Copyright 2024 Keith Maxwell
-# SPDX-License-Identifier: MPL-2.0
-# bin/vimj.py

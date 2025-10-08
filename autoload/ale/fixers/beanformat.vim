@@ -1,8 +1,8 @@
 " Author: Keith Maxwell <keith.maxwell@gmail.com
 " Description: Formatting files with bean-format, part of beancount
+" autoload/ale/fixers/beanformat.vim
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
-" autoload/ale/fixers/beanformat.vim
 "
 call ale#Set('beancount_beanformat_executable', 'bean-format')
 call ale#Set('beancount_beanformat_options', '')

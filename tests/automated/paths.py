@@ -11,6 +11,18 @@ from tomllib import load
 REUSE = Path("REUSE.toml")
 
 
+def _unordered(path: Path) -> bool:
+    lines = path.read_text().splitlines()
+    # Assume the first time the path appears that it should be above the
+    # copyright header
+    first = next(index for index, line in enumerate(lines) if str(path) in line)
+    try:
+        result = "Copyright" not in lines[first + 1]
+    except IndexError:
+        result = True
+    return result
+
+
 def _read_reuse() -> list[Path]:
     with REUSE.open("rb") as f:
         data = load(f)
@@ -44,7 +56,11 @@ def _main() -> int:
     for i in missing:
         print(str(i))
 
-    if missing:
+    unordered = list(filter(_unordered, set(files) - set(missing)))
+    for i in unordered:
+        print(str(i))
+
+    if missing or unordered:
         return 1
 
     return 0
