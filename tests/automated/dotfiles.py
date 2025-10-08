@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
-#
+# tests/automated/dotfiles.py
 # Copyright 2025 Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
-# tests/automated/bin/run
 #
 """Run doctests."""
 from contextlib import chdir

@@ -38,6 +38,6 @@ config:
       - su maxwell-k --command 'ansible-playbook ~/.vim/site.yaml'
 
 #
-# tests/manual/config.yaml
+# tests/config.yaml
 # Copyright 2025 Keith Maxwell
 # SPDX-License-Identifier: CC0-1.0

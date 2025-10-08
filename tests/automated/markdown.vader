@@ -1,5 +1,5 @@
 #!/usr/bin/env vader
-" tests/automated/simple-vader/markdown.vader
+" tests/automated/markdown.vader
 " Copyright 2025 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "

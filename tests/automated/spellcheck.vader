@@ -1,5 +1,5 @@
 #!/usr/bin/env vader
-" tests/automated/spellcheck/spellcheck.vader
+" tests/automated/spellcheck.vader
 " Copyright 2024 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "

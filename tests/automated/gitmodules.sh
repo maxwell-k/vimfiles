@@ -1,5 +1,5 @@
 #!/bin/sh
-# gitmodules.sh
+# tests/automated/gitmodules.sh
 # Copyright 2025 Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
 #

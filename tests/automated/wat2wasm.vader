@@ -1,5 +1,5 @@
 #!/usr/bin/env vader
-" tests/automated/simple-vader/test_wat2wasm_handler.vader
+" tests/automated/wat2wasm.vader
 " Copyright 2024 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "

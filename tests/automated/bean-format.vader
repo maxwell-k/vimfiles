@@ -1,5 +1,5 @@
 #!/usr/bin/env vader
-" tests/automated/bean-format/run.vader
+" tests/automated/bean-format.vader
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "

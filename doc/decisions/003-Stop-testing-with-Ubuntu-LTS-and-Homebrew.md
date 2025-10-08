@@ -1,7 +1,7 @@
 # 003 Stop testing with Ubuntu LTS and Homebrew
 
 <!--
-docs/decisions/003-Continue-to-test-Ubuntu-LTS.md
+doc/decisions/003-Stop-testing-with-Ubuntu-LTS-and-Homebrew.md
 Copyright 2025 Keith Maxwell
 SPDX-License-Identifier: CC0-1.0
 -->

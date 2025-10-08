@@ -1,7 +1,7 @@
 #!/usr/bin/env vader
+" tests/automated/vint.vader
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
-" tests/automated/simple-vader/vint.vader
 
 Execute(Integration tests on executable):
   Assert executable('vint'),
