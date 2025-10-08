@@ -2,4 +2,5 @@
 *.lua
 /.gitmodules
 /.prettierignore
-/pack/
+/pack/submodules/
+/pack/gitignored/
