@@ -6,8 +6,8 @@
 Given html (Mode line in HTML comment):
   <!-- vim: set spell filetype=html : -->
 
-Execute (Check for badly spelled words):
+Execute (Assert no badly spelt words):
   let result = spellbadword()
-
-Then (None found):
   Assert ['', ''] ==# result
+
+" vim: set filetype=vader :

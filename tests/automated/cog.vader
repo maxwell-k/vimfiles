@@ -3,29 +3,29 @@
 " Copyright 2025 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
-Given (A chunk of code without output):
-  [[[cog
-  import cog
+Given (A chunk of code without output);
+[[[cog
+import cog
 
-  for i in range(5):
-    cog.outl(str(i))
-  ]]]
-  [[[end]]]
+for i in range(5):
+  cog.outl(str(i))
+]]]
+[[[end]]]
 
 Execute (Run the configured ALE fixers):
   set filetype=cog
   call vim#AleFixBlocking()
 
-Expect python (A chunk of code including the output):
-  [[[cog
-  import cog
+Expect python (A chunk of code including the output);
+[[[cog
+import cog
 
-  for i in range(5):
-    cog.outl(str(i))
-  ]]]
-  0
-  1
-  2
-  3
-  4
-  [[[end]]]
+for i in range(5):
+  cog.outl(str(i))
+]]]
+0
+1
+2
+3
+4
+[[[end]]]

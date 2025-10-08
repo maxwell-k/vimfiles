@@ -3,11 +3,8 @@
 " Copyright 2025 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
-Given todo (One task);
+Given todo (One task starting with an email);
 <mail@example> Task with email
 
-Do (Empty block):
-
-Then (Assertions):
-  AssertEqual 'todo', &filetype
-  AssertEqual 'TodoURL', SyntaxAt(1, 2)
+Execute (The second character is recognised as an email);
+AssertEqual 'TodoURL', SyntaxAt(1, 2)

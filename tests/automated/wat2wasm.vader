@@ -3,26 +3,16 @@
 " Copyright 2024 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
-Before:
-  " Load the file which defines the linter.
-  runtime ale_linters/wat/wat2wasm.vim
-
-After:
-  " Unload all linters again.
-  call ale#linter#Reset()
-
-Execute(The output should be correct):
-
-  " Test that the right loclist items are parsed from the handler.
-  AssertEqual
-  \ [
-  \  {
-  \    'lnum': 22,
-  \    'col': 1,
-  \    'type': 'E',
-  \    'text': 'unexpected token EOF, expected ).',
-  \  },
-  \ ],
-  \ ale#handlers#wat2wasm#Handle(bufnr(''), [
-  \ '-:22:1: error: unexpected token EOF, expected ).',
-  \ ])
+Execute(ale#handlers#wat2wasm#Handle processes an 'unexpected token' error);
+AssertEqual
+\ [
+\  {
+\    'lnum': 22,
+\    'col': 1,
+\    'type': 'E',
+\    'text': 'unexpected token EOF, expected ).',
+\  },
+\ ],
+\ ale#handlers#wat2wasm#Handle(bufnr(''), [
+\ '-:22:1: error: unexpected token EOF, expected ).',
+\ ])

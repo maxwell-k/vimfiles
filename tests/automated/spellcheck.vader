@@ -6,13 +6,13 @@
 Given (One word spelt correctly):
   Correctly
 
-Execute:
+Execute (Status code is zero):
   AssertEqual spellcheck#StatusCode(), 0
 
 Given (One word spelt incorrectly):
   asdf
 
-Execute:
+Execute (Status code is one):
   AssertEqual spellcheck#StatusCode(), 1
 
 Given (Text with a single spelling mistake):
@@ -21,5 +21,5 @@ Given (Text with a single spelling mistake):
   2001/01/01-line-with-spelling-mistake-asdf.pdf
   2001/01/01-other.pdf
 
-Execute:
+Execute (Status code is one):
   AssertEqual spellcheck#StatusCode(), 1

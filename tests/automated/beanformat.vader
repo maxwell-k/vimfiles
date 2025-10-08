@@ -6,24 +6,24 @@
 " Ensure these tests pass with the version of beancount packaged for the latest
 " Fedora Linux and Alpine Linux. beancount is implemented in Python and C and
 " can be difficult to install.
-Given (The decimal point is not aligned with the comment):
-  2020-01-21 open Assets:Cash GBP
-  2020-01-21 open Expenses:Wages GBP
+Given (The decimal point is not aligned with the comment);
+2020-01-21 open Assets:Cash GBP
+2020-01-21 open Expenses:Wages GBP
 
-  ; decimal point in this column adjust in ftplugin/beancount.vim         ↓
-  2020-01-31 * "Transaction"
-    Assets:Cash 10,000.00 GBP
-    Expenses:Wages
+; decimal point in this column adjust in ftplugin/beancount.vim         ↓
+2020-01-31 * "Transaction"
+  Assets:Cash 10,000.00 GBP
+  Expenses:Wages
 
 Execute (Run the configured ALE fixers):
   set filetype=beancount
   call vim#AleFixBlocking()
 
-Expect (The decimal point is aligned with the comment):
-  2020-01-21 open Assets:Cash GBP
-  2020-01-21 open Expenses:Wages GBP
+Expect (The decimal point is aligned with the comment);
+2020-01-21 open Assets:Cash GBP
+2020-01-21 open Expenses:Wages GBP
 
-  ; decimal point in this column adjust in ftplugin/beancount.vim         ↓
-  2020-01-31 * "Transaction"
-    Assets:Cash                                                     10,000.00 GBP
-    Expenses:Wages
+; decimal point in this column adjust in ftplugin/beancount.vim         ↓
+2020-01-31 * "Transaction"
+  Assets:Cash                                                     10,000.00 GBP
+  Expenses:Wages

@@ -3,23 +3,23 @@
 " Copyright 2025 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
-Given python (Imports are not sorted alphabetically):
-  """Test."""
+Given python (Imports are not sorted alphabetically);
+"""Test."""
 
-  from pathlib import Path
-  from os import chdir
+from pathlib import Path
+from os import chdir
 
-  Path(".")
-  chdir(".")
+Path(".")
+chdir(".")
 
 Execute (Run the configured ALE fixers):
   call vim#AleFixBlocking()
 
-Expect python (Imports are sorted alphabetically):
-  """Test."""
+Expect python (Imports are sorted alphabetically);
+"""Test."""
 
-  from os import chdir
-  from pathlib import Path
+from os import chdir
+from pathlib import Path
 
-  Path(".")
-  chdir(".")
+Path(".")
+chdir(".")

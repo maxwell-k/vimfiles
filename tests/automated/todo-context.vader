@@ -3,13 +3,10 @@
 " Copyright 2025 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
-Given todo (One task);
+Given todo (A single task in todo format with a context);
  @context Text with leading space and a context
 
-Do (Empty block):
-
-Then (Assertions):
-  AssertEqual 'todo', &filetype
-  AssertNotEqual 'TodoContext', SyntaxAt(1, 1),
-  \ 'Leading space should not be part of context'
-  AssertEqual 'TodoContext', SyntaxAt(1, 2),
+Execute (Assert correct syntax groups);
+AssertNotEqual 'TodoContext', SyntaxAt(1, 1),
+\ 'Leading space should not be part of context'
+AssertEqual 'TodoContext', SyntaxAt(1, 2),

@@ -3,25 +3,25 @@
 " Copyright 2025 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
-Given (Markdown without an empty table of contents):
-  <!-- toc -->
+Given (Markdown without an empty table of contents);
+<!-- toc -->
 
-  # First heading
+# First heading
 
-  # Second heading
+# Second heading
 
 Execute (Run the configured ALE fixers):
   set filetype=markdown.markdown-toc
   call vim#AleFixBlocking()
 
-Expect (Full table of contents):
-  <!-- toc -->
+Expect (Full table of contents);
+<!-- toc -->
 
-  - [First heading](#first-heading)
-  - [Second heading](#second-heading)
+- [First heading](#first-heading)
+- [Second heading](#second-heading)
 
-  <!-- tocstop -->
+<!-- tocstop -->
 
-  # First heading
+# First heading
 
-  # Second heading
+# Second heading
