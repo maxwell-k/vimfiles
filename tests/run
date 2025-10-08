@@ -7,12 +7,22 @@
 test -d automated || cd tests || exit
 
 for i in automated/* ; do
-  cd "$i" || exit 1
-  if ! ./run ; then
-    printf '%s tests failed\n' "$i"
+  if [ -d "$i" ] ; then
+    cd "$i" || exit 1
+    if ! ./run ; then
+      printf 'tests/%s failed\n' "$i"
+      exit 1
+    fi
+    cd ../.. || exit 1
+  elif [ -f "$i" ] ; then
+    if ! vim '+packadd vader | Vader!' "$i" ; then
+      printf 'tests/%s tests failed\n' "$i"
+      exit 1
+    fi
+  else
+    printf 'tests/%s not recognised\n' "$i"
     exit 1
   fi
-  cd ../.. || exit 1
 done
 
 git branch --show-current > .success
