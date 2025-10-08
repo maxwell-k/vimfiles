@@ -1,4 +1,4 @@
-#!/usr/bin/env -S vim '+packadd vader | Vader!'
+#!/usr/bin/env vader
 " tests/automated/html/run.vader
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0

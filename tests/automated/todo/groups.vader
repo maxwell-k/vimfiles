@@ -1,3 +1,4 @@
+#!/usr/bin/env vader
 " tests/automated/todo/groups.vader
 " Copyright 2025 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0

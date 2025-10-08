@@ -1,6 +1,11 @@
-#!/bin/sh
-# tests/automated/todo/run
-# Copyright 2025 Keith Maxwell
-# SPDX-License-Identifier: MPL-2.0
-# For debugging use `:Vader` instead of `:Vader!`
-vim "+packadd vader | Vader! run.vader"
+#!/usr/bin/env vader
+" tests/automated/todo/run.vader
+" Copyright 2025 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
+Include: clear.vader
+Include: context.vader
+Include: email.vader
+Include: groups.vader
+
+" vim: set filetype=vader :

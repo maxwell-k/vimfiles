@@ -15,8 +15,8 @@ for i in automated/* ; do
     fi
     cd ../.. || exit 1
   elif [ -f "$i" ] ; then
-    if ! vim '+packadd vader | Vader!' "$i" ; then
-      printf 'tests/%s tests failed\n' "$i"
+    if ! "$i" ; then
+      printf 'tests/%s failed\n' "$i"
       exit 1
     fi
   else

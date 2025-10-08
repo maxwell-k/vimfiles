@@ -20,8 +20,8 @@ manual test separately. It is better to have a manual test than no test.
 ### Usage
 
 - Run inside vim when editing tests using Vader: `:packadd vader | Vader %`
-- Run from command line: `vim '+packadd vader | Vader!' file.vader`
-- Run all tests: `sh run`
+- Run from command line: `vader`
+- Run all tests: `tests/run`
 
 For examples from the Vader package itself see:
 `pack/submodules/opt/vader/test/vader.vader`
@@ -35,4 +35,5 @@ For examples from the Vader package itself see:
 
 Each set of automated tests is laid out in a directory under `./automated`.
 
-`run` in each directory will run the tests.
+If tests are a in a directory, `run` will run the tests; if tests are in a file,
+the file is executable.
