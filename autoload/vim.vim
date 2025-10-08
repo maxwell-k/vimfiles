@@ -3,6 +3,15 @@
 " SPDX-License-Identifier: MPL-2.0
 "
 scriptencoding utf8
+function! vim#AleFixBlocking() abort "{{{1
+  let g:ale_fixing = 1
+  augroup AleFixBlocking
+  autocmd!
+  autocmd User ALEFixPost let g:ale_fixing = 0
+  augroup END
+  ALEFix
+  while get(g:, 'ale_fixing', 0) | sleep 150m | endwhile
+endfunction
 function! vim#AleQuit() abort "{{{1
   " For use with:
   " noremap <Leader>a :call vim#AleQuit()<CR>
