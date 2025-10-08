@@ -7,7 +7,6 @@ config:
     packages:
       - zsh
       - ncurses # for tic for the ghostty terminfo
-      # taken from tests/run-using-podman-and-fedora-linux.sh
       - vim-enhanced
       - ansible
       - nodejs
