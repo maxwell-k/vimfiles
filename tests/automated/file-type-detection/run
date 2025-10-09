@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check that file types are detected correctly
+"""Check that file types are detected correctly.
 
 Only uses the standard library. Includes tests of test code inline.
 """
@@ -13,10 +13,10 @@ from subprocess import check_call
 
 TESTS = Path(__file__).parent
 DATA = TESTS / "fixtures"
-OUTPUT = TESTS / 'run.txt'
+OUTPUT = TESTS / "run.txt"
 
 
-def issues() -> int:
+def _issues() -> int:
     result = 0
     for path in DATA.rglob("*"):
 
@@ -34,9 +34,9 @@ def issues() -> int:
             print(f"Error running {command}")
 
         with path.open() as file:
-            expected = clean_expected(file.read())
-        with open(OUTPUT) as file:
-            actual = clean_actual(file.read())
+            expected = _clean_expected(file.read())
+        with OUTPUT.open() as file:
+            actual = _clean_actual(file.read())
         if expected != actual:
             print(f"{expected!r} != {actual!r} for {path}")
             result += 1
@@ -45,7 +45,7 @@ def issues() -> int:
     return result
 
 
-def clean_expected(before: str) -> str:
+def _clean_expected(before: str) -> str:
     try:
         after = json.loads(before)["filetype"]
     except json.decoder.JSONDecodeError:
@@ -56,17 +56,21 @@ def clean_expected(before: str) -> str:
     return after
 
 
-def clean_actual(before: str) -> str:
+def _clean_actual(before: str) -> str:
     after = before.strip()
-    after = after.removeprefix('filetype=')
-    return after
+    return after.removeprefix("filetype=")
+
+
+def _main() -> int:
+    issues = 0
+    issues += _clean_actual("\n  filetype=groovy") != "groovy"
+    issues += _clean_expected("text\n") != "text"
+    issues += _clean_expected("# python") != "python"
+    issues += _clean_expected("// javascript") != "javascript"
+    issues += _clean_expected('{"filetype":"json"}') != "json"
+
+    return min(_issues(), 1)
 
 
 if __name__ == "__main__":
-    assert clean_actual('\n  filetype=groovy') == "groovy"
-    assert clean_expected("text\n") == "text"
-    assert clean_expected("# python") == "python"
-    assert clean_expected("// javascript") == "javascript"
-    assert clean_expected('{"filetype":"json"}') == "json"
-
-    exit(min(issues(), 1))
+    raise SystemExit(_main())
