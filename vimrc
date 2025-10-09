@@ -84,7 +84,7 @@ set omnifunc=ale#completion#OmniFunc
 set path+=** " recursively search, misses hidden files e.g. /.vim/
 set ruler " show position
 set runtimepath-=/usr/share/vim/vimfiles/after  " so `:helptags all` succeeds
-set shell=/bin/zsh\ -l
+set shell=/bin/zsh\ --login
 set shiftwidth=2
 set shortmess+=I
 set showcmd
