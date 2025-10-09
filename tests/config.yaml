@@ -5,15 +5,15 @@ config:
     package_upgrade: true
     package_update: true
     packages:
-      - zsh
-      - ncurses # for tic for the ghostty terminfo
-      - vim-enhanced
       - ansible
-      - nodejs
+      - beancount
       - fzf
       - git
+      - ncurses # for tic for the ghostty terminfo
+      - nodejs
       - uv
-      - beancount
+      - vim-enhanced
+      - zsh
     users:
       - name: maxwell-k
         sudo: ALL=(ALL) NOPASSWD:ALL
