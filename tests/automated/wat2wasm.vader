@@ -1,0 +1,18 @@
+#!/usr/bin/env vader
+" tests/automated/wat2wasm.vader
+" Copyright 2024 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
+Execute(ale#handlers#wat2wasm#Handle processes an 'unexpected token' error);
+AssertEqual
+\ [
+\  {
+\    'lnum': 22,
+\    'col': 1,
+\    'type': 'E',
+\    'text': 'unexpected token EOF, expected ).',
+\  },
+\ ],
+\ ale#handlers#wat2wasm#Handle(bufnr(''), [
+\ '-:22:1: error: unexpected token EOF, expected ).',
+\ ])

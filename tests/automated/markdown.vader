@@ -1,0 +1,11 @@
+#!/usr/bin/env vader
+" tests/automated/markdown.vader
+" Copyright 2025 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
+Given markdown (Heading with a spellbadword in both URL and code):
+  ## Example <https://asdf.com/> `asdf`
+
+Execute (Assert no badly spelt words):
+  let result = spellbadword()
+  Assert ['', ''] ==# result

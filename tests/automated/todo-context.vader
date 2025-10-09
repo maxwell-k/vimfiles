@@ -1,0 +1,12 @@
+#!/usr/bin/env vader
+" tests/automated/todo-context.vader
+" Copyright 2025 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
+Given todo (A single task in todo format with a context);
+ @context Text with leading space and a context
+
+Execute (Assert correct syntax groups);
+AssertNotEqual 'TodoContext', SyntaxAt(1, 1),
+\ 'Leading space should not be part of context'
+AssertEqual 'TodoContext', SyntaxAt(1, 2),

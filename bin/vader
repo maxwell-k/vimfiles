@@ -1,0 +1,10 @@
+#!/bin/sh
+# bin/vader
+# Copyright 2025 Keith Maxwell
+# SPDX-License-Identifier: MPL-2.0
+# Required because env -S is not portable to Alpine Linux / BusyBox
+if [ -z "$VADER_DWELL" ] ; then
+  exec vim '+packadd vader | Vader!' "$@"
+else
+  exec vim '+packadd vader | Vader' "$@"
+fi

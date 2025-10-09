@@ -1,8 +1,0 @@
-" tests/automated/todo/run.vader
-" Copyright 2025 Keith Maxwell
-" SPDX-License-Identifier: MPL-2.0
-"
-Include: clear.vader
-Include: context.vader
-Include: email.vader
-Include: groups.vader

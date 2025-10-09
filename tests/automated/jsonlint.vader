@@ -1,0 +1,31 @@
+#!/usr/bin/env vader
+" tests/automated/jsonlint.vader
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+
+Before:
+  runtime ale_linters/json/jsonlint.vim
+
+After:
+  call ale#linter#Reset()
+
+Execute(Integration tests on executable):
+  Assert executable('jsonlint'),
+    \ 'jsonlint executable not found'
+  Assert exepath('jsonlint') ==# expand('~/.vim/bin/jsonlint'),
+    \ 'unexpected jsonlint executable found'
+  " use expand() to workaround unexpected behaviour in Alpine Linux
+  Assert system(expand('~/.vim/bin/jsonlint --version')) =~# '^\d\+[.]\d\+[.]\d\+\n$',
+    \ 'unexpected output from jsonlint --version'
+
+Execute(Handles error from one input character, a double quote):
+  " Upstream ALE does not include tests for ale_linters#json#jsonlint#Handle
+  " Example using output from: printf '"' | ~/.vim/bin/jsonlint --compact -
+  AssertEqual
+    \ [{'lnum': 1, 'col': 0, 'text':
+    \ "found: 'INVALID' - expected: 'STRING', 'NUMBER', 'NULL', 'TRUE', 'FALSE', '{', '['."
+    \ }],
+    \ ale_linters#json#jsonlint#Handle(bufnr(''), [
+    \ "line 1, col 0, found: 'INVALID' - expected: 'STRING', 'NUMBER', 'NULL', 'TRUE', 'FALSE', '{', '['.",
+    \ ]
+    \ )

@@ -1,3 +1,4 @@
+#!/usr/bin/env vader
 " pack/vendored/start/backlog/tests/immediately.vader
 " Copyright Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0

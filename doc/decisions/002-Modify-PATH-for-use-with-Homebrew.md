@@ -1,7 +1,7 @@
 # 002 Modify PATH for use with Homebrew
 
 <!--
-doc/decisions/002-modify-PATH-for-use-with-homebrew.md
+doc/decisions/002-Modify-PATH-for-use-with-Homebrew.md
 Copyright Keith Maxwell
 SPDX-License-Identifier: CC0-1.0
 -->

@@ -1,0 +1,5 @@
+#!/bin/sh
+# bin/markdown-toc
+# Copyright 2025 Keith Maxwell
+# SPDX-License-Identifier: MPL-2.0
+exec npm exec --offline -- markdown-toc "$@"

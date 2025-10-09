@@ -1,0 +1,14 @@
+#!/usr/bin/env vader
+" tests/automated/vint.vader
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+Execute(Integration tests using the vint executable);
+Assert executable('vint'), 'vint executable not found'
+Assert exepath('vint') ==# expand('~/.vim/bin/vint'),
+\ 'unexpected vint executable found'
+" use expand() to workaround unexpected behaviour in Alpine Linux
+" The output starts with 'realpath: --: No such file or directory'
+" See https://github.com/astral-sh/uv/issues/16209
+Assert system(expand('~/.vim/bin/vint --version'))
+  \ =~# '\d\+[.][0-9a-z]\+[.][a-z0-9+]\+\n$',
+  \ 'unexpected output from vint --version'

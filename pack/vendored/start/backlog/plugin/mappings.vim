@@ -11,5 +11,6 @@ if !exists('g:backlog_no_mappings') || ! g:backlog_no_mappings
   nnoremap <unique> <Leader>bl <Plug>(backlog_later)
   nnoremap <unique> <Leader>bp <Plug>(backlog_sort_project)
 endif
+" pack/vendored/start/backlog/plugin/mappings.vim
 " Copyright Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0

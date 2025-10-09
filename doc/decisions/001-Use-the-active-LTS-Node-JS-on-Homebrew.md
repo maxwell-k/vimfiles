@@ -1,7 +1,7 @@
 # 001 Use the active LTS Node JS on Homebrew
 
 <!--
-doc/decisions/001-use-the-active-lts-node-js-on-homebrew.md
+doc/decisions/001-Use-the-active-LTS-Node-JS-on-Homebrew.md
 Copyright Keith Maxwell
 SPDX-License-Identifier: CC0-1.0
 -->

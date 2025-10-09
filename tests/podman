@@ -7,7 +7,16 @@ podman run \
   --env=PATH=/usr/sbin:/usr/bin:/sbin:/bin:/root/.local/bin \
   --env=ANSIBLE_PYTHON_INTERPRETER=auto_silent \
   alpine:latest \
-  sh -c "apk add vim npm ansible git beancount tar uv \
+  sh -c "apk add \
+      ansible \
+      beancount \
+      fzf \
+      git \
+      npm \
+      tar \
+      uv \
+      vim \
+      zsh \
     && ansible-playbook site.yaml \
     && tests/run"
 # tests/podman

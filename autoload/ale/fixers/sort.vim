@@ -1,6 +1,6 @@
-" autoload/ale/fixers/sort.vim
 " Author: Keith Maxwell <keith.maxwell@gmail.com>
 " Description: Sort a file that contains no comments
+" autoload/ale/fixers/sort.vim
 " Copyright 2022 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "

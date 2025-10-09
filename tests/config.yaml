@@ -4,16 +4,19 @@ config:
     #cloud-config
     package_upgrade: true
     package_update: true
+    # packages should be a superset of that in config-fedora.yaml in dotfiles
     packages:
-      - zsh
-      - ncurses # for tic for the ghostty terminfo
-      # taken from tests/run-using-podman-and-fedora-linux.sh
-      - vim-enhanced
       - ansible
-      - nodejs
+      - beancount
+      - curl
       - fzf
       - git
+      - ncurses # for tic for the ghostty terminfo
+      - python3.13
+      - nodejs
       - uv
+      - vim-enhanced
+      - zsh
     users:
       - name: maxwell-k
         sudo: ALL=(ALL) NOPASSWD:ALL
@@ -38,6 +41,6 @@ config:
       - su maxwell-k --command 'ansible-playbook ~/.vim/site.yaml'
 
 #
-# tests/manual/config.yaml
+# tests/config.yaml
 # Copyright 2025 Keith Maxwell
 # SPDX-License-Identifier: CC0-1.0

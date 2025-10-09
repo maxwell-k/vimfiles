@@ -1,0 +1,6 @@
+#!/bin/sh
+# bin/vint
+# Copyright 2025 Keith Maxwell
+# SPDX-License-Identifier: MPL-2.0
+exec uv --quiet --offline tool run \
+  --from git+https://github.com/Vimjas/vint.git@94d2cb3 vint "$@"

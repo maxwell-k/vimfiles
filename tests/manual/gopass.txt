@@ -1,0 +1,10 @@
+tests/manual/gopass.txt
+Copyright 2025 Keith Maxwell
+SPDX-License-Identifier: CC0-1.0
+
+password
+---
+comment: login with GitHub
+url: https://www.duckdns.org/domains
+
+vim: nowrap syntax=gopass conceallevel=1

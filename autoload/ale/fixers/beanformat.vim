@@ -1,6 +1,6 @@
-" autoload/ale/fixers/beanformat.vim
 " Author: Keith Maxwell <keith.maxwell@gmail.com
-" Description: Formatting files with bean-format, part of beeancount
+" Description: Formatting files with bean-format, part of beancount
+" autoload/ale/fixers/beanformat.vim
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "

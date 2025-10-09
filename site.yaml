@@ -22,16 +22,24 @@
   hosts: all
   tasks:
     - name: Create the plugin folder
-      ansible.builtin.file: { state: directory, path: ./plugin/, mode: "0o755" }
+      ansible.builtin.file:
+        state: directory
+        path: "{{ item }}"
+        mode: "0o755"
+      loop:
+        - pack/gitignored
+        - pack/gitignored/start
+        - pack/gitignored/start/site
+        - pack/gitignored/start/site/plugin
     - name: Download osc52.vim
       ansible.builtin.get_url:
-        dest: ./plugin/osc52.vim
+        dest: pack/gitignored/start/site/plugin/osc52.vim
         url: |-
           https://raw.githubusercontent.com/libapps/libapps-mirror/main/hterm/etc/osc52.vim
         mode: "0640"
     - name: Download fzf.vim
       ansible.builtin.get_url:
-        dest: ./plugin/fzf.vim
+        dest: pack/gitignored/start/site/plugin/fzf.vim
         url: |-
           https://raw.githubusercontent.com/junegunn/fzf/master/plugin/fzf.vim
         mode: "0640"
@@ -39,77 +47,41 @@
       # prefer to install that package manually
       when: ansible_distribution not in ('Alpine')
 
-- name: Make sure packages are available through npx and uv
+- name: Populate the npm cache
   hosts: all
   tasks:
     - name: Check if npm is available
       ansible.builtin.command: npm --version
       changed_when: false
-      register: npm_check
+      register: site_npm_check
     - name: Stop this play if npm isn't available
       ansible.builtin.meta: end_host
-      when: npm_check.rc != 0
+      when: site_npm_check.rc != 0
     - name: Make sure tools are available in the npm cache
       ansible.builtin.command:
-        cmd: npm exec --yes -- {{ item }} --help
-        creates: ~/.npm/_npx/*/node_modules/.bin/{{ item }}
+        cmd: npm exec --yes -- {{ item[0] }} --help
+        creates: ~/.npm/_npx/*/node_modules/.bin/{{ item[0] }}
+      register: site_npm_exec
+      failed_when: site_npm_exec.rc not in item[1]
+      # if file in creates: exists the site_npm_exec.rc is 0
       loop:
-        - embedme
-        - pyright
-        - lint-staged
-    - name: Make sure markdown-toc is available in the npm cache
-      ansible.builtin.command:
-        cmd: npm exec --yes -- markdown-toc --help
-        creates: ~/.npm/_npx/*/node_modules/.bin/markdown-toc
-      register: npm_exec_markdown_toc_cmd
-      failed_when: npm_exec_markdown_toc_cmd.rc not in (0, 1) # 0 if skipped
-    - name: Make sure ~/.local/bin exists
-      ansible.builtin.file:
-        state: directory
-        path: "{{ item }}"
-        mode: "0o755"
-      loop: [~/.local, ~/.local/bin]
-    - name: Install ~/.local/bin/prettier
-      ansible.builtin.copy:
-        dest: ~/.local/bin/prettier
-        mode: "0o755"
-        content: |
-          #!/bin/sh
-          exec npm exec --offline -- prettier "$@"
-      when: "'.local/bin' in lookup('env', 'PATH')"
-    - name: Add prettier to npm cache
-      ansible.builtin.command: npm exec --yes -- prettier --version
-      when: "'.local/bin' in lookup('env', 'PATH')"
-      changed_when: false
-    - name: Install ~/.local/bin/jsonlint
-      ansible.builtin.copy:
-        dest: ~/.local/bin/jsonlint
-        mode: "0o755"
-        content: |
-          #!/bin/sh
-          exec npm exec --offline -- jsonlint "$@"
-      when: "'.local/bin' in lookup('env', 'PATH')"
-    - name: Add jsonlint to npm cache
-      ansible.builtin.command: npm exec --yes -- jsonlint --version
-      when: "'.local/bin' in lookup('env', 'PATH')"
-      changed_when: false
-      register: npm_exec_jsonlint_cmd
-      failed_when: npm_exec_jsonlint_cmd.rc != 1
-    - name: Install ~/.local/bin/pyright-langserver
-      ansible.builtin.copy:
-        dest: ~/.local/bin/pyright-langserver
-        mode: "0o755"
-        content: |
-          #!/bin/sh
-          exec npm exec --package pyright --yes -- pyright-langserver "$@"
-      when: "'.local/bin' in lookup('env', 'PATH')"
+        - [embedme, [0]]
+        - [pyright, [0]]
+        - [lint-staged, [0]]
+        - [jsonlint, [0, 1]] # ~/.vim/bin/jsonlint
+        - [prettier, [0]] # ~/.vim/bin/prettier
+        - [markdown-toc, [0, 1]]
+
+- name: Populate the uv cache
+  hosts: all
+  tasks:
     - name: Try running uv self version
       ansible.builtin.command: uv self version
       changed_when: false
-      register: uv_check
+      register: site_uv_check
     - name: Stop this play if uv isn't available
       ansible.builtin.meta: end_host
-      when: uv_check.rc != 0
+      when: site_uv_check.rc != 0
     - name: Add to the uv cache so that features and tests can run offline
       ansible.builtin.command: "uv tool run {{ item }}"
       changed_when: true
@@ -123,6 +95,7 @@
         - >
           --index-url=https://gitlab.com/api/v4/projects/43703506/packages/pypi/simple
           linkscan --version
+        - --from git+https://github.com/Vimjas/vint.git@94d2cb3 vint --version
 
 - name:
     Tag vim help files, these tasks always report a change so they are run last
@@ -158,3 +131,23 @@
         path: "{{ site_script.path }}"
         state: absent
       changed_when: false
+
+- name: Install CLI utilities based on vim to ~/.local/bin
+  hosts: all
+  tasks:
+    - name: Create ~/.local/bin
+      ansible.builtin.file:
+        state: directory
+        mode: "0o755"
+        path: ~/.local/bin
+    - name: Run ~/.vim/bin/path.toml
+      ansible.builtin.file:
+        state: link
+        src: ~/.vim/bin/{{ item[0] }}
+        dest: ~/.local/bin/{{ item[1] }}
+      loop:
+        - [pager, pager]
+        - [vimf, vimf]
+        - [vimj.py, vimj]
+        - [vader, vader]
+        - [vinfo, vinfo]

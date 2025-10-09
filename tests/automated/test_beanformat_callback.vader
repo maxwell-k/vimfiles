@@ -1,0 +1,17 @@
+#!/usr/bin/env vader
+" tests/automated/test_beanformat_callback.vader
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
+" Based upon :help ale-development
+Before:
+  call ale#assert#SetUpFixerTest('beancount', 'beanformat')
+
+After:
+  call ale#assert#TearDownFixerTest()
+
+Execute(The default command should be correct):
+  AssertFixer
+  \ {
+  \   'command': ale#Escape('bean-format') . ' -'
+  \ }

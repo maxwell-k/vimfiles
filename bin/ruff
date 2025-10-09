@@ -1,0 +1,5 @@
+#!/bin/sh
+# bin/ruff
+# Copyright 2025 Keith Maxwell
+# SPDX-License-Identifier: MPL-2.0
+exec uv --offline tool run ruff "$@"

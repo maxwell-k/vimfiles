@@ -3,18 +3,31 @@
 " SPDX-License-Identifier: MPL-2.0
 "
 scriptencoding utf8
+function! vim#AleFixBlocking() abort "{{{1
+  let g:ale_fixing = 1
+  augroup AleFixBlocking
+  autocmd!
+  autocmd User ALEFixPost let g:ale_fixing = 0
+  augroup END
+  ALEFix
+  while get(g:, 'ale_fixing', 0) | sleep 150m | endwhile
+endfunction
+function! vim#AleQuit() abort "{{{1
+  " For use with:
+  " noremap <Leader>a :call vim#AleQuit()<CR>
+  augroup ale_quit
+  autocmd User ALEFixPost wq
+  augroup END
+  ALEFix
+endfunction
 function! vim#Browser() abort "{{{1
   let l:cmd = ''
   let l:cmd .= 'silent '
   if stridx(&filetype, 'markdown') == -1
-    let l:cmd .= '.w !uv --offline tool run'
-    let l:cmd .= ' urlscan --no-browser'
+    let l:cmd .= '.w !urlscan --no-browser'
   else
     " Relies upon https://gitlab.com/maxwell-k/linkscan for markdown.
-    let l:cmd .= 'w !uv --offline tool run'
-    let l:cmd .= ' --index-url='
-      \ .'https://gitlab.com/api/v4/projects/43703506/packages/pypi/simple'
-    let l:cmd .= ' linkscan - '.line('.')
+    let l:cmd .= 'w !linkscan - '.line('.')
   endif
   let l:cmd .= ' | xargs '
   if executable('xdg-open') " Linux

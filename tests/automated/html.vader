@@ -1,0 +1,13 @@
+#!/usr/bin/env vader
+" tests/automated/html.vader
+" Copyright 2020 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
+Given html (Mode line in HTML comment):
+  <!-- vim: set spell filetype=html : -->
+
+Execute (Assert no badly spelt words):
+  let result = spellbadword()
+  Assert ['', ''] ==# result
+
+" vim: set filetype=vader :
