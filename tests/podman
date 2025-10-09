@@ -10,11 +10,13 @@ podman run \
   sh -c "apk add \
       ansible \
       beancount \
+      fzf \
       git \
       npm \
       tar \
       uv \
       vim \
+      zsh \
     && ansible-playbook site.yaml \
     && tests/run"
 # tests/podman
