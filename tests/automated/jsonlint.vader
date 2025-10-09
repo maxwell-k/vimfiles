@@ -14,7 +14,8 @@ Execute(Integration tests on executable):
     \ 'jsonlint executable not found'
   Assert exepath('jsonlint') ==# expand('~/.vim/bin/jsonlint'),
     \ 'unexpected jsonlint executable found'
-  Assert system('jsonlint --version') =~# '^\d\+[.]\d\+[.]\d\+\n$',
+  " use expand() to workaround unexpected behaviour in Alpine Linux
+  Assert system(expand('~/.vim/bin/jsonlint --version')) =~# '^\d\+[.]\d\+[.]\d\+\n$',
     \ 'unexpected output from jsonlint --version'
 
 Execute(Handles error from one input character, a double quote):
