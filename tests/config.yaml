@@ -4,12 +4,15 @@ config:
     #cloud-config
     package_upgrade: true
     package_update: true
+    # packages should be a superset of that in config-fedora.yaml in dotfiles
     packages:
       - ansible
       - beancount
+      - curl
       - fzf
       - git
       - ncurses # for tic for the ghostty terminfo
+      - python3.13
       - nodejs
       - uv
       - vim-enhanced
