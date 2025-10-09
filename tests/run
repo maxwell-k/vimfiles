@@ -9,14 +9,7 @@
 repository="$(git rev-parse --show-toplevel)"
 cd "$repository" || exit 1
 for i in tests/automated/* ; do
-  if [ -d "$i" ] ; then
-    cd "$i" || exit 1
-    if ! ./run ; then
-      printf '%s failed\n' "$i"
-      exit 1
-    fi
-    cd "$repository" || exit 1
-  elif [ -f "$i" ] ; then
+  if [ -f "$i" ] ; then
     if ! "$i" ; then
       printf '%s failed\n' "$i"
       exit 1

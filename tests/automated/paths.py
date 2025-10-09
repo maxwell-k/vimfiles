@@ -1,11 +1,11 @@
 #!/usr/bin/env python
-"""Check each file includes its path."""
 # tests/automated/paths.py
 # Copyright 2025 Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
+"""Check each file includes its path."""
 
-from subprocess import run
 from pathlib import Path
+from subprocess import run
 from tomllib import load
 
 REUSE = Path("REUSE.toml")
@@ -38,7 +38,7 @@ def _include(path: Path, ignored: list[Path]) -> bool:
     return not (
         not path.is_file()
         or path.name == ".en.utf-8.add"
-        or "file-type-detection" in path.parts
+        or "fixtures" in path.parts
         or path in ignored
         or path.parts[0] == "LICENSES"
         or path.with_name(path.name + ".license").is_file()

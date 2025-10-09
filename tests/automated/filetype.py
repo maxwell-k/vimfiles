@@ -3,7 +3,7 @@
 
 Only uses the standard library. Includes tests of test code inline.
 """
-# tests/automated/file-type-detection/run
+# tests/automated/filetype.py
 # Copyright 2021 Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
 import json
@@ -33,11 +33,11 @@ def _clean_actual(before: str) -> str:
 
 
 class TestStringMethods(unittest.TestCase):
-    """Test using tests/automated/file-type-detection/fixtures/."""
+    """Test using tests/fixtures/."""
 
     def tearDown(self) -> None:
         """Clean up temporary file."""
-        OUTPUT.unlink()
+        OUTPUT.unlink(missing_ok=True)
 
     def test_clean_expect(self) -> None:
         """Test the _clean_expect function."""
@@ -55,10 +55,7 @@ class TestStringMethods(unittest.TestCase):
             capture_output=True,
             text=True,
         )
-        fixtures = (
-            Path(result.stdout.strip())
-            / "tests/automated/file-type-detection/fixtures/"
-        )
+        fixtures = Path(result.stdout.strip()) / "tests/fixtures/"
         for path in fixtures.rglob("*"):
 
             if not path.is_file():

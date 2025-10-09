@@ -8,7 +8,7 @@ path = [
   "tests/automated/cog/example.txt",
   "tests/automated/cog/missing.txt",
   "tests/automated/embedme/example.sh",
-  "tests/automated/file-type-detection/fixtures/**",
+  "tests/fixtures/**",
 ]
 SPDX-FileCopyrightText = "2020-2025 Keith Maxwell"
 SPDX-License-Identifier = "MPL-2.0"

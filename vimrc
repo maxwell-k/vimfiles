@@ -6,7 +6,7 @@
 " ------------
 " This block is first, so that autocommands are defined before they are
 " triggered, for example :colorscheme triggers ColorScheme.
-" Use a file in ftplugin if file-type related.
+" Use a file in ftplugin if file type related.
 augroup vimrc
 autocmd BufReadCmd *.tbz2 call tar#Browse(expand("<amatch>")) "Gentoo binaries
 autocmd BufNewFile,BufReadPost COMMIT_EDITMSG setlocal nomodeline spell
