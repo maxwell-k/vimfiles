@@ -7,42 +7,13 @@ Only uses the standard library. Includes tests of test code inline.
 # Copyright 2021 Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
 import json
+import unittest
 from pathlib import Path
-from subprocess import check_call
+from subprocess import run
 
 
 TESTS = Path(__file__).parent
-DATA = TESTS / "fixtures"
 OUTPUT = TESTS / "run.txt"
-
-
-def _issues() -> int:
-    result = 0
-    for path in DATA.rglob("*"):
-
-        if not path.is_file():
-            continue
-
-        command = (
-            "vim",
-            f"+redir! > {OUTPUT}",
-            "+set filetype?",
-            "+quit",
-            path,
-        )
-        if check_call(command) != 0:
-            print(f"Error running {command}")
-
-        with path.open() as file:
-            expected = _clean_expected(file.read())
-        with OUTPUT.open() as file:
-            actual = _clean_actual(file.read())
-        if expected != actual:
-            print(f"{expected!r} != {actual!r} for {path}")
-            result += 1
-        else:
-            OUTPUT.unlink()
-    return result
 
 
 def _clean_expected(before: str) -> str:
@@ -61,16 +32,50 @@ def _clean_actual(before: str) -> str:
     return after.removeprefix("filetype=")
 
 
-def _main() -> int:
-    issues = 0
-    issues += _clean_actual("\n  filetype=groovy") != "groovy"
-    issues += _clean_expected("text\n") != "text"
-    issues += _clean_expected("# python") != "python"
-    issues += _clean_expected("// javascript") != "javascript"
-    issues += _clean_expected('{"filetype":"json"}') != "json"
+class TestStringMethods(unittest.TestCase):
+    """Test using tests/automated/file-type-detection/fixtures/."""
 
-    return min(_issues(), 1)
+    def tearDown(self) -> None:
+        """Clean up temporary file."""
+        OUTPUT.unlink()
+
+    def test_clean_expect(self) -> None:
+        """Test the _clean_expect function."""
+        self.assertEqual(_clean_actual("\n  filetype=groovy"), "groovy")
+        self.assertEqual(_clean_expected("text\n"), "text")
+        self.assertEqual(_clean_expected("# python"), "python")
+        self.assertEqual(_clean_expected("// javascript"), "javascript")
+        self.assertEqual(_clean_expected('{"filetype":"json"}'), "json")
+
+    def test_issues(self) -> None:
+        """Call _issues()."""
+        result = run(
+            ("/usr/bin/git", "rev-parse", "--show-toplevel"),
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        fixtures = (
+            Path(result.stdout.strip())
+            / "tests/automated/file-type-detection/fixtures/"
+        )
+        for path in fixtures.rglob("*"):
+
+            if not path.is_file():
+                continue
+
+            command = (
+                "/usr/bin/vim",
+                f"+redir! > {OUTPUT}",
+                "+set filetype?",
+                "+quit",
+                path,
+            )
+            run(command, check=True)
+            expected = _clean_expected(path.read_text())
+            actual = _clean_actual(OUTPUT.read_text())
+            self.assertEqual(expected, actual)
 
 
 if __name__ == "__main__":
-    raise SystemExit(_main())
+    unittest.main()
