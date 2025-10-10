@@ -1,0 +1,7 @@
+2025-10-10 +project due:2025-10-10 Now @context
+(A) 2025-10-10 Priority A task
+2025-10-10 Task with no priority
+2025-10-10 Task with a spelling mistake: asdf
+tests/manual/moment/todo.txt
+Copyright 2025 Keith Maxwell
+SPDX-License-Identifier: CC0-1.0
