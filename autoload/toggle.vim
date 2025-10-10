@@ -50,6 +50,17 @@ function! toggle#List(default_settings) abort "{{{1
   end
   redraw
 endfunction "}}}1
+function! toggle#Moment() abort "{{{1
+  if &syntax ==# 'moment'
+    silent set syntax=todo
+  elseif &syntax ==# 'todo'
+    silent set syntax=moment
+    normal! zR
+  else
+    silent set syntax=todo
+  end
+  redraw
+endfunction "}}}1
 function! toggle#PythonFixers() abort "{{{1
   let l:before = get(b:, 'ale_fixers', [])
   if l:before == []
