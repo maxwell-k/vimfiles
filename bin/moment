@@ -1,5 +1,5 @@
 #!/bin/sh
-# bin/focus
+# bin/moment
 # Copyright 2025 Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
 # What am I doing at this very **moment**?
