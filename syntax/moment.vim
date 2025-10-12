@@ -8,6 +8,7 @@ syntax match momentCode "`[^`]\+`"  " to prevent other matches
 syntax match momentProject "+[a-z-]\+"
 syntax match momentContext "@\w\+"
 syntax match momentDue "due:\d\d\d\d-\d\d-\d\d"
+syntax match momentHidden +rec:[^ \t/]\S*+
 
 highlight momentHidden guifg=#2D3640
 highlight default link momentDate momentHidden
