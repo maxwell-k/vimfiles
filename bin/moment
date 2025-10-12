@@ -1,0 +1,12 @@
+#!/bin/sh
+# bin/focus
+# Copyright 2025 Keith Maxwell
+# SPDX-License-Identifier: MPL-2.0
+# What am I doing at this very **moment**?
+file=$1
+echo "$file" | entr -c vim -R \
+  '+set lines=2 t_te=' \
+  "+edit $file" \
+  '+normal 1gg' \
+  '+set syntax=moment nospell nocul' \
+  '+call timer_start(10, {i -> execute("quit") })'

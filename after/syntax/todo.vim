@@ -143,7 +143,7 @@ highlight TodoURL cterm=underline
 
 highlight link TodoKey Special
 
-highlight TodoProject guifg=NONE cterm=bold
+highlight TodoProject guifg=NONE cterm=italic
 
 highlight TodoCancel guifg=#5C6773
 
