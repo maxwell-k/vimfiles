@@ -4,6 +4,7 @@
 "
 syntax region momentLater start=/\%2l/ end=/\%$/ contains=@NoSpell
 syntax match momentDate "^\(([A-Z]) \)\=\d\d\d\d-\d\d-\d\d"
+syntax match momentCode "`[^`]\+`"  " to prevent other matches
 syntax match momentProject "+[a-z-]\+"
 syntax match momentContext "@\w\+"
 syntax match momentDue "due:\d\d\d\d-\d\d-\d\d"
