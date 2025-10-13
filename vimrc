@@ -239,6 +239,7 @@ let g:ale_fixers = {
 \ 'embedme': ['embedme', 'prettier'],
 \ 'gitignore': ['sort'],
 \ 'go': ['gofmt'],
+\ 'html': ['prettier'],
 \ 'javascript': ['prettier'],
 \ 'json': ['prettier'],
 \ 'markdown': ['prettier'],
