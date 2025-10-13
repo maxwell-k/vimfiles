@@ -255,7 +255,10 @@ let g:ale_fixers = {
 \ 'xml': ['xmllint'],
 \ 'yaml': ['prettier'],
 \ 'zig': ['zigfmt'],
-\ } "}}}
+\ }
+let g:ale_pattern_options = {}
+let g:ale_pattern_options['/webpack.config.js$']
+  \ = {'ale_linters_ignore': ['deno']}
 " Global variables {{{1
 " ----------------
 "
