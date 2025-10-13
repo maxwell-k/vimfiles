@@ -109,7 +109,7 @@ function! vim#Spellfile() abort "{{{1
   " add $PWD/.en.utf-8.add to spellfile, outside netrw
 
   " If editing over netrw, e.g. http: or scp:
-  if exists('b:netrw_lastfile')
+  if exists('b:netrw_curdir')
     return
   endif
 
