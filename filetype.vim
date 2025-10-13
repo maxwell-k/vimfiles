@@ -38,7 +38,6 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile dprint.json setfiletype json.dprint
   autocmd BufRead,BufNewFile git-revise-todo setfiletype gitrebase
   autocmd BufRead,BufNewFile goals.txt setfiletype todo
-  autocmd BufRead,BufNewFile hosts setfiletype yaml.ansible.hosts " [1]
   autocmd BufRead,BufNewFile in-basket.txt setfiletype todo
   autocmd BufRead,BufNewFile known_hosts setfiletype known_hosts
   autocmd BufRead,BufNewFile requirements_*.in setfiletype requirements
@@ -47,9 +46,6 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile secret setfiletype gopass
   autocmd BufRead,BufNewFile setup.cfg setfiletype dosini
   autocmd BufRead,BufNewFile todo.txt setfiletype todo
-
-  " [1] also need to clear augroup ansible_vim_fthosts see
-  " ./after/ftplugin/ansible.vim
 
 " No tests, may override above with setlocal filetype= see :help :setfiletype
   runtime filetype.gitignored.vim
