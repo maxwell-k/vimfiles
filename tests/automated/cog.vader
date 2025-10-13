@@ -14,7 +14,7 @@ for i in range(5):
 
 Execute (Run the configured ALE fixers):
   set filetype=cog
-  call vim#AleFixBlocking()
+  call test#AleFixBlocking()
 
 Expect python (A chunk of code including the output);
 [[[cog

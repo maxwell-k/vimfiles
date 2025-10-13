@@ -13,7 +13,7 @@ Path(".")
 chdir(".")
 
 Execute (Run the configured ALE fixers):
-  call vim#AleFixBlocking()
+  call test#AleFixBlocking()
 
 Expect python (Imports are sorted alphabetically);
 """Test."""

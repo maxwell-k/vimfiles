@@ -17,7 +17,7 @@ Given (The decimal point is not aligned with the comment);
 
 Execute (Run the configured ALE fixers):
   set filetype=beancount
-  call vim#AleFixBlocking()
+  call test#AleFixBlocking()
 
 Expect (The decimal point is aligned with the comment);
 2020-01-21 open Assets:Cash GBP

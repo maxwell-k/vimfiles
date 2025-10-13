@@ -259,6 +259,7 @@ let g:ale_fixers = {
 let g:ale_pattern_options = {}
 let g:ale_pattern_options['/webpack.config.js$']
   \ = {'ale_linters_ignore': ['deno']}
+" ale_fix_on_save_ignore doesn't affect test#AleFixBlocking() and vim#AleQuit()
 let g:ale_pattern_options['/maxwell-k/links/index.html$']
   \ = {'ale_fix_on_save_ignore': ['prettier']}
 " Global variables {{{1

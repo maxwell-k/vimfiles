@@ -12,7 +12,7 @@ Given (Markdown without an empty table of contents);
 
 Execute (Run the configured ALE fixers):
   set filetype=markdown.markdown-toc
-  call vim#AleFixBlocking()
+  call test#AleFixBlocking()
 
 Expect (Full table of contents);
 <!-- toc -->
