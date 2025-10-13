@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """Validate a TOML file using the Python standard library.
 
-For use with:
-https://github.com/dense-analysis/ale
-https://codeberg.org/maxwell-k/vimfiles/src/branch/main/ale_linters/toml/tomlv_py.vim
+For use with: <https://github.com/dense-analysis/ale>.
+See also ftplugin/toml.vim
 
 Example input:
 
