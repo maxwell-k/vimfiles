@@ -64,6 +64,15 @@ function! vim#Keep() abort "{{{1
   normal! 0gg
 endfunction "}}}1
 function! vim#RemoveCompleted() abort "{{{1
+  " write to done.txt at the root of the repository that includes the file
+  " being edited
+  if match(expand('%:p'), '/Computers/todo.txt$')
+    let l:path = system('git -C '.expand('%:p:h').' rev-parse --show-toplevel')
+    let l:path = maktaba#string#StripTrailing(l:path) . '/done.txt'
+    global/^x /call writefile([getline(line("."))], l:path, 'a')|d
+    return
+  endif
+
   "Call todo#RemoveCompleted with a specific file set for done
   let l:forced = 0
   if stridx(&filetype, 'markdown') >= 0
