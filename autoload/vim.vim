@@ -64,20 +64,13 @@ function! vim#Keep() abort "{{{1
   normal! 0gg
 endfunction "}}}1
 function! vim#RemoveCompleted() abort "{{{1
-  "Call todo#RemoveCompleted with a specific file set for done
-  let l:forced = 0
-  if stridx(&filetype, 'markdown') >= 0
-    let g:TodoTxtForceDoneName = '../done.txt'
-    let l:forced = 1
+  let l:dir = expand('%:p:h')
+  if match(expand('%:p'), '/Computers/todo.txt$') " then the repsitory root
+    let l:out = system('git -C '.l:dir.' rev-parse --show-toplevel')
+    let l:dir = maktaba#string#StripTrailing(l:out)
   endif
-  if expand('%') =~# '\%(someday-maybe\|in-basket\|backlog\|routine\).txt$'
-    let g:TodoTxtForceDoneName = 'done.txt'
-    let l:forced = 1
-  endif
-  call todo#RemoveCompleted()
-  if l:forced
-    unlet g:TodoTxtForceDoneName
-  endif
+
+  global/^x /call writefile([getline(line("."))], l:dir . '/done.txt', 'a')|d
 endfunction
 function! vim#SetTodoPriority(priority) abort "{{{1
   " The implementation in autoload/todo.vim in
