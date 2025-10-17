@@ -65,7 +65,7 @@ function! vim#Keep() abort "{{{1
 endfunction "}}}1
 function! vim#RemoveCompleted() abort "{{{1
   let l:dir = expand('%:p:h')
-  if match(expand('%:p'), '/Computers/todo.txt$') " then the repsitory root
+  if match(expand('%:p'), '/Computers/todo.txt$') > 0 " then the repsitory root
     let l:out = system('git -C '.l:dir.' rev-parse --show-toplevel')
     let l:dir = maktaba#string#StripTrailing(l:out)
   endif
