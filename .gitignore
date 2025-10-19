@@ -1,9 +1,3 @@
-# autoload functions stored outside this version control repository
-/autoload/gitignored.vim
-
-# script to source mappings from outside this repository
-/plugin/mappings.vim
-
 # runtime files that are not tracked in this git repository
 /pack/gitignored/
 
