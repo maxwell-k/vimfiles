@@ -43,3 +43,6 @@
 [submodule "pack/submodules/opt/zig"]
 	path = pack/submodules/opt/zig
 	url = https://github.com/ziglang/zig.vim
+[submodule "pack/submodules/opt/css-color"]
+	path = pack/submodules/opt/css-color
+	url = https://github.com/ap/vim-css-color.git
