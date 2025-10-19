@@ -29,17 +29,17 @@
       loop:
         - pack/gitignored
         - pack/gitignored/start
-        - pack/gitignored/start/site
-        - pack/gitignored/start/site/plugin
+        - pack/gitignored/start/local
+        - pack/gitignored/start/local/plugin
     - name: Download osc52.vim
       ansible.builtin.get_url:
-        dest: pack/gitignored/start/site/plugin/osc52.vim
+        dest: pack/gitignored/start/local/plugin/osc52.vim
         url: |-
           https://raw.githubusercontent.com/libapps/libapps-mirror/main/hterm/etc/osc52.vim
         mode: "0640"
     - name: Download fzf.vim
       ansible.builtin.get_url:
-        dest: pack/gitignored/start/site/plugin/fzf.vim
+        dest: pack/gitignored/start/local/plugin/fzf.vim
         url: |-
           https://raw.githubusercontent.com/junegunn/fzf/master/plugin/fzf.vim
         mode: "0640"
