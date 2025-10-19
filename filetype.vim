@@ -48,7 +48,7 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile todo.txt setfiletype todo
 
 " No tests, may override above with setlocal filetype= see :help :setfiletype
-  runtime filetype.gitignored.vim
+  runtime pack/gitignored/start/local/filetype.vim
 
 augroup END
 runtime pack/submodules/opt/ansible/ftdetect/ansible.vim
