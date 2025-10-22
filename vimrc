@@ -238,6 +238,7 @@ let g:ale_fixers = {
 \ 'css': ['prettier'],
 \ 'embedme': ['embedme', 'prettier'],
 \ 'gitignore': ['sort'],
+\ 'gleam': ['gleam_format'],
 \ 'go': ['gofmt'],
 \ 'html': ['prettier'],
 \ 'javascript': ['prettier'],
