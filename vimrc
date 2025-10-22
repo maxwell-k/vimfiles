@@ -236,6 +236,7 @@ let g:ale_fixers = {
 \ 'bzl': ['buildifier'],
 \ 'cog': ['cog'],
 \ 'css': ['prettier'],
+\ 'dart': ['dart-format'],
 \ 'embedme': ['embedme', 'prettier'],
 \ 'gitignore': ['sort'],
 \ 'gleam': ['gleam_format'],
