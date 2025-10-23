@@ -11,6 +11,23 @@ function! vim#AleQuit() abort "{{{1
   augroup END
   ALEFix
 endfunction
+function! vim#Colours() abort "{{{1
+  if get(g:, 'ayucolor', 'dark') ==# 'dark'
+    " hex codes from pack/submodules/start/ayu/colors/ayu.vim
+    " `:sort` all of the :highlight commands below
+    highlight ColorColumn guibg=#253340
+    highlight CursorLine guibg=#3E4B59
+    highlight Folded guibg=NONE guifg=sienna
+    highlight NonText guifg=#F29718
+    highlight Normal guibg=NONE
+    highlight SignColumn guibg=#FFD57F
+    highlight SpecialKey cterm=bold guifg=#cb4b16
+    highlight SpellRare cterm=NONE
+    highlight Statement guifg=#E6B673
+    highlight StatusLine guibg=#828C99 guifg=#14191F
+    highlight StatusLineNC guibg=#3E4B59 guifg=#000000
+  endif
+endfunction
 function! vim#Browser() abort "{{{1
   let l:cmd = ''
   let l:cmd .= 'silent '
