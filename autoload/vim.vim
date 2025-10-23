@@ -14,13 +14,14 @@ endfunction
 function! vim#Browser() abort "{{{1
   let l:cmd = ''
   let l:cmd .= 'silent '
-  if stridx(&filetype, 'markdown') == -1
-    let l:cmd .= '.w !urlscan --no-browser'
-  else
+  if stridx(&filetype, 'markdown') >= 0 || stridx(&filetype, 'todo') >= 0
     " Relies upon https://gitlab.com/maxwell-k/linkscan for markdown.
     let l:cmd .= 'w !linkscan - '.line('.')
+  else
+    let l:cmd .= '.w !urlscan --no-browser'
   endif
-  let l:cmd .= ' | xargs '
+  let l:cmd .= " | tr '\\n' '\\0' "
+  let l:cmd .= ' | xargs -0 '
   if executable('xdg-open') " Linux
     let l:cmd .= 'xdg-open'
   elseif executable('open') " MacOS
