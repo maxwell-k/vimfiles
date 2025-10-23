@@ -28,13 +28,7 @@ function! toggle#Colors() abort "{{{1
     colorscheme ayu
   endif
   redraw
-  echom 'let '
-     \."g:colors_name = '"
-     \.g:colors_name
-     \."' | let "
-     \."g:ayucolor = '"
-     \.g:ayucolor
-     \."'"
+  let g:colors_name g:ayucolor
 endfunction "}}}1
 function! toggle#List(default_settings) abort "{{{1
 " Toggle through three states
