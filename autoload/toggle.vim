@@ -17,18 +17,15 @@ function! toggle#Ale() abort "{{{1
 endfunction "}}}1
 function! toggle#Colors() abort "{{{1
   let s:style = get(g:, 'ayucolor', 'dark')
-  if !exists('g:colors_name') " added for compatibility with vim 8.0
-    let g:ayucolor='dark'
-    colorscheme mine
-  elseif s:style ==# 'light'
-    let g:ayucolor='dark'
-    colorscheme mine
-  elseif s:style ==# 'dark'
+  if s:style ==# 'dark'
     let g:ayucolor='mirage'
-    colorscheme mine
-  else
+    colorscheme ayu
+  elseif s:style ==# 'mirage'
     let g:ayucolor='light'
-    colorscheme mine
+    colorscheme ayu
+  else
+    let g:ayucolor='dark'
+    colorscheme ayu
   endif
   redraw
   echom 'let '
