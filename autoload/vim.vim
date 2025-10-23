@@ -20,7 +20,8 @@ function! vim#Browser() abort "{{{1
   else
     let l:cmd .= '.w !urlscan --no-browser'
   endif
-  let l:cmd .= ' | xargs '
+  let l:cmd .= " | tr '\\n' '\\0' "
+  let l:cmd .= ' | xargs -0 '
   if executable('xdg-open') " Linux
     let l:cmd .= 'xdg-open'
   elseif executable('open') " MacOS
