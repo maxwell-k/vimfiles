@@ -8,9 +8,9 @@
 " triggered, for example :colorscheme triggers ColorScheme.
 " Use a file in ftplugin if file type related.
 augroup vimrc
-autocmd BufReadCmd *.tbz2 call tar#Browse(expand("<amatch>")) "Gentoo binaries
-autocmd BufNewFile,BufReadPost COMMIT_EDITMSG setlocal nomodeline spell
 autocmd BufNewFile,BufReadPost * call vim#Spellfile()
+autocmd BufNewFile,BufReadPost COMMIT_EDITMSG setlocal nomodeline spell
+autocmd BufReadCmd *.tbz2 call tar#Browse(expand("<amatch>")) "Gentoo binaries
 autocmd BufReadPost /tmp/histedit.* let $PATH .= ':/usr/local/bin'
 autocmd StdInReadPost * setlocal nowrap
 augroup END
