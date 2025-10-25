@@ -3,10 +3,14 @@
 # Copyright 2025 Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
 for i in "$@"; do
-    eval "$cmd" && printf 'Completed successfully\n'
   cmd="vim \"+call vim#AleQuit()\" \"$i\""
   # Backticks are intentionally used inside single quotes below, knowing that
   # they are not expanded.
   # shellcheck disable=SC2016
   printf 'Calling `%s`\n' "$cmd"
+  if eval "$cmd" ; then
+     printf 'Completed successfully\n'
+  else
+     break
+  fi
 done
