@@ -150,6 +150,20 @@ print(result)
 EOS
 let @= = "'".py3eval('result')."'"
 endfunction "}}}1
+function! vim#SwitchToDprint() abort "{{{1
+  " Add dprint to the fixer list in place of prettier
+  let s:fixers_to_replace = ['prettier']
+  let b:ale_fixers = {}
+  for [s:key, s:entry] in items(deepcopy(get(g:, 'ale_fixers', {})))
+    let b:ale_fixers[s:key] = s:entry
+    for s:before in s:fixers_to_replace
+      let s:index =  index(s:entry, s:before)
+      if s:index != -1
+        let s:entry[s:index] = 'dprint'
+      endif
+    endfor
+  endfor
+endfunction
 function! vim#TodoFoldtext() abort "{{{1
     let l:context = matchstr(getline(v:foldstart), g:Todo_fold_char.'[^ ]\+')
     return '           '.l:context
