@@ -2,8 +2,8 @@
 " Copyright 2023 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
 "
-" Add dprint to the fixer list in place of prettier or jq
-let s:fixers_to_replace = ['prettier', 'jq']
+" Add dprint to the fixer list in place of prettier
+let s:fixers_to_replace = ['prettier']
 let b:ale_fixers = {}
 for [s:key, s:entry] in items(deepcopy(get(g:, 'ale_fixers', {})))
   let b:ale_fixers[s:key] = s:entry
