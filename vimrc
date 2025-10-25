@@ -8,17 +8,15 @@
 " triggered, for example :colorscheme triggers ColorScheme.
 " Use a file in ftplugin if file type related.
 augroup vimrc
+autocmd!
 autocmd BufNewFile,BufReadPost * call vim#Spellfile()
 autocmd BufNewFile,BufReadPost COMMIT_EDITMSG setlocal nomodeline spell
 autocmd BufReadCmd *.tbz2 call tar#Browse(expand("<amatch>")) "Gentoo binaries
 autocmd BufReadPost /tmp/histedit.* let $PATH .= ':/usr/local/bin'
+autocmd Colorscheme ayu call vim#Colours()
 autocmd StdInReadPost * setlocal nowrap
 augroup END
 
-augroup my_colorschemes
-autocmd!
-autocmd Colorscheme ayu call vim#Colours()
-augroup END
 " Fundamental configuration {{{1
 " -------------------------
 "
