@@ -5,6 +5,7 @@
 " https://google.github.io/styleguide/shellguide.html#s5.1-indentation
 setlocal expandtab
 setlocal shiftwidth=2
+setlocal tabstop=2
 
 setlocal foldtext=getline(v:foldstart)
 let g:sh_fold_enabled= 3

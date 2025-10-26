@@ -65,6 +65,7 @@
       failed_when: site_npm_exec.rc not in item[1]
       # if file in creates: exists the site_npm_exec.rc is 0
       loop:
+        - [dprint, [0]]
         - [embedme, [0]]
         - [pyright, [0]]
         - [lint-staged, [0]]
