@@ -1,0 +1,9 @@
+#!/bin/sh
+# bin/djlint
+# Copyright 2025 Keith Maxwell
+# SPDX-License-Identifier: MPL-2.0
+if [ -f requirements.txt ] ; then
+  exec uv tool run --with-requirements=requirements.txt djlint "$@"
+else
+  exec uv --offline tool run djlint "$@"
+fi

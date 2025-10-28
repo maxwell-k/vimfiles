@@ -157,9 +157,11 @@ digraphs mi 129704 " rock 129704 🪨
 "
 let g:ale_echo_msg_format = '%linter% says `%s`'
 let g:ale_fix_on_save = 1
+let g:ale_html_djlint_options = '--profile jinja'
 let g:ale_lint_delay = 50
-let g:ale_shell = '/bin/sh'
 let g:ale_max_buffer_history_size = 40
+let g:ale_pattern_options = {}
+let g:ale_shell = '/bin/sh'
 
 " Add ~/.vim/bin to PATH, for ALE executables
 call setenv('PATH', expand('~/.vim/bin') . ':' . getenv('PATH'))
@@ -220,13 +222,14 @@ let g:ale_fixers = {
 \ 'beancount': ['beanformat', 'trim_whitespace'],
 \ 'bzl': ['buildifier'],
 \ 'cog': ['cog'],
-\ 'css': ['prettier'],
+\ 'css': ['trim_whitespace', 'prettier'],
 \ 'dart': ['dart-format'],
 \ 'embedme': ['embedme', 'prettier'],
 \ 'gitignore': ['sort'],
 \ 'gleam': ['gleam_format'],
 \ 'go': ['gofmt'],
 \ 'html': ['prettier'],
+\ 'htmldjango': ['djlint'],
 \ 'javascript': ['prettier'],
 \ 'json': ['prettier'],
 \ 'markdown': ['prettier'],
@@ -243,7 +246,6 @@ let g:ale_fixers = {
 \ 'yaml': ['prettier'],
 \ 'zig': ['zigfmt'],
 \ }
-let g:ale_pattern_options = {}
 " see also pack/gitignored/start/local/plugin/ale.vim
 " Global variables {{{1
 " ----------------
