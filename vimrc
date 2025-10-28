@@ -158,8 +158,9 @@ digraphs mi 129704 " rock 129704 🪨
 let g:ale_echo_msg_format = '%linter% says `%s`'
 let g:ale_fix_on_save = 1
 let g:ale_lint_delay = 50
-let g:ale_shell = '/bin/sh'
 let g:ale_max_buffer_history_size = 40
+let g:ale_pattern_options = {}
+let g:ale_shell = '/bin/sh'
 
 " Add ~/.vim/bin to PATH, for ALE executables
 call setenv('PATH', expand('~/.vim/bin') . ':' . getenv('PATH'))
@@ -243,7 +244,6 @@ let g:ale_fixers = {
 \ 'yaml': ['prettier'],
 \ 'zig': ['zigfmt'],
 \ }
-let g:ale_pattern_options = {}
 " see also pack/gitignored/start/local/plugin/ale.vim
 " Global variables {{{1
 " ----------------
