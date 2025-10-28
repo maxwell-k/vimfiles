@@ -220,7 +220,7 @@ let g:ale_fixers = {
 \ 'beancount': ['beanformat', 'trim_whitespace'],
 \ 'bzl': ['buildifier'],
 \ 'cog': ['cog'],
-\ 'css': ['prettier'],
+\ 'css': ['trim_whitespace', 'prettier'],
 \ 'dart': ['dart-format'],
 \ 'embedme': ['embedme', 'prettier'],
 \ 'gitignore': ['sort'],
