@@ -157,6 +157,7 @@ digraphs mi 129704 " rock 129704 🪨
 "
 let g:ale_echo_msg_format = '%linter% says `%s`'
 let g:ale_fix_on_save = 1
+let g:ale_html_djlint_options = '--profile jinja'
 let g:ale_lint_delay = 50
 let g:ale_max_buffer_history_size = 40
 let g:ale_pattern_options = {}
@@ -228,6 +229,7 @@ let g:ale_fixers = {
 \ 'gleam': ['gleam_format'],
 \ 'go': ['gofmt'],
 \ 'html': ['prettier'],
+\ 'htmldjango': ['djlint'],
 \ 'javascript': ['prettier'],
 \ 'json': ['prettier'],
 \ 'markdown': ['prettier'],
