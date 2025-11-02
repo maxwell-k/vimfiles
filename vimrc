@@ -167,7 +167,11 @@ let g:ale_shell = '/bin/sh'
 call setenv('PATH', expand('~/.vim/bin') . ':' . getenv('PATH'))
 
 " Pattern options {{{2
-let g:ale_pattern_options = {}
+let s:apo = {}
+" List linters explicitly for Dart so that language_server is not enabled
+let s:apo['[.]dart$'] = {'ale_linters': ['analysis_server', 'dart_analyze']}
+let g:ale_pattern_options = s:apo
+
 " Fixers {{{2
 let s:entries = {}
 " autoload/ale/fixers/sort.vim
