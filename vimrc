@@ -154,18 +154,25 @@ digraphs mi 129704 " rock 129704 🪨
 
 " ALE {{{1
 " ---
+" See also pack/gitignored/start/local/plugin/ale.vim
 "
 let g:ale_echo_msg_format = '%linter% says `%s`'
 let g:ale_fix_on_save = 1
 let g:ale_html_djlint_options = '--profile jinja'
 let g:ale_lint_delay = 50
 let g:ale_max_buffer_history_size = 40
-let g:ale_pattern_options = {}
 let g:ale_shell = '/bin/sh'
 
 " Add ~/.vim/bin to PATH, for ALE executables
 call setenv('PATH', expand('~/.vim/bin') . ':' . getenv('PATH'))
 
+" Pattern options {{{2
+let s:apo = {}
+" List linters explicitly for Dart so that language_server is not enabled
+let s:apo['[.]dart$'] = {'ale_linters': ['analysis_server', 'dart_analyze']}
+let g:ale_pattern_options = s:apo
+
+" Fixers {{{2
 let s:entries = {}
 " autoload/ale/fixers/sort.vim
 let s:entries['sort'] = {
@@ -246,7 +253,7 @@ let g:ale_fixers = {
 \ 'yaml': ['prettier'],
 \ 'zig': ['zigfmt'],
 \ }
-" see also pack/gitignored/start/local/plugin/ale.vim
+
 " Global variables {{{1
 " ----------------
 "
