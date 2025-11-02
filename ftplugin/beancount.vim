@@ -4,6 +4,7 @@
 "
 packadd beancount
 runtime OPT ftplugin/beancount.vim
+setlocal expandtab
 setlocal commentstring=;%s
 if maktaba#string#EndsWith(&filetype, 'defaultwidth')
   let b:ale_beancount_beanformat_options = ''
