@@ -2,4 +2,5 @@
 # bin/pyright-langserver
 # Copyright 2025 Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
-exec npm exec --package pyright --yes -- pyright-langserver "$@"
+exec npm exec --offline --package pyright@1.1.406 -- pyright-langserver "$@"
+# pyright@1.1.407 above does not highlight errors!
