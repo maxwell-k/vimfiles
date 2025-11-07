@@ -57,7 +57,7 @@
     - name: Stop this play if npm isn't available
       ansible.builtin.meta: end_host
       when: site_npm_check.rc != 0
-    - name: Make sure tools are available in the npm cache
+    - name: Add tools to the npm cache
       ansible.builtin.command:
         cmd: npm exec --yes -- {{ item[0] }} --help
         creates: ~/.npm/_npx/*/node_modules/.bin/{{ item[0] }}
@@ -67,11 +67,16 @@
       loop:
         - [dprint, [0]]
         - [embedme, [0]]
-        - [pyright, [0]]
         - [lint-staged, [0]]
         - [jsonlint, [0, 1]] # ~/.vim/bin/jsonlint
         - [prettier, [0]] # ~/.vim/bin/prettier
         - [markdown-toc, [0, 1]]
+    - name: Add the pinned version of pyright to the npm cache
+      ansible.builtin.command:
+        cmd: npm exec --yes --package pyright@1.1.406 -- pyright --version
+        creates: ~/.npm/_npx/*/node_modules/.bin/pyright-langserver
+      register: site_npm_exec
+      failed_when: site_npm_exec.rc != 0
 
 - name: Populate the uv cache
   hosts: all
