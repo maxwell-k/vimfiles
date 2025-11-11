@@ -7,7 +7,7 @@ function! fzf#CustomGitStatus() abort
   " neither vader nor runVimTests can pass keys to FZF
   let l:spec = {}
   let l:spec['options'] = '--ansi --nth 2..'
-  let l:spec['source'] = 
+  let l:spec['source'] =
     \ 'git -c color.status=always status --short'.' --untracked-files=all'
   let l:spec = fzf#wrap(l:spec)
   let l:spec['_original_sink'] = remove(l:spec, 'sink*')

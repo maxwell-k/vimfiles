@@ -96,6 +96,7 @@
         - usort --version
         - ruff --version
         - black --version
+        - zizmor --version
         - --from=cogapp cog -v
         - urlscan --version
         - >
