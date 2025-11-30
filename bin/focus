@@ -5,8 +5,9 @@
 # What is my **focus** at this very moment?
 file=$1
 echo "$file" | entr -c vim -R \
-  '+set lines=2 t_te=' \
+  '+set lines=2 t_te= t_ve=' \
   "+edit $file" \
   '+normal 1gg' \
-  '+set syntax=focus nospell nocul' \
+  '+set syntax=focus nospell nocul conceallevel=3 concealcursor=n' \
   '+call timer_start(10, {i -> execute("quit") })'
+tput cnorm

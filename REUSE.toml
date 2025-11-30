@@ -26,6 +26,7 @@ path = [
   "tests/automated/markdown-toc/missing.md",
   "tests/manual/.en.utf-8.add",
   "tests/manual/todo.txt",
+  "tests/manual/focus/todo.txt",
 ]
 SPDX-FileCopyrightText = "2020-2025 Keith Maxwell"
 SPDX-License-Identifier = "CC0-1.0"

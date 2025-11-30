@@ -106,9 +106,9 @@ Command to run the test suite using Podman and the `alpine:latest` image:
 
     tests/podman
 
-### Incus and Fedora Linux 42
+### Incus and Fedora Linux 43
 
-Command to run the test suite using Incus and the `images:fedora/42/cloud`
+Command to run the test suite using Incus and the `images:fedora/43/cloud`
 image:
 
     tests/incus

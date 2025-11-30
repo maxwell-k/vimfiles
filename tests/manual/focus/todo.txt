@@ -1,0 +1,4 @@
+2025-10-10 +project due:2025-10-10 This task is the focus @context
+(A) 2025-10-10 Priority A task
+2025-10-10 Task with no priority
+2025-10-10 Task with a spelling mistake: asdf
