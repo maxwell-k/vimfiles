@@ -1,5 +1,5 @@
 #!/usr/bin/sh
-incus init images:fedora/42/cloud c1 < tests/config.yaml \
+incus init images:fedora/43/cloud c1 < tests/config.yaml \
 && incus config device add \
   c1 vimfiles disk "source=$PWD" "path=$PWD" shift=true \
 && incus start c1 \
