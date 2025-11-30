@@ -11,24 +11,37 @@ SPDX-License-Identifier: CC-BY-SA-4.0
 
 - [Example Markdown file](#example-markdown-file)
 - [Example todo file](#example-todo-file)
-- [Testing using Incus](#testing-using-incus)
-  - [Fedora 42](#fedora-42)
+- [Example focus file](#example-focus-file)
 
 <!-- tocstop -->
 
-## Example Markdown file
+## Focus mode
+
+Command to view example focus file:
+
+    vim tests/manual/focus/todo.txt
+
+Command to view example `todo.txt` file in focus mode::
+
+    vim "+set filetype=focus" tests/manual/focus/todo.txt
+
+## `gopass` syntax highlighting
+
+Command to view example `gopass`:
+
+    vim "+set filetype=focus" tests/manual/focus/todo.txt
+
+## Markdown syntax highlighting
 
 Command to view example Markdown file:
 
     vim tests/manual/example.md
 
-## Example todo file
+## todo syntax highlighting
 
 Command to view example [todo] file:
 
     vim tests/manual/todo.txt
 
 [todo]: http://todotxt.org/
-
-## Testing using Incus
 
