@@ -59,11 +59,6 @@ function! vim#Cancel() abort "{{{1
     call todo#MarkAsDone('')
   endif
 endfunction
-function! vim#Cdup() abort "{{{1
-  let l:output = system('git rev-parse --show-cdup')
-  let l:path = substitute(l:output, '\n$', '', '')
-  return len(l:path) ? l:path : '.'
-endfunction
 function! vim#ChooseModeline(findstart, base) abort "{{{1
   if a:findstart | return 0 | else | return b:modeline_choices | endif
 endfunction "}}}1
@@ -71,6 +66,14 @@ function! vim#ConfigureModelineCompletion(choices) abort "{{{1
   let b:modeline_choices = a:choices
   set completefunc=vim#ChooseModeline
 endfunction "}}}1
+function! vim#GitProjectRoot(buffer) abort "{{{1
+  let l:dir = ale#path#FindNearestDirectory(a:buffer, '.git')
+  if l:dir isnot# '.' && isdirectory(l:dir)
+     return l:dir
+  endif
+
+  return ''
+endfunction
 function! vim#Keep() abort "{{{1
   " keep only the selected lines, delete all of the others
   if line("'<") > 1

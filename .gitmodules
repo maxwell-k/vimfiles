@@ -43,3 +43,6 @@
 [submodule "pack/submodules/opt/zig"]
 	path = pack/submodules/opt/zig
 	url = https://github.com/ziglang/zig.vim
+[submodule "pack/submodules/opt/jsonnet"]
+	path = pack/submodules/opt/jsonnet
+	url = https://github.com/google/vim-jsonnet
