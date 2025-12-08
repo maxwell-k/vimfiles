@@ -240,6 +240,7 @@ let g:ale_fixers = {
 \ 'htmldjango': ['djlint'],
 \ 'javascript': ['prettier'],
 \ 'json': ['prettier'],
+\ 'jsonnet': ['jsonnetfmt'],
 \ 'markdown': ['prettier'],
 \ 'markdown-toc': ['markdown-toc', 'prettier'],
 \ 'python': ['black', 'usort'],
