@@ -71,6 +71,14 @@ function! vim#ConfigureModelineCompletion(choices) abort "{{{1
   let b:modeline_choices = a:choices
   set completefunc=vim#ChooseModeline
 endfunction "}}}1
+function! vim#GitProjectRoot(buffer) abort "{{{1
+  let l:dir = ale#path#FindNearestDirectory(a:buffer, '.git')
+  if l:dir isnot# '.' && isdirectory(l:dir)
+     return l:dir
+  endif
+
+  return ''
+endfunction
 function! vim#Keep() abort "{{{1
   " keep only the selected lines, delete all of the others
   if line("'<") > 1
