@@ -16,6 +16,12 @@ SPDX-License-Identifier: CC-BY-SA-4.0
 
 <!-- tocstop -->
 
+## Beancount
+
+Command to view example journal
+
+    vim tests/manual/test.beancount
+
 ## Focus mode
 
 Command to view example focus file:
