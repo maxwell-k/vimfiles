@@ -1,0 +1,48 @@
+; Test file to document the current configuration which includes:
+;
+; 1. the vim-beancount plugin see pack/submodules/opt/beancount/
+; 2. bean-check as an ALE linter from the above plugin
+; 3. bean-format as an ALE fixer, see autoload/ale/fixers/beanformat.vim
+; 4. beancount-langugage-server as an ALE Linter, see ftplugin/beancount.vim
+;
+option "title" "Test file"
+option "operating_currency" "GBP"
+
+2026-01-01 open Assets:Current:Bank GBP
+2026-01-01 open Assets:Current:Cash GBP
+2024-03-31 open Expenses:Other-charges GBP
+
+2026-01-01 txn "Transaction describing the bean-format fixer"
+  ; A fixer will format with bean-format, aligning a currency here     ↓
+  ; Setting the filetype=beancount.defaultwidth changes that
+  Assets:Current:Bank                                             1.00 GBP
+  Expenses:Other-charges
+
+2026-01-01 txn "Transaction describing completion with vim-beancount"
+  ; The completion from vim-beancount which is mapped to CTRL-X CTRL-U
+  ; A   completes to Assets
+  ; A:C 〃           Assets:Current
+  ; A:C:B 〃         Assets:Current:Bank
+  Assets:Current:Bank                                             1.00 GBP
+  Expenses:Other-charges
+
+2026-01-01 txn "Transaction describing beancount language server features"
+  ; The completion for beancount-language-server is mapped to CTRL-X CTRL-O
+  ; This completion works on
+  ; - account names
+  ; - balance/open/close/document/… after a date
+  Assets:Current:Bank                                             1.00 GBP
+  Expenses:Other-charges
+  ; Transactions marked with `!` are highlighted as a warning:
+  ;
+  ;   [beancount-lsp] Transaction flagged for review
+  ;
+  ; :ALEFindReferences works on an account name; in version 1.4.1 it does not
+  ; work on the first character of an account name or payees.
+  ;
+  ; :ALERename works on an account name; in vesion 1.4.1 the previous name
+  ; dispayed in the interactive prompt is incorrect
+
+; tests/manual/test.beancount
+; Copyright 2026 Keith Maxwell
+; SPDX-License-Identifier: CC0-1.0

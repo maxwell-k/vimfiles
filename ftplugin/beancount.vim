@@ -6,12 +6,15 @@ packadd beancount
 runtime OPT ftplugin/beancount.vim
 setlocal expandtab
 setlocal commentstring=;%s
+
+" Fixers {{{
+"
+" Configuration for autoload/ale/fixers/beanformat.vim
 if maktaba#string#EndsWith(&filetype, 'defaultwidth')
   let b:ale_beancount_beanformat_options = ''
 else
   let b:ale_beancount_beanformat_options = '-w 64'
 endif
-" See pack/submodules/opt/beancount/ale_linters/beancount/bean_check.vim
 
 " Language Server {{{1
 "
@@ -27,7 +30,19 @@ call ale#linter#Define('beancount', {
 \    }
 \})
 
+" Insert mode completion {{{1
+"
+" omnifunc= is repeated from ~/.vim/vimrc to override
+" pack/submodules/opt/beancount/ftplugin/beancount.vim
+setl completefunc=beancount#complete
+setl omnifunc=ale#completion#OmniFunc
+
+" See pack/submodules/opt/beancount/doc/beancount.txt
 let g:beancount_account_completion = 'chunks'
 
-" optionally load a file called abbreviations in the same directory
+" Abbreviations {{{1
+"
+" Optionally load a sibling file called abbreviations.vim
 execute ':silent! source '.expand('%:p:h').'/abbreviations.vim'
+
+" vim: set foldmethod=marker foldlevel=0 : {{{1
