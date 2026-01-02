@@ -44,4 +44,3 @@ Command to view example [todo] file:
     vim tests/manual/todo.txt
 
 [todo]: http://todotxt.org/
-
