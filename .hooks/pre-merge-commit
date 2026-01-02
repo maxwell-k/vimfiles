@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-#
+"""pre-merge-commit hooks for vimfiles."""
 # .hooks/pre-merge-commit
 # Copyright 2021 Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
@@ -13,7 +13,8 @@ COMMAND = ("git", "config", "core.hooksPath")
 
 LIMIT = 1  # hour(s)
 
-if __name__ == "__main__":
+
+def _main() -> int:
     directory = Path(check_output(COMMAND).decode("utf8").strip())
 
     marker = directory / ".." / "tests" / ".success"
@@ -24,11 +25,11 @@ if __name__ == "__main__":
 
     if age >= LIMIT:
         print("tests/.success is not found or is older than one hour")
-        exit(1)
+        return 1
 
     if marker.read_text().strip() == "main":
         print("tests/.success contains 'main', run tests against a branch")
-        exit(1)
+        return 1
 
     # don't run the pre-commit hook, as it prevents committing to main
     # instead run a script that is installed via
@@ -36,4 +37,9 @@ if __name__ == "__main__":
     # <https://github.com/maxwell-k/dotfiles/blob/main/dotfiles/local/bin/lint-all>
     executable = which("lint-all")
     if executable:
-        execvp(executable, (executable,))
+        execvp(executable, (executable,))  # noqa: S606
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(_main())
