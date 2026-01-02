@@ -1,3 +1,4 @@
+#!/usr/bin/env -S uv tool run fava
 ; Test file to document the current configuration which includes:
 ;
 ; 1. the vim-beancount plugin see pack/submodules/opt/beancount/

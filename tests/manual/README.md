@@ -9,11 +9,18 @@ SPDX-License-Identifier: CC-BY-SA-4.0
 
 <!-- toc -->
 
-- [Example Markdown file](#example-markdown-file)
-- [Example todo file](#example-todo-file)
-- [Example focus file](#example-focus-file)
+- [Focus mode](#focus-mode)
+- [`gopass` syntax highlighting](#gopass-syntax-highlighting)
+- [Markdown syntax highlighting](#markdown-syntax-highlighting)
+- [todo syntax highlighting](#todo-syntax-highlighting)
 
 <!-- tocstop -->
+
+## Beancount
+
+Command to view example journal
+
+    vim tests/manual/test.beancount
 
 ## Focus mode
 
@@ -44,4 +51,3 @@ Command to view example [todo] file:
     vim tests/manual/todo.txt
 
 [todo]: http://todotxt.org/
-
