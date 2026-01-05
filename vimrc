@@ -107,7 +107,7 @@ unlet s:list_settings
      map <Leader>at <Plug>(ale_go_to_type_definition)
         "<Leader>b see pack/vendored/start/backlog/plugin/mappings.vim
 call opfunc#opfuncmap('c') " straight yank
- noremap <Leader>C :call toggle#Colors()<CR>
+ noremap <Leader>C :call toggle#Colours()<CR>
  noremap <Leader>fF :call SendViaOSC52(@%)<CR>
  noremap <Leader>ff :call vim#YankPathWithTilde()<CR>
         "<Leader>g see plugin/mappings.vim

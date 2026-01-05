@@ -15,7 +15,7 @@ function! toggle#Ale() abort "{{{1
   endif
   let g:ale_fix_on_save
 endfunction "}}}1
-function! toggle#Colors() abort "{{{1
+function! toggle#Colours() abort "{{{1
   let s:style = get(g:, 'ayucolor', 'dark')
   if s:style ==# 'dark'
     let g:ayucolor='mirage'
