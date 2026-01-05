@@ -53,13 +53,16 @@ function! toggle#PythonFixers() abort "{{{1
   let b:ale_fixers
 endfunction "}}}1
 function! toggle#PythonLinters(...) abort "{{{1
-  if get(b:, 'ale_linters_ignore', []) == ['mypy']
-    let b:ale_linters_ignore = []
+  if a:0 > 0  " called with an argument like 'default'
+    let b:ale_linters_ignore = ['flake8', 'pylint', 'mypy']
   else
-    let b:ale_linters_ignore = ['mypy']
-  end
-  if a:0 > 0
-    let b:ale_linters_ignore = ['mypy']
+    let b:ale_linters_ignore = get(b:, 'ale_linters_ignore', [])
+    let l:index = index(b:ale_linters_ignore, 'mypy')
+    if l:index == -1
+      let b:ale_linters_ignore += ['mypy']
+    else
+      call remove(b:ale_linters_ignore, l:index)
+    end
   end
   redraw | echom 'let b:ale_linters_ignore = '.string(b:ale_linters_ignore)
 endfunction "}}}1
