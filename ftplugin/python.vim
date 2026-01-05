@@ -18,7 +18,7 @@ noremap <Leader>pT
   \ :exec 'above new '. substitute(expand('%'), '_test.py$', '.py', '')<CR>
 noremap K :call python#documentation()<CR>
 
-if executable('shtuff')
+if executable('shtuff') " {{{1
   " Pre-requisites:
   " uv tool install shtuff
   " mkdir --parents pack/gitignored/opt
@@ -33,7 +33,7 @@ if executable('shtuff')
   "let g:test#python#runner = 'pytest'
   "let g:test#python#pytest#executable = 'py -m pytest'
 
-  function! TestOnWrite() range abort "{{{1
+  function! TestOnWrite() range abort "{{{2
     " Configure an autogroup to test on write
     augroup test
       autocmd!
@@ -41,5 +41,6 @@ if executable('shtuff')
         \   TestFile |
         \ endif
     augroup END
-  endfunction "}}}1
-endif
+  endfunction "}}}2
+endif " }}}1
+" vim: set foldmethod=marker : {{{1
