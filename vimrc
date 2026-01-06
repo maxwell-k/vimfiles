@@ -168,9 +168,11 @@ let g:ale_shell = '/bin/sh'
 call setenv('PATH', expand('~/.vim/bin') . ':' . getenv('PATH'))
 
 " Pattern options {{{2
-let s:apo = {}
+let s:apo = {} " apo → ale_pattern_options
 " List linters explicitly for Dart so that language_server is not enabled
 let s:apo['[.]dart$'] = {'ale_linters': ['analysis_server', 'dart_analyze']}
+" Ignore the sed linter when working on ALE
+let s:apo['/ale/.*[.]vim$'] = {'ale_linters_ignore': ['sed']}
 let g:ale_pattern_options = s:apo
 
 " Fixers {{{2
