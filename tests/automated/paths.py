@@ -38,12 +38,8 @@ def _ordered(path: Path) -> bool:
     lines = path.read_text().splitlines()
     # Assume the first time the path appears that it should be above the
     # copyright header
-    first = next(index for index, line in enumerate(lines) if str(path) in line)
-    try:
-        result = "Copyright" in lines[first + 1]
-    except IndexError:
-        result = False
-    return result
+    first = next(index for index, line in enumerate(lines[:-1]) if str(path) in line)
+    return "Copyright" in lines[first + 1]
 
 
 def _include(path: Path) -> bool:
