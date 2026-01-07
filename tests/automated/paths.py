@@ -8,55 +8,23 @@ from pathlib import Path
 from subprocess import run
 from tomllib import load
 
-REUSE = Path("REUSE.toml")
-
-
-def _unordered(path: Path) -> bool:
-    lines = path.read_text().splitlines()
-    # Assume the first time the path appears that it should be above the
-    # copyright header
-    first = next(index for index, line in enumerate(lines) if str(path) in line)
-    try:
-        result = "Copyright" not in lines[first + 1]
-    except IndexError:
-        result = True
-    return result
-
-
-def _read_reuse() -> list[Path]:
-    with REUSE.open("rb") as f:
-        data = load(f)
-
-    annotations = data.get("annotations", [])
-
-    return [
-        Path(path) for annotation in annotations for path in annotation.get("path", [])
-    ]
-
-
-def _include(path: Path, ignored: list[Path]) -> bool:
-    return not (
-        not path.is_file()
-        or path.name == ".en.utf-8.add"
-        or "fixtures" in path.parts
-        or path in ignored
-        or path.parts[0] == "LICENSES"
-        or path.with_name(path.name + ".license").is_file()
-    )
-
 
 def _main() -> int:
 
-    reuse = _read_reuse()
+    with Path("REUSE.toml").open("rb") as f:
+        tables = load(f).get("annotations", [])
+
+    excluded = [i for table in tables for i in table.get("path", [])]
 
     result = run(["/usr/bin/git", "ls-files"], capture_output=True, check=True)
-    paths = map(Path, result.stdout.decode().splitlines())
-    files = [path for path in paths if _include(path, reuse)]
-    missing = [file for file in files if str(file) not in file.read_text()]
+    paths = [Path(i) for i in result.stdout.decode().splitlines() if i not in excluded]
+
+    files = [path for path in paths if _include(path)]
+    missing = [path for path in files if str(path) not in path.read_text()]
     for i in missing:
         print(str(i))
 
-    unordered = list(filter(_unordered, set(files) - set(missing)))
+    unordered = [i for i in set(files) - set(missing) if not _ordered(i)]
     for i in unordered:
         print(str(i))
 
@@ -64,6 +32,23 @@ def _main() -> int:
         return 1
 
     return 0
+
+
+def _ordered(path: Path) -> bool:
+    lines = path.read_text().splitlines()
+    indexes = [index for index, line in enumerate(lines[:-1]) if str(path) in line]
+    return any("Copyright" in lines[index + 1] for index in indexes)
+
+
+def _include(path: Path) -> bool:
+    """Determine if path should be included in checks."""
+    return not (
+        not path.is_file()
+        or path.name == ".en.utf-8.add"
+        or "fixtures" in path.parts
+        or path.parts[0] == "LICENSES"
+        or path.with_name(path.name + ".license").is_file()
+    )
 
 
 if __name__ == "__main__":

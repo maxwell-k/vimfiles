@@ -107,7 +107,7 @@ unlet s:list_settings
      map <Leader>at <Plug>(ale_go_to_type_definition)
         "<Leader>b see pack/vendored/start/backlog/plugin/mappings.vim
 call opfunc#opfuncmap('c') " straight yank
- noremap <Leader>C :call toggle#Colors()<CR>
+ noremap <Leader>C :call toggle#Colours()<CR>
  noremap <Leader>fF :call SendViaOSC52(@%)<CR>
  noremap <Leader>ff :call vim#YankPathWithTilde()<CR>
         "<Leader>g see plugin/mappings.vim
@@ -168,9 +168,11 @@ let g:ale_shell = '/bin/sh'
 call setenv('PATH', expand('~/.vim/bin') . ':' . getenv('PATH'))
 
 " Pattern options {{{2
-let s:apo = {}
+let s:apo = {} " apo → ale_pattern_options
 " List linters explicitly for Dart so that language_server is not enabled
 let s:apo['[.]dart$'] = {'ale_linters': ['analysis_server', 'dart_analyze']}
+" Ignore the sed linter when working on ALE
+let s:apo['/ale/.*[.]vim$'] = {'ale_linters_ignore': ['sed']}
 let g:ale_pattern_options = s:apo
 
 " Fixers {{{2
