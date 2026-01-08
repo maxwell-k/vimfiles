@@ -73,7 +73,7 @@
         - [markdown-toc, [0, 1]]
     - name: Add the pinned version of pyright to the npm cache
       ansible.builtin.command:
-        cmd: npm exec --yes --package pyright@1.1.407 -- pyright --version
+        cmd: npm exec --yes --package pyright@1.1.408 -- pyright --version
         creates: ~/.npm/_npx/*/node_modules/.bin/pyright-langserver
       register: site_npm_exec
       failed_when: site_npm_exec.rc != 0
