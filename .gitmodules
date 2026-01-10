@@ -22,9 +22,6 @@
 [submodule "pack/submodules/start/repeat"]
 	path = pack/submodules/start/repeat
 	url = https://github.com/tpope/vim-repeat
-[submodule "pack/submodules/start/ale"]
-	path = pack/submodules/start/ale
-	url = https://github.com/dense-analysis/ale
 [submodule "pack/submodules/opt/svelte"]
 	path = pack/submodules/opt/svelte
 	url = https://github.com/leafoftree/vim-svelte-plugin
@@ -49,3 +46,7 @@
 [submodule "pack/submodules/start/speeddating"]
 	path = pack/submodules/start/speeddating
 	url = https://github.com/tpope/vim-speeddating.git
+[submodule "pack/submodules/start/ale"]
+	path = pack/submodules/start/ale
+	url = https://github.com/maxwell-k/ale
+	branch = development
