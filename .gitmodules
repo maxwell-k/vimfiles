@@ -46,3 +46,6 @@
 [submodule "pack/submodules/opt/jsonnet"]
 	path = pack/submodules/opt/jsonnet
 	url = https://github.com/google/vim-jsonnet
+[submodule "pack/submodules/start/speeddating"]
+	path = pack/submodules/start/speeddating
+	url = https://github.com/tpope/vim-speeddating.git
