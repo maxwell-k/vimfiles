@@ -3,4 +3,3 @@
 # Copyright 2025 Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
 exec npm exec --offline --package pyright@1.1.407 -- pyright-langserver "$@"
-# pyright@1.1.407 above does not highlight errors!
