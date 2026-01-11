@@ -146,10 +146,10 @@ digraphs .. 8230 " ellipsis …
 digraphs bu 8226 " bullet •
 digraphs m- 8212 " em dash –
 digraphs n- 8211 " em dash —
+digraphs bb 9744 " ballot box ☐
 digraphs %< 9986 " black scissors ✂
 digraphs fl 9873 " black flag ⚑
 digraphs am 128126 " alien monster 👾
-digraphs bb 128499 " ballot box with ballot 🗳
 digraphs mi 129704 " rock 129704 🪨
 " other digraphs I use: ·
 
