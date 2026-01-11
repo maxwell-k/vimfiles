@@ -68,7 +68,8 @@ function! vim#ConfigureModelineCompletion(choices) abort "{{{1
   set completefunc=vim#ChooseModeline
 endfunction "}}}1
 function! vim#GitProjectRoot(buffer) abort "{{{1
-  let l:dir = ale#path#FindNearestDirectory(a:buffer, '.git')
+  let l:git = ale#path#FindNearestDirectory(a:buffer, '.git')
+  let l:dir = fnamemodify(l:git, ':h:h')
   if l:dir isnot# '.' && isdirectory(l:dir)
      return l:dir
   endif
