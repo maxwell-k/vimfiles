@@ -76,6 +76,10 @@ function! vim#GitProjectRoot(buffer) abort "{{{1
 
   return ''
 endfunction
+function! vim#GenerateAndLoadSpellfile() abort "{{{1
+  execute 'mkspell '.expand('%:h').'/.en.utf-8.add'
+  setlocal spell
+endfunction
 function! vim#Keep() abort "{{{1
   " keep only the selected lines, delete all of the others
   if line("'<") > 1
