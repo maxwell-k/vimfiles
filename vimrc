@@ -117,12 +117,13 @@ vnoremap <Leader>k <ESC>:call vim#Keep()<CR>
         "<Leader>l see above
  noremap <Leader>m :/<<<<<<<\\|=======\\|>>>>>>><CR>
         "<Leader>p? see ftplugin/python.vim
- noremap <Leader>s :call toggle#Shiftwidth()<CR>
+ noremap <Leader>s :mkspell .en.utf-8.add<CR>:setlocal spell<CR>
  noremap <Leader>S :call vim#Scriptnames()<CR>
         "        t see ftplugin/todo.vim
  noremap <Leader>v :set paste! paste?<CR>
 call opfunc#opfuncmap('y')
  noremap <Leader>w <C-w>
+ noremap <Leader>W :call toggle#Shiftwidth()<CR>
  noremap <Leader>zo :call fzf#run(fzf#wrap({'source': v:oldfiles}))<CR>
  noremap <Leader>zg :call fzf#run(fzf#wrap({'source': 'git ls-files'}))<CR>
  noremap <Leader>zs :call fzf#CustomGitStatus()<CR>
