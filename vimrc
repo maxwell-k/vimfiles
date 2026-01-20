@@ -117,6 +117,7 @@ vnoremap <Leader>k <ESC>:call vim#Keep()<CR>
         "<Leader>l see above
  noremap <Leader>m :/<<<<<<<\\|=======\\|>>>>>>><CR>
         "<Leader>p? see ftplugin/python.vim
+ noremap <Leader>s :mkspell .en.utf-8.add<CR>:setlocal spell<CR>
  noremap <Leader>S :call vim#Scriptnames()<CR>
         "        t see ftplugin/todo.vim
  noremap <Leader>v :set paste! paste?<CR>
