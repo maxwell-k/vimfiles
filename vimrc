@@ -150,6 +150,7 @@ digraphs n- 8211 " em dash —
 digraphs bb 9744 " ballot box ☐
 digraphs %< 9986 " black scissors ✂
 digraphs fl 9873 " black flag ⚑
+digraphs go 129349 " goal 🥅
 digraphs am 128126 " alien monster 👾
 digraphs mi 129704 " rock 129704 🪨
 " other digraphs I use: ·
