@@ -150,10 +150,14 @@ digraphs n- 8211 " em dash —
 digraphs bb 9744 " ballot box ☐
 digraphs %< 9986 " black scissors ✂
 digraphs fl 9873 " black flag ⚑
-digraphs go 129349 " goal 🥅
+digraphs tl 9712 " white square with upper left quadrant ◰
+digraphs tr 9715 " white square with upper right quadrant ◳
+digraphs bl 9713 " white square with lower left quadrant ◱
+digraphs br 9714 " white square with lower right quadrant ◲
+digraphs go 129349 " goal net 🥅
 digraphs am 128126 " alien monster 👾
 digraphs mi 129704 " rock 129704 🪨
-" other digraphs I use: ·
+" other digraphs I use: ·・
 
 " ALE {{{1
 " ---
