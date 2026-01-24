@@ -124,6 +124,8 @@ syntax clear TodoContext
 syntax match TodoContext '@[^[:blank:]]\+' contains=NONE
 " Folding marker {{{2
 syntax match TodoFoldMarker /^{{{$/
+syntax match TodoFoldMarker /^{{{ \d\d\d\dW\d\d$/ contains=@NoSpell
+syntax match TodoFoldMarker /^{{{ \d\d\d\d-\d\d-\d\d$/
 highlight default link TodoFoldMarker Comment
 
 " Bespoke formatting {{{1
