@@ -6,6 +6,7 @@ packadd beancount
 runtime OPT ftplugin/beancount.vim
 setlocal expandtab
 setlocal commentstring=;%s
+setlocal scrolloff=5
 
 " Fixers {{{
 "

@@ -155,6 +155,7 @@ digraphs tr 9715 " white square with upper right quadrant ◳
 digraphs bl 9713 " white square with lower left quadrant ◱
 digraphs br 9714 " white square with lower right quadrant ◲
 digraphs go 129349 " goal net 🥅
+digraphs dt 128201 " downwards trend 📉
 digraphs am 128126 " alien monster 👾
 digraphs mi 129704 " rock 129704 🪨
 " other digraphs I use: ·・
