@@ -9,7 +9,7 @@
 " Use a file in ftplugin if file type related.
 augroup vimrc
 autocmd!
-autocmd BufNewFile,BufReadPost * call vim#Spellfile()
+autocmd BufNewFile,BufReadPost * call vim#SetSiblingSpellfile()
 autocmd BufNewFile,BufReadPost COMMIT_EDITMSG setlocal nomodeline spell
 autocmd BufReadCmd *.tbz2 call tar#Browse(expand("<amatch>")) "Gentoo binaries
 autocmd BufReadPost /tmp/histedit.* let $PATH .= ':/usr/local/bin'

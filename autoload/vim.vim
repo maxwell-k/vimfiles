@@ -125,8 +125,9 @@ function! vim#Scriptnames() abort "{{{1
   normal! OOutput from ``:scriptnames``:
   setlocal buftype=nofile bufhidden=hide noswapfile
 endfunction "}}}
-function! vim#Spellfile() abort "{{{1
-  " add $PWD/.en.utf-8.add to spellfile, outside netrw
+function! vim#SetSiblingSpellfile() abort "{{{1
+  " Set spellfile so that both it and the current file have the same parent
+  " directory. Do nothing if this is a remote file.
 
   " If editing over netrw, e.g. http: or scp:
   if exists('b:netrw_curdir')
