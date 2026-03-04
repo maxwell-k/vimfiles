@@ -12,3 +12,4 @@ call ale#linter#Define('jsonnet', {
 \   'command': '%e',
 \   'project_root': function('vim#GitProjectRoot'),
 \})
+let b:ale_jsonnet_jsonnet_lint_options = '--jpath '.expand('%:p:h')
