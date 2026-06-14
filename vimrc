@@ -188,6 +188,12 @@ let s:apo['/ale/.*[.]vim$'] = {'ale_linters_ignore': ['sed']}
 let g:ale_pattern_options = s:apo
 
 " Linters {{{2
+let g:ale_linter_aliases = {
+\ 'svelte': 'javascript',
+\ }
+" Notes:
+" svelte: Assume the project has eslint-plugin-svelte3 &
+" prettier-plugin-svelte configured.
 let g:ale_linters = {
 \ 'svelte': ['eslint'],
 \ }
