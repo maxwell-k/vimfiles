@@ -23,6 +23,7 @@ augroup END
 set encoding=utf-8 viminfo='20,<50,h
 scriptencoding utf-8
 autocmd!
+packadd matchit " must be added before filetype on
 " The two lines below ensure ftdetect files are loaded despite system settings
 " http://vim.1045645.n5.nabble.com/Issues-with-ftdetect-td1193595.html
 filetype off | filetype on
@@ -162,7 +163,11 @@ digraphs mi 129704 " rock 129704 🪨
 
 " ALE {{{1
 " ---
-" See also pack/gitignored/start/local/plugin/ale.vim
+" Most ALE configuration belongs in this section; including enabling and
+" disabling linters or fixers. Settings that only affect an individual linter
+" or fixer are kept in ftplugin/.
+"
+" See also `pack/gitignored/start/local/plugin/ale.vim`.
 "
 let g:ale_echo_msg_format = '%linter% says `%s`'
 let g:ale_fix_on_save = 1
@@ -182,7 +187,27 @@ let s:apo['[.]dart$'] = {'ale_linters': ['analysis_server', 'dart_analyze']}
 let s:apo['/ale/.*[.]vim$'] = {'ale_linters_ignore': ['sed']}
 let g:ale_pattern_options = s:apo
 
+" Linters {{{2
+let g:ale_linter_aliases = {
+\ 'svelte': 'javascript',
+\ }
+" Notes:
+" svelte: Assume the project has eslint-plugin-svelte3 &
+" prettier-plugin-svelte configured.
+let g:ale_linters = {
+\ 'svelte': ['eslint'],
+\ }
+let g:ale_linters_ignore = {
+\ 'impress': ['tidy'],
+\ 'nowrap': ['sed'],
+\ }
+" Notes:
+" impress: The impress progress bar relies on an empty div inside
+" #impress-progressbar [tidy](https://www.w3.org/People/Raggett/tidy/)
+" highlights this as an error the solution is to disable tidy.
+
 " Fixers {{{2
+" Fixer definitions {{{3
 let s:entries = {}
 " autoload/ale/fixers/sort.vim
 let s:entries['sort'] = {
@@ -232,7 +257,7 @@ for [s:key, s:entry] in items(s:entries)
     \ s:entry['suggested_filetypes'],
     \ s:entry['description']
     \ )
-endfor
+endfor "}}}3
 
 let g:ale_fixers = {
 \ 'apkbuild': ['remove_trailing_lines', 'trim_whitespace'],

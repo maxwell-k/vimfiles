@@ -4,4 +4,3 @@
 "
 setlocal nowrap
 setlocal colorcolumn=0
-let b:ale_linters_ignore = ['sed']
