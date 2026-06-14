@@ -23,6 +23,7 @@ augroup END
 set encoding=utf-8 viminfo='20,<50,h
 scriptencoding utf-8
 autocmd!
+packadd matchit " must be added before filetype on
 " The two lines below ensure ftdetect files are loaded despite system settings
 " http://vim.1045645.n5.nabble.com/Issues-with-ftdetect-td1193595.html
 filetype off | filetype on
