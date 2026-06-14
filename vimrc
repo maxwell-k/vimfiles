@@ -190,6 +190,7 @@ let g:ale_pattern_options = s:apo
 " Linters {{{2
 let g:ale_linters_ignore = {
 \ 'impress': ['tidy'],
+\ 'nowrap': ['sed'],
 \ }
 " Notes:
 " impress: The impress progress bar relies on an empty div inside
