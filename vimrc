@@ -188,6 +188,7 @@ let s:apo['/ale/.*[.]vim$'] = {'ale_linters_ignore': ['sed']}
 let g:ale_pattern_options = s:apo
 
 " Fixers {{{2
+" Fixer definitions {{{3
 let s:entries = {}
 " autoload/ale/fixers/sort.vim
 let s:entries['sort'] = {
@@ -237,7 +238,7 @@ for [s:key, s:entry] in items(s:entries)
     \ s:entry['suggested_filetypes'],
     \ s:entry['description']
     \ )
-endfor
+endfor "}}}3
 
 let g:ale_fixers = {
 \ 'apkbuild': ['remove_trailing_lines', 'trim_whitespace'],
