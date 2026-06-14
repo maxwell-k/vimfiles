@@ -162,7 +162,11 @@ digraphs mi 129704 " rock 129704 🪨
 
 " ALE {{{1
 " ---
-" See also pack/gitignored/start/local/plugin/ale.vim
+" Most ALE configuration belongs in this section; including enabling and
+" disabling linters or fixers. Settings that only affect an individual linter
+" or fixer are kept in ftplugin/.
+"
+" See also `pack/gitignored/start/local/plugin/ale.vim`.
 "
 let g:ale_echo_msg_format = '%linter% says `%s`'
 let g:ale_fix_on_save = 1
