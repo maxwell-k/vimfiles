@@ -187,6 +187,15 @@ let s:apo['[.]dart$'] = {'ale_linters': ['analysis_server', 'dart_analyze']}
 let s:apo['/ale/.*[.]vim$'] = {'ale_linters_ignore': ['sed']}
 let g:ale_pattern_options = s:apo
 
+" Linters {{{2
+let g:ale_linters_ignore = {
+\ 'impress': ['tidy'],
+\ }
+" Notes:
+" impress: The impress progress bar relies on an empty div inside
+" #impress-progressbar [tidy](https://www.w3.org/People/Raggett/tidy/)
+" highlights this as an error the solution is to disable tidy.
+
 " Fixers {{{2
 " Fixer definitions {{{3
 let s:entries = {}
