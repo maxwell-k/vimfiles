@@ -188,6 +188,9 @@ let s:apo['/ale/.*[.]vim$'] = {'ale_linters_ignore': ['sed']}
 let g:ale_pattern_options = s:apo
 
 " Linters {{{2
+let g:ale_linters = {
+\ 'svelte': ['eslint'],
+\ }
 let g:ale_linters_ignore = {
 \ 'impress': ['tidy'],
 \ 'nowrap': ['sed'],
