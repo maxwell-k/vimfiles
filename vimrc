@@ -148,13 +148,13 @@ digraphs .. 8230 " ellipsis …
 digraphs bu 8226 " bullet •
 digraphs m- 8212 " em dash –
 digraphs n- 8211 " em dash —
+digraphs ul 8988 " ⌜ top left corner
+digraphs ur 8989 " ⌝ top right corner
+digraphs bl 8990 " ⌞ bottom left corner
+digraphs br 8991 " ⌟ bottom right corner
 digraphs bb 9744 " ballot box ☐
 digraphs %< 9986 " black scissors ✂
 digraphs fl 9873 " black flag ⚑
-digraphs tl 9712 " white square with upper left quadrant ◰
-digraphs tr 9715 " white square with upper right quadrant ◳
-digraphs bl 9713 " white square with lower left quadrant ◱
-digraphs br 9714 " white square with lower right quadrant ◲
 digraphs go 129349 " goal net 🥅
 digraphs dt 128201 " downwards trend 📉
 digraphs am 128126 " alien monster 👾
