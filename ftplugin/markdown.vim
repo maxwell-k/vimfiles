@@ -3,6 +3,7 @@
 " SPDX-License-Identifier: MPL-2.0
 "
 scriptencoding utf-8
+setlocal includeexpr=substitute(v:fname,'[⌜⌟]','','g')
 setlocal listchars+=conceal:▭
 setlocal spell
 setlocal suffixesadd+=.md
