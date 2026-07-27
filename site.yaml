@@ -45,7 +45,7 @@
         mode: "0640"
       # On Alpine Linux the fzf-vim package also includes documentation so
       # prefer to install that package manually
-      when: ansible_distribution not in ('Alpine')
+      when: ansible_facts['distribution'] not in ('Alpine')
 
 - name: Populate the npm cache
   hosts: all
