@@ -185,6 +185,9 @@ let s:apo = {} " apo → ale_pattern_options
 let s:apo['[.]dart$'] = {'ale_linters': ['analysis_server', 'dart_analyze']}
 " Ignore the sed linter when working on ALE
 let s:apo['/ale/.*[.]vim$'] = {'ale_linters_ignore': ['sed']}
+if resolve('/bin/sh') ==# '/bin/busybox'
+    let s:apo['/[.]zshrc$'] = {'ale_linters_ignore': ['shell']}
+endif
 let g:ale_pattern_options = s:apo
 
 " Linters {{{2
