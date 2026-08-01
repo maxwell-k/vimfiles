@@ -10,6 +10,7 @@ repository="$(git rev-parse --show-toplevel)"
 cd "$repository" || exit 1
 for i in \
   test/automated/* \
+  pack/vendored/opt/brackets/test/*.vader \
   pack/vendored/start/backlog/test/*.vader \
   ; do
   if [ -f "$i" ] ; then

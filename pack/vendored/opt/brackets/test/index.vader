@@ -1,0 +1,28 @@
+#!/usr/bin/env vader
+" pack/vendored/opt/brackets/test/index.vader
+" Copyright 2026 Keith Maxwell
+" SPDX-License-Identifier: MPL-2.0
+"
+Given markdown (Three words):
+  One two three
+Execute (Use the mapping):
+  packadd brackets
+  normal \bbiw
+Expect todo (Three words with one bracketed):
+  ⌜One⌟ two three
+
+Given markdown (Three words):
+  One two three
+Execute (WORD forward then use the mapping):
+  packadd brackets
+  normal W\bbiw
+Expect todo (Three words with one bracketed):
+  One ⌜two⌟ three
+
+Given markdown (Three words):
+  One two three
+Execute (2 WORDs forward then use the mapping):
+  packadd brackets
+  normal WW\bbiw
+Expect todo (Three words with one bracketed):
+  One two ⌜three⌟
