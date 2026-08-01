@@ -26,3 +26,13 @@ Execute (2 WORDs forward then use the mapping):
   normal WW\bbiw
 Expect todo (Three words with one bracketed):
   One two ⌜three⌟
+
+Given markdown (Three words over two lines):
+  One
+  two three
+Execute (Use the mapping on 2 WORDs):
+  packadd brackets
+  normal \bb2e
+Expect todo (Three words with two bracketed):
+  ⌜One
+  two⌟ three
