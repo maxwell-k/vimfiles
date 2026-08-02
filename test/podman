@@ -1,0 +1,24 @@
+#!/bin/sh
+podman run \
+  --rm \
+  --tty \
+  --volume="$PWD":/root/.vim:Z \
+  --workdir=/root/.vim \
+  --env=PATH=/usr/sbin:/usr/bin:/sbin:/bin:/root/.local/bin \
+  --env=ANSIBLE_PYTHON_INTERPRETER=auto_silent \
+  alpine:latest \
+  sh -c "apk add \
+      ansible \
+      beancount \
+      fzf \
+      git \
+      npm \
+      tar \
+      uv \
+      vim \
+      zsh \
+    && ansible-playbook site.yaml \
+    && test/run"
+# test/podman
+# Copyright 2025 Keith Maxwell
+# SPDX-License-Identifier: MPL-2.0

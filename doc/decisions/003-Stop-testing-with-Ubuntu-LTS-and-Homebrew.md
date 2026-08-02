@@ -41,8 +41,8 @@ on Linux.
 Irregardless of this decision the repository will continue to include tests
 using:
 
-1. Alpine Linux with Podman — `tests/podman` and
-2. Fedora Linux with Incus — `tests/incus`.
+1. Alpine Linux with Podman — `test/podman` and
+2. Fedora Linux with Incus — `test/incus`.
 
 ### Support Tiers
 
