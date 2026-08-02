@@ -8,7 +8,10 @@
 # This script can be run from anywhere inside the repository.
 repository="$(git rev-parse --show-toplevel)"
 cd "$repository" || exit 1
-for i in tests/automated/* ; do
+for i in \
+  tests/automated/* \
+  pack/vendored/start/backlog/tests/*.vader \
+  ; do
   if [ -f "$i" ] ; then
     if ! "$i" ; then
       printf '%s failed\n' "$i"
