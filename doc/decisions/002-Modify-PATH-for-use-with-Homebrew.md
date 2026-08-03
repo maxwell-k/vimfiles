@@ -27,6 +27,7 @@ Alternative 1:
 
 ~~Initial decision was (1).~~
 
-Implement (2) using `tests/manual/incus-ubuntu-24.04-homebrew.yaml`.
+Implement (2) using ~~`tests/manual/incus-ubuntu-24.04-homebrew.yaml`~~
+`test/incus`.
 
 <!-- vim: set filetype=markdown.htmlCommentNoSpell : -->

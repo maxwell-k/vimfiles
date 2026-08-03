@@ -25,7 +25,7 @@ highlight link TodoThresholdDate NONE
 "
 " See also:
 " ./syntax/todo.vim
-" ./tests/manual/todo.txt
+" ./test/manual/todo.txt
 " ./pack/submodules/opt/todo.txt/syntax/todo.vim
 "
 syntax match TodoURL = https\?://\S*=ms=s+1

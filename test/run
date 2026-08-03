@@ -1,0 +1,27 @@
+#!/bin/sh
+# test/run
+# Copyright 2020 Keith Maxwell
+# SPDX-License-Identifier: MPL-2.0
+#
+# Run the tests from this repository.
+#
+# This script can be run from anywhere inside the repository.
+repository="$(git rev-parse --show-toplevel)"
+cd "$repository" || exit 1
+for i in \
+  test/automated/* \
+  pack/vendored/start/backlog/test/*.vader \
+  ; do
+  if [ -f "$i" ] ; then
+    if ! "$i" ; then
+      printf '%s failed\n' "$i"
+      exit 1
+    fi
+  else
+    printf '%s not recognised\n' "$i"
+    exit 1
+  fi
+done
+
+git branch --show-current > test/.success
+printf 'test/run: All tests succeeded.\n'

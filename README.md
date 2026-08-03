@@ -14,7 +14,7 @@ Command to clone this repository and its sub-modules as `~/.vim`:
 
 Command to install the appropriate system packages:
 
-<!-- keep command below up to date with tests/manual/config.yaml -->
+<!-- keep command below up to date with test/manual/config.yaml -->
 
     sudo dnf install --assumeyes vim-enhanced ansible nodejs fzf git uv
 
@@ -29,9 +29,9 @@ Command to set up pre-commit hooks:
 
 Command to check everything is working:
 
-    tests/run
+    test/run
 
-Further details about testing are in [`tests/README.md`](tests/README.md).
+Further details about testing are in [`test/README.md`](test/README.md).
 
 ## Supported operating systems
 
@@ -104,14 +104,14 @@ Command to push changes:
 
 Command to run the test suite using Podman and the `alpine:latest` image:
 
-    tests/podman
+    test/podman
 
 ### Incus and Fedora Linux 43
 
 Command to run the test suite using Incus and the `images:fedora/43/cloud`
 image:
 
-    tests/incus
+    test/incus
 
 The script above will use Cloud-init to configure an Incus container before
 running the tests. The Cloud-init steps include installing packages and running

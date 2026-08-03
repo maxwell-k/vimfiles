@@ -27,5 +27,5 @@ syntax keyword embedme contained embedme
 highlight default link embedme Keyword
 syn region htmlComment start=/<!-- embedme/ end=/>/ contains=@NoSpell,embedme
 
-" see tests/manual/example.md
+" see test/manual/example.md
 syn match markdownFootnoteDefinition "^\[^[^\]]\+\]:"

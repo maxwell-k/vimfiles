@@ -12,6 +12,7 @@ Command to run tests:
 
 vimj.py not vimj so that the command above passes.
 """
+
 from argparse import ArgumentParser, Namespace
 from os import execlp
 
@@ -23,10 +24,10 @@ FILE_AND_LINE_AND_COLUMN = 3
 def split(arg: str) -> tuple[str, int | None, int | None]:
     """Parse filename, line and column numbers  from argument.
 
-    >>> split('tests/setup.sh')
-    ('tests/setup.sh', None, None)
-    >>> split('tests/setup.sh:11')
-    ('tests/setup.sh', 11, None)
+    >>> split('example/file.txt')
+    ('example/file.txt', None, None)
+    >>> split('example/file.txt:11')
+    ('example/file.txt', 11, None)
     >>> split('config/yamllint/config:13:#')
     ('config/yamllint/config', 13, None)
     >>> split('README.md:48:23')

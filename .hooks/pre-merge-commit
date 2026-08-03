@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """pre-merge-commit hooks for vimfiles."""
+
 # .hooks/pre-merge-commit
 # Copyright 2021 Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
@@ -17,18 +18,18 @@ LIMIT = 1  # hour(s)
 def _main() -> int:
     directory = Path(check_output(COMMAND).decode("utf8").strip())
 
-    marker = directory / ".." / "tests" / ".success"
+    marker = directory / ".." / "test" / ".success"
     try:
         age = (time() - marker.stat().st_mtime) / 60 / 60
     except FileNotFoundError:
         age = LIMIT + 1
 
     if age >= LIMIT:
-        print("tests/.success is not found or is older than one hour")
+        print("test/.success is not found or is older than one hour")
         return 1
 
     if marker.read_text().strip() == "main":
-        print("tests/.success contains 'main', run tests against a branch")
+        print("test/.success contains 'main', run tests against a branch")
         return 1
 
     # don't run the pre-commit hook, as it prevents committing to main

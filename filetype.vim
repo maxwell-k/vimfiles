@@ -9,7 +9,7 @@ if exists('did_load_filetypes')
   finish
 endif
 augroup filetypedetect
-" Tests in ./tests/fixtures/
+" Tests in ./test/fixtures/
 
   autocmd BufRead,BufNewFile *.beancount setfiletype beancount
   autocmd BufRead,BufNewFile *.docker setfiletype dockerfile
