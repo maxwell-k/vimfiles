@@ -1,5 +1,4 @@
 scriptencoding utf-8
-" This implementation cannot tag anything that spans multiple lines.
 " pack/vendored/opt/brackets/plugin/mappings.vim
 " Copyright 2020 Keith Maxwell
 " SPDX-License-Identifier: MPL-2.0
@@ -15,20 +14,18 @@ function s:BracketAdd(type = '') abort
   let l:before = '⌜'
   let l:after = '⌟'
     " [bufnum, lnum, col, off]
-  let [_, l:lnum, l:col1, _] = getpos("'[")
-  let [_, _, l:col2, _] = getpos("']")
-  let l:original = getline(l:lnum)
-  let l:changed =
-    \ strpart(l:original, 0, l:col1 - 1)
-    \ ..
-    \ l:before
-    \ ..
-    \ strpart(l:original, l:col1 - 1, l:col2 - l:col1 + 1)
-    \ ..
-    \ l:after
-    \ ..
-    \ strpart(l:original, l:col2)
-  call setline(l:lnum, l:changed)
+  let [_, l:lnum1, l:column, _] = getpos("'[")
+  let l:column -= 1 "before
+  let l:original = getline(l:lnum1)
+  let l:changed = strcharpart(l:original, 0, l:column) .. l:before ..
+    \ strcharpart(l:original, l:column)
+  call setline(l:lnum1, l:changed)
+  let [_, l:lnum2, l:column, _] = getpos("']")
+  let l:column += l:lnum1 == l:lnum2 ? 1 : 0 " a character was added :
+  let l:original = getline(l:lnum2)
+  let l:changed = strcharpart(l:original, 0, l:column) .. l:after ..
+    \ strcharpart(l:original, l:column)
+  call setline(l:lnum2, l:changed)
 endfunction
 
 nnoremap <expr> <Leader>bb <SID>BracketAdd('setup')
