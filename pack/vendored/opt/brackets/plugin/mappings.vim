@@ -28,5 +28,10 @@ function s:BracketAdd(type = '') abort
   call setline(l:lnum2, l:changed)
 endfunction
 
-nnoremap <expr> <Leader>bb <SID>BracketAdd('setup')
-xnoremap <expr> <Leader>bb <SID>BracketAdd('setup')
+nnoremap <expr> <Plug>BracketAdd <SID>BracketAdd('setup')
+xnoremap <expr> <Plug>BracketAdd <SID>BracketAdd('setup')
+
+if !exists('g:brackets_no_mappings') || ! g:brackets_no_mappings
+  nnoremap <Leader>bb <Plug>BracketAdd
+  xnoremap <Leader>bb <Plug>BracketAdd
+endif
