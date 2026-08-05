@@ -92,15 +92,15 @@ let s:list_settings = 'setlocal list showbreak=→ '
 let s:list_settings .= 'listchars='
 let s:list_settings .= 'trail:←,tab:→—,extends:▓,precedes:▓'
 execute s:list_settings
-execute "noremap <Leader>l :call toggle#List('".s:list_settings."')<CR>"
+execute "noremap <Leader>l <Cmd>call toggle#List('".s:list_settings."')<CR>"
 unlet s:list_settings
 
 " Mappings and commands {{{1
 " ---------------------
 "
 " Using <Leader>, alphabetically:
- noremap <Leader>aq :call vim#AleQuit()<CR>
- noremap <Leader>aD :call toggle#Ale()<CR>
+ noremap <Leader>aq <Cmd>call vim#AleQuit()<CR>
+ noremap <Leader>aD <Cmd>call toggle#Ale()<CR>
      map <Leader>af <Plug>(ale_find_references)
      map <Leader>ad <Plug>(ale_go_to_definition)
      map <Leader>ah <Plug>(ale_hover)
@@ -108,32 +108,32 @@ unlet s:list_settings
      map <Leader>at <Plug>(ale_go_to_type_definition)
         "<Leader>b see pack/vendored/start/backlog/plugin/mappings.vim
 call opfunc#opfuncmap('c') " straight yank
- noremap <Leader>C :call toggle#Colours()<CR>
- noremap <Leader>fF :call SendViaOSC52(@%)<CR>
- noremap <Leader>ff :call vim#YankPathWithTilde()<CR>
+ noremap <Leader>C <Cmd>call toggle#Colours()<CR>
+ noremap <Leader>fF <Cmd>call SendViaOSC52(@%)<CR>
+ noremap <Leader>ff <Cmd>call vim#YankPathWithTilde()<CR>
         "<Leader>g see plugin/mappings.vim
- noremap <Leader>i :echo synIDattr(synID(line('.'),col('.'),1),'name')<CR>
+ noremap <Leader>i <Cmd>echo synIDattr(synID(line('.'),col('.'),1),'name')<CR>
 vnoremap <Leader>k <ESC>:call vim#Keep()<CR>
         "<Leader>j see ftplugin/python.vim for Jedi mappings or
         "<Leader>l see above
  noremap <Leader>m :/<<<<<<<\\|=======\\|>>>>>>><CR>
         "<Leader>p? see ftplugin/python.vim
- noremap <Leader>s :call vim#GenerateAndLoadSpellfile()<CR>
- noremap <Leader>S :call vim#Scriptnames()<CR>
+ noremap <Leader>s <Cmd>call vim#GenerateAndLoadSpellfile()<CR>
+ noremap <Leader>S <Cmd>call vim#Scriptnames()<CR>
         "        t see ftplugin/todo.vim
- noremap <Leader>v :set paste! paste?<CR>
+ noremap <Leader>v <Cmd>set paste! paste?<CR>
 call opfunc#opfuncmap('y')
  noremap <Leader>w <C-w>
- noremap <Leader>W :call toggle#Shiftwidth()<CR>
- noremap <Leader>zo :call fzf#run(fzf#wrap({'source': v:oldfiles}))<CR>
- noremap <Leader>zg :call fzf#run(fzf#wrap({'source': 'git ls-files'}))<CR>
- noremap <Leader>zs :call fzf#CustomGitStatus()<CR>
+ noremap <Leader>W <Cmd>call toggle#Shiftwidth()<CR>
+ noremap <Leader>zo <Cmd>call fzf#run(fzf#wrap({'source': v:oldfiles}))<CR>
+ noremap <Leader>zg <Cmd>call fzf#run(fzf#wrap({'source': 'git ls-files'}))<CR>
+ noremap <Leader>zs <Cmd>call fzf#CustomGitStatus()<CR>
 vnoremap <Leader>= :<C-U>call vim#Sum()<CR>
- noremap <Leader>\ :s,\\,/,g<CR>
- noremap <Leader>/ :s,/,\\,g<CR>
- noremap <Leader><CR> :call vim#Browser()<CR>
+ noremap <Leader>\ <Cmd>s,\\,/,g<CR>
+ noremap <Leader>/ <Cmd>s,/,\\,g<CR>
+ noremap <Leader><CR> <Cmd>call vim#Browser()<CR>
 " Other:
- noremap <C-L> :nohlsearch<CR><C-L>
+ noremap <C-L> <Cmd>nohlsearch<CR><C-L>
  noremap Y y$
 
 command! W ALEFix!|w|silent execute '!git add %'|redraw!
