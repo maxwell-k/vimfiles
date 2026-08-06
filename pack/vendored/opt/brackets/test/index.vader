@@ -7,7 +7,7 @@ Given markdown (Three words):
   One two three
 Execute (Use the mapping):
   packadd brackets
-  normal \bbiw
+  execute "normal \<Plug>BracketAddiw"
 Expect todo (Three words with one bracketed):
   ⌜One⌟ two three
 
@@ -15,7 +15,7 @@ Given markdown (Three words):
   One two three
 Execute (WORD forward then use the mapping):
   packadd brackets
-  normal W\bbiw
+  execute "normal W\<Plug>BracketAddiw"
 Expect todo (Three words with one bracketed):
   One ⌜two⌟ three
 
@@ -23,7 +23,7 @@ Given markdown (Three words):
   One two three
 Execute (2 WORDs forward then use the mapping):
   packadd brackets
-  normal WW\bbiw
+  execute "normal WW\<Plug>BracketAddiw"
 Expect todo (Three words with one bracketed):
   One two ⌜three⌟
 
@@ -32,7 +32,7 @@ Given markdown (Three words over two lines):
   two three
 Execute (Use the mapping on 2 WORDs):
   packadd brackets
-  normal \bb2e
+  execute "normal \<Plug>BracketAdd2e"
 Expect todo (Three words with two bracketed):
   ⌜One
   two⌟ three
