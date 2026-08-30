@@ -162,6 +162,27 @@ function! vim#Sum() range abort "{{{1
 
   call setpos('.', position)
 endfunction "}}}1
+function! vim#Average() range abort "{{{1
+"Assumes 'selection' is blockwise and inclusive
+  let position = getpos('.')
+
+  let start = virtcol("'<") - 1
+  let length = virtcol("'>") - start
+  let total = 0.0
+  let values = 0
+  for lnum in range(line("'<"), line("'>"))
+    let selected = strpart(getline(lnum), start, length)
+    let without_commas = substitute(selected, ',', '', 'g')
+    let total += str2float(without_commas)
+    let values += 1
+  endfor
+
+  let result = total / values
+  let @= = result
+  echo result
+
+  call setpos('.', position)
+endfunction "}}}1
 function! vim#SwitchToDprint() abort "{{{1
   " Add dprint to the fixer list in place of prettier
   let s:fixers_to_replace = ['prettier']
