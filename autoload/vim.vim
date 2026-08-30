@@ -147,18 +147,41 @@ function! vim#SetSiblingSpellfile() abort "{{{1
 endfunction "}}}1
 function! vim#Sum() range abort "{{{1
 "Assumes 'selection' is blockwise and inclusive
-python3 <<EOS
-import vim
-import decimal
-top, left       = vim.eval("getpos(\"'<\")[1:2]")
-bottom, right   = vim.eval("getpos(\"'>\")[1:2]")
-top, left, bottom, right = int(top), int(left), int(bottom), int(right)
-numbers = [i[left - 1:right] for i in vim.current.buffer[top - 1:bottom]]
-numbers = [i.replace(',','').rstrip('\xc2\xa3 ') for i in numbers]
-result = '{:,}'.format(sum(decimal.Decimal(i) for i in numbers if i))
-print(result)
-EOS
-let @= = "'".py3eval('result')."'"
+  let position = getpos('.')
+
+  let start = virtcol("'<") - 1
+  let length = virtcol("'>") - start
+  let total = 0.0
+  for lnum in range(line("'<"), line("'>"))
+    let selected = strpart(getline(lnum), start, length)
+    let without_commas = substitute(selected, ',', '', 'g')
+    let total += str2float(without_commas)
+  endfor
+  let @= = total
+  echo total
+
+  call setpos('.', position)
+endfunction "}}}1
+function! vim#Average() range abort "{{{1
+"Assumes 'selection' is blockwise and inclusive
+  let position = getpos('.')
+
+  let start = virtcol("'<") - 1
+  let length = virtcol("'>") - start
+  let total = 0.0
+  let values = 0
+  for lnum in range(line("'<"), line("'>"))
+    let selected = strpart(getline(lnum), start, length)
+    let without_commas = substitute(selected, ',', '', 'g')
+    let total += str2float(without_commas)
+    let values += 1
+  endfor
+
+  let result = total / values
+  let @= = result
+  echo result
+
+  call setpos('.', position)
 endfunction "}}}1
 function! vim#SwitchToDprint() abort "{{{1
   " Add dprint to the fixer list in place of prettier

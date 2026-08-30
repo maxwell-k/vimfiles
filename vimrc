@@ -129,6 +129,7 @@ call opfunc#opfuncmap('y')
  noremap <Leader>zg <Cmd>call fzf#run(fzf#wrap({'source': 'git ls-files'}))<CR>
  noremap <Leader>zs <Cmd>call fzf#CustomGitStatus()<CR>
 vnoremap <Leader>= :<C-U>call vim#Sum()<CR>
+vnoremap <Leader>- :<C-U>call vim#Average()<CR>
  noremap <Leader>\ <Cmd>s,\\,/,g<CR>
  noremap <Leader>/ <Cmd>s,/,\\,g<CR>
  noremap <Leader><CR> <Cmd>call vim#Browser()<CR>
