@@ -71,6 +71,7 @@
         - [jsonlint, [0, 1]] # ~/.vim/bin/jsonlint
         - [prettier, [0]] # ~/.vim/bin/prettier
         - [markdown-toc, [0, 1]]
+        - [spectral, [0]]
     - name: Add the pinned version of pyright to the npm cache
       ansible.builtin.command:
         cmd: npm exec --yes --package pyright@1.1.408 -- pyright --version
