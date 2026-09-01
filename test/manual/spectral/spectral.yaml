@@ -1,0 +1,16 @@
+# test/manual/spectral/spectral.yaml
+# Copyright 2026 Keith Maxwell
+# SPDX-License-Identifier: CC0-1.0
+overrides:
+  - files:
+      - example.json
+      - example.yaml
+    rules:
+      example-rule:
+        given: $
+        severity: error
+        then:
+          function: schema
+          functionOptions:
+            schema:
+              required: [example]
