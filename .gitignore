@@ -12,6 +12,7 @@
 /doc/decisions/.en.utf-8.add.spl
 /test/.en.utf-8.add.spl
 /test/manual/.en.utf-8.add.spl
+/test/manual/spectral/.en.utf-8.add.spl
 
 # created by ansible-lint
 /.ansible/
