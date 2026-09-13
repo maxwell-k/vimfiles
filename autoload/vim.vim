@@ -145,43 +145,40 @@ function! vim#SetSiblingSpellfile() abort "{{{1
   let l:cmd .= '/.en.utf-8.add'
   execute l:cmd
 endfunction "}}}1
-function! vim#Sum() range abort "{{{1
+function! vim#SelectionAsFloats() range abort "{{{1
 "Assumes 'selection' is blockwise and inclusive
   let position = getpos('.')
 
-  let start = virtcol("'<") - 1
-  let length = virtcol("'>") - start
-  let total = 0.0
+  let start = min([col("'<"), col("'>")]) - 1
+  let length = max([col("'<"), col("'>")]) - start
+  let result = []
   for lnum in range(line("'<"), line("'>"))
     let selected = strpart(getline(lnum), start, length)
     let without_commas = substitute(selected, ',', '', 'g')
-    let total += str2float(without_commas)
+    call add(result, str2float(without_commas))
+  endfor
+  return result
+
+  call setpos('.', position)
+endfunction
+function! vim#Sum() range abort "{{{1
+  let total = 0.0
+  for i in vim#SelectionAsFloats()
+    let total += i
   endfor
   let @= = total
-  echo total
-
-  call setpos('.', position)
+  echomsg total
 endfunction "}}}1
 function! vim#Average() range abort "{{{1
-"Assumes 'selection' is blockwise and inclusive
-  let position = getpos('.')
-
-  let start = virtcol("'<") - 1
-  let length = virtcol("'>") - start
   let total = 0.0
-  let values = 0
-  for lnum in range(line("'<"), line("'>"))
-    let selected = strpart(getline(lnum), start, length)
-    let without_commas = substitute(selected, ',', '', 'g')
-    let total += str2float(without_commas)
-    let values += 1
+  let denominator = 0
+  for i in vim#SelectionAsFloats()
+    let total += i
+    let denominator += 1
   endfor
-
-  let result = total / values
+  let result = total / denominator
   let @= = result
-  echo result
-
-  call setpos('.', position)
+  echomsg result
 endfunction "}}}1
 function! vim#SwitchToDprint() abort "{{{1
   " Add dprint to the fixer list in place of prettier
