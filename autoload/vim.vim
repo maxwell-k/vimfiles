@@ -162,21 +162,13 @@ function! vim#SelectionAsFloats() range abort "{{{1
   call setpos('.', position)
 endfunction
 function! vim#Sum() range abort "{{{1
-  let total = 0.0
-  for i in vim#SelectionAsFloats()
-    let total += i
-  endfor
-  let @= = total
-  echomsg total
+  let result = reduce(vim#SelectionAsFloats(), { acc, v -> acc + v }, 0)
+  let @= = result
+  echomsg result
 endfunction "}}}1
 function! vim#Average() range abort "{{{1
-  let total = 0.0
-  let denominator = 0
-  for i in vim#SelectionAsFloats()
-    let total += i
-    let denominator += 1
-  endfor
-  let result = total / denominator
+  let input = vim#SelectionAsFloats()
+  let result = reduce(input, { acc, v -> acc + v }, 0) / len(input)
   let @= = result
   echomsg result
 endfunction "}}}1
