@@ -17,7 +17,7 @@ function! ale#handlers#zizmor#Handle(buffer, lines) abort
     let l:output = []
     let l:json = json_decode(join(a:lines, ''))
 
-    for l:finding in l:json
+    for l:finding in l:json isnot v:none ? l:json : []
       let l:suffix = "\n\nSee <" . l:finding.url . '>.'
       for l:location in l:finding.locations
         "   'text': l:location.symbolic.annotation,
