@@ -71,7 +71,8 @@ class TestStringMethods(unittest.TestCase):
             run(command, check=True)
             expected = _clean_expected(path.read_text())
             actual = _clean_actual(OUTPUT.read_text())
-            self.assertEqual(expected, actual)
+            msg = f"Failed for {path}"
+            self.assertEqual(expected, actual, msg)
 
 
 if __name__ == "__main__":
