@@ -17,18 +17,13 @@ PATHS = [
 
 def main() -> int:
     """Run doctest --verbose on PATHS."""
-    result = run(
-        ["git", "rev-parse", "--show-toplevel"],
-        check=True,
-        capture_output=True,
-    )
+    cmd = ("git", "rev-parse", "--show-toplevel")
+    result = run(cmd, check=True, capture_output=True)
     repository = Path(result.stdout.decode().strip())
     for path in PATHS:
         with chdir(repository / path.parent):
-            run(
-                ["python", "-m" "doctest", "--verbose", path.name],
-                check=True,
-            )
+            cmd = ("python", "-m", "doctest", "--verbose", path.name)
+            run(cmd, check=True)
             for pyc in Path("__pycache__").iterdir():
                 pyc.unlink()
 
