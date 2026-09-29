@@ -9,10 +9,10 @@
 " Use a file in ftplugin if file type related.
 augroup vimrc
 autocmd!
-autocmd BufNewFile,BufReadPost * call vim#SetSiblingSpellfile()
-autocmd BufNewFile,BufReadPost COMMIT_EDITMSG setlocal nomodeline spell
+autocmd BufNewFile,BufRead * call vim#SetSiblingSpellfile()
+autocmd BufNewFile,BufRead COMMIT_EDITMSG setlocal nomodeline spell
 autocmd BufReadCmd *.tbz2 call tar#Browse(expand("<amatch>")) "Gentoo binaries
-autocmd BufReadPost /tmp/histedit.* let $PATH .= ':/usr/local/bin'
+autocmd BufRead /tmp/histedit.* let $PATH .= ':/usr/local/bin'
 autocmd Colorscheme ayu call vim#Colours()
 autocmd StdInReadPost * setlocal nowrap
 " workaround for https://github.com/exercism/gleam-test-runner/issues/62
