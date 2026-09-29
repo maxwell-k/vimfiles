@@ -5,24 +5,31 @@
 #
 """Run doctests."""
 
+import logging
 from contextlib import chdir
 from pathlib import Path
 from subprocess import run
 
-PATHS = [
-    Path("bin/vimj.py"),
-    Path("bin/tomlv.py"),
-]
+logger = logging.getLogger(__name__)
 
 
 def main() -> int:
     """Run doctest --verbose on PATHS."""
+    logging.basicConfig(level=logging.INFO)
+
     cmd = ("git", "rev-parse", "--show-toplevel")
     result = run(cmd, check=True, capture_output=True)
     repository = Path(result.stdout.decode().strip())
-    for path in PATHS:
-        with chdir(repository / path.parent):
+    cmd = ("git", "ls-files", "*.py")
+    result = run(cmd, check=True, capture_output=True, text=True)
+    paths = [Path(i) for i in result.stdout.strip().split("\n")]
+    logger.info("Iterating over '%s'", paths)
+    for path in paths:
+        directory = repository / path.parent
+        logger.info("Entering '%s'", directory)
+        with chdir(directory):
             cmd = ("python", "-m", "doctest", "--verbose", path.name)
+            logger.info("Running '%s'", cmd)
             run(cmd, check=True)
             for pyc in Path("__pycache__").iterdir():
                 pyc.unlink()
