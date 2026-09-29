@@ -98,6 +98,9 @@ unlet s:list_settings
 " Mappings and commands {{{1
 " ---------------------
 "
+let g:mapleader = ' '
+let g:maplocalleader = g:mapleader
+
 " Using <Leader>, alphabetically:
  noremap <Leader>aq <Cmd>call vim#AleQuit()<CR>
  noremap <Leader>aD <Cmd>call toggle#Ale()<CR>
