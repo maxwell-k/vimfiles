@@ -192,6 +192,11 @@ let s:apo['/ale/.*[.]vim$'] = {'ale_linters_ignore': ['sed']}
 if resolve('/bin/sh') ==# '/bin/busybox'
     let s:apo['/[.]zshrc$'] = {'ale_linters_ignore': ['shell']}
 endif
+" For GitHub Actions workflows, add zizmor to the default list for YAML.
+" That default is defined in pack/submodules/start/ale/autoload/ale/linter.vim
+let s:apo['github/workflows/.\+[.]yaml$'] = {'ale_linters':
+\ ['actionlint', 'spectral', 'yaml-language-server', 'yamllint']
+\ + ['zizmor'] }
 let g:ale_pattern_options = s:apo
 
 " Linters {{{2

@@ -8,8 +8,12 @@
 if exists('did_load_filetypes')
   finish
 endif
+runtime pack/submodules/opt/ansible/ftdetect/ansible.vim
 augroup filetypedetect
 " Tests in ./test/fixtures/
+
+  " Deliberately override the filetype set by opt/ansible/ftdetect/ansible.vim
+  autocmd BufRead,BufNewFile main.yaml set filetype=yaml
 
   autocmd BufRead,BufNewFile *.beancount setfiletype beancount
   autocmd BufRead,BufNewFile *.docker setfiletype dockerfile
@@ -48,9 +52,4 @@ augroup filetypedetect
 " No tests, may override above with setlocal filetype= see :help :setfiletype
   runtime pack/gitignored/start/local/filetype.vim
 
-augroup END
-runtime pack/submodules/opt/ansible/ftdetect/ansible.vim
-augroup filetypedetect
-  " higher precedence than the Ansible submodule
-  autocmd BufRead,BufNewFile *github/workflows/*.yaml set filetype=yaml.action
 augroup END
