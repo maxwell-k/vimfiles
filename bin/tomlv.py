@@ -15,6 +15,7 @@ Example output:
 
     [{"lnum": 3, "col": 3, "text": "Unclosed array"}]
 """
+
 from argparse import ArgumentParser, Namespace
 from json import dumps
 from pathlib import Path

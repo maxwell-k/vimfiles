@@ -4,6 +4,7 @@
 # SPDX-License-Identifier: MPL-2.0
 #
 """Run doctests."""
+
 from contextlib import chdir
 from pathlib import Path
 from subprocess import run
