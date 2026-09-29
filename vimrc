@@ -15,6 +15,8 @@ autocmd BufReadCmd *.tbz2 call tar#Browse(expand("<amatch>")) "Gentoo binaries
 autocmd BufReadPost /tmp/histedit.* let $PATH .= ':/usr/local/bin'
 autocmd Colorscheme ayu call vim#Colours()
 autocmd StdInReadPost * setlocal nowrap
+" workaround for https://github.com/exercism/gleam-test-runner/issues/62
+autocmd BufRead,BufNewFile */exercism/gleam/*/test/*.gleam setlocal noswapfile
 augroup END
 
 " Fundamental configuration {{{1
