@@ -43,6 +43,7 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile goals.txt setfiletype todo
   autocmd BufRead,BufNewFile in-basket.txt setfiletype todo
   autocmd BufRead,BufNewFile known_hosts setfiletype known_hosts
+  autocmd BufRead,BufNewFile known_large_files setfiletype spellfile
   autocmd BufRead,BufNewFile requirements_*.in setfiletype requirements
   autocmd BufRead,BufNewFile requirements_*.txt setfiletype requirements
   autocmd BufRead,BufNewFile routine.txt setfiletype todo
