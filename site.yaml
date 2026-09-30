@@ -112,9 +112,7 @@
           vint --version
         - djlint --version
 
-- name:
-    Tag vim help files, these tasks always report a change so they are run last
-    in the playbook
+- name: Tag vim help files
   hosts: all
   tasks:
     - name: Create a temporary file for use as a script to generate help tags
@@ -126,8 +124,7 @@
         paths: ~/.vim/pack/submodules/opt/
         file_type: directory
       register: site_find
-    - name: Write the commands to the script to avoid an error about too many
-        command line flags
+    - name: Write vim commands to generate help tags to {{ site_script.path }}
       ansible.builtin.copy:
         dest: "{{ site_script.path }}"
         content: |
@@ -138,10 +135,41 @@
           quit
         mode: "0o700"
       changed_when: false
-    - name: Generate help tags with vim and the script( {{ site_script.path }} )
+    - name: Checksum tags files before running {{ site_script.path }}
+      ansible.builtin.find:
+        paths: ~/.vim
+        patterns: tags
+        recurse: true
+        get_checksum: true
+      register: site_helptags_before
+    - name: Generate help tags by running {{ site_script.path }}
       ansible.builtin.command: vim -S {{ site_script.path }}
-      changed_when: true
-    - name: Remove the temporary file used as script for generating help tags
+      changed_when: false # See task to report a change below
+    - name: Checksum tags files after running {{ site_script.path }}
+      ansible.builtin.find:
+        paths: ~/.vim
+        patterns: tags
+        recurse: true
+        get_checksum: true
+      register: site_helptags_after
+    - name: Report a change from {{ site_script.path }}
+      vars:
+        site_after_checksums: >-
+          {{
+          site_helptags_after.files
+          | sort(attribute='path')
+          | map(attribute='checksum')
+          }}
+        site_before_checksums: >-
+          {{
+          site_helptags_before.files
+          | sort(attribute='path')
+          | map(attribute='checksum')
+          }}
+      ansible.builtin.debug: { msg: changed }
+      no_log: true
+      changed_when: site_before_checksums != site_after_checksums
+    - name: Remove {{ site_script.path }}
       ansible.builtin.file:
         path: "{{ site_script.path }}"
         state: absent
