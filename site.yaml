@@ -78,7 +78,7 @@
       register: site_npm_exec
       failed_when: site_npm_exec.rc != 0
 
-- name: Populate the uv cache
+- name: Populate the uv cache so that features and tests can run offline
   hosts: all
   tasks:
     - name: Try running uv self version
@@ -88,9 +88,8 @@
     - name: Stop this play if uv isn't available
       ansible.builtin.meta: end_host
       when: site_uv_check.rc != 0
-    - name: Add to the uv cache so that features and tests can run offline
-      ansible.builtin.command: "uv tool run {{ item }}"
-      changed_when: true
+    - name: Try to run each tool offline
+      ansible.builtin.command: uv --offline tool run {{ item }}
       loop:
         - reuse --version
         - usort --version
@@ -99,14 +98,25 @@
         - zizmor --version
         - --from=cogapp cog -v
         - urlscan --version
-        - >
+        - >-
           --index-url=https://gitlab.com/api/v4/projects/43703506/packages/pypi/simple
           linkscan --version
-        - >
+        - >-
           --from
           git+https://github.com/Vimjas/vint.git@94d2cb3fd9526a89911b7c1e083a1fd78bace729
           vint --version
         - djlint --version
+      register: site_uv_offline
+      failed_when: false
+      changed_when: false
+    - name: Loop over the result and cache any tools did not return 0
+      ansible.builtin.command: "uv tool run {{ item }}"
+      changed_when: true
+      loop: >-
+        {{ site_uv_offline.results
+         | selectattr('rc', 'ne', 0)
+         | map(attribute='item')
+         | list }}
 
 - name: Tag vim help files
   hosts: all
