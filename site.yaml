@@ -3,10 +3,6 @@
 # Copyright 2021 Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
 #
-# Run as:
-#
-#     ansible-playbook -i::1, -c local site.yaml
-#
 # This playbook can be run as a normal user, no super-user privileges are
 # necessary.
 - name: Create the backupdir
@@ -183,7 +179,7 @@
         state: directory
         mode: "0o755"
         path: ~/.local/bin
-    - name: Run ~/.vim/bin/path.toml
+    - name: Add symbolic links to ~/.local/bin
       ansible.builtin.file:
         state: link
         src: ~/.vim/bin/{{ item[0] }}
