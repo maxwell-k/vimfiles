@@ -8,8 +8,12 @@
 if exists('did_load_filetypes')
   finish
 endif
+runtime pack/submodules/opt/ansible/ftdetect/ansible.vim
 augroup filetypedetect
 " Tests in ./test/fixtures/
+
+  " Deliberately override the filetype set by opt/ansible/ftdetect/ansible.vim
+  autocmd BufRead,BufNewFile main.yaml set filetype=yaml
 
   autocmd BufRead,BufNewFile *.beancount setfiletype beancount
   autocmd BufRead,BufNewFile *.docker setfiletype dockerfile
@@ -17,14 +21,12 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile *.gfm setfiletype markdown.gfm
   autocmd BufRead,BufNewFile *.mdx setfiletype markdown.mdx
   autocmd BufRead,BufNewFile *.pyi setfiletype python.stub
-  autocmd BufRead,BufNewFile *.svelte setfiletype svelte
   autocmd BufRead,BufNewFile *.vader setfiletype vader
   autocmd BufRead,BufNewFile *.yaml.jinja setfiletype yaml.jinja2
   autocmd BufRead,BufNewFile */.README.md-files/*.sh setfiletype sh.noeol
   autocmd BufRead,BufNewFile */newsboat/urls setfiletype newsboat
   autocmd BufRead,BufNewFile */playbooks/*.yaml setfiletype yaml.ansible
   autocmd BufRead,BufNewFile */site-packages/*.py setfiletype python
-  autocmd BufRead,BufNewFile */src/template.html setfiletype svelte
   autocmd BufRead,BufNewFile .dprint.json setfiletype json.dprint
   autocmd BufRead,BufNewFile .en.utf-8.add setfiletype spellfile
   autocmd BufRead,BufNewFile .env setfiletype dotenv
@@ -36,10 +38,12 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile constraints.txt setfiletype requirements
   autocmd BufRead,BufNewFile done.txt setfiletype todo
   autocmd BufRead,BufNewFile dprint.json setfiletype json.dprint
+  autocmd BufRead,BufNewFile en.utf-8.add setfiletype spellfile
   autocmd BufRead,BufNewFile git-revise-todo setfiletype gitrebase
   autocmd BufRead,BufNewFile goals.txt setfiletype todo
   autocmd BufRead,BufNewFile in-basket.txt setfiletype todo
   autocmd BufRead,BufNewFile known_hosts setfiletype known_hosts
+  autocmd BufRead,BufNewFile known_large_files setfiletype spellfile
   autocmd BufRead,BufNewFile requirements_*.in setfiletype requirements
   autocmd BufRead,BufNewFile requirements_*.txt setfiletype requirements
   autocmd BufRead,BufNewFile routine.txt setfiletype todo
@@ -50,9 +54,4 @@ augroup filetypedetect
 " No tests, may override above with setlocal filetype= see :help :setfiletype
   runtime pack/gitignored/start/local/filetype.vim
 
-augroup END
-runtime pack/submodules/opt/ansible/ftdetect/ansible.vim
-augroup filetypedetect
-  " higher precedence than the Ansible submodule
-  autocmd BufRead,BufNewFile *github/workflows/*.yaml set filetype=yaml.action
 augroup END

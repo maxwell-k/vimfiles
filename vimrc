@@ -9,12 +9,17 @@
 " Use a file in ftplugin if file type related.
 augroup vimrc
 autocmd!
-autocmd BufNewFile,BufReadPost * call vim#SetSiblingSpellfile()
-autocmd BufNewFile,BufReadPost COMMIT_EDITMSG setlocal nomodeline spell
+
+autocmd BufNewFile,BufRead * call vim#SetSiblingSpellfile()
+autocmd BufNewFile,BufRead */maxwell-k/blog/* call vim#SwitchToDprint()
+autocmd BufRead */exercism/gleam/*/test/*.gleam setlocal noswapfile " (1)
+autocmd BufRead /tmp/histedit.* let $PATH .= ':/usr/local/bin'
+autocmd BufRead COMMIT_EDITMSG setlocal nomodeline spell
 autocmd BufReadCmd *.tbz2 call tar#Browse(expand("<amatch>")) "Gentoo binaries
-autocmd BufReadPost /tmp/histedit.* let $PATH .= ':/usr/local/bin'
 autocmd Colorscheme ayu call vim#Colours()
 autocmd StdInReadPost * setlocal nowrap
+
+" (1) workaround for https://github.com/exercism/gleam-test-runner/issues/62
 augroup END
 
 " Fundamental configuration {{{1
@@ -98,6 +103,9 @@ unlet s:list_settings
 " Mappings and commands {{{1
 " ---------------------
 "
+let g:mapleader = ' '
+let g:maplocalleader = g:mapleader
+
 " Using <Leader>, alphabetically:
  noremap <Leader>aq <Cmd>call vim#AleQuit()<CR>
  noremap <Leader>aD <Cmd>call toggle#Ale()<CR>
@@ -189,26 +197,17 @@ let s:apo['/ale/.*[.]vim$'] = {'ale_linters_ignore': ['sed']}
 if resolve('/bin/sh') ==# '/bin/busybox'
     let s:apo['/[.]zshrc$'] = {'ale_linters_ignore': ['shell']}
 endif
+" For GitHub Actions workflows, add zizmor to the default list for YAML.
+" That default is defined in pack/submodules/start/ale/autoload/ale/linter.vim
+let s:apo['github/workflows/.\+[.]yaml$'] = {'ale_linters':
+\ ['actionlint', 'spectral', 'yaml-language-server', 'yamllint']
+\ + ['zizmor'] }
 let g:ale_pattern_options = s:apo
 
 " Linters {{{2
-let g:ale_linter_aliases = {
-\ 'svelte': 'javascript',
-\ }
-" Notes:
-" svelte: Assume the project has eslint-plugin-svelte3 &
-" prettier-plugin-svelte configured.
-let g:ale_linters = {
-\ 'svelte': ['eslint'],
-\ }
 let g:ale_linters_ignore = {
-\ 'impress': ['tidy'],
 \ 'nowrap': ['sed'],
 \ }
-" Notes:
-" impress: The impress progress bar relies on an empty div inside
-" #impress-progressbar [tidy](https://www.w3.org/People/Raggett/tidy/)
-" highlights this as an error the solution is to disable tidy.
 
 " Fixers {{{2
 " Fixer definitions {{{3
@@ -283,7 +282,6 @@ let g:ale_fixers = {
 \ 'markdown-toc': ['markdown-toc', 'prettier'],
 \ 'python': ['black', 'usort'],
 \ 'spellfile': ['sort'],
-\ 'svelte': ['prettier'],
 \ 'todo': ['trim_whitespace'],
 \ 'toml': ['dprint'],
 \ 'typescript': ['deno'],

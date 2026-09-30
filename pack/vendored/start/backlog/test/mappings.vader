@@ -11,7 +11,7 @@ Given todo (Two tasks from different projects):
   +a Text
 
 Do (Sort by project using the mapping):
-  \bp
+  \<Space>bp
 
 Expect todo (Four tasks sorted by project):
   +a Text
@@ -22,7 +22,7 @@ Given todo (Two tasks from different contexts):
   +a Text @a
 
 Do (Sort by project using the mapping):
-  \b@
+  \<Space>b@
 
 Given todo (Two tasks sorted by context):
   +a Text @a
@@ -34,7 +34,7 @@ Given todo (Two tasks and a marker):
   +b Text
 
 Do (Move the first task later):
-  \bl
+  \<Space>bl
 
 Expect todo (Marker then two sorted tasks):
   {{{
@@ -48,7 +48,7 @@ Given todo (A marker and two tasks):
 
 Do (Move the last task immediately):
   G
-  \bi
+  \<Space>bi
 
 Expect todo (Marker then two sorted tasks):
   +b Text

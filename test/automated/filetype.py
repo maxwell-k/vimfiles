@@ -3,6 +3,7 @@
 
 Only uses the standard library. Includes tests of test code inline.
 """
+
 # test/automated/filetype.py
 # Copyright 2021 Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
@@ -10,7 +11,6 @@ import json
 import unittest
 from pathlib import Path
 from subprocess import run
-
 
 TESTS = Path(__file__).parent
 OUTPUT = TESTS / "run.txt"
@@ -71,7 +71,8 @@ class TestStringMethods(unittest.TestCase):
             run(command, check=True)
             expected = _clean_expected(path.read_text())
             actual = _clean_actual(OUTPUT.read_text())
-            self.assertEqual(expected, actual)
+            msg = f"Failed for {path}"
+            self.assertEqual(expected, actual, msg)
 
 
 if __name__ == "__main__":

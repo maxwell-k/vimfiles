@@ -3,10 +3,6 @@
 # Copyright 2021 Keith Maxwell
 # SPDX-License-Identifier: MPL-2.0
 #
-# Run as:
-#
-#     ansible-playbook -i::1, -c local site.yaml
-#
 # This playbook can be run as a normal user, no super-user privileges are
 # necessary.
 - name: Create the backupdir
@@ -53,17 +49,13 @@
     - name: Check if npm is available
       ansible.builtin.command: npm --version
       changed_when: false
-      register: site_npm_check
-    - name: Stop this play if npm isn't available
-      ansible.builtin.meta: end_host
-      when: site_npm_check.rc != 0
     - name: Add tools to the npm cache
       ansible.builtin.command:
         cmd: npm exec --yes -- {{ item[0] }} --help
         creates: ~/.npm/_npx/*/node_modules/.bin/{{ item[0] }}
       register: site_npm_exec
       failed_when: site_npm_exec.rc not in item[1]
-      # if file in creates: exists the site_npm_exec.rc is 0
+      # if file in creates: exists then site_npm_exec.rc is 0
       loop:
         - [dprint, [0]]
         - [embedme, [0]]
@@ -71,7 +63,10 @@
         - [jsonlint, [0, 1]] # ~/.vim/bin/jsonlint
         - [prettier, [0]] # ~/.vim/bin/prettier
         - [markdown-toc, [0, 1]]
-        - [spectral, [0]]
+    - name: Add spectral to the npm cache
+      ansible.builtin.command:
+        cmd: npm exec --yes -- @stoplight/spectral-cli --help
+        creates: ~/.npm/_npx/*/node_modules/.bin/spectral
     - name: Add the pinned version of pyright to the npm cache
       ansible.builtin.command:
         cmd: npm exec --yes --package pyright@1.1.408 -- pyright --version
@@ -79,19 +74,14 @@
       register: site_npm_exec
       failed_when: site_npm_exec.rc != 0
 
-- name: Populate the uv cache
+- name: Populate the uv cache so that features and tests can run offline
   hosts: all
   tasks:
     - name: Try running uv self version
       ansible.builtin.command: uv self version
       changed_when: false
-      register: site_uv_check
-    - name: Stop this play if uv isn't available
-      ansible.builtin.meta: end_host
-      when: site_uv_check.rc != 0
-    - name: Add to the uv cache so that features and tests can run offline
-      ansible.builtin.command: "uv tool run {{ item }}"
-      changed_when: true
+    - name: Try to run each tool offline
+      ansible.builtin.command: uv --offline tool run {{ item }}
       loop:
         - reuse --version
         - usort --version
@@ -100,18 +90,27 @@
         - zizmor --version
         - --from=cogapp cog -v
         - urlscan --version
-        - >
+        - >-
           --index-url=https://gitlab.com/api/v4/projects/43703506/packages/pypi/simple
           linkscan --version
-        - >
+        - >-
           --from
           git+https://github.com/Vimjas/vint.git@94d2cb3fd9526a89911b7c1e083a1fd78bace729
           vint --version
         - djlint --version
+      register: site_uv_offline
+      failed_when: false
+      changed_when: false
+    - name: Loop over the result and cache any tools did not return 0
+      ansible.builtin.command: "uv tool run {{ item }}"
+      changed_when: true
+      loop: >-
+        {{ site_uv_offline.results
+         | selectattr('rc', 'ne', 0)
+         | map(attribute='item')
+         | list }}
 
-- name:
-    Tag vim help files, these tasks always report a change so they are run last
-    in the playbook
+- name: Tag vim help files
   hosts: all
   tasks:
     - name: Create a temporary file for use as a script to generate help tags
@@ -123,8 +122,7 @@
         paths: ~/.vim/pack/submodules/opt/
         file_type: directory
       register: site_find
-    - name: Write the commands to the script to avoid an error about too many
-        command line flags
+    - name: Write vim commands to generate help tags to {{ site_script.path }}
       ansible.builtin.copy:
         dest: "{{ site_script.path }}"
         content: |
@@ -135,10 +133,41 @@
           quit
         mode: "0o700"
       changed_when: false
-    - name: Generate help tags with vim and the script( {{ site_script.path }} )
+    - name: Checksum tags files before running {{ site_script.path }}
+      ansible.builtin.find:
+        paths: ~/.vim
+        patterns: tags
+        recurse: true
+        get_checksum: true
+      register: site_helptags_before
+    - name: Generate help tags by running {{ site_script.path }}
       ansible.builtin.command: vim -S {{ site_script.path }}
-      changed_when: true
-    - name: Remove the temporary file used as script for generating help tags
+      changed_when: false # See task to report a change below
+    - name: Checksum tags files after running {{ site_script.path }}
+      ansible.builtin.find:
+        paths: ~/.vim
+        patterns: tags
+        recurse: true
+        get_checksum: true
+      register: site_helptags_after
+    - name: Report a change from {{ site_script.path }}
+      vars:
+        site_after_checksums: >-
+          {{
+          site_helptags_after.files
+          | sort(attribute='path')
+          | map(attribute='checksum')
+          }}
+        site_before_checksums: >-
+          {{
+          site_helptags_before.files
+          | sort(attribute='path')
+          | map(attribute='checksum')
+          }}
+      ansible.builtin.debug: { msg: changed }
+      no_log: true
+      changed_when: site_before_checksums != site_after_checksums
+    - name: Remove {{ site_script.path }}
       ansible.builtin.file:
         path: "{{ site_script.path }}"
         state: absent
@@ -152,7 +181,7 @@
         state: directory
         mode: "0o755"
         path: ~/.local/bin
-    - name: Run ~/.vim/bin/path.toml
+    - name: Add symbolic links to ~/.local/bin
       ansible.builtin.file:
         state: link
         src: ~/.vim/bin/{{ item[0] }}
