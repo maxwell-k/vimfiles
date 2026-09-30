@@ -31,8 +31,11 @@ def main() -> int:
             cmd = ("python", "-m", "doctest", "--verbose", path.name)
             logger.info("Running '%s'", cmd)
             run(cmd, check=True)
-            for pyc in Path("__pycache__").iterdir():
+            pycache = Path("__pycache__")
+            for pyc in pycache.iterdir():
                 pyc.unlink()
+            if pycache.is_dir():
+                pycache.rmdir()
 
     return 0
 
