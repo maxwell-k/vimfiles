@@ -9,14 +9,16 @@
 " Use a file in ftplugin if file type related.
 augroup vimrc
 autocmd!
+
 autocmd BufNewFile,BufRead * call vim#SetSiblingSpellfile()
-autocmd BufNewFile,BufRead COMMIT_EDITMSG setlocal nomodeline spell
-autocmd BufReadCmd *.tbz2 call tar#Browse(expand("<amatch>")) "Gentoo binaries
+autocmd BufRead */exercism/gleam/*/test/*.gleam setlocal noswapfile " (1)
 autocmd BufRead /tmp/histedit.* let $PATH .= ':/usr/local/bin'
+autocmd BufRead COMMIT_EDITMSG setlocal nomodeline spell
+autocmd BufReadCmd *.tbz2 call tar#Browse(expand("<amatch>")) "Gentoo binaries
 autocmd Colorscheme ayu call vim#Colours()
 autocmd StdInReadPost * setlocal nowrap
-" workaround for https://github.com/exercism/gleam-test-runner/issues/62
-autocmd BufRead,BufNewFile */exercism/gleam/*/test/*.gleam setlocal noswapfile
+
+" (1) workaround for https://github.com/exercism/gleam-test-runner/issues/62
 augroup END
 
 " Fundamental configuration {{{1
