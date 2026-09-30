@@ -49,10 +49,6 @@
     - name: Check if npm is available
       ansible.builtin.command: npm --version
       changed_when: false
-      register: site_npm_check
-    - name: Stop this play if npm isn't available
-      ansible.builtin.meta: end_host
-      when: site_npm_check.rc != 0
     - name: Add tools to the npm cache
       ansible.builtin.command:
         cmd: npm exec --yes -- {{ item[0] }} --help
@@ -84,10 +80,6 @@
     - name: Try running uv self version
       ansible.builtin.command: uv self version
       changed_when: false
-      register: site_uv_check
-    - name: Stop this play if uv isn't available
-      ansible.builtin.meta: end_host
-      when: site_uv_check.rc != 0
     - name: Try to run each tool offline
       ansible.builtin.command: uv --offline tool run {{ item }}
       loop:
