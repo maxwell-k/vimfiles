@@ -11,6 +11,7 @@ augroup vimrc
 autocmd!
 
 autocmd BufNewFile,BufRead * call vim#SetSiblingSpellfile()
+autocmd BufNewFile,BufRead */maxwell-k/blog/* call vim#SwitchToDprint()
 autocmd BufRead */exercism/gleam/*/test/*.gleam setlocal noswapfile " (1)
 autocmd BufRead /tmp/histedit.* let $PATH .= ':/usr/local/bin'
 autocmd BufRead COMMIT_EDITMSG setlocal nomodeline spell
