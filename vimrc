@@ -93,9 +93,8 @@ endif
 set incsearch& scrolloff&
 
 " Scripted options
-let s:list_settings = 'setlocal list showbreak=→ '
-let s:list_settings .= 'listchars='
-let s:list_settings .= 'trail:←,tab:→—,extends:▓,precedes:▓'
+let s:list_settings = 'setlocal list showbreak=→'
+\ .. ' listchars=trail:←,tab:→—,extends:▓,precedes:▓'
 execute s:list_settings
 
 " Mappings and commands {{{1
