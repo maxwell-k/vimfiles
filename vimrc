@@ -97,14 +97,15 @@ let s:list_settings = 'setlocal list showbreak=→ '
 let s:list_settings .= 'listchars='
 let s:list_settings .= 'trail:←,tab:→—,extends:▓,precedes:▓'
 execute s:list_settings
-execute "noremap <Leader>l <Cmd>call toggle#List('".s:list_settings."')<CR>"
-unlet s:list_settings
 
 " Mappings and commands {{{1
 " ---------------------
 "
 let g:mapleader = ' '
 let g:maplocalleader = g:mapleader
+
+execute "noremap <Leader>l <Cmd>call toggle#List('"..s:list_settings."')<CR>"
+unlet s:list_settings
 
 " Using <Leader>, alphabetically:
  noremap <Leader>aq <Cmd>call vim#AleQuit()<CR>
