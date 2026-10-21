@@ -65,7 +65,7 @@ function! vim#ChooseModeline(findstart, base) abort "{{{1
 endfunction "}}}1
 function! vim#ConfigureModelineCompletion(choices) abort "{{{1
   let b:modeline_choices = a:choices
-  set completefunc=vim#ChooseModeline
+  setlocal completefunc=vim#ChooseModeline
 endfunction "}}}1
 function! vim#GitProjectRoot(buffer) abort "{{{1
   let l:git = ale#path#FindNearestFileOrDirectory(a:buffer, '.git')
